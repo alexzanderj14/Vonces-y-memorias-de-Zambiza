@@ -67,7 +67,9 @@
         const ASSETS = {
             LOGO_ZAMBIZA: "https://www.gadzambiza.gob.ec/media/pictures/web/inicio/logoZambiza.png",
             IGLESIA_FONDO: "https://raw.githubusercontent.com/alexzanderj14/Vonces-y-memorias-de-Zambiza/main/igle.jpeg",
-            ENCUESTA_LINK: "https://docs.google.com/forms/d/e/1FAIpQLSdWRTgOaAP64EzZBj8EF9O3hIc-xHGkjO2J9ETo1cdgNdi0nQ/viewform?usp=header"
+            ENCUESTA_LINK: "https://docs.google.com/forms/d/e/1FAIpQLSdWRTgOaAP64EzZBj8EF9O3hIc-xHGkjO2J9ETo1cdgNdi0nQ/viewform?usp=header",
+            CULTURA_YOUTUBE: "https://youtube.com/@zambizamemoriasyvoces?si=e0q8EwWEEH0-7pwy",
+            GAD_YOUTUBE: "https://youtube.com/@gadzambiza?si=czoXpmdvR_oZKVlt"
         };
 
         const CONTENT = {
@@ -161,7 +163,7 @@
                     {/* HEADER MODERNO BLANCO CON LOGO CORPORATIVO GIGANTE */}
                     <nav className="fixed w-full z-40 bg-white/95 backdrop-blur-xl border-b border-slate-200/80 shadow-sm transition-all">
                         <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
-                            {/* Logo institucional GAD Zámbiza apilado sobre Zimagination (Ampliación y excelente visibilidad) */}
+                            {/* Logo institucional GAD Zámbiza apilado sobre Zimagination */}
                             <div className="flex flex-col items-start gap-2">
                                 <a href="#" className="hover:opacity-90 transition-opacity">
                                     <img 
@@ -177,11 +179,11 @@
 
                             <div className="flex items-center gap-4">
                                 <a 
-                                    href={ASSETS.ENCUESTA_LINK} 
+                                    href={ASSETS.GAD_YOUTUBE} 
                                     target="_blank" 
                                     className="hidden md:flex items-center gap-2 text-sm font-bold text-slate-600 hover:text-teal-600 transition-colors"
                                 >
-                                    <Icons.Youtube /> Canal Oficial GAD de Zámbiza
+                                    <Icons.Youtube /> Canal Oficial
                                 </a>
                                 <button className="md:hidden text-slate-800 hover:text-red-500 transition-colors">
                                     <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -208,7 +210,7 @@
                         <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-teal-500/5 rounded-full blur-[120px] pointer-events-none animate-pulse"></div>
 
                         <div className="relative z-10 max-w-7xl mx-auto w-full grid lg:grid-cols-12 gap-12 items-center">
-                            {/* Caja de contenido con Glassmorphism premium (desenfoque de cristal blanco) que protege las letras y permite ver la iglesia a un 100% de nitidez */}
+                            {/* Caja de contenido con Glassmorphism premium */}
                             <div className="lg:col-span-8 space-y-8 bg-white/75 backdrop-blur-md p-8 md:p-12 rounded-[2.5rem] border border-white/60 shadow-xl shadow-slate-200/50">
                                 <div className="inline-flex items-center gap-2 px-3 py-1 bg-red-50 text-red-600 border border-red-200 text-[10px] font-black uppercase tracking-widest rounded-full shadow-sm">
                                     <span className="w-2 h-2 rounded-full bg-red-500 animate-pulse"></span>
@@ -348,35 +350,43 @@
                         </div>
                     </section>
 
-                    {/* ECOSISTEMA DIGITAL: FOOTER Y CTAs (Luminoso, limpio y con encuesta incorporada) */}
+                    {/* ECOSISTEMA DIGITAL: FOOTER Y CTAs */}
                     <footer className="bg-white py-20 px-6 border-t border-slate-200 relative overflow-hidden">
                         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-teal-500/5 blur-[120px] rounded-full pointer-events-none"></div>
                         
-                        <div className="max-w-4xl mx-auto text-center relative z-10">
+                        <div className="max-w-7xl mx-auto text-center relative z-10">
                             <h2 className="text-3xl md:text-5xl font-extrabold text-slate-900 mb-6">Tu voz construye el legado</h2>
                             <p className="text-slate-500 text-lg mb-10 max-w-2xl mx-auto">
                                 Te invitamos a completar nuestra Encuesta de Percepción Ciudadana. Tu opinión es el motor principal para seguir rescatando la historia, arte y tradiciones de Zámbiza.
                             </p>
                             
-                            <div className="flex flex-col lg:flex-row justify-center items-center gap-4 mb-20">
+                            {/* Cuatro botones corporativos perfectamente balanceados en Grid */}
+                            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-20 max-w-5xl mx-auto">
                                 <a 
                                     href={ASSETS.ENCUESTA_LINK} 
                                     target="_blank"
-                                    className="w-full lg:w-auto flex items-center justify-center gap-3 bg-gradient-to-r from-teal-600 to-emerald-500 text-white px-8 py-4 rounded-xl font-bold hover:from-teal-500 hover:to-emerald-400 transition-all shadow-md shadow-teal-500/20"
+                                    className="flex items-center justify-center gap-3 bg-gradient-to-r from-teal-600 to-emerald-500 text-white px-6 py-4 rounded-xl font-bold hover:from-teal-500 hover:to-emerald-400 transition-all shadow-md shadow-teal-500/20 text-center text-sm"
                                 >
                                     <Icons.Survey /> Llenar Encuesta Ciudadana
                                 </a>
                                 <a 
-                                    href={ASSETS.ENCUESTA_LINK} 
+                                    href={ASSETS.CULTURA_YOUTUBE} 
                                     target="_blank"
-                                    className="w-full lg:w-auto flex items-center justify-center gap-3 bg-red-600 text-white px-8 py-4 rounded-xl font-bold hover:bg-red-700 transition-colors shadow-md shadow-red-500/10"
+                                    className="flex items-center justify-center gap-3 bg-red-600 text-white px-6 py-4 rounded-xl font-bold hover:bg-red-700 transition-colors shadow-md shadow-red-500/10 text-center text-sm"
                                 >
-                                    <Icons.Youtube /> Canal Oficial GAD de Zámbiza
+                                    <Icons.Youtube /> Conocer más sobre la cultura
+                                </a>
+                                <a 
+                                    href={ASSETS.GAD_YOUTUBE} 
+                                    target="_blank"
+                                    className="flex items-center justify-center gap-3 bg-slate-900 hover:bg-slate-800 text-white px-6 py-4 rounded-xl font-bold transition-all shadow-md text-center text-sm"
+                                >
+                                    <Icons.Youtube /> Canal Oficial
                                 </a>
                                 <a 
                                     href="https://www.gadzambiza.gob.ec/" 
                                     target="_blank"
-                                    className="w-full lg:w-auto flex items-center justify-center gap-3 bg-slate-100 hover:bg-slate-200 text-slate-800 px-8 py-4 rounded-xl font-bold transition-colors border border-slate-300/60"
+                                    className="flex items-center justify-center gap-3 bg-slate-100 hover:bg-slate-200 text-slate-800 px-6 py-4 rounded-xl font-bold transition-colors border border-slate-300/60 text-center text-sm"
                                 >
                                     <Icons.Institution /> Web Oficial GAD Zámbiza
                                 </a>
