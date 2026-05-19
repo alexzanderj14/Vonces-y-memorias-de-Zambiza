@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zimagination | Voces y Memorias de Zámbiza</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/react@18/umd/react.production.min.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js" crossorigin></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    
+    <style>
+        /* Tipografía personalizada para un look más editorial y cultural */
+        @import url('https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,400;0,700;1,400&family=Plus+Jakarta+Sans:wght@400;600;800&display=swap');
+        
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: #020617; /* slate-950 */
+            color: #f8fafc; /* slate-50 */
+        }
+        
+        .font-serif-quote {
+            font-family: 'Merriweather', serif;
+        }
+
+        /* Ocultar scrollbar pero mantener funcionalidad para galerías horizontales */
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+</head>
+<body class="overflow-x-hidden antialiased">
+    <div id="root"></div>
+
+    <script type="text/babel">
+        const CONTENT = {
+            categories: [
+                { id: 'all', label: 'Todo el Contenido' },
+                { id: 'historia', label: 'Historia y Origen' },
+                { id: 'vestimenta', label: 'Significado de la Vestimenta' },
+                { id: 'musica', label: 'Música y Ritmos' },
+                { id: 'personajes', label: 'Personajes de la Danza' },
+                { id: 'costumbres', label: 'Costumbres y Fiestas' }
+            ],
+            videos: [
+                {
+                    id: 'main-1',
+                    videoId: 'xu2tHJEPmK0', // Reemplazar con ID real del docu principal
+                    title: 'El Despertar del Danzante: Tradición Viva',
+                    category: 'personajes',
+                    thumbnail: 'https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?auto=format&fit=crop&q=80&w=1200',
+                    description: 'Conoce la preparación espiritual y física de los danzantes de Zámbiza antes de la gran fiesta patronal. Un viaje íntimo a la devoción.',
+                    duration: '08:45',
+                    isFeatured: true
+                },
+                {
+                    id: 'v-2',
+                    videoId: 'JI7gdhuPSdk',
+                    title: 'Hilos que Cuentan Historias: La Vestimenta',
+                    category: 'vestimenta',
+                    thumbnail: 'https://images.unsplash.com/photo-1605806616949-1e87b487bc2a?auto=format&fit=crop&q=80&w=800',
+                    description: 'Cada color y bordado tiene un porqué. Las tejedoras locales nos explican el simbolismo oculto en los trajes festivos.',
+                    duration: '04:20'
+                },
+                {
+                    id: 'v-3',
+                    videoId: 'gzucud8JqAc',
+                    title: 'El Ritmo de la Tierra: Pingullo y Tambor',
+                    category: 'musica',
+                    thumbnail: 'https://images.unsplash.com/photo-1516280440502-861614917637?auto=format&fit=crop&q=80&w=800',
+                    description: 'Descubre los instrumentos autóctonos que marcan el paso de nuestras celebraciones desde tiempos inmemoriales.',
+                    duration: '05:15'
+                },
+                {
+                    id: 'v-4',
+                    videoId: 'xu2tHJEPmK0',
+                    title: 'Orígenes: La Fundación de Zámbiza',
+                    category: 'historia',
+                    thumbnail: 'https://images.unsplash.com/photo-1461344577544-4e5dc9487184?auto=format&fit=crop&q=80&w=800',
+                    description: 'Un recorrido por los hitos históricos que forjaron el carácter de nuestra parroquia más antigua.',
+                    duration: '12:30'
+                }
+            ],
+            testimonials: [
+                {
+                    id: 't-1',
+                    quote: "Nosotros no bailamos para que nos aplaudan, bailamos porque en cada paso la tierra nos recuerda quiénes somos. Si dejamos de danzar, el pueblo olvida.",
+                    author: "Don Segundo Guamán",
+                    role: "Danzante Mayor, 68 años",
+                    image: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&q=80&w=400"
+                },
+                {
+                    id: 't-2',
+                    quote: "Los jóvenes miran el teléfono buscando héroes, pero los verdaderos héroes están aquí, tejiendo la historia con hilos de colores en nuestros propios patios.",
+                    author: "María Rosa Tituaña",
+                    role: "Artesana Textil",
+                    image: "https://images.unsplash.com/photo-1531123897727-8f129e1688ce?auto=format&fit=crop&q=80&w=400"
+                }
+            ]
+        };
+
+        const Icons = {
+            Play: () => <svg className="w-6 h-6 ml-1" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>,
+            Youtube: () => <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z"/></svg>,
+            Institution: () => <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>,
+            Quote: () => <svg className="w-12 h-12 text-rose-500/20" fill="currentColor" viewBox="0 0 24 24"><path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/></svg>
+        };
+
+        const App = () => {
+            const [activeCategory, setActiveCategory] = React.useState('all');
+            const [selectedVideo, setSelectedVideo] = React.useState(null);
+
+            const filteredVideos = React.useMemo(() => {
+                if (activeCategory === 'all') return CONTENT.videos.filter(v => !v.isFeatured);
+                return CONTENT.videos.filter(v => v.category === activeCategory && !v.isFeatured);
+            }, [activeCategory]);
+
+            const featuredVideo = CONTENT.videos.find(v => v.isFeatured);
+
+            return (
+                <div className="min-h-screen bg-slate-950 text-slate-50 selection:bg-rose-500 selection:text-white">
+                    
+                    {/* HEADER MODERNO Y TRANSPARENTE */}
+                    {}
+                    <nav className="fixed w-full z-40 bg-slate-950/80 backdrop-blur-xl border-b border-white/5 transition-all">
+                        <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+                            <div className="flex items-center gap-4">
+                                <h1 className="text-2xl font-extrabold tracking-tighter text-white">
+                                    Zimagination<span className="text-rose-500">.</span>
+                                </h1>
+                                <div className="hidden md:flex items-center gap-3 border-l border-white/10 pl-4 ml-2">
+                                    <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Apoyado por</span>
+                                    <img src="https://www.gadzambiza.gob.ec/media/pictures/web/inicio/logoZambiza.png" alt="GAD Zámbiza" className="h-8 brightness-0 invert opacity-70" />
+                                </div>
+                            </div>
+                            <div className="flex items-center gap-4">
+                                <a href="#youtube" className="hidden md:flex items-center gap-2 text-sm font-bold text-slate-300 hover:text-white transition-colors">
+                                    <Icons.Youtube /> Suscribirse
+                                </a>
+                                <button className="md:hidden text-white">
+                                    <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+                                </button>
+                            </div>
+                        </div>
+                    </nav>
+
+                    {/* HERO SECTION: VIDEO-FIRST (ESTILO NETFLIX/MUBI) */}
+                    {}
+                    <section className="relative pt-32 pb-20 lg:pt-48 lg:pb-32 px-6 overflow-hidden min-h-[85vh] flex items-center">
+                        {/* Fondo dinámico (simulación de imagen de video) */}
+                        <div className="absolute inset-0 z-0">
+                            <img src={featuredVideo.thumbnail} className="w-full h-full object-cover opacity-40 scale-105 transform motion-safe:animate-[pulse_10s_ease-in-out_infinite]" />
+                            <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/80 to-transparent"></div>
+                            <div className="absolute inset-0 bg-gradient-to-r from-slate-950 via-slate-950/50 to-transparent"></div>
+                        </div>
+
+                        <div className="relative z-10 max-w-7xl mx-auto w-full grid lg:grid-cols-12 gap-12 items-center">
+                            <div className="lg:col-span-7 space-y-8">
+                                <div className="inline-flex items-center gap-2 px-3 py-1 bg-amber-500/10 border border-amber-500/20 text-amber-400 text-[10px] font-black uppercase tracking-widest rounded-full">
+                                    <span className="w-2 h-2 rounded-full bg-amber-500 animate-pulse"></span>
+                                    Documental Estreno
+                                </div>
+                                <h2 className="text-5xl lg:text-7xl font-extrabold tracking-tighter leading-[1.1] text-white">
+                                    {featuredVideo.title}
+                                </h2>
+                                <p className="text-slate-300 text-lg lg:text-xl leading-relaxed max-w-2xl font-serif-quote">
+                                    {featuredVideo.description}
+                                </p>
+                                <div className="flex flex-col sm:flex-row gap-4 pt-4">
+                                    <button 
+                                        onClick={() => setSelectedVideo(featuredVideo)}
+                                        className="flex items-center justify-center gap-2 bg-rose-600 text-white px-8 py-4 rounded-full font-bold text-sm uppercase tracking-wide hover:bg-rose-500 hover:scale-105 transition-all shadow-[0_0_40px_-10px_rgba(225,29,72,0.5)]"
+                                    >
+                                        <Icons.Play /> Reproducir Cápsula
+                                    </button>
+                                    <button className="flex items-center justify-center gap-2 bg-white/10 text-white backdrop-blur-md px-8 py-4 rounded-full font-bold text-sm uppercase tracking-wide hover:bg-white/20 transition-all">
+                                        Explorar Proyecto
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    {/* ARQUITECTURA DE INFORMACIÓN: NAVEGACIÓN POR CATEGORÍAS */}
+                    {}
+                    <section className="border-t border-white/5 bg-slate-900/50 sticky top-20 z-30 backdrop-blur-md">
+                        <div className="max-w-7xl mx-auto px-6 py-4">
+                            <div className="flex gap-3 overflow-x-auto hide-scrollbar pb-2">
+                                {CONTENT.categories.map(cat => (
+                                    <button
+                                        key={cat.id}
+                                        onClick={() => setActiveCategory(cat.id)}
+                                        className={`whitespace-nowrap px-6 py-2.5 rounded-full text-sm font-bold transition-all ${
+                                            activeCategory === cat.id 
+                                            ? 'bg-white text-slate-950 shadow-lg' 
+                                            : 'bg-white/5 text-slate-400 hover:bg-white/10 hover:text-white'
+                                        }`}
+                                    >
+                                        {cat.label}
+                                    </button>
+                                ))}
+                            </div>
+                        </div>
+                    </section>
+
+                    {/* GALERÍA MULTIMEDIA (GRILLA) */}
+                    {}
+                    <main className="max-w-7xl mx-auto px-6 py-16">
+                        <div className="flex justify-between items-end mb-10">
+                            <div>
+                                <h3 className="text-3xl font-extrabold text-white tracking-tight">Memoria Audiovisual</h3>
+                                <p className="text-slate-400 mt-2 font-serif-quote italic">Explora la identidad de Zámbiza a través de sus protagonistas.</p>
+                            </div>
+                        </div>
+
+                        {filteredVideos.length === 0 ? (
+                            <div className="text-center py-20 bg-white/5 rounded-3xl border border-white/10">
+                                <p className="text-slate-400 font-bold">Aún no hay cápsulas en esta categoría.</p>
+                            </div>
+                        ) : (
+                            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+                                {filteredVideos.map(video => (
+                                    <article 
+                                        key={video.id} 
+                                        onClick={() => setSelectedVideo(video)} 
+                                        className="group cursor-pointer flex flex-col gap-4"
+                                    >
+                                        {/* Thumbnail con efecto cinematico */}
+                                        <div className="relative aspect-video rounded-2xl overflow-hidden bg-slate-800">
+                                            <img 
+                                                src={video.thumbnail} 
+                                                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 opacity-80 group-hover:opacity-100" 
+                                            />
+                                            <div className="absolute inset-0 bg-slate-950/20 group-hover:bg-transparent transition-colors"></div>
+                                            
+                                            {/* Etiqueta de duración y categoría */}
+                                            <div className="absolute bottom-3 right-3 bg-black/80 backdrop-blur-sm text-white text-[10px] font-bold px-2 py-1 rounded">
+                                                {video.duration}
+                                            </div>
+                                            <div className="absolute top-3 left-3 bg-rose-600/90 backdrop-blur-sm text-white text-[9px] uppercase tracking-widest font-black px-3 py-1 rounded-full">
+                                                {CONTENT.categories.find(c => c.id === video.category)?.label}
+                                            </div>
+                                            
+                                            {/* Play button overlay */}
+                                            <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                                                <div className="w-16 h-16 bg-white/20 backdrop-blur-md rounded-full flex items-center justify-center text-white border border-white/30">
+                                                    <Icons.Play />
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+                                        {/* Info del video */}
+                                        <div>
+                                            <h4 className="text-lg font-bold text-white leading-tight group-hover:text-rose-400 transition-colors mb-2">
+                                                {video.title}
+                                            </h4>
+                                            <p className="text-slate-400 text-sm line-clamp-2 leading-relaxed">
+                                                {video.description}
+                                            </p>
+                                        </div>
+                                    </article>
+                                ))}
+                            </div>
+                        )}
+                    </main>
+
+                    {/* SECCIÓN DE TESTIMONIOS: "ROSTROS DE LA MEMORIA" */}
+                    {}
+                    <section className="bg-slate-900 border-y border-white/5 py-24 px-6">
+                        <div className="max-w-7xl mx-auto">
+                            <div className="text-center mb-16">
+                                <h3 className="text-sm font-black text-amber-500 uppercase tracking-[0.3em] mb-4">Voces de la Comunidad</h3>
+                                <h2 className="text-4xl md:text-5xl font-extrabold text-white">Nuestra historia en primera persona</h2>
+                            </div>
+                            
+                            <div className="grid md:grid-cols-2 gap-12 lg:gap-20">
+                                {CONTENT.testimonials.map(testimony => (
+                                    <div key={testimony.id} className="relative bg-slate-950 p-8 md:p-12 rounded-[2rem] border border-white/5 hover:border-white/10 transition-colors">
+                                        <div className="absolute top-8 left-8"><Icons.Quote /></div>
+                                        <p className="relative z-10 text-xl md:text-2xl text-slate-300 font-serif-quote italic leading-relaxed mb-10 pt-8">
+                                            "{testimony.quote}"
+                                        </p>
+                                        <div className="flex items-center gap-5 border-t border-white/10 pt-6">
+                                            <img src={testimony.image} alt={testimony.author} className="w-16 h-16 rounded-full object-cover border-2 border-slate-800" />
+                                            <div>
+                                                <h4 className="text-white font-bold text-lg">{testimony.author}</h4>
+                                                <p className="text-amber-500/80 text-sm font-medium">{testimony.role}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+                    </section>
+
+                    {/* ECOSISTEMA DIGITAL: FOOTER Y CTAs */}
+                    {}
+                    <footer className="bg-slate-950 py-20 px-6 border-t border-white/10 relative overflow-hidden">
+                        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-rose-600/10 blur-[120px] rounded-full pointer-events-none"></div>
+                        
+                        <div className="max-w-4xl mx-auto text-center relative z-10">
+                            <h2 className="text-3xl md:text-5xl font-extrabold text-white mb-6">El legado continúa en video</h2>
+                            <p className="text-slate-400 text-lg mb-10 max-w-2xl mx-auto">
+                                Únete a nuestra comunidad digital. Suscríbete al canal de Zimagination para recibir las últimas cápsulas y documentales sobre Zámbiza.
+                            </p>
+                            
+                            <div className="flex flex-col sm:flex-row justify-center items-center gap-4 mb-20">
+                                <button className="w-full sm:w-auto flex items-center justify-center gap-3 bg-red-600 text-white px-8 py-4 rounded-xl font-bold hover:bg-red-700 transition-colors shadow-lg">
+                                    <Icons.Youtube /> Suscribirse en YouTube
+                                </button>
+                                <button className="w-full sm:w-auto flex items-center justify-center gap-3 bg-slate-800 text-white px-8 py-4 rounded-xl font-bold hover:bg-slate-700 transition-colors">
+                                    <Icons.Institution /> Web Oficial GAD Zámbiza
+                                </button>
+                            </div>
+                            
+                            <div className="border-t border-white/10 pt-10 flex flex-col md:flex-row justify-between items-center gap-6">
+                                <div className="flex items-center gap-4">
+                                    <h1 className="text-xl font-extrabold text-white opacity-50">Zimagination.</h1>
+                                </div>
+                                <p className="text-slate-500 text-sm">
+                                    © 2026 Zimagination Cultural. Un proyecto avalado por el GAD Zámbiza.
+                                </p>
+                            </div>
+                        </div>
+                    </footer>
+
+                    {/* MODAL REPRODUCTOR */}
+                    {}
+                    {selectedVideo && (
+                        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 bg-slate-950/95 backdrop-blur-xl">
+                            <div className="bg-slate-900 w-full max-w-5xl rounded-3xl overflow-hidden shadow-2xl relative flex flex-col border border-white/10 max-h-[95vh] animate-[fadeIn_0.2s_ease-out]">
+                                
+                                {/* Header del Modal */}
+                                <div className="flex justify-between items-center p-4 border-b border-white/10">
+                                    <span className="text-rose-500 text-xs font-black uppercase tracking-widest px-2">
+                                        {CONTENT.categories.find(c => c.id === selectedVideo.category)?.label}
+                                    </span>
+                                    <button 
+                                        onClick={() => setSelectedVideo(null)} 
+                                        className="w-10 h-10 bg-white/5 text-white rounded-full flex items-center justify-center hover:bg-rose-600 transition-colors font-bold"
+                                    >
+                                        ✕
+                                    </button>
+                                </div>
+
+                                {/* Contenedor del Iframe 16:9 */}
+                                <div className="w-full bg-black aspect-video relative">
+                                    <iframe 
+                                        className="absolute inset-0 w-full h-full" 
+                                        src={`https://www.youtube.com/embed/${selectedVideo.videoId}?autoplay=1`} 
+                                        frameBorder="0" 
+                                        allow="autoplay; encrypted-media; picture-in-picture" 
+                                        allowFullScreen
+                                    ></iframe>
+                                </div>
+
+                                {/* Info y CTA dentro del Modal */}
+                                <div className="p-6 md:p-8 bg-slate-900 flex flex-col md:flex-row justify-between items-start gap-6 overflow-y-auto">
+                                    <div className="max-w-2xl">
+                                        <h3 className="text-2xl font-extrabold text-white mb-3">{selectedVideo.title}</h3>
+                                        <p className="text-slate-400 text-sm leading-relaxed font-serif-quote">
+                                            {selectedVideo.description}
+                                        </p>
+                                    </div>
+                                    <button 
+                                        onClick={() => window.open(`https://www.youtube.com/watch?v=${selectedVideo.videoId}`, '_blank')} 
+                                        className="w-full md:w-auto flex-shrink-0 flex items-center justify-center gap-2 bg-white/10 text-white px-6 py-3 rounded-xl font-bold text-sm uppercase hover:bg-rose-600 transition-colors whitespace-nowrap"
+                                    >
+                                        <Icons.Youtube /> Apoyar en YouTube
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    )}
+
+                </div>
+            );
+        };
+
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<App />);
+    </script>
+</body>
+</html>
