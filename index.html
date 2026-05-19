@@ -20,7 +20,6 @@
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
     
     <style>
-        /* Tipografía personalizada para un look más editorial y cultural */
         @import url('https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,400;0,700;1,400&family=Plus+Jakarta+Sans:wght@400;600;800&display=swap');
         
         body {
@@ -33,7 +32,6 @@
             font-family: 'Merriweather', serif;
         }
 
-        /* Ocultar scrollbar pero mantener funcionalidad para galerías horizontales */
         .hide-scrollbar::-webkit-scrollbar {
             display: none;
         }
@@ -42,7 +40,6 @@
             scrollbar-width: none;
         }
 
-        /* Efecto de Paralaje Dinámico para el Fondo de la Iglesia */
         .parallax-bg {
             background-attachment: fixed;
             background-position: center 25%;
@@ -50,7 +47,6 @@
             background-size: cover;
         }
 
-        /* En dispositivos móviles desactivamos el paralaje para optimizar el rendimiento de batería y scroll */
         @media (max-width: 768px) {
             .parallax-bg {
                 background-attachment: scroll;
@@ -63,7 +59,6 @@
     <div id="root"></div>
 
     <script type="text/babel">
-        // URLs oficiales de recursos gráficos del proyecto
         const ASSETS = {
             LOGO_ZAMBIZA: "https://www.gadzambiza.gob.ec/media/pictures/web/inicio/logoZambiza.png",
             IGLESIA_FONDO: "https://raw.githubusercontent.com/alexzanderj14/Vonces-y-memorias-de-Zambiza/main/igle.jpeg"
@@ -139,12 +134,15 @@
             Play: () => <svg className="w-6 h-6 ml-1" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>,
             Youtube: () => <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z"/></svg>,
             Institution: () => <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>,
-            Quote: () => <svg className="w-12 h-12 text-emerald-500/20" fill="currentColor" viewBox="0 0 24 24"><path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/></svg>
+            Quote: () => <svg className="w-12 h-12 text-emerald-500/20" fill="currentColor" viewBox="0 0 24 24"><path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/></svg>,
+            Survey: () => <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
         };
 
         const App = () => {
             const [activeCategory, setActiveCategory] = React.useState('all');
             const [selectedVideo, setSelectedVideo] = React.useState(null);
+            // Estado para controlar la visibilidad del modal de la encuesta
+            const [isSurveyOpen, setIsSurveyOpen] = React.useState(false);
 
             const filteredVideos = React.useMemo(() => {
                 if (activeCategory === 'all') return CONTENT.videos.filter(v => !v.isFeatured);
@@ -154,12 +152,11 @@
             const featuredVideo = CONTENT.videos.find(v => v.isFeatured);
 
             return (
-                <div className="min-h-screen bg-slate-950 text-slate-50 selection:bg-emerald-600">
+                <div className="min-h-screen bg-slate-950 text-slate-50 selection:bg-emerald-600 relative">
                     
-                    {/* HEADER MODERNO CON LOGO SUPERIOR IZQUIERDO ACUMULADO */}
-                    <nav className="fixed w-full z-40 bg-slate-950/90 backdrop-blur-xl border-b border-white/5 transition-all">
+                    {/* Navegación superior */}
+                    <nav className="absolute w-full z-40 bg-transparent border-b border-white/5 transition-all">
                         <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
-                            {/* Logo institucional GAD Zámbiza apilado sobre Zimagination */}
                             <div className="flex flex-col items-start gap-1">
                                 <a href="#" className="hover:opacity-90 transition-opacity">
                                     <img 
@@ -181,25 +178,17 @@
                                 >
                                     <Icons.Youtube /> Suscribirse
                                 </a>
-                                <button className="md:hidden text-white hover:text-emerald-500 transition-colors">
-                                    <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16"/>
-                                    </svg>
-                                </button>
                             </div>
                         </div>
                     </nav>
 
-                    {/* HERO SECTION: IMAGEN DE LA IGLESIA DE FONDO CON COLORES CORPORATIVOS (AZUL, ESMERALDA Y ORO) */}
+                    {/* Hero Section */}
                     <section 
                         className="relative pt-36 pb-20 lg:pt-52 lg:pb-32 px-6 overflow-hidden min-h-[85vh] flex items-center parallax-bg"
                         style={{ backgroundImage: `url(${ASSETS.IGLESIA_FONDO})` }}
                     >
-                        {/* Máscara de degradados cinemáticos con azul/esmeralda corporativo sutil de fondo */}
                         <div className="absolute inset-0 z-0 bg-gradient-to-t from-slate-950 via-slate-950/85 to-slate-950/30"></div>
                         <div className="absolute inset-0 z-0 bg-gradient-to-r from-slate-950 via-slate-950/70 to-transparent"></div>
-
-                        {/* Destellos de luz ambiental basados en los colores de Zámbiza */}
                         <div className="absolute top-1/4 left-1/4 w-80 h-80 bg-blue-600/10 rounded-full blur-[100px] pointer-events-none animate-pulse"></div>
                         <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-emerald-600/10 rounded-full blur-[120px] pointer-events-none animate-pulse"></div>
 
@@ -233,8 +222,7 @@
                         </div>
                     </section>
 
-                    {/* ARQUITECTURA DE INFORMACIÓN: NAVEGACIÓN POR CATEGORÍAS */}
-                    <section id="galeria" className="border-t border-white/5 bg-slate-900/50 sticky top-[92px] z-30 backdrop-blur-md">
+                    <section id="galeria" className="border-t border-white/5 bg-slate-900/50 sticky top-0 z-30 backdrop-blur-md">
                         <div className="max-w-7xl mx-auto px-6 py-4">
                             <div className="flex gap-3 overflow-x-auto hide-scrollbar pb-2">
                                 {CONTENT.categories.map(cat => (
@@ -254,7 +242,6 @@
                         </div>
                     </section>
 
-                    {/* GALERÍA MULTIMEDIA (GRILLA) */}
                     <main className="max-w-7xl mx-auto px-6 py-16">
                         <div className="flex justify-between items-end mb-10">
                             <div>
@@ -275,31 +262,24 @@
                                         onClick={() => setSelectedVideo(video)} 
                                         className="group cursor-pointer flex flex-col gap-4 bg-slate-900/40 p-4 rounded-3xl border border-white/5 hover:border-emerald-500/20 hover:bg-slate-900/60 transition-all duration-300"
                                     >
-                                        {/* Thumbnail con efecto cinematográfico */}
                                         <div className="relative aspect-video rounded-2xl overflow-hidden bg-slate-800">
                                             <img 
                                                 src={video.thumbnail} 
                                                 className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 opacity-80 group-hover:opacity-100" 
                                             />
                                             <div className="absolute inset-0 bg-slate-950/20 group-hover:bg-transparent transition-colors"></div>
-                                            
-                                            {/* Etiqueta de duración y categoría */}
                                             <div className="absolute bottom-3 right-3 bg-black/80 backdrop-blur-sm text-white text-[10px] font-bold px-2 py-1 rounded">
                                                 {video.duration}
                                             </div>
                                             <div className="absolute top-3 left-3 bg-gradient-to-r from-blue-600 to-emerald-600 backdrop-blur-sm text-white text-[9px] uppercase tracking-widest font-black px-3 py-1 rounded-full shadow-md">
                                                 {CONTENT.categories.find(c => c.id === video.category)?.label}
                                             </div>
-                                            
-                                            {/* Play button overlay */}
                                             <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                                                 <div className="w-16 h-16 bg-gradient-to-tr from-blue-600/80 to-emerald-600/80 backdrop-blur-md rounded-full flex items-center justify-center text-white border border-white/20">
                                                     <Icons.Play />
                                                 </div>
                                             </div>
                                         </div>
-                                        
-                                        {/* Info del video */}
                                         <div className="px-1 py-2">
                                             <h4 className="text-lg font-bold text-white leading-tight group-hover:text-emerald-400 transition-colors mb-2">
                                                 {video.title}
@@ -314,7 +294,6 @@
                         )}
                     </main>
 
-                    {/* SECCIÓN DE TESTIMONIOS: "ROSTROS DE LA MEMORIA" */}
                     <section className="bg-slate-900 border-y border-white/5 py-24 px-6">
                         <div className="max-w-7xl mx-auto">
                             <div className="text-center mb-16">
@@ -342,10 +321,8 @@
                         </div>
                     </section>
 
-                    {/* ECOSISTEMA DIGITAL: FOOTER Y CTAs */}
                     <footer className="bg-slate-950 py-20 px-6 border-t border-white/10 relative overflow-hidden">
                         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-emerald-600/5 blur-[120px] rounded-full pointer-events-none"></div>
-                        
                         <div className="max-w-4xl mx-auto text-center relative z-10">
                             <h2 className="text-3xl md:text-5xl font-extrabold text-white mb-6">El legado continúa en video</h2>
                             <p className="text-slate-400 text-lg mb-10 max-w-2xl mx-auto">
@@ -385,12 +362,12 @@
                         </div>
                     </footer>
 
-                    {/* MODAL REPRODUCTOR */}
+                    {}
+                    
+                    {/* Modal Reproductor de Video */}
                     {selectedVideo && (
                         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 bg-slate-950/95 backdrop-blur-xl">
-                            <div className="bg-slate-900 w-full max-w-5xl rounded-3xl overflow-hidden shadow-2xl relative flex flex-col border border-white/10 max-h-[95vh] animate-[fadeIn_0.2s_ease-out]">
-                                
-                                {/* Header del Modal */}
+                            <div className="bg-slate-900 w-full max-w-5xl rounded-3xl overflow-hidden shadow-2xl relative flex flex-col border border-white/10 max-h-[95vh]">
                                 <div className="flex justify-between items-center p-4 border-b border-white/10">
                                     <span className="text-amber-500 text-xs font-black uppercase tracking-widest px-2">
                                         {CONTENT.categories.find(c => c.id === selectedVideo.category)?.label}
@@ -402,8 +379,6 @@
                                         ✕
                                     </button>
                                 </div>
-
-                                {/* Contenedor del Iframe 16:9 */}
                                 <div className="w-full bg-black aspect-video relative">
                                     <iframe 
                                         className="absolute inset-0 w-full h-full" 
@@ -413,8 +388,6 @@
                                         allowFullScreen
                                     ></iframe>
                                 </div>
-
-                                {/* Info y CTA dentro del Modal */}
                                 <div className="p-6 md:p-8 bg-slate-900 flex flex-col md:flex-row justify-between items-start gap-6 overflow-y-auto">
                                     <div className="max-w-2xl">
                                         <h3 className="text-2xl font-extrabold text-white mb-3">{selectedVideo.title}</h3>
@@ -428,6 +401,64 @@
                                     >
                                         <Icons.Youtube /> Apoyar en YouTube
                                     </button>
+                                </div>
+                            </div>
+                        </div>
+                    )}
+
+                    {/* Botón flotante para abrir la Encuesta */}
+                    <button 
+                        onClick={() => setIsSurveyOpen(true)}
+                        className="fixed bottom-6 right-6 z-40 group flex items-center gap-0 bg-emerald-600 hover:bg-emerald-500 text-white rounded-full p-4 shadow-2xl shadow-emerald-900/50 transition-all duration-300 transform hover:-translate-y-1 border border-emerald-400/30"
+                    >
+                        <span className="max-w-0 overflow-hidden group-hover:max-w-xs transition-all duration-300 ease-in-out whitespace-nowrap font-bold text-sm pl-0 group-hover:pl-2 group-hover:pr-3">
+                            Danos tu opinión
+                        </span>
+                        <Icons.Survey />
+                    </button>
+
+                    {/* Modal de la Encuesta Embebida */}
+                    {isSurveyOpen && (
+                        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 bg-slate-950/95 backdrop-blur-xl">
+                            <div className="bg-slate-900 w-full max-w-3xl h-[85vh] md:h-[80vh] rounded-3xl overflow-hidden shadow-2xl relative flex flex-col border border-white/10">
+                                
+                                {/* Header del Modal de Encuesta */}
+                                <div className="flex justify-between items-center p-5 border-b border-white/10 bg-gradient-to-r from-emerald-900/40 to-slate-900">
+                                    <div className="flex items-center gap-3">
+                                        <div className="w-8 h-8 rounded-full bg-emerald-600/20 text-emerald-400 flex items-center justify-center font-bold">
+                                            <Icons.Survey />
+                                        </div>
+                                        <h2 className="font-extrabold text-xl text-white">Tu voz construye el proyecto</h2>
+                                    </div>
+                                    <button 
+                                        onClick={() => setIsSurveyOpen(false)} 
+                                        className="w-10 h-10 bg-white/5 text-white rounded-full flex items-center justify-center hover:bg-red-500 transition-colors font-bold"
+                                    >
+                                        ✕
+                                    </button>
+                                </div>
+
+                                {/* Iframe de Google Forms */}
+                                <div className="flex-grow w-full relative bg-white rounded-b-3xl overflow-hidden">
+                                    {/* Estado de carga visible mientras el iframe inicia */}
+                                    <div className="absolute inset-0 flex flex-col items-center justify-center bg-slate-50 text-slate-500 gap-3 z-0">
+                                        <svg className="animate-spin h-8 w-8 text-emerald-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                                            <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                                            <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                                        </svg>
+                                        <p className="font-medium text-sm">Cargando encuesta...</p>
+                                    </div>
+                                    
+                                    <iframe 
+                                        className="relative z-10 w-full h-full"
+                                        src="https://docs.google.com/forms/d/e/1FAIpQLSfwS4wW686-3G1HWeE2i1U45a1D0Hk7oJ_M5M8G7T0t5WqG_g/viewform?embedded=true" 
+                                        frameBorder="0" 
+                                        marginHeight="0" 
+                                        marginWidth="0"
+                                        onLoad={(e) => { e.target.previousSibling.style.display = 'none'; }}
+                                    >
+                                        Cargando…
+                                    </iframe>
                                 </div>
                             </div>
                         </div>
