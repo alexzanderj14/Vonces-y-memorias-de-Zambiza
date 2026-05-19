@@ -1,29 +1,32 @@
-steps:
-  # Paso 1: Descargar el código de tu repositorio de GitHub al servidor temporal de despliegue
-  - name: 📥 Obtener código del repositorio
-    uses: actions/checkout@v4
-    with:
-      fetch-depth: 0
+name: Despliegue Automatico a InfinityFree
 
-  # Paso 2: Conectar de forma segura a InfinityFree y subir tu index.html
-  - name: 📤 Subir index.html vía FTP
-    uses: SamKirkland/FTP-Deploy-Action@v4.3.5
-    with:
-      # Estas tres variables se conectarán de forma segura con los 'Secrets' que configures en GitHub
-      server: ${{ secrets.FTP_SERVER }}
-      username: ${{ secrets.FTP_USERNAME }}
-      password: ${{ secrets.FTP_PASSWORD }}
-      port: 21
-      
-      # Carpeta de origen local (la raíz de tu GitHub donde está index.html)
-      local-dir: ./
-      
-      # Carpeta de destino en InfinityFree (siempre debe ser htdocs/)
-      server-dir: htdocs/
-      
-      # Evitamos subir archivos innecesarios de configuración de Git o GitHub a tu web pública
-      exclude: |
-        **/.git*
-        **/.git*/**
-        **/README.md
-        **/.github/**
+on:
+  push:
+    branches:
+      - main
+      - master
+
+jobs:
+  web-deploy:
+    name: Sincronizando Archivos via FTP
+    runs-on: ubuntu-latest
+    steps:
+      - name: Obtener codigo del repositorio
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Subir index.html via FTP
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          port: 21
+          local-dir: ./
+          server-dir: htdocs/
+          exclude: |
+            **/.git*
+            **/.git*/**
+            **/README.md
+            **/.github/**
