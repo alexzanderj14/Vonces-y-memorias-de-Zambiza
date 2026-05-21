@@ -66,10 +66,14 @@
         // URLs oficiales de recursos gráficos del proyecto y enlaces externos
         const ASSETS = {
             LOGO_ZAMBIZA: "https://www.gadzambiza.gob.ec/media/pictures/web/inicio/logoZambiza.png",
-            IGLESIA_FONDO: "https://raw.githubusercontent.com/alexzanderj14/Vonces-y-memorias-de-Zambiza/main/igle.jpeg",
             ENCUESTA_LINK: "https://docs.google.com/forms/d/e/1FAIpQLSdWRTgOaAP64EzZBj8EF9O3hIc-xHGkjO2J9ETo1cdgNdi0nQ/viewform?usp=header",
             CULTURA_YOUTUBE: "https://youtube.com/@zambizamemoriasyvoces?si=e0q8EwWEEH0-7pwy",
-            GAD_YOUTUBE: "https://youtube.com/@gadzambiza?si=czoXpmdvR_oZKVlt"
+            GAD_YOUTUBE: "https://youtube.com/@gadzambiza?si=czoXpmdvR_oZKVlt",
+            // Array con las imágenes para el carrusel interactivo del fondo
+            HERO_BACKGROUNDS: [
+                "https://raw.githubusercontent.com/alexzanderj14/Vonces-y-memorias-de-Zambiza/main/igle.jpeg",
+                "https://raw.githubusercontent.com/alexzanderj14/Vonces-y-memorias-de-Zambiza/main/WhatsApp%20Image%202026-05-18%20at%2022.47.54.jpeg"
+            ]
         };
 
         const CONTENT = {
@@ -149,6 +153,15 @@
         const App = () => {
             const [activeCategory, setActiveCategory] = React.useState('all');
             const [selectedVideo, setSelectedVideo] = React.useState(null);
+            const [currentBgIndex, setCurrentBgIndex] = React.useState(0);
+
+            // Rotación automática de los fondos cada 5 segundos
+            React.useEffect(() => {
+                const interval = setInterval(() => {
+                    setCurrentBgIndex((prevIndex) => (prevIndex + 1) % ASSETS.HERO_BACKGROUNDS.length);
+                }, 5000);
+                return () => clearInterval(interval);
+            }, []);
 
             const filteredVideos = React.useMemo(() => {
                 if (activeCategory === 'all') return CONTENT.videos.filter(v => !v.isFeatured);
@@ -179,11 +192,11 @@
 
                             <div className="flex items-center gap-4">
                                 <a 
-                                    href={ASSETS.GAD_YOUTUBE} 
+                                    href={ASSETS.ENCUESTA_LINK} 
                                     target="_blank" 
                                     className="hidden md:flex items-center gap-2 text-sm font-bold text-slate-600 hover:text-teal-600 transition-colors"
                                 >
-                                    <Icons.Youtube /> Canal Oficial
+                                    <Icons.Youtube /> Canal Oficial GAD de Zámbiza
                                 </a>
                                 <button className="md:hidden text-slate-800 hover:text-red-500 transition-colors">
                                     <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -194,23 +207,41 @@
                         </div>
                     </nav>
 
-                    {/* HERO SECTION: FUSIONADO CON LA IGLESIA DE FONDO OPTIMIZADO PARA MÁXIMA CLARIDAD */}
-                    <section 
-                        className="relative pt-44 pb-20 lg:pt-56 lg:pb-32 px-6 overflow-hidden min-h-[90vh] flex items-center parallax-bg"
-                        style={{ backgroundImage: `url(${ASSETS.IGLESIA_FONDO})` }}
-                    >
-                        {/* Filtro sutil general que unifica los tonos de la imagen con el diseño claro */}
+                    {/* HERO SECTION: SLIDER INTERACTIVO Y AUTOMÁTICO DE FONDOS */}
+                    <section className="relative pt-44 pb-20 lg:pt-56 lg:pb-32 px-6 overflow-hidden min-h-[90vh] flex items-center">
+                        
+                        {/* Contenedor del Carrusel de Imágenes de Fondo (Transición de fundido suave) */}
+                        {ASSETS.HERO_BACKGROUNDS.map((bg, index) => (
+                            <div 
+                                key={index}
+                                className={`absolute inset-0 parallax-bg transition-opacity duration-1000 ease-in-out ${currentBgIndex === index ? 'opacity-100 z-0' : 'opacity-0 -z-10'}`}
+                                style={{ backgroundImage: `url(${bg})` }}
+                            />
+                        ))}
+
+                        {/* Filtros de unificación para el fondo */}
                         <div className="absolute inset-0 z-0 bg-slate-900/5"></div>
-                        {/* Difuminado suave en la base y laterales para fusionar la imagen suavemente con la estructura blanca de la página */}
                         <div className="absolute inset-0 z-0 bg-gradient-to-t from-slate-50 via-slate-50/20 to-transparent"></div>
                         <div className="absolute inset-0 z-0 bg-gradient-to-r from-slate-50/30 via-transparent to-transparent"></div>
 
-                        {/* Brillos suaves decorativos basados en los colores de la marca */}
+                        {/* Brillos decorativos */}
                         <div className="absolute top-1/4 left-1/4 w-80 h-80 bg-red-500/5 rounded-full blur-[100px] pointer-events-none animate-pulse"></div>
                         <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-teal-500/5 rounded-full blur-[120px] pointer-events-none animate-pulse"></div>
 
+                        {/* Controles interactivos del Slider (Dots inferiores) */}
+                        <div className="absolute bottom-10 left-1/2 -translate-x-1/2 z-20 flex gap-3">
+                            {ASSETS.HERO_BACKGROUNDS.map((_, index) => (
+                                <button
+                                    key={index}
+                                    onClick={() => setCurrentBgIndex(index)}
+                                    className={`w-3 h-3 rounded-full transition-all duration-300 ${currentBgIndex === index ? 'bg-red-600 scale-125' : 'bg-white/60 hover:bg-white'}`}
+                                    aria-label={`Ver imagen ${index + 1}`}
+                                />
+                            ))}
+                        </div>
+
                         <div className="relative z-10 max-w-7xl mx-auto w-full grid lg:grid-cols-12 gap-12 items-center">
-                            {/* Caja de contenido con Glassmorphism premium */}
+                            {/* Caja de contenido con Glassmorphism premium (desenfoque de cristal translúcido) */}
                             <div className="lg:col-span-8 space-y-8 bg-white/75 backdrop-blur-md p-8 md:p-12 rounded-[2.5rem] border border-white/60 shadow-xl shadow-slate-200/50">
                                 <div className="inline-flex items-center gap-2 px-3 py-1 bg-red-50 text-red-600 border border-red-200 text-[10px] font-black uppercase tracking-widest rounded-full shadow-sm">
                                     <span className="w-2 h-2 rounded-full bg-red-500 animate-pulse"></span>
@@ -225,17 +256,10 @@
                                 <div className="flex flex-col sm:flex-row gap-4 pt-4">
                                     <button 
                                         onClick={() => setSelectedVideo(featuredVideo)}
-                                        className="flex items-center justify-center gap-2 bg-gradient-to-r from-red-600 to-teal-500 text-white px-8 py-4 rounded-full font-bold text-sm uppercase tracking-wide hover:from-red-500 hover:to-teal-400 hover:scale-105 transition-all shadow-lg shadow-red-500/20"
+                                        className="flex items-center justify-center gap-2 bg-gradient-to-r from-red-600 to-teal-500 text-white px-8 py-4 rounded-full font-bold text-sm uppercase tracking-wide hover:from-red-500 hover:to-teal-400 hover:scale-105 transition-all shadow-lg shadow-red-500/20 w-full sm:w-auto"
                                     >
                                         <Icons.Play /> Reproducir Cápsula
                                     </button>
-                                    <a 
-                                        href={ASSETS.ENCUESTA_LINK}
-                                        target="_blank"
-                                        className="flex items-center justify-center gap-2 bg-teal-50 hover:bg-teal-100 text-teal-700 border border-teal-200 px-8 py-4 rounded-full font-bold text-sm uppercase tracking-wide transition-all text-center shadow-sm"
-                                    >
-                                        <Icons.Survey /> Responder Encuesta
-                                    </a>
                                 </div>
                             </div>
                         </div>
@@ -283,31 +307,21 @@
                                         onClick={() => setSelectedVideo(video)} 
                                         className="group cursor-pointer flex flex-col gap-4 bg-white p-4 rounded-3xl border border-slate-200/80 hover:border-teal-500/30 hover:shadow-xl transition-all duration-300"
                                     >
-                                        {/* Thumbnail con efecto cinematográfico */}
                                         <div className="relative aspect-video rounded-2xl overflow-hidden bg-slate-900">
-                                            <img 
-                                                src={video.thumbnail} 
-                                                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 opacity-90 group-hover:opacity-100" 
-                                            />
+                                            <img src={video.thumbnail} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 opacity-90 group-hover:opacity-100" />
                                             <div className="absolute inset-0 bg-slate-950/10 group-hover:bg-transparent transition-colors"></div>
-                                            
-                                            {/* Etiqueta de duración y categoría */}
                                             <div className="absolute bottom-3 right-3 bg-black/85 backdrop-blur-sm text-white text-[10px] font-bold px-2 py-1 rounded">
                                                 {video.duration}
                                             </div>
                                             <div className="absolute top-3 left-3 bg-gradient-to-r from-red-600 to-teal-600 backdrop-blur-sm text-white text-[9px] uppercase tracking-widest font-black px-3 py-1 rounded-full shadow-sm">
                                                 {CONTENT.categories.find(c => c.id === video.category)?.label}
                                             </div>
-                                            
-                                            {/* Play button overlay */}
                                             <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                                                 <div className="w-16 h-16 bg-gradient-to-tr from-red-600/90 to-teal-500/90 backdrop-blur-md rounded-full flex items-center justify-center text-white border border-white/20 shadow-lg">
                                                     <Icons.Play />
                                                 </div>
                                             </div>
                                         </div>
-                                        
-                                        {/* Info del video */}
                                         <div className="px-1 py-1">
                                             <h4 className="text-lg font-bold text-slate-900 leading-tight group-hover:text-teal-600 transition-colors mb-2">
                                                 {video.title}
@@ -322,14 +336,13 @@
                         )}
                     </main>
 
-                    {/* SECCIÓN DE TESTIMONIOS: "ROSTROS DE LA MEMORIA" (Fondo gris suave) */}
+                    {/* SECCIÓN DE TESTIMONIOS: "ROSTROS DE LA MEMORIA" */}
                     <section className="bg-slate-100/70 border-y border-slate-200 py-24 px-6">
                         <div className="max-w-7xl mx-auto">
                             <div className="text-center mb-16">
                                 <h3 className="text-sm font-black text-red-600 uppercase tracking-[0.3em] mb-4">Voces de la Comunidad</h3>
                                 <h2 className="text-4xl md:text-5xl font-extrabold text-slate-900">Nuestra historia en primera persona</h2>
                             </div>
-                            
                             <div className="grid md:grid-cols-2 gap-12 lg:gap-20">
                                 {CONTENT.testimonials.map(testimony => (
                                     <div key={testimony.id} className="relative bg-white p-8 md:p-12 rounded-[2rem] border border-slate-200/80 hover:border-teal-500/20 shadow-sm hover:shadow-md transition-all">
@@ -350,10 +363,9 @@
                         </div>
                     </section>
 
-                    {/* ECOSISTEMA DIGITAL: FOOTER Y CTAs */}
+                    {/* ECOSISTEMA DIGITAL: FOOTER Y BOTONES CORPORATIVOS */}
                     <footer className="bg-white py-20 px-6 border-t border-slate-200 relative overflow-hidden">
                         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-teal-500/5 blur-[120px] rounded-full pointer-events-none"></div>
-                        
                         <div className="max-w-7xl mx-auto text-center relative z-10">
                             <h2 className="text-3xl md:text-5xl font-extrabold text-slate-900 mb-6">Tu voz construye el legado</h2>
                             <p className="text-slate-500 text-lg mb-10 max-w-2xl mx-auto">
@@ -377,11 +389,11 @@
                                     <Icons.Youtube /> Conocer más sobre la cultura
                                 </a>
                                 <a 
-                                    href={ASSETS.GAD_YOUTUBE} 
+                                    href={ASSETS.ENCUESTA_LINK} 
                                     target="_blank"
                                     className="flex items-center justify-center gap-3 bg-slate-900 hover:bg-slate-800 text-white px-6 py-4 rounded-xl font-bold transition-all shadow-md text-center text-sm"
                                 >
-                                    <Icons.Youtube /> Canal Oficial
+                                    <Icons.Youtube /> Canal Oficial GAD de Zámbiza
                                 </a>
                                 <a 
                                     href="https://www.gadzambiza.gob.ec/" 
@@ -394,11 +406,7 @@
                             
                             <div className="border-t border-slate-200 pt-10 flex flex-col md:flex-row justify-between items-center gap-6">
                                 <div className="flex flex-col items-center md:items-start gap-1">
-                                    <img 
-                                        src={ASSETS.LOGO_ZAMBIZA} 
-                                        alt="GAD Parroquial" 
-                                        className="h-12 w-auto object-contain drop-shadow-sm" 
-                                    />
+                                    <img src={ASSETS.LOGO_ZAMBIZA} alt="GAD Parroquial" className="h-12 w-auto object-contain drop-shadow-sm" />
                                     <h1 className="text-xl font-extrabold text-slate-900 opacity-80 leading-none mt-1">
                                         Zimagination<span className="text-red-500">.</span>
                                     </h1>
@@ -413,46 +421,21 @@
                     {/* MODAL REPRODUCTOR */}
                     {selectedVideo && (
                         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 bg-slate-950/90 backdrop-blur-xl">
-                            <div className="bg-white w-full max-w-5xl rounded-3xl overflow-hidden shadow-2xl relative flex flex-col border border-slate-200 max-h-[95vh] animate-[fadeIn_0.2s_ease-out]">
-                                
-                                {/* Header del Modal */}
+                            <div className="bg-white w-full max-w-5xl rounded-3xl overflow-hidden shadow-2xl relative flex flex-col border border-slate-200 max-h-[95vh]">
                                 <div className="flex justify-between items-center p-4 border-b border-slate-200">
                                     <span className="text-red-500 text-xs font-black uppercase tracking-widest px-2">
                                         {CONTENT.categories.find(c => c.id === selectedVideo.category)?.label}
                                     </span>
-                                    <button 
-                                        onClick={() => setSelectedVideo(null)} 
-                                        className="w-10 h-10 bg-slate-100 text-slate-800 rounded-full flex items-center justify-center hover:bg-red-600 hover:text-white transition-colors font-bold shadow-sm"
-                                    >
-                                        ✕
-                                    </button>
+                                    <button onClick={() => setSelectedVideo(null)} className="w-10 h-10 bg-slate-100 text-slate-800 rounded-full flex items-center justify-center hover:bg-red-600 hover:text-white transition-colors font-bold shadow-sm">✕</button>
                                 </div>
-
-                                {/* Contenedor del Iframe 16:9 */}
                                 <div className="w-full bg-black aspect-video relative">
-                                    <iframe 
-                                        className="absolute inset-0 w-full h-full" 
-                                        src={`https://www.youtube.com/embed/${selectedVideo.videoId}?autoplay=1`} 
-                                        frameBorder="0" 
-                                        allow="autoplay; encrypted-media; picture-in-picture" 
-                                        allowFullScreen
-                                    ></iframe>
+                                    <iframe className="absolute inset-0 w-full h-full" src={`https://www.youtube.com/embed/${selectedVideo.videoId}?autoplay=1`} frameBorder="0" allow="autoplay; encrypted-media; picture-in-picture" allowFullScreen></iframe>
                                 </div>
-
-                                {/* Info y CTA dentro del Modal */}
                                 <div className="p-6 md:p-8 bg-slate-50 flex flex-col md:flex-row justify-between items-start gap-6 overflow-y-auto">
                                     <div className="max-w-2xl">
                                         <h3 className="text-2xl font-extrabold text-slate-900 mb-3">{selectedVideo.title}</h3>
-                                        <p className="text-slate-600 text-sm leading-relaxed font-serif-quote">
-                                            {selectedVideo.description}
-                                        </p>
+                                        <p className="text-slate-600 text-sm leading-relaxed font-serif-quote">{selectedVideo.description}</p>
                                     </div>
-                                    <button 
-                                        onClick={() => window.open(`https://www.youtube.com/watch?v=${selectedVideo.videoId}`, '_blank')} 
-                                        className="w-full md:w-auto flex-shrink-0 flex items-center justify-center gap-2 bg-gradient-to-r from-red-600 to-teal-500 text-white px-6 py-3 rounded-xl font-bold text-sm uppercase hover:from-red-500 hover:to-teal-400 transition-all whitespace-nowrap shadow-md shadow-red-900/10"
-                                    >
-                                        <Icons.Youtube /> Apoyar en YouTube
-                                    </button>
                                 </div>
                             </div>
                         </div>
