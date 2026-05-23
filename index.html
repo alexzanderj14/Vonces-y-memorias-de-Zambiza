@@ -69,7 +69,7 @@
             ENCUESTA_LINK: "https://docs.google.com/forms/d/e/1FAIpQLSdWRTgOaAP64EzZBj8EF9O3hIc-xHGkjO2J9ETo1cdgNdi0nQ/viewform?usp=header",
             CULTURA_YOUTUBE: "https://youtube.com/@zambizamemoriasyvoces?si=e0q8EwWEEH0-7pwy",
             GAD_YOUTUBE: "https://youtube.com/@gadzambiza?si=fjaR6IZG8jKcZvYZ",
-            TIKTOK_LINK: "https://www.tiktok.com/@gadzambiza", // Aquí puedes actualizar el enlace de TikTok si es diferente
+            TIKTOK_LINK: "https://www.tiktok.com/@gadzambiza", // Enlace oficial de la cuenta del GAD
             // Array con las imágenes para el carrusel interactivo del fondo
             HERO_BACKGROUNDS: [
                 "https://raw.githubusercontent.com/alexzanderj14/Vonces-y-memorias-de-Zambiza/main/igle.jpeg",
@@ -128,31 +128,24 @@
             tiktokVideos: [
                 {
                     id: 'tk-1',
-                    link: ASSETS.TIKTOK_LINK,
-                    title: 'Bailes Tradicionales en las Fiestas',
-                    thumbnail: 'https://images.unsplash.com/photo-1516280440502-861614917637?auto=format&fit=crop&q=80&w=600&h=1066',
-                    views: '12.5K'
+                    link: 'https://www.tiktok.com/@gad_zambiza/video/7623642835631246599',
+                    title: 'Pregón de Fiestas y Desfile de la Confraternidad',
+                    thumbnail: 'https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?auto=format&fit=crop&q=80&w=600&h=1066',
+                    views: '24.1K'
                 },
                 {
                     id: 'tk-2',
-                    link: ASSETS.TIKTOK_LINK,
-                    title: 'El arte de nuestras tejedoras',
-                    thumbnail: 'https://images.unsplash.com/photo-1605806616949-1e87b487bc2a?auto=format&fit=crop&q=80&w=600&h=1066',
-                    views: '8.2K'
+                    link: 'https://www.tiktok.com/@gad_zambiza/video/7623265699443526933',
+                    title: 'El Orgullo del Danzante Ancestral de Zámbiza',
+                    thumbnail: 'https://images.unsplash.com/photo-1516280440502-861614917637?auto=format&fit=crop&q=80&w=600&h=1066',
+                    views: '18.5K'
                 },
                 {
                     id: 'tk-3',
-                    link: ASSETS.TIKTOK_LINK,
-                    title: 'Un vistazo a la historia de Zámbiza',
-                    thumbnail: 'https://images.unsplash.com/photo-1461344577544-4e5dc9487184?auto=format&fit=crop&q=80&w=600&h=1066',
-                    views: '15K'
-                },
-                {
-                    id: 'tk-4',
-                    link: ASSETS.TIKTOK_LINK,
-                    title: 'Preparación de los Danzantes',
-                    thumbnail: 'https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?auto=format&fit=crop&q=80&w=600&h=1066',
-                    views: '20K'
+                    link: 'https://www.tiktok.com/@gad_zambiza/video/7621636057309646100',
+                    title: 'Turismo, Gastronomía y Atractivos Parroquiales',
+                    thumbnail: 'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&q=80&w=600&h=1066',
+                    views: '15.7K'
                 }
             ],
             testimonials: [
@@ -368,9 +361,9 @@
                         )}
                     </main>
 
-                    {/* SECCIÓN TIKTOK (NUEVA: Carrusel con vista previa) */}
+                    {/* SECCIÓN TIKTOK (Carrusel con los videos anclados reales) */}
                     <section className="bg-slate-900 py-24 px-6 text-white relative overflow-hidden">
-                        {/* Elementos de fondo decorativos para darle estilo */}
+                        {/* Elementos de fondo decorativos */}
                         <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-teal-500/10 blur-[120px] rounded-full pointer-events-none"></div>
                         <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-red-500/10 blur-[120px] rounded-full pointer-events-none"></div>
 
@@ -381,10 +374,10 @@
                                         <div className="w-14 h-14 rounded-2xl bg-gradient-to-tr from-slate-100 to-white text-black flex items-center justify-center shadow-lg shadow-white/5">
                                             <Icons.Tiktok />
                                         </div>
-                                        <h3 className="text-3xl md:text-4xl font-extrabold tracking-tight">Zámbiza en TikTok</h3>
+                                        <h3 className="text-3xl md:text-4xl font-extrabold tracking-tight">Videos Anclados de Zámbiza</h3>
                                     </div>
                                     <p className="text-slate-400 font-serif-quote italic max-w-2xl text-lg">
-                                        Explora nuestra cultura, tradiciones y fiestas de una manera dinámica y divertida. Desliza para ver más.
+                                        Explora la recopilación de nuestros videos más populares y anclados directamente de nuestra cuenta oficial de TikTok.
                                     </p>
                                 </div>
                                 <a 
@@ -392,7 +385,7 @@
                                     target="_blank" 
                                     className="flex-shrink-0 flex items-center justify-center gap-2 bg-white text-slate-900 px-8 py-4 rounded-full font-bold text-sm hover:bg-slate-200 transition-all hover:scale-105"
                                 >
-                                    <Icons.Tiktok /> Seguir Cuenta Oficial
+                                    <Icons.Tiktok /> Ver en TikTok Oficial
                                 </a>
                             </div>
 
