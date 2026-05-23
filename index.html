@@ -69,6 +69,7 @@
             ENCUESTA_LINK: "https://docs.google.com/forms/d/e/1FAIpQLSdWRTgOaAP64EzZBj8EF9O3hIc-xHGkjO2J9ETo1cdgNdi0nQ/viewform?usp=header",
             CULTURA_YOUTUBE: "https://youtube.com/@zambizamemoriasyvoces?si=e0q8EwWEEH0-7pwy",
             GAD_YOUTUBE: "https://youtube.com/@gadzambiza?si=fjaR6IZG8jKcZvYZ",
+            TIKTOK_LINK: "https://www.tiktok.com/@gadzambiza", // Aquí puedes actualizar el enlace de TikTok si es diferente
             // Array con las imágenes para el carrusel interactivo del fondo
             HERO_BACKGROUNDS: [
                 "https://raw.githubusercontent.com/alexzanderj14/Vonces-y-memorias-de-Zambiza/main/igle.jpeg",
@@ -124,6 +125,36 @@
                     duration: '12:30'
                 }
             ],
+            tiktokVideos: [
+                {
+                    id: 'tk-1',
+                    link: ASSETS.TIKTOK_LINK,
+                    title: 'Bailes Tradicionales en las Fiestas',
+                    thumbnail: 'https://images.unsplash.com/photo-1516280440502-861614917637?auto=format&fit=crop&q=80&w=600&h=1066',
+                    views: '12.5K'
+                },
+                {
+                    id: 'tk-2',
+                    link: ASSETS.TIKTOK_LINK,
+                    title: 'El arte de nuestras tejedoras',
+                    thumbnail: 'https://images.unsplash.com/photo-1605806616949-1e87b487bc2a?auto=format&fit=crop&q=80&w=600&h=1066',
+                    views: '8.2K'
+                },
+                {
+                    id: 'tk-3',
+                    link: ASSETS.TIKTOK_LINK,
+                    title: 'Un vistazo a la historia de Zámbiza',
+                    thumbnail: 'https://images.unsplash.com/photo-1461344577544-4e5dc9487184?auto=format&fit=crop&q=80&w=600&h=1066',
+                    views: '15K'
+                },
+                {
+                    id: 'tk-4',
+                    link: ASSETS.TIKTOK_LINK,
+                    title: 'Preparación de los Danzantes',
+                    thumbnail: 'https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?auto=format&fit=crop&q=80&w=600&h=1066',
+                    views: '20K'
+                }
+            ],
             testimonials: [
                 {
                     id: 't-1',
@@ -147,7 +178,8 @@
             Youtube: () => <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z"/></svg>,
             Institution: () => <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>,
             Quote: () => <svg className="w-12 h-12 text-teal-500/10" fill="currentColor" viewBox="0 0 24 24"><path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/></svg>,
-            Survey: () => <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+            Survey: () => <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>,
+            Tiktok: () => <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 448 512"><path d="M448 209.91a210.06 210.06 0 0 1-122.77-39.25V349.38A162.55 162.55 0 1 1 185 188.31V278.2a74.62 74.62 0 1 0 52.23 71.18V0l88 0a121.18 121.18 0 0 0 1.86 22.17h0A122.18 122.18 0 0 0 381 102.39a121.43 121.43 0 0 0 67 20.14Z"/></svg>
         };
 
         const App = () => {
@@ -291,7 +323,7 @@
                         <div className="flex justify-between items-end mb-10">
                             <div>
                                 <h3 className="text-3xl font-extrabold text-slate-900 tracking-tight">Memoria Audiovisual</h3>
-                                <p className="text-slate-500 mt-2 font-serif-quote italic">Explora la identidad de Zámbiza a través de sus protagonistas.</p>
+                                <p className="text-slate-500 mt-2 font-serif-quote italic">Explora la identidad de Zámbiza a través de sus protagonistas en YouTube.</p>
                             </div>
                         </div>
 
@@ -335,6 +367,72 @@
                             </div>
                         )}
                     </main>
+
+                    {/* SECCIÓN TIKTOK (NUEVA: Carrusel con vista previa) */}
+                    <section className="bg-slate-900 py-24 px-6 text-white relative overflow-hidden">
+                        {/* Elementos de fondo decorativos para darle estilo */}
+                        <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-teal-500/10 blur-[120px] rounded-full pointer-events-none"></div>
+                        <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-red-500/10 blur-[120px] rounded-full pointer-events-none"></div>
+
+                        <div className="max-w-7xl mx-auto relative z-10">
+                            <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-12 gap-6 border-b border-slate-800 pb-8">
+                                <div>
+                                    <div className="flex items-center gap-4 mb-4">
+                                        <div className="w-14 h-14 rounded-2xl bg-gradient-to-tr from-slate-100 to-white text-black flex items-center justify-center shadow-lg shadow-white/5">
+                                            <Icons.Tiktok />
+                                        </div>
+                                        <h3 className="text-3xl md:text-4xl font-extrabold tracking-tight">Zámbiza en TikTok</h3>
+                                    </div>
+                                    <p className="text-slate-400 font-serif-quote italic max-w-2xl text-lg">
+                                        Explora nuestra cultura, tradiciones y fiestas de una manera dinámica y divertida. Desliza para ver más.
+                                    </p>
+                                </div>
+                                <a 
+                                    href={ASSETS.TIKTOK_LINK} 
+                                    target="_blank" 
+                                    className="flex-shrink-0 flex items-center justify-center gap-2 bg-white text-slate-900 px-8 py-4 rounded-full font-bold text-sm hover:bg-slate-200 transition-all hover:scale-105"
+                                >
+                                    <Icons.Tiktok /> Seguir Cuenta Oficial
+                                </a>
+                            </div>
+
+                            {/* Carrusel Horizontal estilo Snap Scroll (Optimizado para móviles y escritorio) */}
+                            <div className="flex gap-6 overflow-x-auto hide-scrollbar snap-x snap-mandatory pb-8 pt-4 -mx-6 px-6 md:mx-0 md:px-0">
+                                {CONTENT.tiktokVideos.map((tkVideo) => (
+                                    <a 
+                                        key={tkVideo.id} 
+                                        href={tkVideo.link}
+                                        target="_blank"
+                                        className="flex-none w-[260px] md:w-[320px] snap-center group relative aspect-[9/16] rounded-3xl overflow-hidden bg-slate-800 cursor-pointer shadow-2xl hover:-translate-y-2 transition-transform duration-300 border border-slate-700/50 hover:border-slate-500"
+                                    >
+                                        <img 
+                                            src={tkVideo.thumbnail} 
+                                            alt={tkVideo.title} 
+                                            className="w-full h-full object-cover opacity-80 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700" 
+                                        />
+                                        
+                                        {/* Degradado oscuro para lectura del texto */}
+                                        <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-900/30 to-transparent"></div>
+                                        
+                                        {/* Overlay de botón play */}
+                                        <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                                            <div className="w-16 h-16 bg-white/20 backdrop-blur-md rounded-full flex items-center justify-center text-white border border-white/40 shadow-[0_0_30px_rgba(255,255,255,0.2)]">
+                                                <Icons.Play />
+                                            </div>
+                                        </div>
+
+                                        {/* Información del Video */}
+                                        <div className="absolute bottom-0 left-0 p-6 w-full">
+                                            <h4 className="text-white font-bold text-xl leading-tight mb-3 drop-shadow-md">{tkVideo.title}</h4>
+                                            <div className="flex items-center gap-2 text-sm text-slate-300 font-semibold bg-black/40 w-max px-3 py-1.5 rounded-full backdrop-blur-sm">
+                                                <Icons.Tiktok /> {tkVideo.views} vistas
+                                            </div>
+                                        </div>
+                                    </a>
+                                ))}
+                            </div>
+                        </div>
+                    </section>
 
                     {/* SECCIÓN DE TESTIMONIOS: "ROSTROS DE LA MEMORIA" */}
                     <section className="bg-slate-100/70 border-y border-slate-200 py-24 px-6">
