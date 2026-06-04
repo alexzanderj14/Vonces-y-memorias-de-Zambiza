@@ -65,7 +65,7 @@
             opacity: 0;
             transition: opacity 2s ease-in-out;
         }
-        .bg-slideshow div.active { opacity: 0.3; /* Opacidad ajustada para que el texto resalte */ }
+        .bg-slideshow div.active { opacity: 0.8; /* Opacidad aumentada para mostrar tus fotos con mayor claridad */ }
 
         /* Animación Carrusel (Marquee) para Redes */
         .marquee-container {
@@ -111,14 +111,14 @@
             <div style="background-image: url('https://raw.githubusercontent.com/alexzanderj14/Vonces-y-memorias-de-Zambiza/main/WhatsApp%20Image%202026-05-18%20at%2022.47.54.jpeg');"></div>
         </div>
         
-        <!-- Degradado azul para legibilidad -->
-        <div class="absolute inset-0 bg-gradient-to-t from-blue-950 via-blue-900/80 to-transparent z-10"></div>
+        <!-- Degradado azul más transparente para que resalten las fotos -->
+        <div class="absolute inset-0 bg-gradient-to-t from-blue-950 via-blue-900/40 to-transparent z-10"></div>
         
         <div class="max-w-4xl mx-auto text-center relative z-20">
-            <p class="text-sky-400 font-semibold tracking-widest uppercase mb-4 text-sm">Patrimonio del Distrito Metropolitano</p>
-            <h1 class="text-5xl md:text-7xl font-bold mb-6 leading-tight text-slate-50">Explorando las Raíces de Zámbiza</h1>
-            <p class="text-xl text-blue-100 font-light leading-relaxed max-w-3xl mx-auto">
-                Basado en investigaciones históricas sobre los Encomenderos de Quito y la evolución parroquial, este portal traduce datos centenarios en un recorrido dinámico por nuestra identidad y memoria viva.
+            <p class="text-sky-400 font-semibold tracking-widest uppercase mb-4 text-sm drop-shadow-md">Patrimonio del Distrito Metropolitano</p>
+            <h1 class="text-5xl md:text-7xl font-bold mb-6 leading-tight text-slate-50 drop-shadow-lg">Explorando las Raíces de Zámbiza</h1>
+            <p class="text-xl text-blue-50 font-medium leading-relaxed max-w-3xl mx-auto drop-shadow-md">
+                Un ecosistema digital dedicado a preservar, difundir y celebrar la riqueza cultural, tradiciones, bailes y el legado vivo de nuestra parroquia, construido por y para la comunidad.
             </p>
             <a href="#turismo" class="inline-flex items-center gap-2 mt-10 px-8 py-4 bg-sky-500 hover:bg-sky-400 text-slate-900 font-bold rounded-full transition-colors shadow-lg">
                 Iniciar el Recorrido <span>&#x2193;</span>
@@ -170,13 +170,13 @@
                     <h3 class="text-2xl font-bold text-blue-950 mb-8 text-center slide-hidden">Exploración Digital</h3>
                     <div class="grid md:grid-cols-2 gap-6">
                         
-                        <div class="flex items-start gap-4 p-6 rounded-2xl border border-slate-200 hover:border-sky-300 transition-colors bg-white slide-hidden" style="transition-delay: 100ms;">
-                            <div class="text-4xl">🎬</div>
+                        <a href="https://photos.google.com/album/AF1QipP_byRTofeyHFxEJeK5bSkfXLfCHT1C4nY2VFv0" target="_blank" class="flex items-start gap-4 p-6 rounded-2xl border border-slate-200 hover:border-sky-300 transition-colors bg-white group cursor-pointer slide-hidden" style="transition-delay: 100ms;">
+                            <div class="text-4xl group-hover:scale-110 transition-transform">🎬</div>
                             <div>
                                 <h4 class="font-bold text-blue-900 text-lg mb-1">Galería Digital</h4>
                                 <p class="text-sm text-slate-600">Videos referentes a Zámbiza, sus bailes, culturas y tradiciones vivas.</p>
                             </div>
-                        </div>
+                        </a>
 
                         <a href="https://www.tiktok.com/tag/zambiza" target="_blank" class="flex items-start gap-4 p-6 rounded-2xl border border-slate-200 hover:border-sky-300 transition-colors bg-white group cursor-pointer slide-hidden" style="transition-delay: 200ms;">
                             <div class="text-4xl group-hover:scale-110 transition-transform">🎵</div>
@@ -186,11 +186,11 @@
                             </div>
                         </a>
 
-                        <div class="flex items-start gap-4 p-6 rounded-2xl border border-slate-200 hover:border-sky-300 transition-colors bg-white slide-hidden" style="transition-delay: 300ms;">
-                            <div class="text-4xl">🖼️</div>
+                        <div onclick="abrirBiblioteca()" class="flex items-start gap-4 p-6 rounded-2xl border border-slate-200 hover:border-sky-300 transition-colors bg-white group cursor-pointer slide-hidden" style="transition-delay: 300ms;">
+                            <div class="text-4xl group-hover:scale-110 transition-transform">📺</div>
                             <div>
                                 <h4 class="font-bold text-blue-900 text-lg mb-1">Biblioteca Multimedia</h4>
-                                <p class="text-sm text-slate-600">Repositorios fotográficos tomados por la Administración Zonal Eugenio Espejo y Alexander Jácome (UDLA).</p>
+                                <p class="text-sm text-slate-600">Recopilación de todos los videos de YouTube que hablan sobre Zámbiza. Haz clic para desplegar los videos.</p>
                             </div>
                         </div>
 
@@ -358,7 +358,7 @@
                         </summary>
                         <div class="text-slate-600 mt-3 group-open:animate-fadeIn px-6 pb-6">
                             <p class="mb-4">Tu voz es fundamental para seguir construyendo juntos la historia de Zámbiza. Ayúdanos a mejorar nuestros espacios y actividades.</p>
-                            <a href="#" class="inline-block px-6 py-2 bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-700 transition-colors">Ir al Formulario de Opinión</a>
+                            <a href="https://docs.google.com/forms/d/1bKX2ZwUDLZRMmMKeFndHRKgvtyxMFR6Zirdt9HHf4cQ/edit" target="_blank" class="inline-block px-6 py-2 bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-700 transition-colors">Ir al Formulario de Opinión</a>
                         </div>
                     </details>
                 </div>
@@ -428,7 +428,59 @@
         </div>
     </footer>
 
+    <!-- MODAL BIBLIOTECA MULTIMEDIA -->
+    <div id="modal-biblioteca" class="fixed inset-0 z-[100] hidden items-center justify-center p-4 sm:p-6 bg-slate-950/95 backdrop-blur-md opacity-0 transition-opacity duration-300">
+        <div class="bg-slate-50 w-full max-w-5xl rounded-3xl overflow-hidden shadow-2xl relative flex flex-col max-h-[90vh]">
+            <div class="flex justify-between items-center p-6 border-b border-slate-200 bg-white">
+                <div>
+                    <h3 class="text-2xl font-bold text-blue-950">Biblioteca Multimedia de Zámbiza</h3>
+                    <p class="text-sm text-slate-500">Recopilación de reportajes y documentales en YouTube</p>
+                </div>
+                <button onclick="cerrarBiblioteca()" class="w-10 h-10 bg-slate-100 text-slate-800 rounded-full flex items-center justify-center hover:bg-red-500 hover:text-white transition-colors font-bold shadow-sm">✕</button>
+            </div>
+            <div class="p-6 overflow-y-auto grid md:grid-cols-2 gap-6 bg-slate-50">
+                <!-- Video 1 (Nuevo enlace UDLA) -->
+                <div class="bg-white p-4 rounded-2xl shadow-sm border border-slate-200 hover:shadow-md transition-shadow">
+                    <div class="aspect-video rounded-xl overflow-hidden mb-3 bg-slate-900">
+                        <iframe class="w-full h-full" src="https://www.youtube.com/embed/Ar-A8TnqAaE" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    </div>
+                    <h4 class="font-bold text-blue-900">Voces y Memorias de Zámbiza</h4>
+                    <p class="text-xs text-slate-500 mt-1">Canal Universitario UDLA</p>
+                </div>
+                <!-- Video 2 (Ejemplo de Rendición) -->
+                <div class="bg-white p-4 rounded-2xl shadow-sm border border-slate-200 hover:shadow-md transition-shadow">
+                    <div class="aspect-video rounded-xl overflow-hidden mb-3 bg-slate-900">
+                        <iframe class="w-full h-full" src="https://www.youtube.com/embed/xu2tHJEPmK0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    </div>
+                    <h4 class="font-bold text-blue-900">Rendición de Cuentas GAD Zámbiza</h4>
+                    <p class="text-xs text-slate-500 mt-1">Gestión Parroquial</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script>
+        // Funciones para el Modal de la Biblioteca Multimedia
+        function abrirBiblioteca() {
+            const modal = document.getElementById('modal-biblioteca');
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+            // Pequeño delay para permitir que la transición de opacidad funcione
+            setTimeout(() => {
+                modal.classList.remove('opacity-0');
+            }, 10);
+        }
+
+        function cerrarBiblioteca() {
+            const modal = document.getElementById('modal-biblioteca');
+            modal.classList.add('opacity-0');
+            // Esperar a que termine la transición de opacidad para ocultarlo
+            setTimeout(() => {
+                modal.classList.add('hidden');
+                modal.classList.remove('flex');
+            }, 300);
+        }
+
         // Animaciones al hacer scroll (Intersection Observer)
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
