@@ -70,8 +70,8 @@
         /* Animación Carrusel (Marquee) para Redes */
         .marquee-container {
             display: flex;
-            width: 200%; /* El doble de ancho para alojar las tarjetas duplicadas */
-            animation: marquee 25s linear infinite;
+            width: max-content; /* Ajustado para soportar 5 tarjetas sin deformarse */
+            animation: marquee 30s linear infinite;
         }
         @keyframes marquee {
             0% { transform: translateX(0); }
@@ -140,16 +140,16 @@
 
                 <!-- Atractivos Físicos -->
                 <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
-                    <div class="bg-slate-50 rounded-2xl p-6 border border-slate-100 hover:shadow-lg transition-all group slide-hidden" style="transition-delay: 100ms;">
-                        <div class="w-14 h-14 bg-white shadow-sm text-blue-600 rounded-xl flex items-center justify-center text-2xl mb-5 group-hover:scale-110 transition-transform">⛪</div>
-                        <h3 class="text-lg font-bold text-slate-900 mb-2">Templo Parroquial</h3>
-                        <p class="text-slate-600 text-sm leading-relaxed">Arquitectura histórica, centro de la vida espiritual y social desde la época colonial.</p>
+                    <div onclick="abrirLugaresTuristicos()" class="bg-slate-50 rounded-2xl p-6 border border-slate-100 hover:shadow-lg transition-all group slide-hidden cursor-pointer" style="transition-delay: 100ms;">
+                        <div class="w-14 h-14 bg-white shadow-sm text-blue-600 rounded-xl flex items-center justify-center text-2xl mb-5 group-hover:scale-110 transition-transform">📍</div>
+                        <h3 class="text-lg font-bold text-slate-900 mb-2">Lugares Turísticos</h3>
+                        <p class="text-slate-600 text-sm leading-relaxed">Explora los atractivos arquitectónicos, naturales y emblemáticos más importantes de la parroquia. Haz clic para ver la guía.</p>
                     </div>
                     
-                    <div class="bg-slate-50 rounded-2xl p-6 border border-slate-100 hover:shadow-lg transition-all group slide-hidden" style="transition-delay: 200ms;">
+                    <div onclick="abrirPlazas()" class="bg-slate-50 rounded-2xl p-6 border border-slate-100 hover:shadow-lg transition-all group slide-hidden cursor-pointer" style="transition-delay: 200ms;">
                         <div class="w-14 h-14 bg-white shadow-sm text-blue-600 rounded-xl flex items-center justify-center text-2xl mb-5 group-hover:scale-110 transition-transform">🌳</div>
                         <h3 class="text-lg font-bold text-slate-900 mb-2">Plazas y Entorno</h3>
-                        <p class="text-slate-600 text-sm leading-relaxed">Espacios públicos que conservan la traza original de los pueblos andinos.</p>
+                        <p class="text-slate-600 text-sm leading-relaxed">Conoce la vida local: comedores, panaderías, canchas, piscinas e instituciones de la parroquia. Haz clic aquí.</p>
                     </div>
 
                     <div class="bg-slate-50 rounded-2xl p-6 border border-slate-100 hover:shadow-lg transition-all group slide-hidden" style="transition-delay: 300ms;">
@@ -158,10 +158,10 @@
                         <p class="text-slate-600 text-sm leading-relaxed">Sabores heredados que mezclan técnicas indígenas con ingredientes introducidos.</p>
                     </div>
 
-                    <div class="bg-slate-50 rounded-2xl p-6 border border-slate-100 hover:shadow-lg transition-all group slide-hidden" style="transition-delay: 400ms;">
+                    <div onclick="abrirArtistas()" class="bg-slate-50 rounded-2xl p-6 border border-slate-100 hover:shadow-lg transition-all group slide-hidden cursor-pointer" style="transition-delay: 400ms;">
                         <div class="w-14 h-14 bg-white shadow-sm text-blue-600 rounded-xl flex items-center justify-center text-2xl mb-5 group-hover:scale-110 transition-transform">🎨</div>
                         <h3 class="text-lg font-bold text-slate-900 mb-2">Artistas</h3>
-                        <p class="text-slate-600 text-sm leading-relaxed">Artistas que existieron y actuales de Zámbiza, y los lugares donde puedes conocer sus exposiciones.</p>
+                        <p class="text-slate-600 text-sm leading-relaxed">Conoce los nombres y oficios de los creadores históricos y actuales que mantienen viva el alma de Zámbiza. Haz clic aquí.</p>
                     </div>
                 </div>
 
@@ -217,50 +217,60 @@
             <div class="pause-on-hover relative w-full overflow-hidden">
                 <div class="marquee-container flex gap-6 px-4">
                     <!-- Bloque 1 -->
-                    <div class="flex gap-6 w-1/2 flex-shrink-0 justify-around">
+                    <div class="flex gap-6 flex-shrink-0">
                         <a href="https://gadzambiza.gob.ec/" target="_blank" class="w-72 bg-blue-900/80 backdrop-blur-sm border border-blue-800 rounded-2xl p-6 hover:bg-blue-800 transition-colors group">
-                            <div class="w-12 h-12 bg-blue-800/50 rounded-lg flex items-center justify-center text-2xl mb-4 group-hover:scale-110 transition-transform">🏛️</div>
+                            <img src="logo-zambiza.png" alt="GAD Zámbiza" class="w-14 h-14 object-contain mb-4 group-hover:scale-110 transition-transform bg-white/10 rounded-xl p-1 shadow-sm" onerror="this.src='https://placehold.co/100x100/1e3a8a/ffffff?text=GAD'">
                             <h4 class="text-white font-bold text-lg mb-2">Sitio Web Oficial GAD</h4>
                             <p class="text-blue-200 text-sm">Página institucional del Gobierno Autónomo Descentralizado de Zámbiza.</p>
                         </a>
                         <a href="https://www.tiktok.com/@gad_zambiza?lang=es" target="_blank" class="w-72 bg-blue-900/80 backdrop-blur-sm border border-blue-800 rounded-2xl p-6 hover:bg-blue-800 transition-colors group">
-                            <div class="w-12 h-12 bg-black/30 rounded-lg flex items-center justify-center text-2xl mb-4 group-hover:scale-110 transition-transform">🎵</div>
+                            <img src="logo-zambiza.png" alt="TikTok GAD Zámbiza" class="w-14 h-14 object-contain mb-4 group-hover:scale-110 transition-transform bg-black/30 rounded-xl p-1 shadow-sm" onerror="this.src='https://placehold.co/100x100/000000/ffffff?text=TK'">
                             <h4 class="text-white font-bold text-lg mb-2">Canal Oficial TikTok</h4>
                             <p class="text-blue-200 text-sm">Sigue el día a día y eventos del GAD de Zámbiza en video.</p>
                         </a>
                         <a href="https://www.facebook.com/zonaleugenioespejo/?locale=es_LA" target="_blank" class="w-72 bg-blue-900/80 backdrop-blur-sm border border-blue-800 rounded-2xl p-6 hover:bg-blue-800 transition-colors group">
-                            <div class="w-12 h-12 bg-blue-600/30 rounded-lg flex items-center justify-center text-2xl mb-4 group-hover:scale-110 transition-transform">📘</div>
+                            <img src="logo-admin-zonal.png" alt="Administración Zonal" class="w-14 h-14 object-cover mb-4 group-hover:scale-110 transition-transform bg-blue-600/30 rounded-xl p-1 shadow-sm" onerror="this.src='https://placehold.co/100x100/2563eb/ffffff?text=AZ'">
                             <h4 class="text-white font-bold text-lg mb-2">Admin. Zonal Facebook</h4>
                             <p class="text-blue-200 text-sm">Noticias de la Administración Zonal Eugenio Espejo.</p>
                         </a>
                         <a href="https://www.youtube.com/@zambizamemoriasyvoces" target="_blank" class="w-72 bg-blue-900/80 backdrop-blur-sm border border-blue-800 rounded-2xl p-6 hover:bg-blue-800 transition-colors group">
-                            <div class="w-12 h-12 bg-red-500/20 rounded-lg flex items-center justify-center text-2xl mb-4 group-hover:scale-110 transition-transform">▶️</div>
+                            <img src="logo-udla.png" alt="UDLA Memorias y Voces" class="w-14 h-14 object-cover mb-4 group-hover:scale-110 transition-transform bg-red-500/20 rounded-xl p-1 shadow-sm" onerror="this.src='https://placehold.co/100x100/dc2626/ffffff?text=UDLA'">
                             <h4 class="text-white font-bold text-lg mb-2">Canal UDLA</h4>
                             <p class="text-blue-200 text-sm">Zámbiza: Memorias y Voces. Canal comunicacional universitario.</p>
+                        </a>
+                        <a href="https://www.facebook.com/Comuna.Cocotog?locale=es_LA" target="_blank" class="w-72 bg-blue-900/80 backdrop-blur-sm border border-blue-800 rounded-2xl p-6 hover:bg-blue-800 transition-colors group">
+                            <img src="logo-cocotog.png" alt="Comuna Cocotog" class="w-14 h-14 object-cover mb-4 group-hover:scale-110 transition-transform bg-green-600/30 rounded-xl p-1 shadow-sm" onerror="this.src='https://placehold.co/100x100/16a34a/ffffff?text=CC'">
+                            <h4 class="text-white font-bold text-lg mb-2">Comuna Cocotog</h4>
+                            <p class="text-blue-200 text-sm">Página oficial de Facebook de la Comuna San José de Cocotog.</p>
                         </a>
                     </div>
                     
                     <!-- Bloque 2 (Clon exacto para el loop infinito) -->
-                    <div class="flex gap-6 w-1/2 flex-shrink-0 justify-around" aria-hidden="true">
+                    <div class="flex gap-6 flex-shrink-0" aria-hidden="true">
                         <a href="https://gadzambiza.gob.ec/" target="_blank" class="w-72 bg-blue-900/80 backdrop-blur-sm border border-blue-800 rounded-2xl p-6 hover:bg-blue-800 transition-colors group">
-                            <div class="w-12 h-12 bg-blue-800/50 rounded-lg flex items-center justify-center text-2xl mb-4 group-hover:scale-110 transition-transform">🏛️</div>
+                            <img src="logo-zambiza.png" alt="GAD Zámbiza" class="w-14 h-14 object-contain mb-4 group-hover:scale-110 transition-transform bg-white/10 rounded-xl p-1 shadow-sm" onerror="this.src='https://placehold.co/100x100/1e3a8a/ffffff?text=GAD'">
                             <h4 class="text-white font-bold text-lg mb-2">Sitio Web Oficial GAD</h4>
                             <p class="text-blue-200 text-sm">Página institucional del Gobierno Autónomo Descentralizado de Zámbiza.</p>
                         </a>
                         <a href="https://www.tiktok.com/@gad_zambiza?lang=es" target="_blank" class="w-72 bg-blue-900/80 backdrop-blur-sm border border-blue-800 rounded-2xl p-6 hover:bg-blue-800 transition-colors group">
-                            <div class="w-12 h-12 bg-black/30 rounded-lg flex items-center justify-center text-2xl mb-4 group-hover:scale-110 transition-transform">🎵</div>
+                            <img src="logo-zambiza.png" alt="TikTok GAD Zámbiza" class="w-14 h-14 object-contain mb-4 group-hover:scale-110 transition-transform bg-black/30 rounded-xl p-1 shadow-sm" onerror="this.src='https://placehold.co/100x100/000000/ffffff?text=TK'">
                             <h4 class="text-white font-bold text-lg mb-2">Canal Oficial TikTok</h4>
                             <p class="text-blue-200 text-sm">Sigue el día a día y eventos del GAD de Zámbiza en video.</p>
                         </a>
                         <a href="https://www.facebook.com/zonaleugenioespejo/?locale=es_LA" target="_blank" class="w-72 bg-blue-900/80 backdrop-blur-sm border border-blue-800 rounded-2xl p-6 hover:bg-blue-800 transition-colors group">
-                            <div class="w-12 h-12 bg-blue-600/30 rounded-lg flex items-center justify-center text-2xl mb-4 group-hover:scale-110 transition-transform">📘</div>
+                            <img src="logo-admin-zonal.png" alt="Administración Zonal" class="w-14 h-14 object-cover mb-4 group-hover:scale-110 transition-transform bg-blue-600/30 rounded-xl p-1 shadow-sm" onerror="this.src='https://placehold.co/100x100/2563eb/ffffff?text=AZ'">
                             <h4 class="text-white font-bold text-lg mb-2">Admin. Zonal Facebook</h4>
                             <p class="text-blue-200 text-sm">Noticias de la Administración Zonal Eugenio Espejo.</p>
                         </a>
                         <a href="https://www.youtube.com/@zambizamemoriasyvoces" target="_blank" class="w-72 bg-blue-900/80 backdrop-blur-sm border border-blue-800 rounded-2xl p-6 hover:bg-blue-800 transition-colors group">
-                            <div class="w-12 h-12 bg-red-500/20 rounded-lg flex items-center justify-center text-2xl mb-4 group-hover:scale-110 transition-transform">▶️</div>
+                            <img src="logo-udla.png" alt="UDLA Memorias y Voces" class="w-14 h-14 object-cover mb-4 group-hover:scale-110 transition-transform bg-red-500/20 rounded-xl p-1 shadow-sm" onerror="this.src='https://placehold.co/100x100/dc2626/ffffff?text=UDLA'">
                             <h4 class="text-white font-bold text-lg mb-2">Canal UDLA</h4>
                             <p class="text-blue-200 text-sm">Zámbiza: Memorias y Voces. Canal comunicacional universitario.</p>
+                        </a>
+                        <a href="https://www.facebook.com/Comuna.Cocotog?locale=es_LA" target="_blank" class="w-72 bg-blue-900/80 backdrop-blur-sm border border-blue-800 rounded-2xl p-6 hover:bg-blue-800 transition-colors group">
+                            <img src="logo-cocotog.png" alt="Comuna Cocotog" class="w-14 h-14 object-cover mb-4 group-hover:scale-110 transition-transform bg-green-600/30 rounded-xl p-1 shadow-sm" onerror="this.src='https://placehold.co/100x100/16a34a/ffffff?text=CC'">
+                            <h4 class="text-white font-bold text-lg mb-2">Comuna Cocotog</h4>
+                            <p class="text-blue-200 text-sm">Página oficial de Facebook de la Comuna San José de Cocotog.</p>
                         </a>
                     </div>
                 </div>
@@ -428,38 +438,380 @@
         </div>
     </footer>
 
-    <!-- MODAL BIBLIOTECA MULTIMEDIA -->
-    <div id="modal-biblioteca" class="fixed inset-0 z-[100] hidden items-center justify-center p-4 sm:p-6 bg-slate-950/95 backdrop-blur-md opacity-0 transition-opacity duration-300">
+    <!-- MODAL LUGARES TURÍSTICOS -->
+    <div id="modal-lugares" class="fixed inset-0 z-[100] hidden items-center justify-center p-4 sm:p-6 bg-slate-950/95 backdrop-blur-md opacity-0 transition-opacity duration-300">
         <div class="bg-slate-50 w-full max-w-5xl rounded-3xl overflow-hidden shadow-2xl relative flex flex-col max-h-[90vh]">
             <div class="flex justify-between items-center p-6 border-b border-slate-200 bg-white">
                 <div>
-                    <h3 class="text-2xl font-bold text-blue-950">Biblioteca Multimedia de Zámbiza</h3>
-                    <p class="text-sm text-slate-500">Recopilación de reportajes y documentales en YouTube</p>
+                    <h3 class="text-2xl font-bold text-blue-950">Lugares Turísticos y Emblemáticos</h3>
+                    <p class="text-sm text-slate-500">Guía de los principales atractivos de la parroquia de Zámbiza y sus alrededores</p>
+                </div>
+                <button onclick="cerrarLugaresTuristicos()" class="w-10 h-10 bg-slate-100 text-slate-800 rounded-full flex items-center justify-center hover:bg-red-500 hover:text-white transition-colors font-bold shadow-sm">✕</button>
+            </div>
+            
+            <div class="p-6 overflow-y-auto grid md:grid-cols-2 gap-6 bg-slate-50">
+                
+                <!-- Lugar 1 -->
+                <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 hover:shadow-md transition-shadow">
+                    <div class="flex items-center gap-4 mb-4">
+                        <div class="w-12 h-12 bg-blue-100 text-blue-600 rounded-xl flex items-center justify-center text-2xl flex-shrink-0">⛪</div>
+                        <h4 class="font-bold text-blue-900 text-lg leading-tight">Iglesia Matriz de Zámbiza</h4>
+                    </div>
+                    <p class="text-sm text-slate-600 leading-relaxed mb-4">Construcción histórica de profunda riqueza arquitectónica y cultural. Es el corazón espiritual de la parroquia y el epicentro donde se desarrollan las principales festividades patronales, danzas y tradiciones.</p>
+                    <div class="flex items-start gap-2 text-xs font-semibold text-slate-500 bg-slate-100 p-3 rounded-lg">
+                        <span class="text-sky-600 text-base">📍</span> 
+                        <span>Ubicación: Frente al Parque Central de Zámbiza (Calles Guayaquil y Bolívar).</span>
+                    </div>
+                </div>
+
+                <!-- Lugar 2 -->
+                <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 hover:shadow-md transition-shadow">
+                    <div class="flex items-center gap-4 mb-4">
+                        <div class="w-12 h-12 bg-green-100 text-green-600 rounded-xl flex items-center justify-center text-2xl flex-shrink-0">🌳</div>
+                        <h4 class="font-bold text-blue-900 text-lg leading-tight">Parque Central y Plaza</h4>
+                    </div>
+                    <p class="text-sm text-slate-600 leading-relaxed mb-4">Espacio público tradicional que conserva la traza urbana colonial. Ideal para disfrutar de la tranquilidad andina, el encuentro comunitario y admirar las casas patrimoniales que lo rodean.</p>
+                    <div class="flex items-start gap-2 text-xs font-semibold text-slate-500 bg-slate-100 p-3 rounded-lg">
+                        <span class="text-sky-600 text-base">📍</span> 
+                        <span>Ubicación: Centro de la Parroquia de Zámbiza.</span>
+                    </div>
+                </div>
+
+                <!-- Lugar 3 -->
+                <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 hover:shadow-md transition-shadow">
+                    <div class="flex items-center gap-4 mb-4">
+                        <div class="w-12 h-12 bg-amber-100 text-amber-600 rounded-xl flex items-center justify-center text-2xl flex-shrink-0">🥾</div>
+                        <h4 class="font-bold text-blue-900 text-lg leading-tight">Sendero Ecológico El Perdiz</h4>
+                    </div>
+                    <p class="text-sm text-slate-600 leading-relaxed mb-4">Una ruta natural perfecta para el turismo ecológico y senderismo. Permite una conexión directa con la naturaleza, observando la flora y fauna endémica de las laderas y valles de la zona.</p>
+                    <div class="flex items-start gap-2 text-xs font-semibold text-slate-500 bg-slate-100 p-3 rounded-lg">
+                        <span class="text-sky-600 text-base">📍</span> 
+                        <span>Ubicación: Comuna San José de Cocotog.</span>
+                    </div>
+                </div>
+
+                <!-- Lugar 4 -->
+                <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 hover:shadow-md transition-shadow">
+                    <div class="flex items-center gap-4 mb-4">
+                        <div class="w-12 h-12 bg-indigo-100 text-indigo-600 rounded-xl flex items-center justify-center text-2xl flex-shrink-0">📸</div>
+                        <h4 class="font-bold text-blue-900 text-lg leading-tight">Miradores del Valle</h4>
+                    </div>
+                    <p class="text-sm text-slate-600 leading-relaxed mb-4">Puntos de observación estratégicos a lo largo de la parroquia y sus comunas aledañas que ofrecen vistas panorámicas impresionantes de las quebradas y la geografía escarpada del distrito.</p>
+                    <div class="flex items-start gap-2 text-xs font-semibold text-slate-500 bg-slate-100 p-3 rounded-lg">
+                        <span class="text-sky-600 text-base">📍</span> 
+                        <span>Ubicación: Zonas altas y periferia de Zámbiza / Cocotog.</span>
+                    </div>
+                </div>
+
+                <!-- Lugar 5 (Iglesia Cocotog) -->
+                <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 hover:shadow-md transition-shadow">
+                    <div class="flex items-center gap-4 mb-4">
+                        <div class="w-12 h-12 bg-rose-100 text-rose-600 rounded-xl flex items-center justify-center text-2xl flex-shrink-0">⛪</div>
+                        <h4 class="font-bold text-blue-900 text-lg leading-tight">Iglesia Católica de Cocotog</h4>
+                    </div>
+                    <p class="text-sm text-slate-600 leading-relaxed mb-4">Punto de encuentro de la fe y la cultura de la comuna, destacando por su profunda importancia durante las fiestas patronales y eventos tradicionales.</p>
+                    <div class="flex items-start gap-2 text-xs font-semibold text-slate-500 bg-slate-100 p-3 rounded-lg">
+                        <span class="text-sky-600 text-base">📍</span> 
+                        <span>Ubicación: Centro de la Comuna San José de Cocotog.</span>
+                    </div>
+                </div>
+
+                <!-- Lugar 6 (Iglesia Evangélica) -->
+                <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 hover:shadow-md transition-shadow">
+                    <div class="flex items-center gap-4 mb-4">
+                        <div class="w-12 h-12 bg-sky-100 text-sky-600 rounded-xl flex items-center justify-center text-2xl flex-shrink-0">🕊️</div>
+                        <h4 class="font-bold text-blue-900 text-lg leading-tight">Iglesia Evangélica</h4>
+                    </div>
+                    <p class="text-sm text-slate-600 leading-relaxed mb-4">Espacio de culto y hermandad que refleja la diversidad espiritual y la convivencia armónica de los habitantes de la parroquia de Zámbiza.</p>
+                    <div class="flex items-start gap-2 text-xs font-semibold text-slate-500 bg-slate-100 p-3 rounded-lg">
+                        <span class="text-sky-600 text-base">📍</span> 
+                        <span>Ubicación: Sectores locales de Zámbiza.</span>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL PLAZAS Y ENTORNO -->
+    <div id="modal-plazas" class="fixed inset-0 z-[100] hidden items-center justify-center p-4 sm:p-6 bg-slate-950/95 backdrop-blur-md opacity-0 transition-opacity duration-300">
+        <div class="bg-slate-50 w-full max-w-5xl rounded-3xl overflow-hidden shadow-2xl relative flex flex-col max-h-[90vh]">
+            <div class="flex justify-between items-center p-6 border-b border-slate-200 bg-white">
+                <div>
+                    <h3 class="text-2xl font-bold text-blue-950">Plazas, Entorno y Vida Local</h3>
+                    <p class="text-sm text-slate-500">Descubre los lugares del diario vivir, gastronomía, deporte y educación en Zámbiza</p>
+                </div>
+                <button onclick="cerrarPlazas()" class="w-10 h-10 bg-slate-100 text-slate-800 rounded-full flex items-center justify-center hover:bg-red-500 hover:text-white transition-colors font-bold shadow-sm">✕</button>
+            </div>
+            
+            <div class="p-6 overflow-y-auto grid md:grid-cols-2 lg:grid-cols-3 gap-6 bg-slate-50">
+                
+                <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 hover:shadow-md transition-shadow flex flex-col">
+                    <div class="flex items-center gap-4 mb-4">
+                        <div class="w-12 h-12 bg-amber-100 text-amber-600 rounded-xl flex items-center justify-center text-2xl flex-shrink-0">🍲</div>
+                        <h4 class="font-bold text-blue-900 text-lg leading-tight">Gastronomía y Huecas</h4>
+                    </div>
+                    <p class="text-sm text-slate-600 leading-relaxed mb-4">Destaca el tradicional "Hornado Zambilano" hecho en horno de leña, la fritada, las tortillas de papa y el caldo de gallina criolla que las caseras locales preparan cada fin de semana.</p>
+                    <div class="flex items-start gap-2 text-xs font-semibold text-slate-500 bg-slate-100 p-3 rounded-lg mt-auto">
+                        <span class="text-sky-600 text-base">📍</span> 
+                        <span>Calles Guayaquil, Bolívar y aledañas al Parque Central.</span>
+                    </div>
+                </div>
+
+                <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 hover:shadow-md transition-shadow flex flex-col">
+                    <div class="flex items-center gap-4 mb-4">
+                        <div class="w-12 h-12 bg-orange-100 text-orange-600 rounded-xl flex items-center justify-center text-2xl flex-shrink-0">🥐</div>
+                        <h4 class="font-bold text-blue-900 text-lg leading-tight">Panaderías Tradicionales</h4>
+                    </div>
+                    <p class="text-sm text-slate-600 leading-relaxed mb-4">Negocios familiares de décadas que conservan la técnica de amasar a mano y usar hornos de leña de adobe para sus famosas empanadas de mejido y bizcochos.</p>
+                    <div class="flex items-start gap-2 text-xs font-semibold text-slate-500 bg-slate-100 p-3 rounded-lg mt-auto">
+                        <span class="text-sky-600 text-base">📍</span> 
+                        <span>Distintos sectores del centro de la parroquia.</span>
+                    </div>
+                </div>
+
+                <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 hover:shadow-md transition-shadow flex flex-col">
+                    <div class="flex items-center gap-4 mb-4">
+                        <div class="w-12 h-12 bg-green-100 text-green-600 rounded-xl flex items-center justify-center text-2xl flex-shrink-0">⚽</div>
+                        <h4 class="font-bold text-blue-900 text-lg leading-tight">Estadio y Canchas</h4>
+                    </div>
+                    <p class="text-sm text-slate-600 leading-relaxed mb-4">El Estadio Parroquial de Zámbiza, sede de la Liga Deportiva Local, donde se viven los intensos y tradicionales campeonatos barriales que unen a todos los vecindarios.</p>
+                    <div class="flex items-start gap-2 text-xs font-semibold text-slate-500 bg-slate-100 p-3 rounded-lg mt-auto">
+                        <span class="text-sky-600 text-base">📍</span> 
+                        <span>Sector La Cuadra / Complejos Deportivos.</span>
+                    </div>
+                </div>
+
+                <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 hover:shadow-md transition-shadow flex flex-col">
+                    <div class="flex items-center gap-4 mb-4">
+                        <div class="w-12 h-12 bg-cyan-100 text-cyan-600 rounded-xl flex items-center justify-center text-2xl flex-shrink-0">🏊‍♂️</div>
+                        <h4 class="font-bold text-blue-900 text-lg leading-tight">Piscinas y Recreación</h4>
+                    </div>
+                    <p class="text-sm text-slate-600 leading-relaxed mb-4">Complejos recreacionales familiares con piscinas temperadas al aire libre, aprovechando el cálido clima del valle y rodeados de la naturaleza local.</p>
+                    <div class="flex items-start gap-2 text-xs font-semibold text-slate-500 bg-slate-100 p-3 rounded-lg mt-auto">
+                        <span class="text-sky-600 text-base">📍</span> 
+                        <span>Vías de acceso y zonas periféricas de Zámbiza.</span>
+                    </div>
+                </div>
+
+                <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 hover:shadow-md transition-shadow flex flex-col">
+                    <div class="flex items-center gap-4 mb-4">
+                        <div class="w-12 h-12 bg-blue-100 text-blue-600 rounded-xl flex items-center justify-center text-2xl flex-shrink-0">🏛️</div>
+                        <h4 class="font-bold text-blue-900 text-lg leading-tight">Sede del GAD Parroquial</h4>
+                    </div>
+                    <p class="text-sm text-slate-600 leading-relaxed mb-4">El edificio histórico y administrativo. Es la casa cívica donde se toman decisiones comunitarias, se organizan asambleas y se gestionan los proyectos sociales.</p>
+                    <div class="flex items-start gap-2 text-xs font-semibold text-slate-500 bg-slate-100 p-3 rounded-lg mt-auto">
+                        <span class="text-sky-600 text-base">📍</span> 
+                        <span>Calles Guayaquil y Bolívar (Frente a la Plaza Central).</span>
+                    </div>
+                </div>
+
+                <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 hover:shadow-md transition-shadow flex flex-col">
+                    <div class="flex items-center gap-4 mb-4">
+                        <div class="w-12 h-12 bg-indigo-100 text-indigo-600 rounded-xl flex items-center justify-center text-2xl flex-shrink-0">🏫</div>
+                        <h4 class="font-bold text-blue-900 text-lg leading-tight">Centros Educativos</h4>
+                    </div>
+                    <p class="text-sm text-slate-600 leading-relaxed mb-4">Instituciones emblemáticas como la Escuela Fiscal Mixta Guayaquil y la Unidad Educativa Zámbiza, pilares en la formación cívica y cultural de generaciones de zambilanos.</p>
+                    <div class="flex items-start gap-2 text-xs font-semibold text-slate-500 bg-slate-100 p-3 rounded-lg mt-auto">
+                        <span class="text-sky-600 text-base">📍</span> 
+                        <span>Centro de la parroquia y barrios consolidados.</span>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL ARTISTAS (NUEVO) -->
+    <div id="modal-artistas" class="fixed inset-0 z-[100] hidden items-center justify-center p-4 sm:p-6 bg-slate-950/95 backdrop-blur-md opacity-0 transition-opacity duration-300">
+        <div class="bg-slate-50 w-full max-w-5xl rounded-3xl overflow-hidden shadow-2xl relative flex flex-col max-h-[90vh]">
+            <div class="flex justify-between items-center p-6 border-b border-slate-200 bg-white">
+                <div>
+                    <h3 class="text-2xl font-bold text-blue-950">Artistas y Gestores de Zámbiza</h3>
+                    <p class="text-sm text-slate-500">Los creadores históricos y actuales que mantienen vivo el legado de nuestro pueblo</p>
+                </div>
+                <button onclick="cerrarArtistas()" class="w-10 h-10 bg-slate-100 text-slate-800 rounded-full flex items-center justify-center hover:bg-red-500 hover:text-white transition-colors font-bold shadow-sm">✕</button>
+            </div>
+            
+            <div class="p-6 overflow-y-auto grid md:grid-cols-2 gap-6 bg-slate-50">
+                
+                <!-- Maestros Póstumos -->
+                <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 hover:shadow-md transition-shadow">
+                    <div class="flex items-center gap-4 mb-4">
+                        <div class="w-12 h-12 bg-slate-100 text-slate-600 rounded-xl flex items-center justify-center text-2xl flex-shrink-0">🕊️</div>
+                        <h4 class="font-bold text-blue-900 text-lg leading-tight">Maestros Póstumos (Siglo XX)</h4>
+                    </div>
+                    <p class="text-sm text-slate-600 leading-relaxed mb-4">Recordamos a los <strong>pingulleros y tamboneros históricos</strong> que marcaron el compás de las fiestas patronales, así como a las <strong>primeras generaciones de bordadoras</strong> que, con hilos de oro y paciencia, forjaron los pesados y espectaculares trajes de los danzantes originales que hoy son reliquias.</p>
+                    <div class="text-xs font-semibold text-slate-500 bg-slate-100 p-3 rounded-lg">
+                        Actividad: Música de banda de pueblo, bordado tradicional y oralidad.
+                    </div>
+                </div>
+
+                <!-- Don Segundo Guamán -->
+                <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 hover:shadow-md transition-shadow">
+                    <div class="flex items-center gap-4 mb-4">
+                        <div class="w-12 h-12 bg-amber-100 text-amber-600 rounded-xl flex items-center justify-center text-2xl flex-shrink-0">🎭</div>
+                        <h4 class="font-bold text-blue-900 text-lg leading-tight">Don Segundo Guamán</h4>
+                    </div>
+                    <p class="text-sm text-slate-600 leading-relaxed mb-4">Reconocido como el <strong>Danzante Mayor</strong>. Más que un intérprete, es un custodio de los saberes espirituales andinos. En cada paso de su pesada danza agradece a la tierra y lidera a los danzantes jóvenes, enseñando que el baile es resistencia pura.</p>
+                    <div class="text-xs font-semibold text-slate-500 bg-slate-100 p-3 rounded-lg">
+                        Actividad: Danza ancestral, coreografía ritual y preservación oral.
+                    </div>
+                </div>
+
+                <!-- María Rosa Tituaña -->
+                <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 hover:shadow-md transition-shadow">
+                    <div class="flex items-center gap-4 mb-4">
+                        <div class="w-12 h-12 bg-rose-100 text-rose-600 rounded-xl flex items-center justify-center text-2xl flex-shrink-0">🧵</div>
+                        <h4 class="font-bold text-blue-900 text-lg leading-tight">María Rosa Tituaña</h4>
+                    </div>
+                    <p class="text-sm text-slate-600 leading-relaxed mb-4">Destacada <strong>Artesana Textil</strong> local. Sus manos no solo tejen prendas, sino que entrelazan la historia viva de Zámbiza. Especialista en la creación y restauración de la indumentaria festiva, manteniendo vivo el simbolismo de cada color, pluma y pedrería.</p>
+                    <div class="text-xs font-semibold text-slate-500 bg-slate-100 p-3 rounded-lg">
+                        Actividad: Tejeduría, diseño textil patrimonial y confección.
+                    </div>
+                </div>
+
+                <!-- Colectivos y Bandas Actuales -->
+                <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 hover:shadow-md transition-shadow">
+                    <div class="flex items-center gap-4 mb-4">
+                        <div class="w-12 h-12 bg-sky-100 text-sky-600 rounded-xl flex items-center justify-center text-2xl flex-shrink-0">🎺</div>
+                        <h4 class="font-bold text-blue-900 text-lg leading-tight">Banda y Colectivos Juveniles</h4>
+                    </div>
+                    <p class="text-sm text-slate-600 leading-relaxed mb-4">El arte en Zámbiza fluye en colectivo. Destacan la <strong>Banda Parroquial</strong> (músicos que tocan sanjuanitos y albazos) y las <strong>agrupaciones coreográficas juveniles</strong> que representan las danzas de Morenos, Capariches y Payasos en festivales nacionales y casas de la cultura.</p>
+                    <div class="text-xs font-semibold text-slate-500 bg-slate-100 p-3 rounded-lg">
+                        Actividad: Música de viento/percusión, danza folclórica contemporánea.
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL BIBLIOTECA MULTIMEDIA -->
+    <div id="modal-biblioteca" class="fixed inset-0 z-[100] hidden items-center justify-center p-4 sm:p-6 bg-slate-950/95 backdrop-blur-md opacity-0 transition-opacity duration-300">
+        <div class="bg-slate-50 w-full max-w-6xl rounded-3xl overflow-hidden shadow-2xl relative flex flex-col max-h-[90vh]">
+            <div class="flex justify-between items-center p-6 border-b border-slate-200 bg-white">
+                <div>
+                    <h3 class="text-2xl font-bold text-blue-950">Biblioteca Multimedia</h3>
+                    <p class="text-sm text-slate-500">Recopilación de reportajes y documentales en YouTube de Zámbiza y Cocotog</p>
                 </div>
                 <button onclick="cerrarBiblioteca()" class="w-10 h-10 bg-slate-100 text-slate-800 rounded-full flex items-center justify-center hover:bg-red-500 hover:text-white transition-colors font-bold shadow-sm">✕</button>
             </div>
-            <div class="p-6 overflow-y-auto grid md:grid-cols-2 gap-6 bg-slate-50">
-                <!-- Video 1 (Nuevo enlace UDLA) -->
-                <div class="bg-white p-4 rounded-2xl shadow-sm border border-slate-200 hover:shadow-md transition-shadow">
-                    <div class="aspect-video rounded-xl overflow-hidden mb-3 bg-slate-900">
+            <!-- Nueva Cuadrícula adaptativa para los 5 videos -->
+            <div class="p-6 overflow-y-auto grid md:grid-cols-2 lg:grid-cols-3 gap-6 bg-slate-50">
+                
+                <!-- Video 1 (UDLA) -->
+                <div class="bg-white p-5 rounded-2xl shadow-sm border border-slate-200 hover:shadow-md transition-shadow flex flex-col">
+                    <div class="aspect-video rounded-xl overflow-hidden mb-4 bg-slate-900 flex-shrink-0">
                         <iframe class="w-full h-full" src="https://www.youtube.com/embed/Ar-A8TnqAaE" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                     </div>
-                    <h4 class="font-bold text-blue-900">Voces y Memorias de Zámbiza</h4>
-                    <p class="text-xs text-slate-500 mt-1">Canal Universitario UDLA</p>
+                    <h4 class="font-bold text-blue-900 mb-1 leading-tight">Voces y Memorias de Zámbiza</h4>
+                    <p class="text-xs text-slate-600 flex-grow leading-relaxed">Documental comunicacional de la UDLA que explora las voces históricas, memorias y relatos de los habitantes originarios de la parroquia.</p>
+                    <p class="text-[10px] text-slate-400 mt-4 font-semibold uppercase tracking-wider">Canal Universitario UDLA</p>
                 </div>
-                <!-- Video 2 (Ejemplo de Rendición) -->
-                <div class="bg-white p-4 rounded-2xl shadow-sm border border-slate-200 hover:shadow-md transition-shadow">
-                    <div class="aspect-video rounded-xl overflow-hidden mb-3 bg-slate-900">
-                        <iframe class="w-full h-full" src="https://www.youtube.com/embed/xu2tHJEPmK0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+                <!-- Video 2 (Teleamazonas Turismo) -->
+                <div class="bg-white p-5 rounded-2xl shadow-sm border border-slate-200 hover:shadow-md transition-shadow flex flex-col">
+                    <div class="aspect-video rounded-xl overflow-hidden mb-4 bg-slate-900 flex-shrink-0">
+                        <iframe class="w-full h-full" src="https://www.youtube.com/embed/F7cvL2H5AHc" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                     </div>
-                    <h4 class="font-bold text-blue-900">Rendición de Cuentas GAD Zámbiza</h4>
-                    <p class="text-xs text-slate-500 mt-1">Gestión Parroquial</p>
+                    <h4 class="font-bold text-blue-900 mb-1 leading-tight">Zámbiza: Cultura e Historia</h4>
+                    <p class="text-xs text-slate-600 flex-grow leading-relaxed">Reportaje de Teleamazonas sobre la inmensa oferta turística, cultural y patrimonial que la parroquia brinda a sus visitantes durante las festividades.</p>
+                    <p class="text-[10px] text-slate-400 mt-4 font-semibold uppercase tracking-wider">Teleamazonas Ecuador</p>
                 </div>
+
+                <!-- Video 3 (Día a Día Danzantes) -->
+                <div class="bg-white p-5 rounded-2xl shadow-sm border border-slate-200 hover:shadow-md transition-shadow flex flex-col">
+                    <div class="aspect-video rounded-xl overflow-hidden mb-4 bg-slate-900 flex-shrink-0">
+                        <iframe class="w-full h-full" src="https://www.youtube.com/embed/gzucud8JqAc" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    </div>
+                    <h4 class="font-bold text-blue-900 mb-1 leading-tight">Danzantes de Zámbiza</h4>
+                    <p class="text-xs text-slate-600 flex-grow leading-relaxed">Especial del programa Día a Día que profundiza en la rica tradición de los danzantes ancestrales, sus prendas y su significado espiritual.</p>
+                    <p class="text-[10px] text-slate-400 mt-4 font-semibold uppercase tracking-wider">Día a Día - Teleamazonas</p>
+                </div>
+
+                <!-- Video 4 (Comuna Cocotog) -->
+                <div class="bg-white p-5 rounded-2xl shadow-sm border border-slate-200 hover:shadow-md transition-shadow flex flex-col">
+                    <div class="aspect-video rounded-xl overflow-hidden mb-4 bg-slate-900 flex-shrink-0">
+                        <iframe class="w-full h-full" src="https://www.youtube.com/embed/s2cJKnID_sM" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    </div>
+                    <h4 class="font-bold text-blue-900 mb-1 leading-tight">Comuna de Cocotog y su Lengua</h4>
+                    <p class="text-xs text-slate-600 flex-grow leading-relaxed">Un acercamiento a la vecina Comuna de San José de Cocotog, un territorio que lucha día a día por la preservación de la lengua Kichwa.</p>
+                    <p class="text-[10px] text-slate-400 mt-4 font-semibold uppercase tracking-wider">Teleamazonas Ecuador</p>
+                </div>
+
+                <!-- Video 5 (Cocotog Turismo) -->
+                <div class="bg-white p-5 rounded-2xl shadow-sm border border-slate-200 hover:shadow-md transition-shadow flex flex-col">
+                    <div class="aspect-video rounded-xl overflow-hidden mb-4 bg-slate-900 flex-shrink-0">
+                        <iframe class="w-full h-full" src="https://www.youtube.com/embed/04yO25ZNCt4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    </div>
+                    <h4 class="font-bold text-blue-900 mb-1 leading-tight">Sendero Ecológico El Perdiz</h4>
+                    <p class="text-xs text-slate-600 flex-grow leading-relaxed">Conoce los atractivos naturales, flora y fauna a través del turismo ecológico y comunitario en la zona de la Comuna San José de Cocotog.</p>
+                    <p class="text-[10px] text-slate-400 mt-4 font-semibold uppercase tracking-wider">Turismo Ecuador</p>
+                </div>
+
             </div>
         </div>
     </div>
 
     <script>
+        // Funciones para el Modal de Lugares Turísticos
+        function abrirLugaresTuristicos() {
+            const modal = document.getElementById('modal-lugares');
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+            setTimeout(() => {
+                modal.classList.remove('opacity-0');
+            }, 10);
+        }
+
+        function cerrarLugaresTuristicos() {
+            const modal = document.getElementById('modal-lugares');
+            modal.classList.add('opacity-0');
+            setTimeout(() => {
+                modal.classList.add('hidden');
+                modal.classList.remove('flex');
+            }, 300);
+        }
+
+        // Funciones para el Modal de Plazas y Entorno
+        function abrirPlazas() {
+            const modal = document.getElementById('modal-plazas');
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+            setTimeout(() => {
+                modal.classList.remove('opacity-0');
+            }, 10);
+        }
+
+        function cerrarPlazas() {
+            const modal = document.getElementById('modal-plazas');
+            modal.classList.add('opacity-0');
+            setTimeout(() => {
+                modal.classList.add('hidden');
+                modal.classList.remove('flex');
+            }, 300);
+        }
+
+        // Funciones para el Modal de Artistas
+        function abrirArtistas() {
+            const modal = document.getElementById('modal-artistas');
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+            setTimeout(() => {
+                modal.classList.remove('opacity-0');
+            }, 10);
+        }
+
+        function cerrarArtistas() {
+            const modal = document.getElementById('modal-artistas');
+            modal.classList.add('opacity-0');
+            setTimeout(() => {
+                modal.classList.add('hidden');
+                modal.classList.remove('flex');
+            }, 300);
+        }
+
         // Funciones para el Modal de la Biblioteca Multimedia
         function abrirBiblioteca() {
             const modal = document.getElementById('modal-biblioteca');
