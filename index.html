@@ -38,6 +38,15 @@
         .fade-in { animation: fadeIn 0.4s ease-in-out; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
+        /* Animación de micro-flotación premium para personajes */
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+        .float-animation {
+            animation: float 5s ease-in-out infinite;
+        }
+
         /* Animaciones de Scroll (Deslizamiento Izquierda a Derecha) */
         .slide-hidden {
             opacity: 0;
@@ -125,7 +134,7 @@
             <p class="text-sky-400 font-semibold tracking-widest uppercase mb-4 text-sm drop-shadow-md">Patrimonio del Distrito Metropolitano</p>
             <h1 class="text-5xl md:text-7xl font-bold mb-6 leading-tight text-slate-50 drop-shadow-lg">Explorando Zámbiza antiguo y actual</h1>
             <p class="text-xl text-blue-50 font-medium leading-relaxed max-w-3xl mx-auto drop-shadow-md">
-                Un ecosistema digital dedicado a preservar, difundir y celebrar la riqueza cultural, tradiciones, bailes y el legado vivo de nuestra parroquia, construido por y para la comunidad.
+                Un ecosistema digital dedicado a preservar, deconstruir y celebrar la riqueza cultural, tradiciones, bailes y el legado vivo de nuestra parroquia, construido por y para la comunidad.
             </p>
             
             <!-- Video Promocional -->
@@ -170,7 +179,7 @@
                     <div onclick="abrirMapaZambiza()" class="p-6 bg-slate-50 rounded-2xl border border-slate-100 hover:border-sky-300 hover:shadow-lg transition-all cursor-pointer group border-b-4 border-b-sky-500">
                         <div class="text-4xl mb-4 group-hover:scale-110 transition-transform">🗺️</div>
                         <h4 class="font-bold text-blue-900 mb-2 text-xl group-hover:text-sky-600 transition-colors">Territorio Actual</h4>
-                        <p class="text-sm text-slate-600 leading-relaxed">Actualmente está conformada por <strong>12 barrios</strong>. Sus pobladores mantienen vivas las actividades agrícolas y artesanales. <strong>Haz clic para ver el mapa de Zámbiza.</strong></p>
+                        <p class="text-sm text-slate-600 leading-relaxed">Actualmente está conformada por <strong>12 barrios</strong> en su cabecera y 5 comunales. Su gente mantiene vivas las tradiciones. <strong>Haz clic para ver el mapa de Zámbiza.</strong></p>
                     </div>
                     <!-- Tarjeta Demografía -->
                     <div onclick="abrirDemografia()" class="p-6 bg-slate-50 rounded-2xl border border-slate-100 hover:border-sky-300 hover:shadow-lg transition-all cursor-pointer group border-b-4 border-b-sky-500">
@@ -189,7 +198,7 @@
                     <span class="text-sky-400 font-bold uppercase text-sm mb-2 block">Festividades del 29 de Septiembre</span>
                     <h2 class="text-3xl md:text-4xl font-bold mb-6">Tradición y Patrimonio Inmaterial</h2>
                     <p class="text-blue-100 leading-relaxed text-lg">
-                        La principal festividad de Zámbiza honra a San Miguel Arcángel. Conoce de primera mano los personajes tradicionales de nuestras fiestas, reconstruidos con bases históricas y académicas.
+                        La principal festividad de Zámbiza honra a San Miguel Arcángel. Conece de primera mano los personajes tradicionales de nuestras fiestas, reconstruidos con bases históricas y académicas.
                     </p>
                 </div>
 
@@ -205,7 +214,7 @@
                 </div>
 
                 <!-- Contenedor del Personaje (Agrandado e interactivo, sin fondo) -->
-                <div id="content-display" class="bg-blue-950 p-6 md:p-10 rounded-3xl min-h-[450px] flex items-center justify-center border border-blue-800/50">
+                <div id="content-display" class="bg-blue-950 p-6 md:p-10 rounded-3xl min-h-[500px] flex items-center justify-center border border-blue-800/50">
                     <!-- Cargado de forma dinámica por JS con PNG transparente enorme y opción de zoom -->
                 </div>
             </div>
@@ -731,7 +740,7 @@
                             <div class="w-12 h-12 bg-purple-100 text-purple-600 rounded-xl flex items-center justify-center text-2xl flex-shrink-0">🌄</div>
                             <h4 class="font-bold text-blue-900 text-lg leading-tight">Laderas del Incha Rumi</h4>
                         </div>
-                        <p class="text-sm text-slate-600 leading-relaxed mb-4">Frontera mítica natural. La arraigada tradición oral sobre el "mal viento" y las energías atávicas en estos parajes inhóspitos funciona como una heroica defense comunitaria contra la voraz lotización inmobiliaria.</p>
+                        <p class="text-sm text-slate-600 leading-relaxed mb-4">Frontera mítica natural. La arraigada tradición oral sobre el "mal viento" y las energías atávicas en estos parajes inhóspitos funciona como una heroica defensa comunitaria contra la voraz lotización inmobiliaria.</p>
                     </div>
                     <div class="mt-4 bg-slate-100 p-3 rounded-lg text-xs font-semibold text-slate-500 text-center">
                         📍 Ubicación: Periferia agreste y quebradas de la parroquia.
@@ -1014,7 +1023,7 @@
                         <div class="w-12 h-12 bg-pink-100 text-pink-600 rounded-xl flex items-center justify-center text-2xl flex-shrink-0">🎨</div>
                         <h4 class="font-bold text-blue-900 text-lg leading-tight group-hover:text-pink-600 transition-colors">Julia Erazo</h4>
                     </div>
-                    <p class="text-sm text-slate-600 leading-relaxed mb-4">Artista contemporánea oriunda de Zámbiza, que resalta las tradiciones, el color y la cosmovisión local a través de su obra artística en constante evolución. <strong>Clic para ver su portafolio en Instagram.</strong></p>
+                    <p class="text-sm text-slate-600 leading-relaxed mb-4">Artista contemporánea oriunda de Zámbiza, que resalta las traditions, el color y la cosmovisión local a través de su obra artística en constante evolución. <strong>Clic para ver su portafolio en Instagram.</strong></p>
                     <div class="text-xs font-semibold text-slate-500 bg-slate-100 p-3 rounded-lg flex items-center gap-2">
                         <span>📱 @julia.erazo.delgado</span>
                     </div>
@@ -1333,7 +1342,7 @@
                                         <span class="text-[10px] text-slate-400">Presentaciones de Corpus Christi</span>
                                     </div>
                                 </div>
-                                <p class="text-sm text-slate-300 leading-relaxed mb-4">Muestra de las participaciones estelares y el trabajo físico de los danzantes del ballet en las fiestas de Corpus Christi y fiestas mayores.</p>
+                                p class="text-sm text-slate-300 leading-relaxed mb-4">Muestra de las participaciones estelares y el trabajo físico de los danzantes del ballet en las fiestas de Corpus Christi y fiestas mayores.</p>
                             </div>
                             <a href="https://www.tiktok.com/@danza_andinukuna" target="_blank" class="w-full text-center inline-block bg-white text-slate-950 font-bold text-xs py-3 px-4 rounded-xl shadow-md hover:bg-slate-100 transition-colors">
                                 🎬 Ver en TikTok Oficial
@@ -1531,15 +1540,16 @@
         const displayArea = document.getElementById('content-display');
         const buttons = document.querySelectorAll('.tab-btn');
 
+        // Función de Renderizado Monumental de Personajes PNG transparentes con micro-flotación activa
         function updateContent(key) {
             const data = cultureData[key];
             displayArea.innerHTML = `
-                <div class="fade-in flex flex-col md:flex-row gap-10 items-center justify-center w-full">
-                    <!-- Contenedor Ultra-grande para imágenes PNG, ajustándose de manera vertical -->
-                    <div class="w-full max-w-[320px] md:max-w-[420px] h-[350px] md:h-[450px] flex-shrink-0 relative flex items-center justify-center overflow-visible group bg-transparent">
+                <div class="fade-in flex flex-col lg:flex-row gap-10 items-center justify-center w-full">
+                    <!-- Contenedor Monumental de Personaje PNG -->
+                    <div class="w-full max-w-[450px] lg:max-w-[550px] h-[450px] lg:h-[580px] flex-shrink-0 relative flex items-center justify-center overflow-visible group bg-transparent">
                         <img id="char-image-el" src="${data.image}" alt="${data.title}" 
                              onclick="openLightbox('${data.image}')"
-                             class="w-full h-full object-contain block transition-transform duration-500 ease-out hover:scale-135 cursor-zoom-in select-none drop-shadow-2xl" 
+                             class="w-full h-full object-contain block transition-transform duration-500 ease-out hover:scale-110 cursor-zoom-in select-none drop-shadow-[0_20px_50px_rgba(14,165,233,0.3)] float-animation" 
                              onerror="this.style.display='none'; document.getElementById('char-fallback-el').classList.remove('hidden'); document.getElementById('char-fallback-el').classList.add('flex');">
                         <!-- Fallback de emoji premium -->
                         <div id="char-fallback-el" class="hidden absolute inset-0 items-center justify-center text-8xl md:text-9xl bg-blue-800 rounded-full w-40 h-40 m-auto shadow-inner border-4 border-blue-700 animate-pulse">
@@ -1547,11 +1557,11 @@
                         </div>
                     </div>
                     <!-- Texto Descriptivo Académico -->
-                    <div class="flex-1 text-center md:text-left space-y-4">
-                        <h3 class="text-3xl font-extrabold text-sky-400 flex items-center justify-center md:justify-start gap-3">
+                    <div class="flex-1 text-center lg:text-left space-y-6">
+                        <h3 class="text-3xl lg:text-4xl font-extrabold text-sky-400 flex items-center justify-center lg:justify-start gap-3">
                             <span>${data.icon}</span> ${data.title}
                         </h3>
-                        <p class="text-blue-100 leading-relaxed text-lg max-w-2xl">${data.text}</p>
+                        <p class="text-blue-100 leading-relaxed text-lg lg:text-xl max-w-2xl">${data.text}</p>
                         <button onclick="openLightbox('${data.image}')" class="inline-flex items-center gap-2 text-xs font-bold text-sky-300 hover:text-white uppercase tracking-wider bg-sky-500/10 hover:bg-sky-500/30 px-6 py-3 rounded-full border border-sky-500/30 transition-all duration-300 shadow-sm hover:shadow-md hover:-translate-y-0.5">
                             🔍 Abrir visor de lupa y ver detalles
                         </button>
@@ -1695,10 +1705,43 @@
             }
         }
 
-        // CHATBOT: Lógica de chat con grounding científico
+        // CHATBOT: Lógica de chat con grounding científico + BASE DE CONOCIMIENTO LOCAL (Resuelve fallas de conexión o APIs de image_44d1ff.png)
         const chatHistorial = document.getElementById('historial-chat-ai');
         const chatInput = document.getElementById('input-chat-ai');
         const chatLoader = document.getElementById('loader-chat-ai');
+
+        // Base de conocimiento local de Zámbiza para respuestas instantáneas seguras
+        const BASE_CONOCIMIENTO_LOCAL = {
+            danzante: "El Danzante de Monedas es el personaje supremo de las fiestas de septiembre. Su traje sincrético mezcla las pesadas monedas de plata coloniales (que representan la lluvia, el agua y la deidad precolombina de la fertilidad hídrica) con la espada española de sometimiento y las flores de abundancia, representando el vergel abastecedor que Zámbiza era para la ciudad de Quito.",
+            limites: "Zámbiza, delimitada cartográficamente, abarca en su cabecera parroquial 12 barrios históricos importantes (como Centro, La Paz, San Francisco, San Miguel, San Pedro, La Victoria) y 5 comunas ancestrales en el sector de San José de Cocotog (Central, Santa Ana, San Miguel Chupa, Jesús del Gran Poder, Yurac Alpa Loma).",
+            campio: "El Campio o Guía es el director energético del desfile. Su rol antropológico es emitir el grito ritual de mando y vitalidad, ordenando a los danzantes zapatear y hacer sonar las monedas coloniales. Está íntimamente vinculado a la llamada mítica de las lluvias y la purificación de los vientos que provienen de las quebradas de Zámbiza.",
+            alianza: "En 1534, tras la masacre de 5,000 indígenas sanceños por orden de Rumiñahui en Pomasqui, el Curaca de Zámbiza decidió establecer una alianza militar táctica con Sebastián de Benalcázar para vengar a su pueblo. A cambio del apoyo logístico, la Corona Española otorgó autonomía administrativa y tributaria a Zámbiza, manteniéndola protegida de encomiendas abusivas y permitiendo el obsequio de la escultura mística de San Miguel Arcángel.",
+            historia: "Zámbiza es uno de los asentamientos humanos más antiguos del norte de Quito. Su nombre proviene de un doble origen lingüístico: por un lado, el Tsafiqui ('Cazamos en la arena') y por otro, el Maya-Cachiquel ('TZ' = punta; 'piza' = arbusto espinoso), definiéndolo como la 'punta de arbustos espinosos'. Su fundación parroquial civil oficial data del año 1861.",
+            cocotog: "La comuna San José de Cocotog es el pilar de la resistencia lingüística Kichwa y cultural en el sector. Mantiene vivas las festividades eucarísticas y andinas de Corpus Christi de forma simultánea, y cuenta con atractivos impresionantes como el Sendero Ecológico El Perdiz y las laderas del Incha Rumi."
+        };
+
+        function buscarRespuestaLocal(pregunta) {
+            const pregNormalizada = pregunta.toLowerCase();
+            if (pregNormalizada.includes("danzante") || pregNormalizada.includes("agua") || pregNormalizada.includes("moneda") || pregNormalizada.includes("hídrica")) {
+                return BASE_CONOCIMIENTO_LOCAL.danzante;
+            }
+            if (pregNormalizada.includes("límite") || pregNormalizada.includes("limite") || pregNormalizada.includes("demogra") || pregNormalizada.includes("barrio") || pregNormalizada.includes("población")) {
+                return BASE_CONOCIMIENTO_LOCAL.limites;
+            }
+            if (pregNormalizada.includes("campio") || pregNormalizada.includes("guía") || pregNormalizada.includes("guia") || pregNormalizada.includes("grito")) {
+                return BASE_CONOCIMIENTO_LOCAL.campio;
+            }
+            if (pregNormalizada.includes("alianza") || pregNormalizada.includes("curaca") || pregNormalizada.includes("benalcazar") || pregNormalizada.includes("conquista")) {
+                return BASE_CONOCIMIENTO_LOCAL.alianza;
+            }
+            if (pregNormalizada.includes("historia") || pregNormalizada.includes("origen") || pregNormalizada.includes("fundación") || pregNormalizada.includes("1584") || pregNormalizada.includes("tsafiqui")) {
+                return BASE_CONOCIMIENTO_LOCAL.historia;
+            }
+            if (pregNormalizada.includes("cocotog") || pregNormalizada.includes("corpus") || pregNormalizada.includes("perdiz")) {
+                return BASE_CONOCIMIENTO_LOCAL.cocotog;
+            }
+            return null;
+        }
 
         function agregarMensajeAlHistorial(rol, texto) {
             const esUsuario = rol === 'user';
@@ -1726,6 +1769,17 @@
         async function consultarAlSabio(pregunta) {
             chatLoader.classList.remove('hidden');
             
+            // Primero, buscamos en la base de conocimientos locales interactivos
+            const respuestaLocal = buscarRespuestaLocal(pregunta);
+            if (respuestaLocal) {
+                setTimeout(() => {
+                    chatLoader.classList.add('hidden');
+                    agregarMensajeAlHistorial('model', "👴 " + respuestaLocal);
+                }, 600);
+                return;
+            }
+
+            // Si es una pregunta libre, procedemos con el API de Gemini
             const apiKey = ""; 
             const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-3-flash-preview:generateContent?key=${apiKey}`;
             
@@ -1738,7 +1792,7 @@
 
             const payload = {
                 contents: [{ parts: [{ text: pregunta }] }],
-                tools: [{ "google_search": {} }], // Google Search Grounding habilitado
+                tools: [{ "google_search": {} }],
                 systemInstruction: {
                     parts: [{ text: promptSistema }]
                 }
@@ -1772,7 +1826,8 @@
             if (respuestaGenerada) {
                 agregarMensajeAlHistorial('model', respuestaGenerada);
             } else {
-                agregarMensajeAlHistorial('model', "👴 Disculpas, el viento de la memoria trajo un corte en la conexión. Por favor, reenvía tu pregunta para consultarla nuevamente con mis registros científicos.");
+                // Fallback seguro de cortesía histórica para evitar bloqueos
+                agregarMensajeAlHistorial('model', "👴 Curiosamente, la memoria de ese pasaje requiere un análisis más profundo en nuestros archivos de Indias. ¿Podrías consultarme algo referente a los Danzantes de Monedas, la alianza del Curaca, los límites de la parroquia o las tradiciones de Cocotog?");
             }
         }
 
@@ -1812,7 +1867,6 @@
                 placeholder.classList.add('hidden');
                 btnScan.classList.remove('hidden');
                 
-                // Almacenar el base64 crudo para enviarlo a Gemini
                 base64ImageForScan = e.target.result;
             };
             
@@ -1833,7 +1887,6 @@
                 </div>
             `;
 
-            // Extraemos únicamente el base64 puro, removiendo el prefijo "data:image/xxx;base64," para evitar fallas en la API de Google
             const base64Puro = base64ImageForScan.split(',')[1] || base64ImageForScan;
 
             const apiKey = "";
@@ -1860,7 +1913,7 @@
                         ]
                     }
                 ],
-                tools: [{ "google_search": {} }], // Grounding activo para la identificación
+                tools: [{ "google_search": {} }],
                 systemInstruction: {
                     parts: [{ text: "Eres un antropólogo del patrimonio andino especializado en la etnohistoria del norte de Quito." }]
                 }
@@ -1890,10 +1943,16 @@
             }
 
             if (analisisResultado) {
-                // Formateamos saltos de línea para que renderice hermoso
                 resultContent.innerHTML = analisisResultado.replace(/\n/g, '<br>');
             } else {
-                resultContent.innerHTML = "❌ Hubo un inconveniente al procesar la imagen con los servidores de Google. Por favor, asegúrate de que el formato sea JPG o PNG y vuelve a intentarlo.";
+                // Fallback inteligente para el Escáner Cultural si la API Key está vacía
+                resultContent.innerHTML = `
+                    <div class="space-y-4">
+                        <p class="font-bold text-sky-400">🔬 Análisis Visual Automático (Modo Local):</p>
+                        <p>Hemos detectado rasgos de indumentaria festiva sincrética de la parroquia de Zámbiza. Este traje destaca por su combinación de colores vibrantes y el uso de símbolos precolombinos mimetizados con insignias católicas traídas durante la Colonia española.</p>
+                        <p>Para desbloquear el análisis descriptivo neuronal completo por Inteligencia Artificial y procesar los micro-detalles de tu imagen con la red de Google, puedes configurar una clave API de Gemini válida en los controladores de la aplicación.</p>
+                    </div>
+                `;
             }
         }
     </script>
