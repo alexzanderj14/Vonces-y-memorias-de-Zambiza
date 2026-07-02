@@ -104,6 +104,7 @@
                     <a href="#cultura" class="whitespace-nowrap px-4 md:px-5 py-2 text-xs md:text-sm font-bold text-slate-600 rounded-full hover:bg-sky-500 hover:text-white hover:shadow-lg hover:-translate-y-1 hover:scale-105 transition-all duration-300">Patrimonio</a>
                     <a href="#turismo" class="whitespace-nowrap px-4 md:px-5 py-2 text-xs md:text-sm font-bold text-slate-600 rounded-full hover:bg-sky-500 hover:text-white hover:shadow-lg hover:-translate-y-1 hover:scale-105 transition-all duration-300">Descubre Zámbiza</a>
                     <a href="#eventos" class="whitespace-nowrap px-4 md:px-5 py-2 text-xs md:text-sm font-bold text-slate-600 rounded-full hover:bg-amber-500 hover:text-white hover:shadow-lg hover:-translate-y-1 hover:scale-105 transition-all duration-300">Eventos</a>
+                    <a href="#sabio-ai" class="whitespace-nowrap px-4 md:px-5 py-2 text-xs md:text-sm font-bold text-slate-600 rounded-full hover:bg-violet-600 hover:text-white hover:shadow-lg hover:-translate-y-1 hover:scale-105 transition-all duration-300">Centro AI</a>
                     <a href="#apoyo" class="whitespace-nowrap px-4 md:px-5 py-2 text-xs md:text-sm font-bold text-slate-600 rounded-full hover:bg-sky-500 hover:text-white hover:shadow-lg hover:-translate-y-1 hover:scale-105 transition-all duration-300">Apoyo Local</a>
                 </div>
             </div>
@@ -187,12 +188,12 @@
                 <div class="max-w-3xl mx-auto text-center mb-12">
                     <span class="text-sky-400 font-bold uppercase text-sm mb-2 block">Festividades del 29 de Septiembre</span>
                     <h2 class="text-3xl md:text-4xl font-bold mb-6">Tradición y Patrimonio Inmaterial</h2>
-                    <p class="text-blue-100 leading-relaxed">
-                        La principal festividad de Zámbiza honra a San Miguel Arcángel, quien según la devoción local, tiene el oficio de "Pelear contra el diablo y rescatar las almas". Conoce a los personajes tradicionales de nuestras "Entradas" y fiestas.
+                    <p class="text-blue-100 leading-relaxed text-lg">
+                        La principal festividad de Zámbiza honra a San Miguel Arcángel. Conoce de primera mano los personajes tradicionales de nuestras fiestas, reconstruidos con bases históricas y académicas.
                     </p>
                 </div>
 
-                <!-- Botones de Pestañas con Campio colocado antes de Capitanes, y sin saumerantes/floreantes -->
+                <!-- Botones de Pestañas interactivos -->
                 <div class="flex flex-wrap justify-center gap-3 mb-10">
                     <button class="tab-btn active px-5 py-2 rounded-full border border-blue-400 text-blue-50 text-sm font-medium hover:bg-blue-800" data-target="danzante">Danzantes</button>
                     <button class="tab-btn px-5 py-2 rounded-full border border-blue-400 text-blue-50 text-sm font-medium hover:bg-blue-800" data-target="campio">Campio o Guía</button>
@@ -203,8 +204,9 @@
                     <button class="tab-btn px-5 py-2 rounded-full border border-blue-400 text-blue-50 text-sm font-medium hover:bg-blue-800" data-target="mono">Los Monos</button>
                 </div>
 
-                <div id="content-display" class="bg-transparent p-2 md:p-6 rounded-2xl min-h-[300px] flex items-center">
-                    <!-- Contenido dinámico JS -->
+                <!-- Contenedor del Personaje (Agrandado e interactivo, sin fondo) -->
+                <div id="content-display" class="bg-blue-950 p-6 md:p-10 rounded-3xl min-h-[450px] flex items-center justify-center border border-blue-800/50">
+                    <!-- Cargado de forma dinámica por JS con PNG transparente enorme y opción de zoom -->
                 </div>
             </div>
         </section>
@@ -381,6 +383,131 @@
             </div>
         </section>
 
+        <!-- 5. CENTRO DE INTELIGENCIA ARTIFICIAL (SABIO AI & ESCÁNER VISUAL) -->
+        <section id="sabio-ai" class="scroll-mt-32">
+            <div class="bg-gradient-to-br from-blue-900 via-indigo-950 to-slate-950 rounded-3xl shadow-2xl p-8 md:p-12 text-white border border-blue-800/40 relative overflow-hidden slide-hidden">
+                <div class="absolute top-0 right-0 w-96 h-96 bg-sky-500/10 rounded-full blur-3xl pointer-events-none"></div>
+                
+                <div class="max-w-3xl mx-auto text-center mb-10 relative z-10">
+                    <span class="px-3 py-1 bg-violet-500/20 text-violet-300 font-semibold tracking-wider uppercase text-xs rounded-full border border-violet-500/30">Módulo Científico y Tecnológico</span>
+                    <h2 class="text-3xl md:text-4xl font-bold mt-4 mb-4">Centro de Innovación y Memoria Digital</h2>
+                    <p class="text-blue-200 leading-relaxed text-base">
+                        Conversa con nuestro guardián digital e historiador basado en fuentes fidedignas o sube una fotografía para que nuestra IA identifique su significado y relevancia patrimonial.
+                    </p>
+                </div>
+
+                <!-- Pestañas de Navegación del Centro de IA -->
+                <div class="flex justify-center gap-4 mb-8 border-b border-white/10 pb-4">
+                    <button id="tab-chatbot" onclick="switchAIFeature('chatbot')" class="px-4 py-2 text-sm font-bold border-b-2 border-violet-500 text-white transition-all">
+                        💬 Conversar con el Sabio
+                    </button>
+                    <button id="tab-scanner" onclick="switchAIFeature('scanner')" class="px-4 py-2 text-sm font-bold border-b-2 border-transparent text-slate-400 hover:text-white transition-all">
+                        📷 Escáner de Patrimonio
+                    </button>
+                </div>
+
+                <div class="relative z-10">
+                    <!-- Feature 1: Chatbot Historiador -->
+                    <div id="ai-chatbot-container" class="grid lg:grid-cols-12 gap-8">
+                        <div class="lg:col-span-5 space-y-3">
+                            <h4 class="font-bold text-sky-400 text-sm uppercase tracking-wider mb-2">Preguntas Sugeridas (Fuentes Académicas)</h4>
+                            <button onclick="enviarPreguntaSugerida('¿Cuáles son las fuentes académicas que explican la deidad del agua en el traje de los Danzantes?')" class="w-full text-left p-3 text-xs bg-white/5 hover:bg-white/10 border border-white/10 hover:border-sky-400/40 rounded-xl transition-all duration-300 flex items-start gap-2 group">
+                                <span>🪙</span>
+                                <span>Danzantes y Cosmovisión Hídrica</span>
+                            </button>
+                            <button onclick="enviarPreguntaSugerida('Explícame los límites demográficos históricos según los estudios oficiales.')" class="w-full text-left p-3 text-xs bg-white/5 hover:bg-white/10 border border-white/10 hover:border-sky-400/40 rounded-xl transition-all duration-300 flex items-start gap-2 group">
+                                <span>🗺️</span>
+                                <span>Demografía y Límites Geográficos</span>
+                            </button>
+                            <button onclick="enviarPreguntaSugerida('¿Qué papel cumple el Campio o Guía en la estructura andina según los cronistas de Zámbiza?')" class="w-full text-left p-3 text-xs bg-white/5 hover:bg-white/10 border border-white/10 hover:border-sky-400/40 rounded-xl transition-all duration-300 flex items-start gap-2 group">
+                                <span>📢</span>
+                                <span>El Rol Ritualístico del Campio</span>
+                            </button>
+                            <button onclick="enviarPreguntaSugerida('Danos una explicación sustentada sobre la alianza del Curaca con los conquistadores en 1534.')" class="w-full text-left p-3 text-xs bg-white/5 hover:bg-white/10 border border-white/10 hover:border-sky-400/40 rounded-xl transition-all duration-300 flex items-start gap-2 group">
+                                <span>📜</span>
+                                <span>Alianza Colonial del Curaca</span>
+                            </button>
+                        </div>
+
+                        <div class="lg:col-span-7 flex flex-col bg-slate-900/60 backdrop-blur-md rounded-2xl border border-white/10 overflow-hidden shadow-inner h-[420px]">
+                            <div class="px-5 py-4 bg-white/5 border-b border-white/10 flex items-center justify-between">
+                                <div class="flex items-center gap-3">
+                                    <div class="w-2.5 h-2.5 bg-emerald-500 rounded-full animate-pulse"></div>
+                                    <div>
+                                        <h5 class="text-sm font-bold">Historiador de la Memoria</h5>
+                                        <span class="text-[10px] text-sky-400 font-semibold uppercase tracking-wider">Fuentes Científicas Activas</span>
+                                    </div>
+                                </div>
+                                <span class="text-xs text-white/40">Zimagination AI</span>
+                            </div>
+
+                            <div id="historial-chat-ai" class="flex-1 p-5 overflow-y-auto space-y-4 text-sm scroll-smooth">
+                                <div class="flex gap-3">
+                                    <div class="w-8 h-8 bg-violet-800 rounded-full flex items-center justify-center text-base flex-shrink-0 select-none">👴</div>
+                                    <div class="bg-white/5 border border-white/10 text-blue-50 px-4 py-2.5 rounded-2xl rounded-tl-none max-w-[85%] leading-relaxed">
+                                        Saludos, investigador de la herencia andina. Soy el Historiador de Zámbiza. Mis respuestas están respaldadas por investigaciones de la Universidad Central, la Pontificia Universidad Católica del Ecuador, censos del INEC, estudios de la UDLA y crónicas de Indias. ¿Qué capítulo de nuestra memoria deseas documentar hoy?
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div id="loader-chat-ai" class="hidden px-5 py-2 flex items-center gap-2 text-xs text-sky-400 bg-white/5 border-t border-white/5">
+                                <div class="w-3 h-3 border-2 border-sky-400 border-t-transparent rounded-full animate-spin"></div>
+                                <span>Consultando el corpus documental y de Google Search...</span>
+                            </div>
+
+                            <form id="form-chat-ai" onsubmit="enviarPreguntaManual(event)" class="p-3 bg-white/5 border-t border-white/10 flex gap-2">
+                                <input type="text" id="input-chat-ai" placeholder="Consulta con rigor científico sobre Zámbiza o Cocotog..." class="flex-1 bg-slate-950/80 text-white border border-white/10 rounded-xl px-4 py-2 text-sm focus:outline-none focus:border-sky-400 placeholder-white/30 transition-colors" required>
+                                <button type="submit" class="bg-violet-600 hover:bg-violet-500 text-white font-bold px-5 py-2 rounded-xl text-sm shadow-md transition-all">
+                                    Preguntar
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+
+                    <!-- Feature 2: Escáner Cultural con IA -->
+                    <div id="ai-scanner-container" class="hidden max-w-4xl mx-auto bg-slate-900/60 border border-white/10 rounded-2xl p-6 md:p-8">
+                        <div class="grid md:grid-cols-2 gap-8 items-center">
+                            <div class="space-y-4">
+                                <h3 class="text-xl font-bold text-sky-400">📷 Escaneo de Identidad en Tiempo Real</h3>
+                                <p class="text-sm text-slate-300 leading-relaxed">
+                                    Sube cualquier fotografía de un personaje, artesanía, reliquia, iglesia o vestimenta tradicional de Zámbiza y Cocotog. Nuestra red neuronal analizará los símbolos visuales y te brindará una deconstrucción etnográfica basada en fuentes científicas.
+                                </p>
+                                
+                                <div class="flex flex-col gap-3">
+                                    <label class="flex flex-col items-center justify-center border-2 border-dashed border-white/20 hover:border-violet-500 rounded-xl p-6 cursor-pointer bg-slate-950/40 transition-colors">
+                                        <span class="text-3xl mb-2">📂</span>
+                                        <span class="text-xs font-semibold text-slate-300">Seleccionar Imagen (PNG o JPG)</span>
+                                        <input type="file" id="scanner-file-input" accept="image/*" class="hidden" onchange="previewImage(event)">
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="flex flex-col items-center justify-center bg-slate-950/60 rounded-xl p-4 min-h-[250px] relative border border-white/5">
+                                <img id="scanner-preview" class="max-h-[220px] rounded-lg hidden object-contain mb-4" alt="Vista previa escáner">
+                                <div id="scanner-placeholder" class="text-center text-slate-500 space-y-2">
+                                    <span class="text-5xl block animate-pulse">📷</span>
+                                    <p class="text-xs">Ninguna imagen seleccionada para escaneo</p>
+                                </div>
+                                <button id="btn-scan" onclick="procesarEscaneo()" class="hidden bg-violet-600 hover:bg-violet-500 text-white font-bold w-full py-2.5 rounded-xl text-sm shadow-lg transition-all">
+                                    🔬 Analizar con Inteligencia Artificial
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Panel de Resultados del Escáner -->
+                        <div id="scanner-result-panel" class="hidden mt-8 border-t border-white/10 pt-6">
+                            <h4 class="font-bold text-sky-400 mb-3 flex items-center gap-2">
+                                <span>🔬</span> Deconstrucción Científica de la Reliquia
+                            </h4>
+                            <div id="scanner-result-content" class="text-sm text-slate-200 leading-relaxed bg-white/5 p-5 rounded-xl border border-white/5 min-h-[100px]">
+                                <!-- Cargado dinámicamente -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <!-- APARTADO DE REDES (Carrusel Continuo) -->
         <section id="redes" class="w-[100vw] relative left-[50%] right-[50%] -ml-[50vw] -mr-[50vw] bg-blue-950 py-16 overflow-hidden border-y border-blue-900 slide-hidden">
             <div class="max-w-7xl mx-auto px-6 mb-10 text-center relative z-10">
@@ -440,7 +567,7 @@
             </div>
         </section>
 
-        <!-- 5. APOYO & CAPACITACIÓN -->
+        <!-- 6. APOYO & CAPACITACIÓN -->
         <section id="apoyo" class="scroll-mt-24">
             <div class="bg-white rounded-2xl shadow-xl p-8 md:p-12 border border-slate-100 slide-hidden">
                 <h2 class="text-3xl font-bold text-blue-950 mb-4">Apoyo y Capacitación</h2>
@@ -469,7 +596,7 @@
                             </span>
                         </summary>
                         <div class="text-slate-600 mt-3 group-open:animate-fadeIn px-6 pb-6">
-                            <p class="mb-4">Tu voz es fundamental para seguir construyendo juntos la historia de Zámbiza. Ayúdanos a mejorar nuestros espacios andinos y actividades.</p>
+                            <p class="mb-4">Tu voz es fundamental para seguir construyendo juntos la historia de Zámbiza. Ayúdanos a mejorar nuestros espacios y actividades.</p>
                             <a href="https://docs.google.com/forms/d/1bKX2ZwUDLZRMmMKeFndHRKgvtyxMFR6Zirdt9HHf4cQ/edit" target="_blank" class="inline-block px-6 py-2 bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-700 transition-colors">Ir al Formulario de Opinión</a>
                         </div>
                     </details>
@@ -477,87 +604,9 @@
             </div>
         </section>
 
-        <!-- 6. PREGÚNTALE AL SABIO DE ZÁMBIZA (INTEGRACIÓN GEMINI AI) -->
-        <section id="sabio-ai" class="scroll-mt-32">
-            <div class="bg-gradient-to-br from-blue-900 via-indigo-950 to-slate-950 rounded-3xl shadow-2xl p-8 md:p-12 text-white border border-blue-800/40 relative overflow-hidden slide-hidden">
-                <!-- Efecto visual de fondo -->
-                <div class="absolute top-0 right-0 w-96 h-96 bg-sky-500/10 rounded-full blur-3xl pointer-events-none"></div>
-                
-                <div class="max-w-3xl mx-auto text-center mb-10 relative z-10">
-                    <span class="px-3 py-1 bg-sky-500/20 text-sky-300 font-semibold tracking-wider uppercase text-xs rounded-full border border-sky-500/30">Memoria Viva con Inteligencia Artificial</span>
-                    <h2 class="text-3xl md:text-4xl font-bold mt-4 mb-4">Pregúntale al Sabio de Zámbiza</h2>
-                    <p class="text-blue-200 leading-relaxed text-base">
-                        ¿Tienes dudas sobre las leyendas del Incha Rumi, las monedas de los Danzantes o la alianza del Curaca? Conversa en vivo con nuestro guardián digital de la historia y el misticismo andino.
-                    </p>
-                </div>
-
-                <div class="grid lg:grid-cols-12 gap-8 relative z-10">
-                    <!-- Columna Izquierda: Preguntas sugeridas -->
-                    <div class="lg:col-span-5 space-y-3">
-                        <h4 class="font-bold text-sky-400 text-sm uppercase tracking-wider mb-2">Preguntas Sugeridas</h4>
-                        <button onclick="enviarPreguntaSugerida('¿Por qué se alió el Curaca de Zámbiza con Benalcázar tras el repliegue de Rumiñahui?')" class="w-full text-left p-3 text-xs bg-white/5 hover:bg-white/10 border border-white/10 hover:border-sky-400/40 rounded-xl transition-all duration-300 flex items-start gap-2 group">
-                            <span class="group-hover:scale-110 transition-transform">📜</span>
-                            <span>La Alianza del Curaca y Benalcázar</span>
-                        </button>
-                        <button onclick="enviarPreguntaSugerida('¿Cuál es el significado espiritual y material de las monedas de plata en el traje del Danzante?')" class="w-full text-left p-3 text-xs bg-white/5 hover:bg-white/10 border border-white/10 hover:border-sky-400/40 rounded-xl transition-all duration-300 flex items-start gap-2 group">
-                            <span class="group-hover:scale-110 transition-transform">🪙</span>
-                            <span>Significado de las monedas coloniales</span>
-                        </button>
-                        <button onclick="enviarPreguntaSugerida('¿Cuál es la función ceremonial del Campio o Guía y su conexión con el ciclo agrícola?')" class="w-full text-left p-3 text-xs bg-white/5 hover:bg-white/10 border border-white/10 hover:border-sky-400/40 rounded-xl transition-all duration-300 flex items-start gap-2 group">
-                            <span class="group-hover:scale-110 transition-transform">📢</span>
-                            <span>El rol vital del Campio o Guía</span>
-                        </button>
-                        <button onclick="enviarPreguntaSugerida('Cuéntame una leyenda misteriosa sobre las quebradas de Zámbiza y el Incha Rumi.')" class="w-full text-left p-3 text-xs bg-white/5 hover:bg-white/10 border border-white/10 hover:border-sky-400/40 rounded-xl transition-all duration-300 flex items-start gap-2 group">
-                            <span class="group-hover:scale-110 transition-transform">🌌</span>
-                            <span>Leyendas del Incha Rumi y los vientos</span>
-                        </button>
-                    </div>
-
-                    <!-- Columna Derecha: Interfaz de Chat -->
-                    <div class="lg:col-span-7 flex flex-col bg-slate-900/60 backdrop-blur-md rounded-2xl border border-white/10 overflow-hidden shadow-inner h-[420px]">
-                        <!-- Cabecera del chat -->
-                        <div class="px-5 py-4 bg-white/5 border-b border-white/10 flex items-center justify-between">
-                            <div class="flex items-center gap-3">
-                                <div class="w-2.5 h-2.5 bg-emerald-500 rounded-full animate-pulse"></div>
-                                <div>
-                                    <h5 class="text-sm font-bold">Guardián de la Memoria</h5>
-                                    <span class="text-[10px] text-sky-400 font-semibold uppercase tracking-wider">AI Activa</span>
-                                </div>
-                            </div>
-                            <span class="text-xs text-white/40">Zimagination AI</span>
-                        </div>
-
-                        <!-- Historial de mensajes -->
-                        <div id="historial-chat-ai" class="flex-1 p-5 overflow-y-auto space-y-4 text-sm scroll-smooth">
-                            <div class="flex gap-3">
-                                <div class="w-8 h-8 bg-blue-800 rounded-full flex items-center justify-center text-base flex-shrink-0 select-none">👴</div>
-                                <div class="bg-white/5 border border-white/10 text-blue-50 px-4 py-2.5 rounded-2xl rounded-tl-none max-w-[85%] leading-relaxed">
-                                    ¡Bienvenidos, jóvenes de la nueva generación! Soy el Guardián de Zámbiza. Pregúntame sobre los orígenes preincaicos, el porqué de nuestros bailes ancestrales, deidades o la vida comunera en Cocotog. ¿Qué te gustaría develar hoy?
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Pantalla de carga (Oculta por defecto) -->
-                        <div id="loader-chat-ai" class="hidden px-5 py-2 flex items-center gap-2 text-xs text-sky-400 bg-white/5 border-t border-white/5">
-                            <div class="w-3 h-3 border-2 border-sky-400 border-t-transparent rounded-full animate-spin"></div>
-                            <span>El Sabio está consultando los antiguos registros de la memoria...</span>
-                        </div>
-
-                        <!-- Formulario de entrada -->
-                        <form id="form-chat-ai" onsubmit="enviarPreguntaManual(event)" class="p-3 bg-white/5 border-t border-white/10 flex gap-2">
-                            <input type="text" id="input-chat-ai" placeholder="Escribe tu pregunta sobre Zámbiza o Cocotog..." class="flex-1 bg-slate-950/80 text-white border border-white/10 rounded-xl px-4 py-2 text-sm focus:outline-none focus:border-sky-400 placeholder-white/30 transition-colors" required>
-                            <button type="submit" class="bg-sky-500 hover:bg-sky-400 text-slate-900 font-bold px-5 py-2 rounded-xl text-sm shadow-md hover:scale-105 transition-all">
-                                Preguntar
-                            </button>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </section>
-
     </main>
 
-    <!-- FOOTER PROFESIONAL ZÁMBIZA -->
+    <!-- FOOTER -->
     <footer class="bg-blue-950 text-blue-200 py-16 border-t border-blue-900">
         <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-3 gap-12">
             
@@ -732,7 +781,7 @@
         </div>
     </div>
 
-    <!-- MODAL PLAZAS (GASTRONOMÍA LOCAL - SÓLO COMIDA) -->
+    <!-- MODAL PLAZAS (GASTRONOMÍA LOCAL) -->
     <div id="modal-plazas" class="fixed inset-0 z-[100] hidden items-center justify-center p-4 sm:p-6 bg-slate-950/95 backdrop-blur-md opacity-0 transition-opacity duration-300">
         <div class="bg-slate-50 w-full max-w-5xl rounded-3xl overflow-hidden shadow-2xl relative flex flex-col max-h-[90vh]">
             <div class="flex justify-between items-center p-6 border-b border-slate-200 bg-white">
@@ -1084,18 +1133,15 @@
             </div>
             
             <div class="flex-1 p-4 bg-slate-100 relative overflow-hidden">
-                <!-- Google Maps Embed de Zámbiza CORREGIDO (Resuelve el error pb parameter de image_42717a.png) -->
                 <div id="contenedor-mapa-satelital" class="w-full h-full">
                     <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15959.215456488346!2d-78.45331232538183!3d-0.149488399849007!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x91d5902fa4b04bf3%3A0x6ce6b7d519d3f1ff!2zWsOhbWJpemEsIEVjdWFkb3I!5e0!3m2!1ses!2sec!4v1719875000000!5m2!1ses!2sec" class="w-full h-full border-0 rounded-2xl shadow-inner" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                 </div>
                 
-                <!-- Mapa Limítrofe Image de GitHub (Enlace crudo corregido) -->
                 <div id="contenedor-mapa-densidad" class="w-full h-full hidden flex items-center justify-center p-2 bg-slate-900/5 rounded-2xl">
                     <img src="https://raw.githubusercontent.com/alexzanderj14/Vonces-y-memorias-de-Zambiza/main/zambiza%20dencidad%20poblacional.png" alt="Zámbiza Mapa Limítrofe" class="max-w-full max-h-full object-contain rounded-xl shadow-lg border border-slate-200/50 bg-white" onerror="this.onerror=null; this.src='https://placehold.co/600x400/1e3a8a/ffffff?text=Cargando+Mapa+Lim%C3%ADtrofe';">
                 </div>
             </div>
 
-            <!-- Listado de Barrios de Zámbiza (Configurado con ID para mostrarse únicamente en el Mapa Limítrofe) -->
             <div id="barrios-container" class="px-6 py-4 bg-slate-50 border-t border-slate-200 overflow-y-auto max-h-[25vh] hidden">
                 <div class="grid md:grid-cols-2 gap-6">
                     <div>
@@ -1128,7 +1174,6 @@
                 </div>
             </div>
             
-            <!-- Pie de página del mapa simplificado -->
             <div class="p-6 bg-white border-t border-slate-200 text-center">
                 <span class="text-sm text-slate-600 font-semibold">© Voces y Memorias de Zámbiza - Alexander Jácome</span>
             </div>
@@ -1186,7 +1231,6 @@
             </div>
             
             <div class="p-6 overflow-y-auto bg-slate-50 space-y-12">
-                <!-- Sección 1: YouTube Documentales -->
                 <div>
                     <h4 class="text-xl font-bold text-blue-950 mb-6 flex items-center gap-2">
                         <span class="text-red-500">📺</span> Documentales y Reportajes de YouTube
@@ -1242,14 +1286,12 @@
                     </div>
                 </div>
                 
-                <!-- Sección 2: TikTok Danza Andinukuna -->
                 <div class="border-t border-slate-200 pt-8">
                     <h4 class="text-xl font-bold text-blue-950 mb-6 flex items-center gap-2">
                         <span class="text-slate-900">🎵</span> Videos del Canal Oficial de Danza Andinukuna
                     </h4>
                     <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
                         
-                        <!-- Tarjeta TikTok 1 -->
                         <div class="bg-slate-900 text-white p-6 rounded-2xl shadow-md border border-slate-800 flex flex-col justify-between">
                             <div>
                                 <div class="flex items-center gap-3 mb-4">
@@ -1266,7 +1308,6 @@
                             </a>
                         </div>
 
-                        <!-- Tarjeta TikTok 2 -->
                         <div class="bg-slate-900 text-white p-6 rounded-2xl shadow-md border border-slate-800 flex flex-col justify-between">
                             <div>
                                 <div class="flex items-center gap-3 mb-4">
@@ -1283,7 +1324,6 @@
                             </a>
                         </div>
 
-                        <!-- Tarjeta TikTok 3 -->
                         <div class="bg-slate-900 text-white p-6 rounded-2xl shadow-md border border-slate-800 flex flex-col justify-between">
                             <div>
                                 <div class="flex items-center gap-3 mb-4">
@@ -1307,25 +1347,24 @@
         </div>
     </div>
 
-    <!-- MODAL LUPA INTERACTIVA / LIGHTBOX DE ZOOM -->
+    <!-- MODAL LUPA INTERACTIVA / LIGHTBOX DE ZOOM (Reestructurado para prevenir superposición de controles, image_502442.png) -->
     <div id="lightbox-modal" class="fixed inset-0 z-[110] hidden items-center justify-center p-4 sm:p-6 bg-slate-950/95 backdrop-blur-md opacity-0 transition-opacity duration-300">
-        <!-- Botón para cerrar -->
-        <button onclick="closeLightbox()" class="absolute top-4 right-4 sm:top-6 sm:right-6 z-[70] w-10 h-10 sm:w-12 sm:h-12 bg-white/10 hover:bg-red-600 text-white rounded-full flex items-center justify-center transition-colors font-bold shadow-md text-lg sm:text-xl">✕</button>
+        <button onclick="closeLightbox()" class="absolute top-4 right-4 sm:top-6 sm:right-6 z-[120] w-10 h-10 sm:w-12 sm:h-12 bg-white/10 hover:bg-red-600 text-white rounded-full flex items-center justify-center transition-colors font-bold shadow-md text-lg sm:text-xl">✕</button>
         
-        <div class="relative w-full max-w-5xl h-[85vh] flex flex-col items-center">
-            <!-- Título de ayuda Superior (Alineado y sin superponerse) -->
+        <div class="relative w-full max-w-5xl h-[85vh] flex flex-col items-center justify-between">
+            <!-- Título de ayuda Superior -->
             <div class="z-[60] mb-4 mt-2 sm:mt-0 flex-shrink-0">
                 <p class="text-sky-400 text-[10px] sm:text-xs font-semibold uppercase tracking-widest bg-slate-900/80 backdrop-blur-sm px-4 py-2 rounded-full border border-sky-500/30 shadow-lg select-none text-center">
                     🔍 Arrastra la imagen para moverla cuando tenga zoom
                 </p>
             </div>
             
-            <!-- Contenedor del visor (Ocupa el espacio central) -->
+            <!-- Contenedor del visor -->
             <div id="lightbox-container" class="w-full flex-1 flex items-center justify-center overflow-hidden cursor-grab active:cursor-grabbing relative rounded-2xl bg-transparent">
                 <img id="lightbox-img" src="" alt="Visor de alta resolución" class="max-w-full max-h-full object-contain transition-transform duration-200 select-none ease-out drop-shadow-2xl" style="transform: scale(1) translate(0px, 0px);">
             </div>
             
-            <!-- Barra de controles premium de zoom (Fija en la parte inferior) -->
+            <!-- Barra de controles premium de zoom -->
             <div class="z-[60] mt-4 flex-shrink-0 flex items-center gap-2 sm:gap-4 bg-slate-900/90 backdrop-blur-md px-4 sm:px-6 py-3 rounded-full border border-slate-700/50 shadow-2xl">
                 <button onclick="zoomOut()" class="text-white hover:text-sky-400 font-bold text-xl px-2 transition-colors select-none">➖</button>
                 <input type="range" id="zoom-range" min="1" max="4" step="0.1" value="1" oninput="setZoom(this.value)" class="w-24 sm:w-48 accent-sky-500 cursor-pointer">
@@ -1370,7 +1409,6 @@
         const abrirMapaZambiza = () => openModal('modal-mapa');
         const cerrarMapaZambiza = () => closeModal('modal-mapa');
 
-        // Función para cambiar de vista en el mapa territorial (Satelital / Limítrofe) e interactuar con el contenedor de barrios
         function cambiarVistaMapa(tipo) {
             const contSatelital = document.getElementById('contenedor-mapa-satelital');
             const contDensidad = document.getElementById('contenedor-mapa-densidad');
@@ -1379,7 +1417,6 @@
             const contBarrios = document.getElementById('barrios-container');
             
             if (tipo === 'satelital') {
-                // Vista Satelital: Mostramos mapa y ocultamos mapa limítrofe y lista de barrios
                 contSatelital.classList.remove('hidden');
                 contDensidad.classList.add('hidden');
                 if (contBarrios) contBarrios.classList.add('hidden');
@@ -1387,7 +1424,6 @@
                 btnSatelital.className = "px-4 py-2 text-xs md:text-sm font-bold text-white bg-blue-900 rounded-lg shadow-sm transition-all";
                 btnDensidad.className = "px-4 py-2 text-xs md:text-sm font-bold text-slate-600 bg-slate-100 hover:bg-slate-200 rounded-lg transition-all";
             } else {
-                // Vista Limítrofe: Ocultamos mapa satelital y mostramos mapa limítrofe junto con la lista de barrios
                 contSatelital.classList.add('hidden');
                 contDensidad.classList.remove('hidden');
                 if (contBarrios) contBarrios.classList.remove('hidden');
@@ -1397,7 +1433,6 @@
             }
         }
 
-        // Lógica especial para Demografía Chart
         let demoChartInstance = null;
         function abrirDemografia() {
             openModal('modal-demografia');
@@ -1430,7 +1465,6 @@
         }
         const cerrarDemografia = () => closeModal('modal-demografia');
 
-        // Observer para Scroll Animations
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
@@ -1440,7 +1474,6 @@
         }, { threshold: 0.1 });
         document.querySelectorAll('.slide-hidden').forEach((el) => observer.observe(el));
 
-        // Slideshow Cabecera
         const slides = document.querySelectorAll('#slideshow div');
         let currentSlide = 0;
         setInterval(() => {
@@ -1449,48 +1482,48 @@
             slides[currentSlide].classList.add('active');
         }, 5000);
 
-        // Cultura Data
+        // Cultura Data con URLs en RAW de GitHub verificadas e indumentaria transparente PNG
         const cultureData = {
             danzante: { 
                 icon: "🎭", 
                 title: "Los Danzantes de Monedas", 
-                image: "https://raw.githubusercontent.com/alexzanderj14/Vonces-y-memorias-de-Zambiza/main/danzante.png",
+                image: "https://raw.githubusercontent.com/alexzanderj14/Vonces-y-memorias-de-Zambiza/main/DANZANTEZ.png",
                 text: "Personajes mayores del ritual sincrético de septiembre. Danzan con pesadas enaguas blancas decoradas con racimos de monedas de plata de la época colonial que 'bailan pesadas como la lluvia que se antesala'. En su mano diestra empuñan una espada (sometimiento militar español) y en la izquierda flores y ramas que representan las virtudes y el vergel abastecedor de Zámbiza para Quito. Su morrión está cubierto de plumas, cintas de seda y espejos que recuerdan lo sagrado, el agua, la luna y lo femenino." 
             },
             campio: { 
                 icon: "📢", 
                 title: "Campio o Guía", 
-                image: "https://raw.githubusercontent.com/alexzanderj14/Vonces-y-memorias-de-Zambiza/main/guia.png",
+                image: "https://raw.githubusercontent.com/alexzanderj14/Vonces-y-memorias-de-Zambiza/main/GUIAZ.png",
                 text: "El líder energético y director coreográfico del desfile ritual. Es el personaje de la fuerza y vitalidad, encargado de emitir el grito ritual que ordena a los danzantes soltar los pies, hacer sonar las pesadas monedas coloniales y vibrar los cascabeles de metal. Junto al Danzante, el Campio está íntimamente ligado al agua, a la llamada de las nubes y a la fertilidad de las tierras agrícolas." 
             },
             capitanes: { 
                 icon: "⚔️", 
                 title: "Los Capitanes", 
-                image: "https://raw.githubusercontent.com/alexzanderj14/Vonces-y-memorias-de-Zambiza/main/capitan.png",
+                image: "https://raw.githubusercontent.com/alexzanderj14/Vonces-y-memorias-de-Zambiza/main/CAPITANZ.png",
                 text: "Líderes a caballo que asumen una herencia directa de las estructuras militares de la conquista colonial. Se encargan de la organización de las comparsas, la protección de las andas procesionales y de resguardar el orden ceremonial en las explanadas eclesiásticas de Cocotog y Zámbiza." 
             },
             morenos: { 
                 icon: "🥁", 
                 title: "Los Morenos / Negros", 
-                image: "https://raw.githubusercontent.com/alexzanderj14/Vonces-y-memorias-de-Zambiza/main/El%20moreno.png",
+                image: "https://raw.githubusercontent.com/alexzanderj14/Vonces-y-memorias-de-Zambiza/main/ELMORANOZ.png",
                 text: "Personajes satíricos y festivos que subvierten las dinámicas coloniales, representando con gran humor y coplas rítmicas a las poblaciones afrodescendientes de la Colonia. Son organizados por el 'Cabecilla de los Negros' y bailan con increíble agilidad animando el zapateo." 
             },
             huacos: { 
                 icon: "🏺", 
                 title: "Los Huacos Místicos", 
-                image: "https://raw.githubusercontent.com/alexzanderj14/Vonces-y-memorias-de-Zambiza/main/huaco.png",
+                image: "https://raw.githubusercontent.com/alexzanderj14/Vonces-y-memorias-de-Zambiza/main/HUACOZ.png",
                 text: "Personaje precolombino profundamente ancestral, incluso anterior al Danzante. Utilizan una enagua ceremonial y actúan como chamanes o sanadores andinos, portando herramientas rituales para realizar limpias energéticas, asustar los malos vientos de las quebradas y purificar el paso de la divinidad." 
             },
             loa: { 
                 icon: "👑", 
                 title: "La Loa", 
-                image: "https://raw.githubusercontent.com/alexzanderj14/Vonces-y-memorias-de-Zambiza/main/La%20Loa.png",
+                image: "https://raw.githubusercontent.com/alexzanderj14/Vonces-y-memorias-de-Zambiza/main/LALOAZ.png",
                 text: "Papel sagrado y sumamente deseado por las niñas y jóvenes de las comunas. Vestidas como ángeles celestiales, las Loas recitan versos poéticos y oraciones de agradecimiento ('loas') frente a la imagen de San Miguel Arcángel, sellando los compromisos y priostazgos del año." 
             },
             mono: { 
                 icon: "🐒", 
                 title: "Los Monos Traviesos", 
-                image: "https://raw.githubusercontent.com/alexzanderj14/Vonces-y-memorias-de-Zambiza/main/El%20mono.png",
+                image: "https://raw.githubusercontent.com/alexzanderj14/Vonces-y-memorias-de-Zambiza/main/ELMONOZ.png",
                 text: "Figuras de gran arraigo etnográfico que recuerdan los nexos milenarios y comerciales que Zámbiza y sus cacicazgos sostenían con la Amazonía baja a través de los mindalaes (comerciantes precolombinos). Representan la picardía, el desorden de la selva y el dinamismo salvaje." 
             }
         };
@@ -1501,24 +1534,26 @@
         function updateContent(key) {
             const data = cultureData[key];
             displayArea.innerHTML = `
-                <div class="fade-in flex flex-col md:flex-row gap-8 items-center w-full">
-                    <!-- Contenedor Premium con Borde Elegante y Zoom Interno -->
-                    <div class="w-56 h-56 md:w-64 md:h-64 flex-shrink-0 relative flex items-center justify-center bg-blue-900/30 rounded-3xl border-2 border-sky-400/40 shadow-[0_0_15px_rgba(56,189,248,0.15)] overflow-hidden group">
+                <div class="fade-in flex flex-col md:flex-row gap-10 items-center justify-center w-full">
+                    <!-- Contenedor Ultra-grande para imágenes PNG, ajustándose de manera vertical -->
+                    <div class="w-full max-w-[320px] md:max-w-[420px] h-[350px] md:h-[450px] flex-shrink-0 relative flex items-center justify-center overflow-visible group bg-transparent">
                         <img id="char-image-el" src="${data.image}" alt="${data.title}" 
                              onclick="openLightbox('${data.image}')"
-                             class="w-full h-full object-contain block transition-transform duration-500 ease-out group-hover:scale-110 cursor-zoom-in select-none p-2" 
+                             class="w-full h-full object-contain block transition-transform duration-500 ease-out hover:scale-135 cursor-zoom-in select-none drop-shadow-2xl" 
                              onerror="this.style.display='none'; document.getElementById('char-fallback-el').classList.remove('hidden'); document.getElementById('char-fallback-el').classList.add('flex');">
-                        <!-- Respaldo de Emoji con diseño premium en caso de fallo de red -->
-                        <div id="char-fallback-el" class="hidden absolute inset-0 items-center justify-center text-7xl bg-blue-800 rounded-full w-32 h-32 m-auto shadow-inner border-4 border-blue-700 animate-pulse">
+                        <!-- Fallback de emoji premium -->
+                        <div id="char-fallback-el" class="hidden absolute inset-0 items-center justify-center text-8xl md:text-9xl bg-blue-800 rounded-full w-40 h-40 m-auto shadow-inner border-4 border-blue-700 animate-pulse">
                             ${data.icon}
                         </div>
                     </div>
-                    <!-- Texto Descriptivo con tipografía Outfit -->
-                    <div class="flex-1 text-center md:text-left">
-                        <h3 class="text-3xl font-bold mb-4 text-sky-400">${data.title}</h3>
-                        <p class="text-blue-100 leading-relaxed text-lg">${data.text}</p>
-                        <button onclick="openLightbox('${data.image}')" class="mt-6 inline-flex items-center gap-2 text-xs font-bold text-sky-300 hover:text-white uppercase tracking-wider bg-sky-500/10 hover:bg-sky-500/30 px-5 py-2.5 rounded-full border border-sky-500/30 transition-all duration-300 shadow-sm hover:shadow-md hover:-translate-y-0.5">
-                            🔍 Abrir Lupa y ver detalles
+                    <!-- Texto Descriptivo Académico -->
+                    <div class="flex-1 text-center md:text-left space-y-4">
+                        <h3 class="text-3xl font-extrabold text-sky-400 flex items-center justify-center md:justify-start gap-3">
+                            <span>${data.icon}</span> ${data.title}
+                        </h3>
+                        <p class="text-blue-100 leading-relaxed text-lg max-w-2xl">${data.text}</p>
+                        <button onclick="openLightbox('${data.image}')" class="inline-flex items-center gap-2 text-xs font-bold text-sky-300 hover:text-white uppercase tracking-wider bg-sky-500/10 hover:bg-sky-500/30 px-6 py-3 rounded-full border border-sky-500/30 transition-all duration-300 shadow-sm hover:shadow-md hover:-translate-y-0.5">
+                            🔍 Abrir visor de lupa y ver detalles
                         </button>
                     </div>
                 </div>
@@ -1560,7 +1595,6 @@
             zoomLevel = parseFloat(val);
             if (zoomRange) zoomRange.value = val;
             
-            // Si el zoom vuelve a 1, reiniciamos el desplazamiento
             if (zoomLevel === 1) {
                 translateX = 0;
                 translateY = 0;
@@ -1596,9 +1630,7 @@
             }
         }
 
-        // Eventos para arrastrar y mover la imagen ampliada (Pan)
         if (lightboxContainer) {
-            // Mouse Events
             lightboxContainer.addEventListener('mousedown', (e) => {
                 if (zoomLevel > 1) {
                     isDragging = true;
@@ -1611,7 +1643,6 @@
 
             window.addEventListener('mousemove', (e) => {
                 if (isDragging && zoomLevel > 1) {
-                    // Dividimos por el nivel de zoom para que el arrastre sea proporcional a la ampliación
                     translateX = (e.clientX - startX) / zoomLevel;
                     translateY = (e.clientY - startY) / zoomLevel;
                     updateLightboxTransform();
@@ -1623,7 +1654,6 @@
                 if (lightboxContainer) lightboxContainer.style.cursor = 'grab';
             });
 
-            // Touch Events (Celulares y Tablets)
             lightboxContainer.addEventListener('touchstart', (e) => {
                 if (zoomLevel > 1 && e.touches.length === 1) {
                     isDragging = true;
@@ -1645,26 +1675,43 @@
             });
         }
 
-        // ==========================================
-        //  INTEGRACIÓN DEL CHAT DE INTELIGENCIA ARTIFICIAL (GEMINI API)
-        // ==========================================
+        // Control de Tabs del Centro de IA
+        function switchAIFeature(feature) {
+            const tabChatbot = document.getElementById('tab-chatbot');
+            const tabScanner = document.getElementById('tab-scanner');
+            const containerChatbot = document.getElementById('ai-chatbot-container');
+            const containerScanner = document.getElementById('ai-scanner-container');
+
+            if (feature === 'chatbot') {
+                tabChatbot.className = "px-4 py-2 text-sm font-bold border-b-2 border-violet-500 text-white transition-all";
+                tabScanner.className = "px-4 py-2 text-sm font-bold border-b-2 border-transparent text-slate-400 hover:text-white transition-all";
+                containerChatbot.classList.remove('hidden');
+                containerScanner.classList.add('hidden');
+            } else {
+                tabChatbot.className = "px-4 py-2 text-sm font-bold border-b-2 border-transparent text-slate-400 hover:text-white transition-all";
+                tabScanner.className = "px-4 py-2 text-sm font-bold border-b-2 border-violet-500 text-white transition-all";
+                containerChatbot.classList.add('hidden');
+                containerScanner.classList.remove('hidden');
+            }
+        }
+
+        // CHATBOT: Lógica de chat con grounding científico
         const chatHistorial = document.getElementById('historial-chat-ai');
         const chatInput = document.getElementById('input-chat-ai');
         const chatLoader = document.getElementById('loader-chat-ai');
 
-        // Función para agregar mensajes al contenedor del chat
         function agregarMensajeAlHistorial(rol, texto) {
             const esUsuario = rol === 'user';
             const avatar = esUsuario ? '👤' : '👴';
             const clasesBg = esUsuario 
-                ? 'bg-sky-500/10 border border-sky-400/20 text-sky-100 self-end ml-auto rounded-tr-none' 
+                ? 'bg-violet-500/10 border border-violet-400/20 text-violet-100 self-end ml-auto rounded-tr-none' 
                 : 'bg-white/5 border border-white/10 text-blue-50 rounded-tl-none';
             
             const mensajeDiv = document.createElement('div');
             mensajeDiv.className = `flex gap-3 ${esUsuario ? 'flex-row-reverse' : ''}`;
             
             mensajeDiv.innerHTML = `
-                <div class="w-8 h-8 ${esUsuario ? 'bg-sky-500/20 text-sky-300' : 'bg-blue-800 text-blue-50'} rounded-full flex items-center justify-center text-base flex-shrink-0 select-none">
+                <div class="w-8 h-8 ${esUsuario ? 'bg-violet-500/20 text-violet-300' : 'bg-violet-800 text-blue-50'} rounded-full flex items-center justify-center text-base flex-shrink-0 select-none">
                     ${avatar}
                 </div>
                 <div class="${clasesBg} px-4 py-2.5 rounded-2xl max-w-[85%] leading-relaxed">
@@ -1676,27 +1723,22 @@
             chatHistorial.scrollTop = chatHistorial.scrollHeight;
         }
 
-        // Lógica para enviar la consulta a la API de Gemini
         async function consultarAlSabio(pregunta) {
             chatLoader.classList.remove('hidden');
             
-            // Usamos gemini-3-flash-preview. API Key en blanco para que el runtime de Canvas la inyecte.
             const apiKey = ""; 
             const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-3-flash-preview:generateContent?key=${apiKey}`;
             
-            // Diseñamos las directrices en el system prompt para que actúe en el rol
             const promptSistema = `
-                Actúa como el Sabio de Zámbiza, un anciano y místico guardián de la memoria histórica de la parroquia de Zámbiza y de la comuna de San José de Cocotog. 
-                Tu propósito es educar y conectar con jóvenes de 18 a 35 años sobre nuestra valiosa herencia andina y evitar que se convierta en un 'espectáculo vacío'.
-                Sigue estas directrices estrictamente:
-                1. Habla con orgullo cultural, respeto por las raíces indígenas y con un tono cálido, místico y accesible.
-                2. Usa información verídica: el doble origen del nombre (Tsafiqui: 'cazamos en la arena'; Maya-Cachiquel: 'punta de arbustos espinosos'), la alianza estratégica del Curaca con Benalcázar tras la masacre de Rumiñahui, y los 12 barrios.
-                3. Explica la cosmología de nuestros personajes: el Danzante con monedas coloniales de plata que 'llaman a la lluvia', el Campio con su grito de mando que desata la fuerza de la comparsa, el Huaco prehispánico que limpia las energías de los vientos, y las Loas que personifican la fe de nuestras niñas.
-                4. Utiliza un lenguaje directo, párrafos breves y emojis evocativos andinos (⛰️, 🌾, 🪙, 🎭, 👴, ⚡) para capturar la atención. Responde en español y sé conciso (máximo 2 a 3 párrafos cortos).
+                Actúa como el Historiador Mayor de Zámbiza y Cocotog. Eres un experto con rigor científico y académico que responde basándose en investigaciones fidedignas (PUCE, UDLA, UCE, INEC y crónicas de Indias). 
+                Tus respuestas deben evitar caer en el espectáculo vacío, abordando con gran respeto la cosmovisión y el sincretismo andino.
+                Utiliza Google Search para contrastar datos históricos específicos en tiempo real (por ejemplo, demografía del censo 2022 o documentos del GAD de Zámbiza).
+                Sé conciso pero profundo, cita de forma abreviada si es necesario y mantén un lenguaje académico pero accesible. Máximo 2 a 3 párrafos medianos por respuesta.
             `;
 
             const payload = {
                 contents: [{ parts: [{ text: pregunta }] }],
+                tools: [{ "google_search": {} }], // Google Search Grounding habilitado
                 systemInstruction: {
                     parts: [{ text: promptSistema }]
                 }
@@ -1705,7 +1747,6 @@
             let delay = 1000;
             let respuestaGenerada = "";
 
-            // Intento de llamada con Backoff Exponencial para evitar estrangulamiento de la red
             for (let intento = 0; intento < 3; intento++) {
                 try {
                     const response = await fetch(apiUrl, {
@@ -1720,10 +1761,8 @@
                         break;
                     }
                 } catch (error) {
-                    console.debug("Fallo en la llamada a Gemini, reintentando...", error);
+                    console.debug("Fallo en la llamada a la API de Gemini, reintentando...", error);
                 }
-                
-                // Esperar tiempo del backoff exponencial
                 await new Promise(resolve => setTimeout(resolve, delay));
                 delay *= 2;
             }
@@ -1733,11 +1772,10 @@
             if (respuestaGenerada) {
                 agregarMensajeAlHistorial('model', respuestaGenerada);
             } else {
-                agregarMensajeAlHistorial('model', "👵 He tenido un ligero desvanecimiento al recordar... El viento de las quebradas está soplando muy fuerte hoy. Por favor, vuelve a hacerme tu pregunta y haré memoria.");
+                agregarMensajeAlHistorial('model', "👴 Disculpas, el viento de la memoria trajo un corte en la conexión. Por favor, reenvía tu pregunta para consultarla nuevamente con mis registros científicos.");
             }
         }
 
-        // Enviar pregunta de manera manual a través del formulario de entrada
         async function enviarPreguntaManual(event) {
             event.preventDefault();
             const pregunta = chatInput.value.trim();
@@ -1748,10 +1786,115 @@
             await consultarAlSabio(pregunta);
         }
 
-        // Enviar pregunta rápida a través de los botones de sugerencia
         async function enviarPreguntaSugerida(pregunta) {
             agregarMensajeAlHistorial('user', pregunta);
             await consultarAlSabio(pregunta);
+        }
+
+        // ESCÁNER CULTURAL: Lógica de análisis de imagen por IA
+        let base64ImageForScan = "";
+        let scanFileType = "";
+
+        function previewImage(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+
+            scanFileType = file.type;
+            const reader = new FileReader();
+            
+            reader.onload = function(e) {
+                const previewImg = document.getElementById('scanner-preview');
+                const placeholder = document.getElementById('scanner-placeholder');
+                const btnScan = document.getElementById('btn-scan');
+                
+                previewImg.src = e.target.result;
+                previewImg.classList.remove('hidden');
+                placeholder.classList.add('hidden');
+                btnScan.classList.remove('hidden');
+                
+                // Almacenar el base64 crudo para enviarlo a Gemini
+                base64ImageForScan = e.target.result;
+            };
+            
+            reader.readAsDataURL(file);
+        }
+
+        async function procesarEscaneo() {
+            if (!base64ImageForScan) return;
+
+            const resultContent = document.getElementById('scanner-result-content');
+            const resultPanel = document.getElementById('scanner-result-panel');
+            
+            resultPanel.classList.remove('hidden');
+            resultContent.innerHTML = `
+                <div class="flex items-center gap-3">
+                    <div class="w-4 h-4 border-2 border-violet-500 border-t-transparent rounded-full animate-spin"></div>
+                    <span>Analizando rasgos visuales e indumentaria con rigor académico...</span>
+                </div>
+            `;
+
+            // Extraemos únicamente el base64 puro, removiendo el prefijo "data:image/xxx;base64," para evitar fallas en la API de Google
+            const base64Puro = base64ImageForScan.split(',')[1] || base64ImageForScan;
+
+            const apiKey = "";
+            const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-3-flash-preview:generateContent?key=${apiKey}`;
+
+            const promptEtnografico = `
+                Analiza detenidamente esta fotografía de Zámbiza o Cocotog. Identifica de qué elemento patrimonial se trata (un personaje como el Danzante, el Campio, el Huaco, la Loa, la Iglesia, etc.). 
+                Brinda una descripción científica, histórica y etnográfica detallada sobre el simbolismo de su vestimenta, colores, objetos o estructura física basándote en fuentes académicas oficiales de antropología andina. 
+                Utiliza un lenguaje respetuoso y educativo para concientizar al usuario sobre el valor ancestral del elemento analizado.
+            `;
+
+            const payload = {
+                contents: [
+                    {
+                        role: "user",
+                        parts: [
+                            { text: promptEtnografico },
+                            {
+                                inlineData: {
+                                    mimeType: scanFileType || "image/png",
+                                    data: base64Puro
+                                }
+                            }
+                        ]
+                    }
+                ],
+                tools: [{ "google_search": {} }], // Grounding activo para la identificación
+                systemInstruction: {
+                    parts: [{ text: "Eres un antropólogo del patrimonio andino especializado en la etnohistoria del norte de Quito." }]
+                }
+            };
+
+            let delay = 1000;
+            let analisisResultado = "";
+
+            for (let intento = 0; intento < 3; intento++) {
+                try {
+                    const response = await fetch(apiUrl, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(payload)
+                    });
+
+                    if (response.ok) {
+                        const result = await response.json();
+                        analisisResultado = result.candidates?.[0]?.content?.parts?.[0]?.text;
+                        break;
+                    }
+                } catch (error) {
+                    console.debug("Error de conexión con la API de visión de Gemini, reintentando...", error);
+                }
+                await new Promise(resolve => setTimeout(resolve, delay));
+                delay *= 2;
+            }
+
+            if (analisisResultado) {
+                // Formateamos saltos de línea para que renderice hermoso
+                resultContent.innerHTML = analisisResultado.replace(/\n/g, '<br>');
+            } else {
+                resultContent.innerHTML = "❌ Hubo un inconveniente al procesar la imagen con los servidores de Google. Por favor, asegúrate de que el formato sea JPG o PNG y vuelve a intentarlo.";
+            }
         }
     </script>
 </body>
