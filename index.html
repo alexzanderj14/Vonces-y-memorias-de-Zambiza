@@ -2,739 +2,655 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-5.0, user-scalable=yes">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Zimagination: Voces y Memorias de Zámbiza</title>
     
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <!-- Tipografía redondeada Outfit -->
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     
     <style>
         body { font-family: 'Outfit', sans-serif; background-color: #f8fafc; color: #0f172a; }
         html { scroll-behavior: smooth; }
         
-        /* Contenedor adaptativo para el gráfico estadístico */
-        .chart-wrapper {
-            position: relative;
-            width: 100%;
-            max-width: 800px;
-            margin-left: auto;
-            margin-right: auto;
-            height: 300px;
-            max-height: 380px;
-            background-color: #ffffff;
-            border-radius: 1rem;
-            padding: 1rem;
-            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
-        }
-        @media (min-width: 768px) { .chart-wrapper { height: 380px; padding: 1.5rem; } }
+        .chart-wrapper { position: relative; width: 100%; max-width: 800px; margin-left: auto; margin-right: auto; height: 350px; max-height: 400px; background-color: #ffffff; border-radius: 1rem; padding: 1rem; box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1); }
+        @media (min-width: 768px) { .chart-wrapper { height: 400px; padding: 1.5rem; } }
 
-        /* Clases de interacción UX dinámicas */
-        .nav-link { transition: all 0.3s ease; }
         .tab-btn { transition: all 0.3s ease; }
         .tab-btn.active { background-color: #1e3a8a; color: white; border-color: #1e3a8a; }
         .fade-in { animation: fadeIn 0.4s ease-in-out; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
-        /* Animaciones para scroll-telling */
-        .slide-hidden {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-        }
-        .slide-visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
+        .slide-hidden { opacity: 0; transform: translateY(30px); transition: all 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94); }
+        .slide-visible { opacity: 1; transform: translateY(0); }
 
-        /* Carrusel de fondo satinado */
-        .bg-slideshow {
-            position: absolute;
-            inset: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 0;
-        }
-        .bg-slideshow div {
-            position: absolute;
-            inset: 0;
-            background-size: cover;
-            background-position: center;
-            opacity: 0;
-            transition: opacity 2s ease-in-out;
-        }
+        .bg-slideshow { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 0; }
+        .bg-slideshow div { position: absolute; inset: 0; background-size: cover; background-position: center; opacity: 0; transition: opacity 2s ease-in-out; }
         .bg-slideshow div.active { opacity: 0.8; }
 
-        /* Marquee continuo para enlaces institucionales */
-        .marquee-container {
-            display: flex;
-            width: max-content;
-            animation: marquee 30s linear infinite;
-        }
-        @keyframes marquee {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(-50%); }
-        }
+        .marquee-container { display: flex; width: max-content; animation: marquee 30s linear infinite; }
+        @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
         .pause-on-hover:hover .marquee-container { animation-play-state: paused; }
 
-        /* Desactivar scrollbars visibles en menús horizontales móviles */
         .hide-scroll::-webkit-scrollbar { display: none; }
         .hide-scroll { -ms-overflow-style: none; scrollbar-width: none; }
 
-        /* Animación fluida de levitación para personajes */
-        @keyframes floatEffect {
-            0% { transform: translateY(0px); }
-            50% { transform: translateY(-10px); }
-            100% { transform: translateY(0px); }
-        }
-        .float-animation {
-            animation: floatEffect 4s ease-in-out infinite;
-        }
+        @keyframes floatEffect { 0% { transform: translateY(0px); } 50% { transform: translateY(-10px); } 100% { transform: translateY(0px); } }
+        .float-animation { animation: floatEffect 4s ease-in-out infinite; }
+
+        #mobile-menu { transition: transform 0.3s ease-in-out; }
+        .menu-open { transform: translateX(0) !important; }
     </style>
 </head>
 <body class="antialiased overflow-x-hidden">
 
-    <!-- Navbar Premium Reestructurada (Evita colisiones de image_56d364.png) -->
-    <nav class="sticky top-0 z-50 bg-white/90 backdrop-blur-lg border-b border-slate-200 shadow-sm transition-all duration-300">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3">
-            <div class="flex items-center justify-between">
-                <!-- Logotipo e Identidad Principal -->
-                <div class="flex items-center gap-3 cursor-pointer" onclick="window.scrollTo(0,0)">
-                    <img src="https://raw.githubusercontent.com/alexzanderj14/Vonces-y-memorias-de-Zambiza/main/LogoZyC.png" alt="Zámbiza Logo" class="h-16 md:h-20 lg:h-24 w-auto object-contain drop-shadow-md transition-all hover:scale-105">
-                    <span class="text-base md:text-lg lg:text-xl font-bold text-blue-950 tracking-tight leading-tight">
-                        Zámbiza, <span class="text-sky-600">Historia, Cultura y Turismo</span>
-                    </span>
-                </div>
-                
-                <!-- Menú de Navegación de Escritorio (Oculto en Móviles) -->
-                <div class="hidden lg:flex items-center gap-1 bg-slate-100/70 p-1.5 rounded-full border border-slate-200 shadow-inner">
-                    <a href="#historia" class="px-4 py-2 text-xs xl:text-sm font-bold text-slate-600 rounded-full hover:bg-sky-500 hover:text-white hover:shadow-md transition-all duration-300">Historia</a>
-                    <a href="#cultura" class="px-4 py-2 text-xs xl:text-sm font-bold text-slate-600 rounded-full hover:bg-sky-500 hover:text-white hover:shadow-md transition-all duration-300">Patrimonio</a>
-                    <a href="#turismo" class="px-4 py-2 text-xs xl:text-sm font-bold text-slate-600 rounded-full hover:bg-sky-500 hover:text-white hover:shadow-md transition-all duration-300">Descubre Zámbiza</a>
-                    <a href="#preguntas-seccion" class="px-4 py-2 text-xs xl:text-sm font-bold text-slate-600 rounded-full hover:bg-violet-600 hover:text-white hover:shadow-md transition-all duration-300">Preguntas de Zámbiza</a>
-                    <a href="#eventos" class="px-4 py-2 text-xs xl:text-sm font-bold text-slate-600 rounded-full hover:bg-amber-500 hover:text-white hover:shadow-md transition-all duration-300">Eventos</a>
-                    <a href="#encuesta" class="px-4 py-2 text-xs xl:text-sm font-bold text-slate-600 rounded-full hover:bg-violet-600 hover:text-white hover:shadow-md transition-all duration-300">Encuesta</a>
-                </div>
+    <!-- DATA BASE PERSONAJES DECLARADA GLOBALMENTE -->
+    <script>
+        const cultureData = {
+            danzante: {
+                title: "Danzantes de Monedas y Cascabeles",
+                text: "Personajes estelares de las festividades patronales de San Miguel Arcángel. Danzan portando majestuosas faldas blancas recubiertas por racimos de pesadas monedas de plata pura coloniales que marcan el ritmo de la lluvia al zapatear. Empuñan una espada militar española en su mano derecha como símbolo de sincretismo y sometimiento, y un ramo de flores en la izquierda que representa el vergel y la despensa agrícola proveedora que Zámbiza constituía para Quito. Su morrión sagrado está ornamentado con espejos astronómicos, cintas y plumas.",
+                imgName: "DANZANTEZ.png"
+            },
+            campio: {
+                title: "Campio o Guía Coreográfico",
+                text: "El director absoluto de las comparsas rituales y líder energético del baile de los danceros. Es el encargado de emitir los poderosos gritos sagrados que ordenan a los danzantes golpear los cascabeles y hacer vibrar las valiosas monedas de plata colonial en honor al santo patrono. Vinculado a los ciclos de fertilidad de la tierra y la llamada del viento.",
+                imgName: "GUIAZ.png"
+            },
+            capitanes: {
+                title: "Los Capitanes de Comparsa",
+                text: "Líderes ceremoniales a caballo que heredan de forma directa la estructura organizativa militar e hispánica de la colonia. Su rol es coordinar los priostazgos, salvaguardar el orden de las andas procesionales de San Miguel y purificar las explanadas eclesiásticas.",
+                imgName: "CAPITANZ.png"
+            },
+            morenos: {
+                title: "Los Morenos / Negros",
+                text: "Actores de carácter festivo y satírico que subvierten las rígidas jerarquías coloniales. Coordinados por el 'Cabecilla', irrumpen con máscaras oscuras, coplas humorísticas de doble sentido y pasos de baile ágiles que inyectan alegría popular al festejo.",
+                imgName: "ELMORANOZ.png"
+            },
+            huacos: {
+                title: "Los Huacos Chamanes",
+                text: "Personaje purificador de origen incaico y prehispánico. Vestidos con túnicas blancas, asumen el rol de curanderos y chamanes andinos, ejecutando limpias espirituales con hierbas nativas y alejando el 'mal aire' de las laderas y quebradas de la comuna.",
+                imgName: "HUACOZ.png"
+            },
+            loa: {
+                title: "La Loa Sagrada",
+                text: "Papel de alta distinción comunitaria asignado a las niñas de las familias priostes. Ataviadas como ángeles celestiales, son las encargadas de recitar poemas rimados y cánticos líricos de agradecimiento ('loas') ante la imagen procesional de San Miguel Arcángel.",
+                imgName: "LALOAZ.png"
+            },
+            mono: {
+                title: "Los Monos Amazónicos",
+                text: "Figuras místicas que rememoran los antiguos nexos de intercambio comercial y cultural que los cacicazgos prehispánicos de Zámbiza sostenían con el piedemonte amazónico a través de los mindalaes. Representan la picardía y la selva indómita.",
+                imgName: "ELMONOZ.png"
+            }
+        };
+    </script>
 
-                <!-- Botón de Menú Hamburguesa para Móvil -->
-                <button onclick="toggleMenuMovil()" class="lg:hidden p-2 text-blue-950 focus:outline-none" aria-label="Abrir Menú">
-                    <svg id="hamburger-icon" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
-                    </svg>
-                    <svg id="close-icon" class="w-6 h-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
-                    </svg>
-                </button>
+    <nav class="sticky top-0 z-50 bg-white/90 backdrop-blur-lg border-b border-slate-200 shadow-sm transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <div class="flex-shrink-0 flex items-center gap-3 cursor-pointer z-50" onclick="window.scrollTo(0,0)">
+                <img src="https://raw.githubusercontent.com/alexzanderj14/Vonces-y-memorias-de-Zambiza/main/LogoZyC.png" alt="Zámbiza Logo" class="h-14 md:h-16 w-auto object-contain drop-shadow-md">
+                <span class="text-xl font-bold text-blue-950 tracking-tight hidden sm:block">Zámbiza <span class="text-sky-600">Turismo</span></span>
             </div>
+            
+            <div class="hidden lg:flex items-center gap-1 bg-slate-100/80 p-1.5 rounded-full border border-slate-200 shadow-inner">
+                <a href="#historia" class="px-5 py-2 text-sm font-bold text-slate-600 rounded-full hover:bg-sky-500 hover:text-white transition-all">Historia</a>
+                <a href="#cultura" class="px-5 py-2 text-sm font-bold text-slate-600 rounded-full hover:bg-sky-500 hover:text-white transition-all">Patrimonio</a>
+                <a href="#turismo" class="px-5 py-2 text-sm font-bold text-slate-600 rounded-full hover:bg-sky-500 hover:text-white transition-all">Descubre Zámbiza</a>
+                <a href="#eventos" class="px-5 py-2 text-sm font-bold text-slate-600 rounded-full hover:bg-amber-500 hover:text-white transition-all">Eventos</a>
+                <a href="#encuesta" class="px-5 py-2 text-sm font-bold text-slate-600 rounded-full hover:bg-violet-600 hover:text-white transition-all">Encuesta</a>
+            </div>
+
+            <button id="menu-btn" class="lg:hidden p-2 text-slate-600 hover:text-blue-900 focus:outline-none z-50" onclick="toggleMenu()">
+                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+            </button>
         </div>
 
-        <!-- Menú Desplegable de Móvil (Totalmente responsivo y sin desbordes) -->
-        <div id="mobile-menu" class="lg:hidden hidden bg-white border-t border-slate-200 shadow-inner px-4 py-4 space-y-2">
-            <a href="#historia" onclick="toggleMenuMovil()" class="block px-4 py-2 text-sm font-bold text-slate-700 hover:bg-sky-500 hover:text-white rounded-xl transition-colors">Historia</a>
-            <a href="#cultura" onclick="toggleMenuMovil()" class="block px-4 py-2 text-sm font-bold text-slate-700 hover:bg-sky-500 hover:text-white rounded-xl transition-colors">Patrimonio</a>
-            <a href="#turismo" onclick="toggleMenuMovil()" class="block px-4 py-2 text-sm font-bold text-slate-700 hover:bg-sky-500 hover:text-white rounded-xl transition-colors">Descubre Zámbiza</a>
-            <a href="#preguntas-seccion" onclick="toggleMenuMovil()" class="block px-4 py-2 text-sm font-bold text-slate-700 hover:bg-violet-600 hover:text-white rounded-xl transition-colors">Preguntas de Zámbiza</a>
-            <a href="#eventos" onclick="toggleMenuMovil()" class="block px-4 py-2 text-sm font-bold text-slate-700 hover:bg-amber-500 hover:text-white rounded-xl transition-colors">Eventos</a>
-            <a href="#encuesta" onclick="toggleMenuMovil()" class="block px-4 py-2 text-sm font-bold text-slate-700 hover:bg-violet-600 hover:text-white rounded-xl transition-colors">Encuesta</a>
+        <div id="mobile-menu" class="fixed inset-0 bg-white/95 backdrop-blur-md z-40 transform translate-x-full flex flex-col items-center justify-center space-y-6 pt-16">
+            <a href="#historia" onclick="toggleMenu()" class="text-2xl font-bold text-slate-800 hover:text-sky-500">Historia</a>
+            <a href="#cultura" onclick="toggleMenu()" class="text-2xl font-bold text-slate-800 hover:text-sky-500">Patrimonio</a>
+            <a href="#turismo" onclick="toggleMenu()" class="text-2xl font-bold text-slate-800 hover:text-sky-500">Descubre Zámbiza</a>
+            <a href="#eventos" onclick="toggleMenu()" class="text-2xl font-bold text-slate-800 hover:text-amber-500">Eventos</a>
+            <a href="#encuesta" onclick="toggleMenu()" class="text-2xl font-bold text-slate-800 hover:text-violet-600">Encuesta</a>
         </div>
     </nav>
 
-    <!-- Header con Slideshow -->
-    <header class="bg-blue-950 text-white pt-24 pb-36 px-4 md:px-6 relative overflow-hidden">
+    <script>
+        function toggleMenu() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('menu-open');
+        }
+    </script>
+
+    <header class="bg-blue-950 text-white pt-24 pb-32 px-6 relative overflow-hidden">
         <div class="bg-slideshow" id="slideshow">
             <div class="active" style="background-image: url('https://raw.githubusercontent.com/alexzanderj14/Vonces-y-memorias-de-Zambiza/main/igle.jpeg');"></div>
             <div style="background-image: url('https://raw.githubusercontent.com/alexzanderj14/Vonces-y-memorias-de-Zambiza/main/WhatsApp%20Image%202026-05-18%20at%2022.47.54.jpeg');"></div>
             <div style="background-image: url('https://raw.githubusercontent.com/alexzanderj14/Vonces-y-memorias-de-Zambiza/main/danzantes%20cocotog.jpg');"></div>
         </div>
-        
         <div class="absolute inset-0 bg-gradient-to-t from-blue-950 via-blue-900/40 to-transparent z-10"></div>
-        
-        <div class="max-w-4xl mx-auto text-center relative z-20">
-            <p class="text-sky-400 font-semibold tracking-widest uppercase mb-4 text-xs md:text-sm drop-shadow-md">Patrimonio del Distrito Metropolitano</p>
-            <h1 class="text-4xl md:text-7xl font-bold mb-6 leading-tight text-slate-50 drop-shadow-lg">Explorando Zámbiza antiguo y actual</h1>
-            <p class="text-base md:text-xl text-blue-50 font-medium leading-relaxed max-w-3xl mx-auto drop-shadow-md">
-                Un ecosistema digital de Zimagination dedicado a preservar, difundir y celebrar la riqueza cultural, tradiciones, bailes y el legado vivo de nuestra parroquia.
+        <div class="max-w-4xl mx-auto text-center relative z-20 mt-10">
+            <p class="text-sky-400 font-semibold tracking-widest uppercase mb-4 text-sm drop-shadow-md">Patrimonio del Distrito Metropolitano</p>
+            <h1 class="text-5xl md:text-7xl font-bold mb-6 leading-tight text-slate-50 drop-shadow-lg">Explorando Zámbiza antiguo y actual</h1>
+            <p class="text-xl text-blue-50 font-medium leading-relaxed max-w-3xl mx-auto drop-shadow-md">
+                Un ecosistema digital dedicado a preservar, difundir y celebrar la riqueza cultural, tradiciones, bailes y el legado vivo de nuestra parroquia.
             </p>
-            
-            <!-- Contenedor del video responsivo con proporción áurea -->
-            <div class="mt-10 max-w-2xl mx-auto rounded-2xl overflow-hidden shadow-2xl border-4 border-white/20 bg-slate-950/80 backdrop-blur-sm relative z-30 transition-transform duration-500 hover:scale-[1.01]">
+            <div class="mt-10 max-w-2xl mx-auto rounded-2xl overflow-hidden shadow-2xl border-4 border-white/20 bg-slate-950/80 backdrop-blur-sm relative z-30 transition-transform hover:scale-[1.02]">
                 <video class="w-full h-auto aspect-video" controls playsinline preload="metadata">
                     <source src="https://raw.githubusercontent.com/alexzanderj14/Vonces-y-memorias-de-Zambiza/main/Zambiza.mp4" type="video/mp4">
-                    Tu navegador no soporta la reproducción de video.
+                    Tu navegador no soporta video.
                 </video>
             </div>
-            
-            <a href="#historia" class="inline-flex items-center gap-2 mt-10 px-8 py-4 bg-sky-500 hover:bg-sky-400 text-slate-900 font-bold rounded-full transition-all shadow-lg hover:scale-105 hover:-translate-y-1 duration-300">
-                Conocer la Historia <span>↓</span>
-            </a>
         </div>
     </header>
 
-    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -mt-16 relative z-30 space-y-20 md:space-y-24 pb-24">
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -mt-16 relative z-30 space-y-24 pb-10">
 
-        <!-- 1. HISTORIA Y DEMOGRAFÍA -->
         <section id="historia" class="scroll-mt-32 pt-8">
-            <div class="bg-white rounded-3xl shadow-xl p-6 md:p-12 border border-slate-100">
-                <div class="text-center max-w-3xl mx-auto mb-12 md:mb-16 slide-hidden">
-                    <span class="text-sky-600 font-bold tracking-wider uppercase text-xs md:text-sm mb-2 block">El Origen</span>
-                    <h2 class="text-3xl md:text-4xl font-bold text-blue-950 mb-4">Nuestra Historia</h2>
-                    <p class="text-slate-600 text-sm md:text-lg leading-relaxed mb-4 text-justify md:text-center">
-                        Zámbiza fue un asentamiento indígena de gran importancia en la época preincásica y es una de las parroquias rurales más antiguas del Cantón y Distrito Metropolitano de Quito. El antiguo cacicazgo de Zámbiza constituyó en la época colonial un núcleo indígena de incalculable valor estratégico, operando como fuente de tributos y mano de obra esencial para la capital. Su nombre proviene del idioma Colorado (Tsafiqui), traduciéndose como <strong>“cazamos en la arena”</strong>, de los vocablos <em>“san”</em> (arena) y <em>“bisa”</em> (cazar).
+            <div class="bg-white rounded-3xl shadow-xl p-8 md:p-12 border border-slate-100">
+                <div class="text-center max-w-3xl mx-auto mb-16 slide-hidden">
+                    <span class="text-sky-600 font-bold tracking-wider uppercase text-sm mb-2 block">El Origen</span>
+                    <h2 class="text-4xl font-bold text-blue-950 mb-4">Nuestra Historia</h2>
+                    <p class="text-slate-600 text-lg leading-relaxed mb-4 text-justify md:text-center">
+                        Zámbiza fue un asentamiento indígena de gran importancia preincásica. El antiguo cacicazgo constituyó en la colonia un núcleo indígena fundamental como fuente de tributos y abastecimiento para la capital, jugando un rol vital en la gesta libertaria. Su nombre proviene del idioma Colorado, significando <strong>“cazamos en la arena”</strong> (<em>tsan</em>: arena y <em>bisha</em>: cazar).
                     </p>
-                    <p class="text-slate-600 text-xs md:text-base leading-relaxed text-justify md:text-center">
-                        Ubicada al noreste de Quito, desempeñó un rol directo e incansable en la gesta libertaria. Su fe e identidad católica están profundamente entrelazadas con su trayecto histórico. Sus tierras fértiles abastecen a diario los mercados y grandes supermercados de la capital, mientras que la mayoría de sus comuneros se desplazan habitualmente a Quito a laborar en dinámicas pendulares cotidianas.
+                    <p class="text-slate-600 text-base leading-relaxed text-justify md:text-center">
+                        La fe y la religión son la esencia de su identidad desde el dominio español. Sus tradiciones agrícolas abastecen a Quito, mientras que la mayoría de moradores se desplazan a laborar en la capital. El fútbol es su pasión deportiva y es el sagrado lugar de nacimiento del grupo folclórico <strong>Jayac</strong>.
                     </p>
                 </div>
 
-                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 slide-hidden">
+                <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6 slide-hidden">
                     <div class="p-6 bg-slate-50 rounded-2xl border border-slate-100 hover:shadow-md transition-shadow">
-                        <div class="text-3xl md:text-4xl mb-4">📜</div>
-                        <h4 class="font-bold text-blue-900 mb-2 text-lg md:text-xl">Fundaciones</h4>
-                        <p class="text-xs md:text-sm text-slate-600 leading-relaxed">Su fundación religiosa data del <strong>11 de febrero de 1584</strong> (435 años de historia sagrada) y obtuvo su fundación civil en <strong>1861</strong> (157 años de vida jurídica).</p>
+                        <div class="text-4xl mb-4">📜</div>
+                        <h4 class="font-bold text-blue-900 mb-2 text-xl">Fundaciones</h4>
+                        <p class="text-sm text-slate-600 leading-relaxed">Fundación religiosa el <strong>11 de febrero de 1584</strong> (435 años de herencia) y civil en <strong>1861</strong> (157 años de vida jurídica).</p>
                     </div>
                     <div class="p-6 bg-slate-50 rounded-2xl border border-slate-100 hover:shadow-md transition-shadow">
-                        <div class="text-3xl md:text-4xl mb-4">🗺️</div>
-                        <h4 class="font-bold text-blue-900 mb-2 text-lg md:text-xl">Evolución del Valle</h4>
-                        <p class="text-xs md:text-sm text-slate-600 leading-relaxed">En 1584, Zámbiza abarcaba un inmenso valle prehispánico. Según datos de los Censos Nacionales de 1974, hoy este territorio se divide en las actuales parroquias de: <em>Zámbiza, Calderón, Nayón, Llano Chico, San Isidro y San José del Inca</em>.</p>
+                        <div class="text-4xl mb-4">🗺️</div>
+                        <h4 class="font-bold text-blue-900 mb-2 text-xl">Evolución</h4>
+                        <p class="text-sm text-slate-600 leading-relaxed">En 1584 abarcaba todo el valle eclesiástico. Según el Censo de 1974, ese valle hoy se divide en las parroquias: <em>Zámbiza, Calderón, Nayón, Llano Chico, San Isidro y El Inca</em>.</p>
                     </div>
-                    <div onclick="abrirMapaZambiza()" class="p-6 bg-slate-50 rounded-2xl border border-slate-100 hover:border-sky-300 hover:shadow-lg transition-all cursor-pointer group border-b-4 border-b-sky-500">
-                        <div class="text-3xl md:text-4xl mb-4 group-hover:scale-110 transition-transform">🗺️</div>
-                        <h4 class="font-bold text-blue-900 mb-2 text-lg md:text-xl group-hover:text-sky-600 transition-colors">Mapa Limítrofe</h4>
-                        <p class="text-xs md:text-sm text-slate-600 leading-relaxed">Conformada hoy por <strong>12 barrios céntricos</strong> y la Comuna de Cocotog. Limita con Calderón, Llano Chico, Jipijapa, Nayón, Puembo, Tumbaco y El Inca. <strong>Clic para inspeccionar el mapa.</strong></p>
+                    <!-- TARJETA MAPA CON CLICK A MODAL -->
+                    <div onclick="abrirMapaZambiza()" class="p-6 bg-slate-50 rounded-2xl border border-slate-100 hover:border-sky-300 hover:shadow-lg transition-all cursor-pointer border-b-4 border-b-sky-500">
+                        <div class="text-4xl mb-4">🗺️</div>
+                        <h4 class="font-bold text-blue-900 mb-2 text-xl">Límites y Barrios</h4>
+                        <p class="text-sm text-slate-600 leading-relaxed">Limita con Calderón, Llano Chico, Nayón y Tumbaco. Conformada por 12 barrios y la Comuna de Cocotog. <strong>Clic para ver el mapa.</strong></p>
                     </div>
-                    <div onclick="abrirDemografia()" class="p-6 bg-slate-50 rounded-2xl border border-slate-100 hover:border-sky-300 hover:shadow-lg transition-all cursor-pointer group border-b-4 border-b-sky-500">
-                        <div class="text-3xl md:text-4xl mb-4 group-hover:scale-110 transition-transform">📈</div>
-                        <h4 class="font-bold text-blue-900 mb-2 text-lg md:text-xl group-hover:text-sky-600 transition-colors">Evolución Demográfica</h4>
-                        <p class="text-xs md:text-sm text-slate-600 leading-relaxed">Transición demográfica rururbana. Su población actual roza los 6.160 habitantes según las estadísticas consolidadas del INEC. <strong>Haz clic para ver el gráfico.</strong></p>
+                    <!-- TARJETA DEMOGRAFÍA CON CLICK A MODAL -->
+                    <div onclick="abrirDemografia()" class="p-6 bg-slate-50 rounded-2xl border border-slate-100 hover:border-sky-300 hover:shadow-lg transition-all cursor-pointer border-b-4 border-b-sky-500">
+                        <div class="text-4xl mb-4">📈</div>
+                        <h4 class="font-bold text-blue-900 mb-2 text-xl">Demografía</h4>
+                        <p class="text-sm text-slate-600 leading-relaxed">La población actual ronda los 6.160 habitantes. <strong>Haz clic para ver el gráfico del cambio histórico poblacional.</strong></p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- 2. PATRIMONIO CULTURAL (PERSONAJES MONUMENTALES) -->
         <section id="cultura" class="scroll-mt-24">
-            <div class="bg-gradient-to-br from-blue-900 to-blue-950 rounded-3xl shadow-2xl p-4 md:p-12 text-white border border-blue-800 slide-hidden">
-                <div class="max-w-3xl mx-auto text-center mb-8 md:mb-12">
-                    <span class="text-sky-400 font-bold uppercase text-xs md:text-sm mb-2 block">Ciclo Festivo y Ritual</span>
-                    <h2 class="text-2xl md:text-4xl font-bold mb-4 md:mb-6">Identidad y Patrimonio Inmaterial</h2>
-                    <p class="text-blue-100 leading-relaxed text-sm md:text-base">
-                        Las festividades de Zámbiza reflejan su sincretismo: la célebre <strong>Fiesta de Reyes</strong> (con disfraces icónicos y comida tradicional) y las <strong>Fiestas del Patrono San Miguel Arcángel</strong> en septiembre, organizadas por devotos priostes que donan vestiduras nuevas al santo. Explora de cerca a los actores de las comparsas.
+            <div class="bg-gradient-to-br from-blue-900 to-blue-950 rounded-3xl shadow-2xl p-6 md:p-12 text-white border border-blue-800 slide-hidden">
+                <div class="max-w-3xl mx-auto text-center mb-12">
+                    <span class="text-sky-400 font-bold uppercase text-sm mb-2 block">Ciclo Festivo y Ritual</span>
+                    <h2 class="text-3xl md:text-4xl font-bold mb-6">Identidad y Patrimonio Inmaterial</h2>
+                    <p class="text-blue-100 leading-relaxed">
+                        Destaca la <strong>Fiesta de Reyes</strong> y las <strong>Fiestas del Patrono San Miguel Arcángel</strong>, organizadas por priostes que donan vestiduras nuevas.
                     </p>
                 </div>
 
-                <!-- Pestañas Interactivas -->
-                <div class="flex flex-wrap justify-center gap-2 md:gap-3 mb-8 md:mb-10 text-slate-900">
-                    <button class="tab-btn active px-4 md:px-5 py-2 rounded-full border border-blue-400 text-blue-50 text-xs md:text-sm font-medium hover:bg-blue-800" data-target="danzante">Danzantes</button>
-                    <button class="tab-btn px-4 md:px-5 py-2 rounded-full border border-blue-400 text-blue-50 text-xs md:text-sm font-medium hover:bg-blue-800" data-target="campio">Campio o Guía</button>
-                    <button class="tab-btn px-4 md:px-5 py-2 rounded-full border border-blue-400 text-blue-50 text-xs md:text-sm font-medium hover:bg-blue-800" data-target="capitanes">Capitanes</button>
-                    <button class="tab-btn px-4 md:px-5 py-2 rounded-full border border-blue-400 text-blue-50 text-xs md:text-sm font-medium hover:bg-blue-800" data-target="morenos">Morenos</button>
-                    <button class="tab-btn px-4 md:px-5 py-2 rounded-full border border-blue-400 text-blue-50 text-xs md:text-sm font-medium hover:bg-blue-800" data-target="huacos">Huacos</button>
-                    <button class="tab-btn px-4 md:px-5 py-2 rounded-full border border-blue-400 text-blue-50 text-xs md:text-sm font-medium hover:bg-blue-800" data-target="loa">La Loa</button>
-                    <button class="tab-btn px-4 md:px-5 py-2 rounded-full border border-blue-400 text-blue-50 text-xs md:text-sm font-medium hover:bg-blue-800" data-target="mono">Los Monos</button>
+                <div class="flex flex-wrap justify-center gap-3 mb-10">
+                    <button class="tab-btn active px-5 py-2 rounded-full border border-blue-400 text-blue-50 text-sm font-medium hover:bg-blue-800" data-target="danzante">Danzantes</button>
+                    <button class="tab-btn px-5 py-2 rounded-full border border-blue-400 text-blue-50 text-sm font-medium hover:bg-blue-800" data-target="campio">Campio</button>
+                    <button class="tab-btn px-5 py-2 rounded-full border border-blue-400 text-blue-50 text-sm font-medium hover:bg-blue-800" data-target="capitanes">Capitanes</button>
+                    <button class="tab-btn px-5 py-2 rounded-full border border-blue-400 text-blue-50 text-sm font-medium hover:bg-blue-800" data-target="morenos">Morenos</button>
+                    <button class="tab-btn px-5 py-2 rounded-full border border-blue-400 text-blue-50 text-sm font-medium hover:bg-blue-800" data-target="huacos">Huacos</button>
+                    <button class="tab-btn px-5 py-2 rounded-full border border-blue-400 text-blue-50 text-sm font-medium hover:bg-blue-800" data-target="loa">La Loa</button>
+                    <button class="tab-btn px-5 py-2 rounded-full border border-blue-400 text-blue-50 text-sm font-medium hover:bg-blue-800" data-target="mono">Monos</button>
                 </div>
 
-                <!-- Contenedor del Renderizado: Imagen Gigante PNG a la Izquierda, Texto a la Derecha -->
-                <div id="content-display" class="bg-blue-950/40 p-4 md:p-10 rounded-3xl min-h-[450px] md:min-h-[500px] flex items-center border border-blue-800/40 backdrop-blur-sm">
-                    <!-- Inyectado dinámicamente con JavaScript -->
-                </div>
+                <div id="content-display" class="bg-blue-950/40 p-6 md:p-10 rounded-3xl min-h-[500px] flex items-center border border-blue-800/40 backdrop-blur-sm"></div>
             </div>
         </section>
 
-        <!-- 3. DESCUBRE ZÁMBIZA HOY -->
         <section id="turismo" class="scroll-mt-32">
-            <div class="bg-white rounded-3xl shadow-xl p-6 md:p-12 border border-slate-100">
-                <div class="text-center max-w-3xl mx-auto mb-12 md:mb-16 slide-hidden">
-                    <h2 class="text-3xl md:text-4xl font-bold text-blue-950 mb-4">Descubre Zámbiza Today</h2>
-                    <p class="text-slate-600 text-sm md:text-lg">
-                        Explora la infraestructura local, atractivos naturales, emprendimientos comunitarios y rutas logísticas recopiladas de la memoria comunal.
-                    </p>
+            <div class="bg-white rounded-3xl shadow-xl p-8 md:p-12 border border-slate-100">
+                <div class="text-center max-w-3xl mx-auto mb-16 slide-hidden">
+                    <h2 class="text-4xl font-bold text-blue-950 mb-4">Descubre Zámbiza Today</h2>
+                    <p class="text-slate-600 text-lg">Explora la infraestructura, lugares históricos y rutas de la parroquia.</p>
                 </div>
 
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
                     <div onclick="abrirLugaresTuristicos()" class="bg-slate-50 rounded-2xl p-6 border border-slate-100 hover:shadow-lg transition-all group slide-hidden cursor-pointer">
                         <div class="w-14 h-14 bg-white shadow-sm text-blue-600 rounded-xl flex items-center justify-center text-2xl mb-5 group-hover:scale-110 transition-transform">⛪</div>
-                        <h3 class="text-lg font-bold text-slate-900 mb-2">Lugares Históricos y Comerciales</h3>
-                        <p class="text-slate-600 text-sm leading-relaxed">Santuario de San Miguel, Casa del Obraje, el Parque Central reformado y el cercano Portal Shopping a 5 minutos.</p>
+                        <h3 class="text-lg font-bold text-slate-900 mb-2">Lugares Históricos</h3>
+                        <p class="text-slate-600 text-sm">Iglesias, Cueva y Cruz, Cementerios, El Obraje y La Posada.</p>
                     </div>
-                    
                     <div onclick="abrirPlazas()" class="bg-slate-50 rounded-2xl p-6 border border-slate-100 hover:shadow-lg transition-all group slide-hidden cursor-pointer">
                         <div class="w-14 h-14 bg-white shadow-sm text-orange-600 rounded-xl flex items-center justify-center text-2xl mb-5 group-hover:scale-110 transition-transform">🍲</div>
-                        <h3 class="text-lg font-bold text-slate-900 mb-2">Gastronomía Patrimonial</h3>
-                        <p class="text-slate-600 text-sm leading-relaxed">El Rincón del Cuy de Doña Esther Pillalaza, los históricos Asados en Piedra y pan tradicional de horno de leña.</p>
+                        <h3 class="text-lg font-bold text-slate-900 mb-2">Gastronomía</h3>
+                        <p class="text-slate-600 text-sm">Rincón del Cuy, Asados en Piedra, Helados de Paila y Pan de Leña.</p>
                     </div>
-
                     <div onclick="abrirEntorno()" class="bg-slate-50 rounded-2xl p-6 border border-slate-100 hover:shadow-lg transition-all group slide-hidden cursor-pointer">
                         <div class="w-14 h-14 bg-white shadow-sm text-green-600 rounded-xl flex items-center justify-center text-2xl mb-5 group-hover:scale-110 transition-transform">🌳</div>
-                        <h3 class="text-lg font-bold text-slate-900 mb-2">Infraestructura, Deportes y Vida</h3>
-                        <p class="text-slate-600 text-sm leading-relaxed">Complejo Recreacional con piscinas, Infocentro tecnológico, parques infantiles y semilleros de fútbol y básquet.</p>
+                        <h3 class="text-lg font-bold text-slate-900 mb-2">Entorno y Deportes</h3>
+                        <p class="text-slate-600 text-sm">Ligas Barriales, Coliseo, Complejo Recreacional e Infocentro.</p>
                     </div>
-
                     <div onclick="abrirArtistas()" class="bg-slate-50 rounded-2xl p-6 border border-slate-100 hover:shadow-lg transition-all group slide-hidden cursor-pointer">
                         <div class="w-14 h-14 bg-white shadow-sm text-amber-600 rounded-xl flex items-center justify-center text-2xl mb-5 group-hover:scale-110 transition-transform">🎨</div>
-                        <h3 class="text-lg font-bold text-slate-900 mb-2">Arte, Teatro y Colectivos</h3>
-                        <p class="text-slate-600 text-sm leading-relaxed">Teatro Espada de Madera de Patricio Estrella, Colectivo Andinukuna, pintores y bandas de música locales.</p>
+                        <h3 class="text-lg font-bold text-slate-900 mb-2">Arte y Creadores</h3>
+                        <p class="text-slate-600 text-sm">Teatro Espada de Madera, Jayac, Bandas y colectivos.</p>
                     </div>
-
                     <div onclick="abrirLogistica()" class="bg-slate-50 rounded-2xl p-6 border border-slate-100 hover:shadow-lg transition-all group slide-hidden cursor-pointer">
                         <div class="w-14 h-14 bg-white shadow-sm text-emerald-600 rounded-xl flex items-center justify-center text-2xl mb-5 group-hover:scale-110 transition-transform">🚌</div>
-                        <h3 class="text-lg font-bold text-slate-900 mb-2">Logística, Transporte y Cajeros</h3>
-                        <p class="text-slate-600 text-sm leading-relaxed">Líneas Río Coca, cooperativas Taxsamiz y Expresszambiza, ubicación de la UPC y corresponsales bancarios.</p>
+                        <h3 class="text-lg font-bold text-slate-900 mb-2">Logística y Servicios</h3>
+                        <p class="text-slate-600 text-sm">Taxis regulados, Cajeros automáticos y UPC Local.</p>
                     </div>
                 </div>
 
-                <!-- Biblioteca Clásica Multimedia Sin Ecosistema Zimagination -->
-                <div class="border-t border-slate-100 pt-16">
-                    <h3 class="text-xl md:text-2xl font-bold text-blue-950 mb-8 text-center slide-hidden">Ecosistema Digital</h3>
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        <!-- Card 1: Galería Digital Google Fotos -->
-                        <a href="https://photos.google.com/album/AF1QipP_byRTofeyHFxEJeK5bSkfXLfCHT1C4nY2VFv0" target="_blank" class="flex items-start gap-4 p-6 rounded-2xl border border-slate-200 hover:border-sky-300 transition-colors bg-white group cursor-pointer slide-hidden">
-                            <div class="text-3xl md:text-4xl group-hover:scale-110 transition-transform">🖼️</div>
-                            <div>
-                                <h4 class="font-bold text-blue-900 text-base md:text-lg mb-1 group-hover:text-sky-600 transition-colors">Galería Digital en Google Fotos</h4>
-                                <p class="text-xs md:text-sm text-slate-600">Álbum fotográfico comunitario con registros históricos, familias fundadoras y paisajes de la parroquia. Clic para explorar.</p>
-                            </div>
-                        </a>
-
-                        <!-- Card 2: TikTok #Zambiza -->
-                        <a href="https://www.tiktok.com/tag/zambiza" target="_blank" class="flex items-start gap-4 p-6 rounded-2xl border border-slate-200 hover:border-sky-300 transition-colors bg-white group cursor-pointer slide-hidden" style="transition-delay: 100ms;">
-                            <div class="text-3xl md:text-4xl group-hover:scale-110 transition-transform">🎵</div>
-                            <div>
-                                <h4 class="font-bold text-blue-900 text-base md:text-lg mb-1 group-hover:text-sky-600 transition-colors">Hashtag #Zámbiza en TikTok</h4>
-                                <p class="text-xs md:text-sm text-slate-600">Explora de manera dinámica los videos, danzas y tendencias generadas en tiempo real por la comunidad zambiceña. Clic para ver.</p>
-                            </div>
-                        </a>
-
-                        <!-- Card 3: Biblioteca Multimedia YouTube compilación clásica -->
-                        <button onclick="abrirBiblioteca()" class="text-left flex items-start gap-4 p-6 rounded-2xl border border-slate-200 hover:border-sky-300 transition-colors bg-white group cursor-pointer slide-hidden" style="transition-delay: 200ms;">
-                            <div class="text-3xl md:text-4xl group-hover:scale-110 transition-transform">📺</div>
-                            <div>
-                                <h4 class="font-bold text-blue-900 text-base md:text-lg mb-1 group-hover:text-sky-600 transition-colors">Biblioteca de Videos de YouTube</h4>
-                                <p class="text-xs md:text-sm text-slate-600">Navega en nuestra biblioteca interna con los documentales recopilados que hablan de la historia de Zámbiza y la Comuna de Cocotog.</p>
-                            </div>
-                        </button>
-
-                        <!-- Card 4: Significado Vestimentas -->
-                        <a href="#cultura" class="text-left flex items-start gap-4 p-6 rounded-2xl border border-slate-200 hover:border-sky-300 transition-colors bg-white group cursor-pointer slide-hidden" style="transition-delay: 300ms;">
-                            <div class="text-3xl md:text-4xl group-hover:scale-110 transition-transform">🧵</div>
-                            <div>
-                                <h4 class="font-bold text-blue-900 text-base md:text-lg mb-1 group-hover:text-sky-600 transition-colors">Significado de Vestimentas</h4>
-                                <p class="text-xs md:text-sm text-slate-600">Retorna a la sección de patrimonio inmaterial para explorar la indumentaria mística de nuestros personajes.</p>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- 4. SECCIÓN INTERACTIVA: PREGUNTAS DE ZÁMBIZA -->
-        <section id="preguntas-seccion" class="scroll-mt-32 pt-4">
-            <div class="bg-slate-900 rounded-3xl shadow-2xl border border-slate-800 p-4 md:p-10 text-white">
-                <div class="flex flex-col md:flex-row items-start md:items-center justify-between border-b border-slate-800 pb-4 mb-6 gap-2">
-                    <div class="flex items-center gap-3">
-                        <div class="w-3 h-3 bg-emerald-500 rounded-full animate-pulse"></div>
+                <!-- Biblioteca Clásica YouTube -->
+                <div class="border-t border-slate-100 pt-16 text-center">
+                    <button onclick="abrirBiblioteca()" class="inline-flex flex-col items-center gap-4 p-8 rounded-3xl border border-slate-200 hover:border-red-400 transition-colors bg-white group cursor-pointer w-full max-w-2xl mx-auto shadow-sm hover:shadow-lg slide-hidden">
+                        <div class="text-5xl group-hover:scale-110 transition-transform">📺</div>
                         <div>
-                            <h3 class="text-xl md:text-2xl font-bold tracking-tight">Preguntas de Zámbiza</h3>
-                            <p class="text-[10px] md:text-xs text-sky-400 font-bold uppercase tracking-wider">Historiador Virtual de la Memoria • Fuentes Científicas Activas</p>
+                            <h4 class="font-bold text-blue-950 text-2xl mb-2 group-hover:text-red-600 transition-colors">Ver Biblioteca de Videos de YouTube</h4>
+                            <p class="text-base text-slate-600">Explora la colección de 8 documentales etnográficos de Zámbiza y Cocotog integrados en nuestro reproductor.</p>
                         </div>
-                    </div>
-                    <span class="text-[10px] text-slate-500 font-mono">Zimagination AI Core</span>
-                </div>
-
-                <!-- Caja de Conversación / Output -->
-                <div id="chat-output" class="bg-slate-950 rounded-2xl p-4 md:p-6 h-[320px] overflow-y-auto border border-slate-800 space-y-4 text-xs md:text-sm scrollbar-thin">
-                    <div class="flex gap-3 items-start">
-                        <div class="w-8 h-8 bg-violet-600 text-white rounded-full flex items-center justify-center text-xs md:text-sm flex-shrink-0">👴</div>
-                        <div class="bg-slate-900 p-4 rounded-2xl rounded-tl-none border border-slate-800 text-slate-100 max-w-[85%] leading-relaxed text-justify">
-                            Saludos, buscador de la memoria. Soy el Historiador Virtual de Zámbiza. Conservo el conocimiento fidedigno sobre nuestro antiguo cacicazgo, los 12 barrios, la Comuna de Cocotog, las tradiciones sincréticas y el grupo Jayac. ¿Qué verdad deseas desenterrar hoy?
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Chips de Consultas Rápidas -->
-                <div class="mt-4 flex flex-wrap gap-1.5 md:gap-2">
-                    <button onclick="enviarPreguntaRapida('que significa zambiza')" class="bg-slate-950 hover:bg-slate-800 border border-slate-800 text-[10px] md:text-xs text-slate-300 font-medium px-3 md:px-4 py-2 rounded-full transition-all">💡 ¿Qué significa Zámbiza?</button>
-                    <button onclick="enviarPreguntaRapida('quienes son el grupo jayac')" class="bg-slate-950 hover:bg-slate-800 border border-slate-800 text-[10px] md:text-xs text-slate-300 font-medium px-3 md:px-4 py-2 rounded-full transition-all">🎵 Origen del Grupo Jayac</button>
-                    <button onclick="enviarPreguntaRapida('fundacion eclesiastica y limites de 1584')" class="bg-slate-950 hover:bg-slate-800 border border-slate-800 text-[10px] md:text-xs text-slate-300 font-medium px-3 md:px-4 py-2 rounded-full transition-all">📜 Límites Históricos de 1584</button>
-                    <button onclick="enviarPreguntaRapida('fiestas tradicionales de reyes y san miguel')" class="bg-slate-950 hover:bg-slate-800 border border-slate-800 text-[10px] md:text-xs text-slate-300 font-medium px-3 md:px-4 py-2 rounded-full transition-all">🎉 Fiesta de Reyes y San Miguel</button>
-                    <button onclick="enviarPreguntaRapida('actividad economica agricultura futbol')" class="bg-slate-950 hover:bg-slate-800 border border-slate-800 text-[10px] md:text-xs text-slate-300 font-medium px-3 md:px-4 py-2 rounded-full transition-all">⚽ Deporte y Agricultura Abastecedora</button>
-                </div>
-
-                <!-- Input del Chat -->
-                <div class="mt-4 flex gap-2">
-                    <input type="text" id="chat-input" placeholder="Consulta con rigor científico sobre la historia, límites, fiestas..." class="flex-1 bg-slate-950 border border-slate-800 rounded-xl px-4 py-3 text-xs md:text-sm text-white placeholder-slate-500 focus:outline-none focus:border-violet-500 transition-colors">
-                    <button onclick="procesarChatInmediato()" class="bg-violet-600 hover:bg-violet-500 text-white font-bold text-xs md:text-sm px-4 md:px-6 py-3 rounded-xl transition-all flex items-center justify-center shadow-lg">Preguntar</button>
+                    </button>
                 </div>
             </div>
         </section>
 
-        <!-- 5. AGENDA DE EVENTOS Y NOTICIAS -->
         <section id="eventos" class="scroll-mt-32">
-            <div class="bg-blue-50 rounded-3xl shadow-xl p-6 md:p-12 border border-slate-200 slide-hidden">
+            <div class="bg-blue-50 rounded-3xl shadow-xl p-8 md:p-12 border border-slate-200 slide-hidden">
                 <div class="text-center max-w-3xl mx-auto mb-12">
-                    <span class="text-sky-600 font-bold tracking-wider uppercase text-xs md:text-sm mb-2 block">Agenda Cultural Local</span>
-                    <h2 class="text-3xl md:text-4xl font-bold text-blue-950 mb-4">Eventos y Noticias</h2>
-                    <p class="text-slate-600 text-sm md:text-lg leading-relaxed">
-                        Zámbiza y Cocotog vibran a lo largo del año. Descubre la agenda unificada basada en los registros comunitarios.
-                    </p>
+                    <h2 class="text-4xl font-bold text-blue-950 mb-4">Eventos y Noticias</h2>
                 </div>
-
-                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
-                    <!-- Eventos Zámbiza -->
-                    <div class="bg-white p-6 md:p-8 rounded-2xl shadow-sm border border-slate-100 border-t-4 border-t-sky-500 hover:shadow-lg transition-all hover:-translate-y-1">
-                        <h3 class="text-xl md:text-2xl font-bold text-blue-900 mb-6 flex items-center gap-3">
-                            <span class="text-2xl md:text-3xl">🎉</span> Agenda de Zámbiza
-                        </h3>
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div class="bg-white p-8 rounded-2xl shadow-sm border border-slate-100 border-t-4 border-t-sky-500">
+                        <h3 class="text-2xl font-bold text-blue-900 mb-6 flex items-center gap-3"><span class="text-3xl">🎉</span> Agenda de Zámbiza</h3>
                         <ul class="space-y-4">
-                            <li class="p-4 bg-slate-50 rounded-xl border-l-4 border-emerald-500">
-                                <span class="font-bold text-emerald-600 block mb-1 text-base md:text-lg">11 de Febrero</span>
-                                <h4 class="font-bold text-blue-900 text-sm md:text-base">Fiestas de Fundación Parroquial y Eclesiástica</h4>
-                                <p class="text-xs md:text-sm text-slate-700 mt-1">Conmemoración de la fundación eclesiástica (1584) y civil (1861). Involucra desfiles de confraternidad, competencias de coches de madera y retretas musicales.</p>
-                            </li>
-                            <li class="p-4 bg-slate-50 rounded-xl">
-                                <span class="font-bold text-sky-600 block mb-1 text-base md:text-lg">26 de Junio</span>
-                                <h4 class="font-bold text-blue-900 text-sm md:text-base">Bulevar Zambiceño</h4>
-                                <p class="text-xs md:text-sm text-slate-700 mt-1"><strong>Hora:</strong> 18:00 | Expo-feria gastronómica y artesanal en el Parque Central de Zámbiza.</p>
-                            </li>
-                            <li class="p-4 bg-slate-50 rounded-xl">
-                                <span class="font-bold text-sky-600 block mb-1 text-base md:text-lg">28 al 30 de Septiembre</span>
-                                <h4 class="font-bold text-blue-900 text-sm md:text-base">Fiestas Mayores en Honor a San Miguel</h4>
-                                <p class="text-xs md:text-sm text-slate-700 mt-1">Ingreso de las comparsas, la entrega de vestidos nuevos al patrono, castillos de fuegos pirotécnicos y los Danzantes de Monedas.</p>
-                            </li>
+                            <li class="p-4 bg-slate-50 rounded-xl border-l-4 border-emerald-500"><span class="font-bold text-emerald-600 block mb-1">11 de Febrero</span><h4 class="font-bold text-blue-900">Fiestas de Fundación</h4><p class="text-sm text-slate-700 mt-1">Conmemoración eclesiástica y civil.</p></li>
+                            <li class="p-4 bg-slate-50 rounded-xl"><span class="font-bold text-sky-600 block mb-1">28 al 30 de Septiembre</span><h4 class="font-bold text-blue-900">Fiestas a San Miguel</h4><p class="text-sm text-slate-700 mt-1">Ingreso de comparsas y Danzantes.</p></li>
                         </ul>
                     </div>
-
-                    <!-- Eventos Cocotog -->
-                    <div class="bg-white p-6 md:p-8 rounded-2xl shadow-sm border border-slate-100 border-t-4 border-t-amber-500 hover:shadow-lg transition-all hover:-translate-y-1">
-                        <h3 class="text-xl md:text-2xl font-bold text-blue-900 mb-6 flex items-center gap-3">
-                            <span class="text-2xl md:text-3xl">🌾</span> Agenda de Cocotog
-                        </h3>
+                    <div class="bg-white p-8 rounded-2xl shadow-sm border border-slate-100 border-t-4 border-t-amber-500">
+                        <h3 class="text-2xl font-bold text-blue-900 mb-6 flex items-center gap-3"><span class="text-3xl">🌾</span> Agenda de Cocotog</h3>
                         <ul class="space-y-4">
-                            <li class="flex gap-4 items-start p-3 hover:bg-amber-50 rounded-xl transition-colors">
-                                <div class="w-16 flex-shrink-0 text-center bg-slate-100 rounded-lg py-2 border border-slate-200">
-                                    <span class="block text-xl md:text-2xl font-black text-amber-500 leading-none">13</span>
-                                    <span class="block text-[10px] font-bold uppercase text-slate-500 mt-1">Junio</span>
-                                </div>
-                                <div>
-                                    <h4 class="font-bold text-blue-900 text-sm md:text-base">Elección de la Reina de la Comuna</h4>
-                                    <p class="text-xs md:text-sm text-slate-600">Gala tradicional que celebra el intelecto y la identidad cultural de la mujer de Cocotog.</p>
-                                </div>
-                            </li>
-                            <li class="flex gap-4 items-start p-3 hover:bg-amber-50 rounded-xl transition-colors">
-                                <div class="w-16 flex-shrink-0 text-center bg-slate-100 rounded-lg py-2 border border-slate-200">
-                                    <span class="block text-xl md:text-2xl font-black text-amber-500 leading-none">20</span>
-                                    <span class="block text-[10px] font-bold uppercase text-slate-500 mt-1">Junio</span>
-                                </div>
-                                <div>
-                                    <h4 class="font-bold text-blue-900 text-sm md:text-base">Gran Pregón de Fiestas Comunales</h4>
-                                    <p class="text-xs md:text-sm text-slate-600">Desfile intercultural con carros alegóricos y agrupaciones folclóricas recorriendo las calles comunales.</p>
-                                </div>
-                            </li>
-                            <li class="flex gap-4 items-start p-3 hover:bg-amber-50 rounded-xl transition-colors border-l-4 border-amber-500">
-                                <div class="w-16 flex-shrink-0 text-center bg-slate-100 rounded-lg py-2 border border-slate-200">
-                                    <span class="block text-xl md:text-2xl font-black text-amber-600 leading-none">23</span>
-                                    <span class="block text-[10px] font-bold uppercase text-slate-500 mt-1">Junio</span>
-                                </div>
-                                <div>
-                                    <h4 class="font-bold text-blue-900 text-sm md:text-base">Fiestas de Corpus Christi en Cocotog</h4>
-                                    <p class="text-xs md:text-sm text-slate-600">Sincretismo absoluto y agradecimiento andino por la cosecha del maíz con la intervención de los personajes tradicionales.</p>
-                                </div>
-                            </li>
+                            <li class="p-4 bg-slate-50 rounded-xl"><span class="font-bold text-amber-600 block mb-1">13 de Junio</span><h4 class="font-bold text-blue-900">Elección de Reina</h4></li>
+                            <li class="p-4 bg-slate-50 rounded-xl border-l-4 border-amber-500"><span class="font-bold text-amber-600 block mb-1">23 de Junio</span><h4 class="font-bold text-blue-900">Corpus Christi</h4><p class="text-sm text-slate-700 mt-1">Agradecimiento andino por la cosecha.</p></li>
                         </ul>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- 6. SECCIÓN DE LA ENCUESTA -->
         <section id="encuesta" class="scroll-mt-32">
-            <div class="bg-gradient-to-r from-violet-600 to-indigo-700 rounded-3xl shadow-xl p-8 md:p-12 text-white border border-violet-500 slide-hidden">
-                <div class="max-w-3xl mx-auto text-center">
-                    <span class="bg-violet-800 text-sky-300 font-bold text-xs px-3 py-1 rounded-full uppercase tracking-widest mb-3 inline-block">Tu Opinión Importa</span>
-                    <h2 class="text-3xl md:text-4xl font-bold mb-4">Formulario Comunitario y Sugerencias</h2>
-                    <p class="text-violet-100 text-sm md:text-base leading-relaxed mb-8">
-                        Ayúdanos a enriquecer y fortalecer este portal de memoria viva. Tu retroalimentación, ideas y aportaciones nos permiten asegurar la salvaguardia de nuestra cultura ancestral para las futuras generaciones.
-                    </p>
-                    <a href="https://docs.google.com/forms/d/1bKX2ZwUDLZRMmMKeFndHRKgvtyxMFR6Zirdt9HHf4cQ/edit" target="_blank" class="inline-flex items-center gap-3 px-8 py-4 bg-white text-indigo-950 font-bold rounded-full shadow-lg hover:scale-105 hover:-translate-y-0.5 transition-all duration-300 group">
-                        <span>📋 Compartir Opinión y Sugerencias</span>
-                        <span class="group-hover:translate-x-1 transition-transform">➔</span>
-                    </a>
-                </div>
+            <div class="bg-gradient-to-r from-violet-600 to-indigo-700 rounded-3xl shadow-xl p-8 md:p-12 text-white border border-violet-500 text-center slide-hidden">
+                <span class="bg-violet-800 text-sky-300 font-bold text-xs px-3 py-1 rounded-full uppercase tracking-widest mb-3 inline-block">Tu Opinión Importa</span>
+                <h2 class="text-3xl font-bold mb-4">Formulario Comunitario</h2>
+                <p class="text-violet-100 mb-8 max-w-2xl mx-auto">Ayúdanos a enriquecer este portal. Tu retroalimentación permite asegurar la salvaguardia de nuestra cultura.</p>
+                <a href="https://docs.google.com/forms/d/1bKX2ZwUDLZRMmMKeFndHRKgvtyxMFR6Zirdt9HHf4cQ/edit" target="_blank" class="inline-flex items-center gap-3 px-8 py-4 bg-white text-indigo-950 font-bold rounded-full shadow-lg hover:scale-105 transition-all">📋 Compartir Opinión ➔</a>
             </div>
         </section>
 
-        <!-- APARTADO DE REDES (Carrusel Continuo Restablecido) -->
-        <section id="redes" class="w-[100vw] relative left-[50%] right-[50%] -ml-[50vw] -mr-[50vw] bg-blue-950 py-16 overflow-hidden border-y border-blue-900 slide-hidden">
-            <div class="max-w-7xl mx-auto px-6 mb-10 text-center relative z-10">
-                <h2 class="text-3xl font-bold text-white mb-2">Redes y Sitios Oficiales que nos Apoyan</h2>
-                <p class="text-blue-200 text-sm">Pasa el cursor sobre las tarjetas para detenerlas y explorarlas.</p>
+        <!-- REDES CARRUSEL -->
+        <section class="w-[100vw] relative left-[50%] right-[50%] -ml-[50vw] -mr-[50vw] bg-blue-950 py-16 overflow-hidden border-y border-blue-900 slide-hidden">
+            <div class="max-w-7xl mx-auto px-6 mb-10 text-center">
+                <h2 class="text-3xl font-bold text-white mb-2">Redes Oficiales que nos Apoyan</h2>
             </div>
-            
             <div class="pause-on-hover relative w-full overflow-hidden">
                 <div class="marquee-container flex gap-6 px-4">
-                    <!-- Bloque 1 -->
                     <div class="flex gap-6 flex-shrink-0 justify-around">
-                        <a href="https://gadzambiza.gob.ec/" target="_blank" class="w-72 bg-blue-900/80 border border-blue-800 rounded-2xl p-6 hover:bg-blue-800 transition-colors group flex flex-col items-center text-center">
-                            <div class="w-16 h-16 bg-white rounded-full flex items-center justify-center p-2 mb-4 group-hover:scale-110 transition-transform overflow-hidden">
-                                <span class="font-bold text-blue-900 text-xs">GAD</span>
-                            </div>
-                            <h4 class="text-white font-bold text-lg mb-1">Sitio Web GAD</h4>
-                        </a>
-                        <a href="https://www.tiktok.com/@gad_zambiza?lang=es" target="_blank" class="w-72 bg-blue-900/80 border border-blue-800 rounded-2xl p-6 hover:bg-blue-800 transition-colors group flex flex-col items-center text-center">
-                            <div class="w-16 h-16 bg-black rounded-full flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
-                                <span class="text-2xl text-white">🎵</span>
-                            </div>
-                            <h4 class="text-white font-bold text-lg mb-1">TikTok Zámbiza</h4>
-                        </a>
-                        <a href="https://www.facebook.com/zonaleugenioespejo/?locale=es_LA" target="_blank" class="w-72 bg-blue-900/80 border border-blue-800 rounded-2xl p-6 hover:bg-blue-800 transition-colors group flex flex-col items-center text-center">
-                            <div class="w-16 h-16 bg-blue-600 rounded-full flex items-center justify-center p-2 mb-4 group-hover:scale-110 transition-transform overflow-hidden">
-                                <span class="font-bold text-white text-xs">ZONAL</span>
-                            </div>
-                            <h4 class="text-white font-bold text-lg mb-1">Admin. Zonal FB</h4>
-                        </a>
-                        <a href="https://www.youtube.com/@zambizamemoriasyvoces" target="_blank" class="w-72 bg-blue-900/80 border border-blue-800 rounded-2xl p-6 hover:bg-blue-800 transition-colors group flex flex-col items-center text-center">
-                            <div class="w-16 h-16 bg-white rounded-full flex items-center justify-center p-2 mb-4 group-hover:scale-110 transition-transform overflow-hidden shadow-inner">
-                                <span class="font-bold text-red-600 text-xs">UDLA</span>
-                            </div>
-                            <h4 class="text-white font-bold text-lg mb-1">Canal UDLA</h4>
-                        </a>
-                        <a href="https://www.facebook.com/Comuna.Cocotog?locale=es_LA" target="_blank" class="w-72 bg-blue-900/80 border border-blue-800 rounded-2xl p-6 hover:bg-blue-800 transition-colors group flex flex-col items-center text-center">
-                            <div class="w-16 h-16 bg-green-700 rounded-full flex items-center justify-center p-2 mb-4 group-hover:scale-110 transition-transform overflow-hidden">
-                                <span class="font-bold text-white text-xs">COCOTOG</span>
-                            </div>
-                            <h4 class="text-white font-bold text-lg mb-1">Comuna Cocotog FB</h4>
-                        </a>
+                        <a href="https://gadzambiza.gob.ec/" target="_blank" class="w-72 bg-blue-900/80 border border-blue-800 rounded-2xl p-6 hover:bg-blue-800 transition-colors flex flex-col items-center text-center"><div class="w-16 h-16 bg-white rounded-full flex items-center justify-center p-2 mb-4"><span class="font-bold text-blue-900 text-xs">GAD</span></div><h4 class="text-white font-bold text-lg">Sitio Web GAD</h4></a>
+                        <a href="https://www.tiktok.com/@gad_zambiza" target="_blank" class="w-72 bg-blue-900/80 border border-blue-800 rounded-2xl p-6 hover:bg-blue-800 transition-colors flex flex-col items-center text-center"><div class="w-16 h-16 bg-black rounded-full flex items-center justify-center mb-4"><span class="text-2xl text-white">🎵</span></div><h4 class="text-white font-bold text-lg">TikTok Zámbiza</h4></a>
+                        <a href="https://www.youtube.com/@zambizamemoriasyvoces" target="_blank" class="w-72 bg-blue-900/80 border border-blue-800 rounded-2xl p-6 hover:bg-blue-800 transition-colors flex flex-col items-center text-center"><div class="w-16 h-16 bg-white rounded-full flex items-center justify-center p-2 mb-4"><span class="font-bold text-red-600 text-xs">UDLA</span></div><h4 class="text-white font-bold text-lg">Canal UDLA</h4></a>
                     </div>
-                    
-                    <!-- Bloque 2 (Clon exacto para animación de bucle infinito) -->
                     <div class="flex gap-6 flex-shrink-0" aria-hidden="true">
                         <a href="https://gadzambiza.gob.ec/" class="w-72 bg-blue-900/80 border border-blue-800 rounded-2xl p-6 flex flex-col items-center text-center"><div class="w-16 h-16 bg-white rounded-full flex items-center justify-center mb-4"><span class="font-bold text-blue-900 text-xs">GAD</span></div><h4 class="text-white font-bold text-lg">Sitio Web GAD</h4></a>
                         <a href="https://www.tiktok.com/@gad_zambiza" class="w-72 bg-blue-900/80 border border-blue-800 rounded-2xl p-6 flex flex-col items-center text-center"><div class="w-16 h-16 bg-black rounded-full flex items-center justify-center mb-4"><span class="text-white text-2xl">🎵</span></div><h4 class="text-white font-bold text-lg">TikTok Zámbiza</h4></a>
-                        <a href="https://www.facebook.com/zonaleugenioespejo" class="w-72 bg-blue-900/80 border border-blue-800 rounded-2xl p-6 flex flex-col items-center text-center"><div class="w-16 h-16 bg-blue-600 rounded-full flex items-center justify-center mb-4"><span class="font-bold text-white text-xs">ZONAL</span></div><h4 class="text-white font-bold text-lg">Admin. Zonal FB</h4></a>
                         <a href="https://www.youtube.com/@zambizamemoriasyvoces" class="w-72 bg-blue-900/80 border border-blue-800 rounded-2xl p-6 flex flex-col items-center text-center"><div class="w-16 h-16 bg-white rounded-full flex items-center justify-center mb-4"><span class="font-bold text-red-600 text-xs">UDLA</span></div><h4 class="text-white font-bold text-lg">Canal UDLA</h4></a>
-                        <a href="https://www.facebook.com/Comuna.Cocotog" class="w-72 bg-blue-900/80 border border-blue-800 rounded-2xl p-6 flex flex-col items-center text-center"><div class="w-16 h-16 bg-green-700 rounded-full flex items-center justify-center mb-4"><span class="font-bold text-white text-xs">COCOTOG</span></div><h4 class="text-white font-bold text-lg">Comuna Cocotog FB</h4></a>
                     </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="preguntas-seccion" class="scroll-mt-32 pt-10">
+            <div class="bg-slate-900 rounded-3xl shadow-2xl border border-slate-800 p-6 md:p-10 text-white slide-hidden">
+                <div class="flex items-center justify-between border-b border-slate-800 pb-4 mb-6">
+                    <div class="flex items-center gap-3">
+                        <div class="w-3 h-3 bg-emerald-500 rounded-full animate-pulse"></div>
+                        <div>
+                            <h3 class="text-2xl font-bold tracking-tight">Preguntas de Zámbiza</h3>
+                            <p class="text-xs text-sky-400 font-bold uppercase tracking-wider">Historiador Virtual de la Memoria • Base Documental Activa</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="chat-output" class="bg-slate-950 rounded-2xl p-4 md:p-6 h-[320px] overflow-y-auto border border-slate-800 space-y-4 text-sm scrollbar-thin">
+                    <div class="flex gap-3 items-start">
+                        <div class="w-8 h-8 bg-violet-600 text-white rounded-full flex items-center justify-center text-sm flex-shrink-0">👴</div>
+                        <div class="bg-slate-900 p-4 rounded-2xl rounded-tl-none border border-slate-800 text-slate-100 max-w-[85%] leading-relaxed">
+                            Saludos. Soy el Historiador Virtual de Zámbiza. Conservo el conocimiento fidedigno sobre nuestro antiguo cacicazgo, los 12 barrios, tradiciones, bailes y el grupo Jayac. ¿Qué verdad deseas desenterrar hoy?
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mt-4 flex flex-wrap gap-2">
+                    <button onclick="enviarPreguntaRapida('que significa zambiza')" class="bg-slate-950 hover:bg-slate-800 border border-slate-800 text-xs text-slate-300 px-4 py-2 rounded-full transition-all">💡 ¿Qué significa Zámbiza?</button>
+                    <button onclick="enviarPreguntaRapida('quienes son el grupo jayac')" class="bg-slate-950 hover:bg-slate-800 border border-slate-800 text-xs text-slate-300 px-4 py-2 rounded-full transition-all">🎵 Origen Grupo Jayac</button>
+                    <button onclick="enviarPreguntaRapida('fundacion eclesiastica y limites de 1584')" class="bg-slate-950 hover:bg-slate-800 border border-slate-800 text-xs text-slate-300 px-4 py-2 rounded-full transition-all">📜 Límites Históricos</button>
+                    <button onclick="enviarPreguntaRapida('actividad economica agricultura futbol')" class="bg-slate-950 hover:bg-slate-800 border border-slate-800 text-xs text-slate-300 px-4 py-2 rounded-full transition-all">⚽ Deporte y Agricultura</button>
+                </div>
+
+                <div class="mt-4 flex gap-2">
+                    <input type="text" id="chat-input" placeholder="Consulta sobre historia, límites, fiestas..." class="flex-1 bg-slate-950 border border-slate-800 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-violet-500">
+                    <button onclick="procesarChatInmediato()" class="bg-violet-600 hover:bg-violet-500 text-white font-bold text-sm px-6 py-3 rounded-xl transition-all shadow-lg">Preguntar</button>
                 </div>
             </div>
         </section>
 
     </main>
 
-    <!-- FOOTER PROFESIONAL ORIGINAL RESTABLECIDO -->
-    <footer class="bg-blue-950 text-blue-200 py-16 border-t border-blue-900">
-        <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-3 gap-12 text-justify">
-            
-            <div>
-                <h3 class="text-white text-lg font-bold mb-6 uppercase tracking-wider">Contacto GAD Parroquial</h3>
-                <ul class="space-y-4 text-sm">
-                    <li class="flex items-start gap-3">
-                        <svg class="w-5 h-5 text-sky-400 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.242-4.243a8 8 0 1111.314 0z"></path></svg>
-                        <span>Zámbiza, Guayaquil Oe3-101 y Bolívar</span>
-                    </li>
-                    <li class="flex items-center gap-3">
-                        <svg class="w-5 h-5 text-sky-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path></svg>
-                        <span>(02) 2886 088</span>
-                    </li>
-                    <li class="flex items-center gap-3">
-                        <svg class="w-5 h-5 text-sky-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
-                        <span>gadzambiza@hotmail.com</span>
-                    </li>
-                </ul>
+    <!-- FOOTER CORREGIDO ("GAD Parroquial") -->
+    <footer class="bg-blue-950 text-blue-200 py-12 border-t border-blue-900 text-center">
+        <div class="max-w-7xl mx-auto px-6 text-sm space-y-4">
+            <p class="text-white font-bold text-base">Zimagination: Voces y Memorias de Zámbiza</p>
+            <p>Ecosistema Digital de Difusión Etnográfica y Científica Parroquial</p>
+            <div class="text-xs text-blue-400 pt-4 border-t border-blue-900/50">
+                © 2026 GAD Parroquial de Zámbiza & Alexander Jácome. Todos los derechos reservados.
             </div>
-
-            <div>
-                <h3 class="text-white text-lg font-bold mb-6 uppercase tracking-wider">Administración Zonal</h3>
-                <ul class="space-y-4 text-sm">
-                    <li class="flex items-start gap-3">
-                        <svg class="w-5 h-5 text-sky-400 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"></path></svg>
-                        <a href="https://www.google.com/maps/place/Administraci%C3%B3n+Zonal+Norte+%22Eugenio+Espejo%22" target="_blank" class="hover:text-white transition-colors underline decoration-blue-800 underline-offset-4">
-                            Ubicación e Info: Administración Zonal Norte "Eugenio Espejo"
-                        </a>
-                    </li>
-                </ul>
-            </div>
-
-            <div>
-                <h3 class="text-white text-lg font-bold mb-6 uppercase tracking-wider">Desarrollo Web</h3>
-                <ul class="space-y-4 text-sm">
-                    <li class="flex items-center gap-3">
-                        <svg class="w-5 h-5 text-sky-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path></svg>
-                        <span>Estudiante Investigador: Alexander Jácome</span>
-                    </li>
-                    <li class="flex items-center gap-3">
-                        <svg class="w-5 h-5 text-sky-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
-                        <span>Agencia de Comunicación: Zimagination</span>
-                    </li>
-                </ul>
-            </div>
-
-        </div>
-        <div class="max-w-7xl mx-auto px-6 mt-12 pt-8 border-t border-blue-900/50 text-center text-xs text-blue-400">
-            © 2026 GAD Parroquial de Zámbiza & Alexander Jácome (UDLA Communication Sciences). Todos los derechos reservados.
         </div>
     </footer>
 
-    <!-- MODAL LUGARES TURÍSTICOS -->
     <div id="modal-lugares" class="fixed inset-0 z-[100] hidden items-center justify-center p-4 bg-slate-950/95 backdrop-blur-md opacity-0 transition-opacity duration-300">
         <div class="bg-slate-50 w-full max-w-5xl rounded-3xl overflow-hidden shadow-2xl relative flex flex-col max-h-[90vh]">
             <div class="flex justify-between items-center p-6 border-b border-slate-200 bg-white">
-                <div>
-                    <h3 class="text-xl md:text-2xl font-bold text-blue-950">Lugares Históricos e Infraestructura</h3>
-                    <p class="text-xs md:text-sm text-slate-500">Catastro de patrimonio y modernidad de la parroquia</p>
-                </div>
+                <div><h3 class="text-2xl font-bold text-blue-950">Lugares Históricos y Espirituales</h3><p class="text-sm text-slate-500">Patrimonio de la parroquia</p></div>
                 <button onclick="cerrarLugaresTuristicos()" class="w-10 h-10 bg-slate-100 text-slate-800 rounded-full flex items-center justify-center hover:bg-red-500 hover:text-white transition-colors font-bold">✕</button>
             </div>
-            <div class="p-6 overflow-y-auto grid grid-cols-1 md:grid-cols-2 gap-6 bg-slate-50">
-                <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200">
-                    <h4 class="font-bold text-blue-900 text-base md:text-lg mb-2">⛪ Santuario de San Miguel Arcángel</h4>
-                    <p class="text-xs md:text-sm text-slate-600 leading-relaxed">Muros coloniales de adobe de 1.80m de espesor. Sobrevivió al gran incendio de 1972. Custodia una pila bautismal monolítica tallada en 1596 y un armonio alemán de 1630. Consagrado como Santuario en 1982.</p>
+            <div class="p-6 overflow-y-auto grid md:grid-cols-3 gap-6 bg-slate-50">
+                
+                <!-- Cueva y Cruz -->
+                <div class="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden flex flex-col">
+                    <img src="https://raw.githubusercontent.com/alexzanderj14/Vonces-y-memorias-de-Zambiza/main/Cueva%2C%20y%20cruz%20zambiza.jpg" class="w-full h-40 object-cover" alt="Cueva y Cruz Zámbiza">
+                    <div class="p-5 flex-1 flex flex-col">
+                        <h4 class="font-bold text-blue-900 text-lg mb-2">Túnel y Cruz de Zámbiza</h4>
+                        <p class="text-sm text-slate-600 mb-4 flex-1">Excavado a mano en la peña al borde de la quebrada Poroto Huaico. Concluido en 1951, tiene 50m de extensión. Lugar de aparición del arcángel San Miguel.</p>
+                        <a href="https://www.google.com/maps?q=-0.1473633,-78.4490417&z=17&hl=es" target="_blank" class="inline-flex justify-center w-full px-4 py-2 bg-sky-100 hover:bg-sky-200 text-sky-800 text-xs font-bold rounded-xl transition-colors">📍 Ver en Maps</a>
+                    </div>
                 </div>
-                <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200">
-                    <h4 class="font-bold text-blue-900 text-base md:text-lg mb-2">🌳 Parque Central de Zámbiza</h4>
-                    <p class="text-xs md:text-sm text-slate-600 leading-relaxed">Originalmente concebido como cancha de fútbol de tierra, hoy reestructurado con 8 hermosas jardineras perimetrales. Alberga el monumento a "La Doña", en homenaje al histórico acarreo de agua por parte de las mujeres.</p>
+                
+                <!-- Santuario Matriz (Wix) -->
+                <div class="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden flex flex-col">
+                    <img src="https://raw.githubusercontent.com/alexzanderj14/Vonces-y-memorias-de-Zambiza/main/igle.jpeg" class="w-full h-40 object-cover" alt="Santuario Zámbiza">
+                    <div class="p-5 flex-1 flex flex-col">
+                        <h4 class="font-bold text-blue-900 text-lg mb-2">Santuario San Miguel</h4>
+                        <p class="text-sm text-slate-600 mb-4 flex-1">Construido en los albores de la Colonia con paredes de adobe macizo. Sobrevivió al gran incendio de 1972 donde se rescató al patrono. Custodia una pila de 1596.</p>
+                    </div>
                 </div>
-                <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200">
-                    <h4 class="font-bold text-blue-900 text-base md:text-lg mb-2">🛍️ Portal Shopping</h4>
-                    <p class="text-xs md:text-sm text-slate-600 leading-relaxed">Gran polo de desarrollo, servicios comerciales modernos y conectividad urbana situado estratégicamente a solo 5 minutos del núcleo parroquial.</p>
+                
+                <!-- Entrada Cocotog -->
+                <div class="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden flex flex-col">
+                    <img src="https://raw.githubusercontent.com/alexzanderj14/Vonces-y-memorias-de-Zambiza/main/Entrada%20de%20cocotog.jpg" class="w-full h-40 object-cover" alt="Entrada Cocotog">
+                    <div class="p-5 flex-1 flex flex-col">
+                        <h4 class="font-bold text-blue-900 text-lg mb-2">Entrada de Cocotog</h4>
+                        <p class="text-sm text-slate-600 mb-4 flex-1">Pórtico representativo y vía principal de acceso a la histórica y ancestral Comuna de Cocotog.</p>
+                        <a href="https://www.google.com/maps?q=-0.1387617,-78.4357&z=17&hl=es" target="_blank" class="inline-flex justify-center w-full px-4 py-2 bg-sky-100 hover:bg-sky-200 text-sky-800 text-xs font-bold rounded-xl transition-colors">📍 Ver en Maps</a>
+                    </div>
                 </div>
-                <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200">
-                    <h4 class="font-bold text-blue-900 text-base md:text-lg mb-2">⛰️ Túnel y Cruz de Zámbiza</h4>
-                    <p class="text-xs md:text-sm text-slate-600 leading-relaxed">Oculto bajo la Quebrada Poroto Huaico. Increíble obra de ingeniería excavada a mano pura en la roca firme entre 1943 y 1951, coronada en la cima por la gran cruz comunal.</p>
+
+                <!-- Cementerio Zámbiza -->
+                <div class="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden flex flex-col">
+                    <img src="https://raw.githubusercontent.com/alexzanderj14/Vonces-y-memorias-de-Zambiza/main/cementerio%20zambiza.jpg" class="w-full h-40 object-cover" alt="Cementerio Zámbiza">
+                    <div class="p-5 flex-1 flex flex-col">
+                        <h4 class="font-bold text-blue-900 text-lg mb-2">Cementerio de Zámbiza</h4>
+                        <p class="text-sm text-slate-600 mb-4 flex-1">Camposanto patrimonial y lugar de descanso eterno de las familias fundadoras de la parroquia.</p>
+                        <a href="https://www.google.com/maps?q=-0.1505433,-78.4369083&z=17&hl=es" target="_blank" class="inline-flex justify-center w-full px-4 py-2 bg-sky-100 hover:bg-sky-200 text-sky-800 text-xs font-bold rounded-xl transition-colors">📍 Ver en Maps</a>
+                    </div>
                 </div>
+
+                <!-- Cementerio Cocotog -->
+                <div class="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden flex flex-col">
+                    <img src="https://raw.githubusercontent.com/alexzanderj14/Vonces-y-memorias-de-Zambiza/main/cementerio%20cocotog.jpg" class="w-full h-40 object-cover" alt="Cementerio Cocotog">
+                    <div class="p-5 flex-1 flex flex-col">
+                        <h4 class="font-bold text-blue-900 text-lg mb-2">Cementerio de Cocotog</h4>
+                        <p class="text-sm text-slate-600 mb-4 flex-1">Camposanto sagrado, eje de las tradiciones fúnebres de la comuna.</p>
+                        <a href="https://www.google.com/maps?q=-0.13979,-78.4240267&z=17&hl=es" target="_blank" class="inline-flex justify-center w-full px-4 py-2 bg-sky-100 hover:bg-sky-200 text-sky-800 text-xs font-bold rounded-xl transition-colors">📍 Ver en Maps</a>
+                    </div>
+                </div>
+
+                <!-- La Posada -->
+                <div class="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden flex flex-col">
+                    <img src="https://raw.githubusercontent.com/alexzanderj14/Vonces-y-memorias-de-Zambiza/main/la%20posada%20hotel%20zambiza.jpg" class="w-full h-40 object-cover" alt="La Posada">
+                    <div class="p-5 flex-1 flex flex-col">
+                        <h4 class="font-bold text-blue-900 text-lg mb-2">La Posada de Zámbiza</h4>
+                        <p class="text-sm text-slate-600 mb-4 flex-1">Servicio de hospitalidad tradicional en el corazón de la parroquia.</p>
+                        <a href="https://www.google.com/maps/place/0%C2%B009'02.0%22S+78%C2%B026'12.9%22W/@-0.1507129,-78.4370564,3a,75y,250.68h,102.76t/data=!3m7!1e1!3m5!1sV5lRO-qe9hUqmDhyj0PpWA!2e0!6shttps:%2F%2Fstreetviewpixels-pa.googleapis.com%2Fv1%2Fthumbnail%3Fcb_client%3Dmaps_sv.tactile%26w%3D900%26h%3D600%26pitch%3D-12.755512481024525%26panoid%3DV5lRO-qe9hUqmDhyj0PpWA%26yaw%3D250.6775704156973!7i13312!8i6656!4m4!3m3!8m2!3d-0.1505433!4d-78.4369083?hl=es&entry=ttu&g_ep=EgoyMDI2MDYyOS4wIKXMDSoASAFQAw%3D%3D" target="_blank" class="inline-flex justify-center w-full px-4 py-2 bg-sky-100 hover:bg-sky-200 text-sky-800 text-xs font-bold rounded-xl transition-colors">📍 Ver en Maps</a>
+                    </div>
+                </div>
+
+                <!-- Iglesia Católica Cocotog -->
+                <div class="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden flex flex-col">
+                    <img src="https://raw.githubusercontent.com/alexzanderj14/Vonces-y-memorias-de-Zambiza/main/iglesia%20catolica%20cocotog.jpg" class="w-full h-40 object-cover" alt="Iglesia Católica Cocotog">
+                    <div class="p-5 flex-1 flex flex-col">
+                        <h4 class="font-bold text-blue-900 text-lg mb-2">Iglesia Católica Cocotog</h4>
+                        <p class="text-sm text-slate-600 flex-1">Templo central de la devoción católica y sede litúrgica de las festividades de Corpus Christi.</p>
+                    </div>
+                </div>
+
+                <!-- Iglesia Evangélica Cocotog -->
+                <div class="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden flex flex-col">
+                    <img src="https://raw.githubusercontent.com/alexzanderj14/Vonces-y-memorias-de-Zambiza/main/iglesia%20evangelica%20cocoto.jpg" class="w-full h-40 object-cover" alt="Iglesia Evangélica Cocotog">
+                    <div class="p-5 flex-1 flex flex-col">
+                        <h4 class="font-bold text-blue-900 text-lg mb-2">Iglesia Evangélica Cocotog</h4>
+                        <p class="text-sm text-slate-600 flex-1">Centro de congregación evangélica situado en el tejido barrial de la comuna.</p>
+                    </div>
+                </div>
+
+                <!-- El Obraje (Wix) -->
+                <div class="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden flex flex-col">
+                    <div class="p-5 flex-1 flex flex-col">
+                        <h4 class="font-bold text-blue-900 text-lg mb-2">El Obraje (Patrimonio)</h4>
+                        <p class="text-sm text-slate-600 flex-1">La casa más antigua del sector, de propiedad de Teresa Rodríguez. Conserva la herencia familiar desde el siglo XVI, un espacio donde los indígenas realizaban los textiles.</p>
+                    </div>
+                </div>
+
             </div>
         </div>
     </div>
 
-    <!-- MODAL PLAZAS -->
     <div id="modal-plazas" class="fixed inset-0 z-[100] hidden items-center justify-center p-4 bg-slate-950/95 backdrop-blur-md opacity-0 transition-opacity duration-300">
         <div class="bg-slate-50 w-full max-w-5xl rounded-3xl overflow-hidden shadow-2xl relative flex flex-col max-h-[90vh]">
             <div class="flex justify-between items-center p-6 border-b border-slate-200 bg-white">
-                <div>
-                    <h3 class="text-xl md:text-2xl font-bold text-blue-950">Gastronomía y Sabores de Antaño</h3>
-                    <p class="text-xs md:text-sm text-slate-500">Locales y portadores de la tradición culinaria</p>
-                </div>
+                <div><h3 class="text-2xl font-bold text-blue-950">Gastronomía y Sabores</h3><p class="text-sm text-slate-500">Locales y portadores culinarios</p></div>
                 <button onclick="cerrarPlazas()" class="w-10 h-10 bg-slate-100 text-slate-800 rounded-full flex items-center justify-center hover:bg-red-500 hover:text-white transition-colors font-bold">✕</button>
             </div>
-            <div class="p-6 overflow-y-auto grid grid-cols-1 md:grid-cols-2 gap-6 bg-slate-50">
-                <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200">
-                    <h4 class="font-bold text-blue-900 text-base md:text-lg mb-2">🐹 El Rincón del Cuy Zambiceño</h4>
-                    <p class="text-xs md:text-sm text-slate-600 leading-relaxed">Hueca mítica fundada hace más de 35 años gracias al criadero original de Doña Esther Pillalaza. Hoy es magistralmente regentado por Mariana Lema, famoso por sus cuyes asados en brasas, seco de chivo y yahuarlocro.</p>
+            <div class="p-6 overflow-y-auto grid md:grid-cols-2 gap-6 bg-slate-50">
+                
+                <!-- Pan de Horno -->
+                <div class="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden flex flex-col">
+                    <img src="https://raw.githubusercontent.com/alexzanderj14/Vonces-y-memorias-de-Zambiza/main/pand%20e%20horno%20cocotog.jpg" class="w-full h-40 object-cover" alt="Pan de Horno Cocotog">
+                    <div class="p-5 flex-1 flex flex-col">
+                        <h4 class="font-bold text-blue-900 text-lg mb-2">Pan de Horno Cocotog</h4>
+                        <p class="text-sm text-slate-600 mb-4 flex-1">Cocción en horno de barro y adobe. Originario desde 1978, elaborado por la familia de la Sra. Rosario Galarza. Atención los viernes a las 11:00 am.</p>
+                        <a href="https://www.google.com/maps/place/0%C2%B008'19.1%22S+78%C2%B025'29.0%22W/@-0.138635,-78.4272832,17z/data=!3m1!4b1!4m4!3m3!8m2!3d-0.138635!4d-78.4247083?hl=es&entry=ttu&g_ep=EgoyMDI2MDYyOS4wIKXMDSoASAFQAw%3D%3D" target="_blank" class="inline-flex justify-center w-full px-4 py-2 bg-orange-100 hover:bg-orange-200 text-orange-800 text-xs font-bold rounded-xl transition-colors">📍 Ver en Maps</a>
+                    </div>
                 </div>
+
+                <!-- Helados Paila -->
+                <div class="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden flex flex-col">
+                    <img src="https://raw.githubusercontent.com/alexzanderj14/Vonces-y-memorias-de-Zambiza/main/helados%20de%20paila%20cocotog.jpg" class="w-full h-40 object-cover" alt="Helados de Paila Cocotog">
+                    <div class="p-5 flex-1 flex flex-col">
+                        <h4 class="font-bold text-blue-900 text-lg mb-2">Helados de Paila Cocotog</h4>
+                        <p class="text-sm text-slate-600 mb-4 flex-1">Manjar helado batido a mano tradicional en paila de bronce.</p>
+                        <a href="https://www.google.com/maps/place/0%C2%B008'13.2%22S+78%C2%B025'14.9%22W/@-0.1369867,-78.4233666,17z/data=!3m1!4b1!4m4!3m3!8m2!3d-0.1369867!4d-78.4207917?hl=es&entry=ttu&g_ep=EgoyMDI2MDYyOS4wIKXMDSoASAFQAw%3D%3D" target="_blank" class="inline-flex justify-center w-full px-4 py-2 bg-orange-100 hover:bg-orange-200 text-orange-800 text-xs font-bold rounded-xl transition-colors">📍 Ver en Maps</a>
+                    </div>
+                </div>
+
+                <!-- El Rincon del Cuy (Wix) -->
                 <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200">
-                    <h4 class="font-bold text-blue-900 text-base md:text-lg mb-2">🥩 Carne Asada en Piedra Volcánica</h4>
-                    <p class="text-xs md:text-sm text-slate-600 leading-relaxed">Técnica ancestral de cocción sobre piedra ardiente de origen volcánico. Tradición familiar iniciada formalmente en el año 2008 por su fundadora, María Presentación Lema Pumisacho.</p>
+                    <h4 class="font-bold text-blue-900 text-lg mb-2">🐹 El Rincón del Cuy Zambiceño</h4>
+                    <p class="text-sm text-slate-600 leading-relaxed mb-4">Mítica hueca fundada por doña Esther Pillalaza. Hoy administrado por Mariana Lema, ofrece cuy asado y yahuarlocro.</p>
+                    <div class="bg-slate-50 p-3 rounded-lg border border-slate-100 text-xs text-slate-600 space-y-1">
+                        <p><strong>Ubicación:</strong> Calle A. J. de Sucre S1-57 y Quito, frente a la iglesia.</p>
+                        <p><strong>Teléfonos:</strong> 022886118 / 0958937198</p>
+                    </div>
+                </div>
+
+                <!-- Asados en Piedra (Wix) -->
+                <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200">
+                    <h4 class="font-bold text-blue-900 text-lg mb-2">🥩 Asados en Piedra Volcánica</h4>
+                    <p class="text-sm text-slate-600 leading-relaxed mb-4">Técnica ancestral de cocción sobre piedra ardiente. Tradición familiar iniciada por la Sra. María Presentación Lema Pumisacho.</p>
+                    <div class="bg-slate-50 p-3 rounded-lg border border-slate-100 text-xs text-slate-600 space-y-1">
+                        <p><strong>Ubicación:</strong> Quito OE2-229 y Atahualpa, Zámbiza.</p>
+                        <p><strong>Teléfonos:</strong> 0968820313 – 022886133</p>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- MODAL ENTORNO Y VIDA LOCAL -->
     <div id="modal-entorno" class="fixed inset-0 z-[100] hidden items-center justify-center p-4 bg-slate-950/95 backdrop-blur-md opacity-0 transition-opacity duration-300">
         <div class="bg-slate-50 w-full max-w-5xl rounded-3xl overflow-hidden shadow-2xl relative flex flex-col max-h-[90vh]">
             <div class="flex justify-between items-center p-6 border-b border-slate-200 bg-white">
-                <div>
-                    <h3 class="text-xl md:text-2xl font-bold text-blue-950">Entorno, Deporte e Interacción Vecinal</h3>
-                    <p class="text-xs md:text-sm text-slate-500">Centros deportivos y herramientas tecnológicas parroquiales</p>
-                </div>
+                <div><h3 class="text-2xl font-bold text-blue-950">Entorno y Deportes</h3><p class="text-sm text-slate-500">Centros deportivos y barriales</p></div>
                 <button onclick="cerrarEntorno()" class="w-10 h-10 bg-slate-100 text-slate-800 rounded-full flex items-center justify-center hover:bg-red-500 hover:text-white transition-colors font-bold">✕</button>
             </div>
-            <div class="p-6 overflow-y-auto grid grid-cols-1 md:grid-cols-2 gap-6 bg-slate-50">
-                <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200">
-                    <h4 class="font-bold text-blue-900 text-base md:text-lg mb-2">🏊‍♂️ Complejo Recreacional de Zámbiza</h4>
-                    <p class="text-xs md:text-sm text-slate-600 leading-relaxed">Completo centro de relajación y salud hídrica vecinal equipado con amplias piscinas temperadas, sauna, turco, hidromasaje y áreas verdes de esparcimiento familiar.</p>
+            <div class="p-6 overflow-y-auto grid md:grid-cols-3 gap-6 bg-slate-50">
+                
+                <!-- Liga Barrial Zámbiza -->
+                <div class="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden flex flex-col">
+                    <img src="https://raw.githubusercontent.com/alexzanderj14/Vonces-y-memorias-de-Zambiza/main/liga%20barrial%20zambiza.jpg" class="w-full h-40 object-cover" alt="Liga Barrial Zámbiza">
+                    <div class="p-5 flex-1 flex flex-col">
+                        <h4 class="font-bold text-blue-900 text-lg mb-2">Liga Barrial Zámbiza</h4>
+                        <p class="text-sm text-slate-600 mb-4 flex-1">Estadio central, epicentro del fútbol barrial y escuelas formativas.</p>
+                        <a href="https://www.google.com/maps?q=-0.14986,-78.4358917&z=17&hl=es" target="_blank" class="inline-flex justify-center w-full px-4 py-2 bg-green-100 hover:bg-green-200 text-green-800 text-xs font-bold rounded-xl transition-colors">📍 Ver en Maps</a>
+                    </div>
                 </div>
-                <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200">
-                    <h4 class="font-bold text-blue-900 text-base md:text-lg mb-2">💻 Punto del Encuentro (Infocentro)</h4>
-                    <p class="text-xs md:text-sm text-slate-600 leading-relaxed">Núcleo tecnológico y de inclusión digital de la parroquia, destinado al libre acceso a internet, capacitaciones gratuitas, tareas escolares y soporte técnico para micro-emprendedores.</p>
+
+                <!-- Liga Barrial Cocotog -->
+                <div class="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden flex flex-col">
+                    <img src="https://raw.githubusercontent.com/alexzanderj14/Vonces-y-memorias-de-Zambiza/main/liga%20barrial%20cootog2.jpg" class="w-full h-40 object-cover" alt="Liga Barrial Cocotog">
+                    <div class="p-5 flex-1 flex flex-col">
+                        <h4 class="font-bold text-blue-900 text-lg mb-2">Liga Barrial Cocotog</h4>
+                        <p class="text-sm text-slate-600 flex-1">Cancha principal que reúne a los deportistas de la comuna.</p>
+                    </div>
                 </div>
-                <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200">
-                    <h4 class="font-bold text-blue-900 text-base md:text-lg mb-2">🛝 Parque Infantil Parroquial</h4>
-                    <p class="text-xs md:text-sm text-slate-600 leading-relaxed">Moderno espacio recreacional infantil inaugurado por el GAD Parroquial en 2017, dotado de juegos lúdicos inclusivos, caminerías y canchas multifuncionales de baloncesto.</p>
+
+                <!-- Coliseo Zámbiza -->
+                <div class="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden flex flex-col">
+                    <img src="https://raw.githubusercontent.com/alexzanderj14/Vonces-y-memorias-de-Zambiza/main/colise%20zambiza.jpg" class="w-full h-40 object-cover" alt="Coliseo Zámbiza">
+                    <div class="p-5 flex-1 flex flex-col">
+                        <h4 class="font-bold text-blue-900 text-lg mb-2">Coliseo Zámbiza</h4>
+                        <p class="text-sm text-slate-600 mb-4 flex-1">Escenario cubierto destinado al baloncesto y Ecuavoley.</p>
+                        <a href="https://www.google.com/maps?q=-0.1509267,-78.4362633&z=17&hl=es" target="_blank" class="inline-flex justify-center w-full px-4 py-2 bg-green-100 hover:bg-green-200 text-green-800 text-xs font-bold rounded-xl transition-colors">📍 Ver en Maps</a>
+                    </div>
                 </div>
-                <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200">
-                    <h4 class="font-bold text-blue-900 text-base md:text-lg mb-2">⚽ Semilleros y Deporte Rey</h4>
-                    <p class="text-xs md:text-sm text-slate-600 leading-relaxed">El fútbol es el deporte rey de la parroquia, teniendo su base en el Estadio de la Liga Parroquial. Destacan las escuelas formativas infantiles "Pasión Real" y "Cracks", junto con torneos barriales de Ecuavoley.</p>
+
+                <!-- Parque Central (Wix) -->
+                <div class="bg-white p-5 rounded-2xl shadow-sm border border-slate-200">
+                    <h4 class="font-bold text-blue-900 text-lg mb-2">🌳 Parque Central Zámbiza</h4>
+                    <p class="text-sm text-slate-600">Reestructurado con 8 jardineras. Alberga el monumento a "La Doña" por el histórico acarreo de agua.</p>
                 </div>
+
+                <!-- Complejo Recreacional (Wix) -->
+                <div class="bg-white p-5 rounded-2xl shadow-sm border border-slate-200">
+                    <h4 class="font-bold text-blue-900 text-lg mb-2">🏊‍♂️ Complejo Recreacional</h4>
+                    <p class="text-sm text-slate-600">Centro de salud hídrica equipado con amplias piscinas temperadas, sauna, turco e hidromasaje.</p>
+                </div>
+
+                <!-- Infocentro (Wix) -->
+                <div class="bg-white p-5 rounded-2xl shadow-sm border border-slate-200">
+                    <h4 class="font-bold text-blue-900 text-lg mb-2">💻 Infocentro Comunitario</h4>
+                    <p class="text-sm text-slate-600">Punto del Encuentro. Acceso a internet, capacitaciones gratuitas y apoyo a emprendedores locales.</p>
+                </div>
+
             </div>
         </div>
     </div>
 
-    <!-- MODAL ARTISTAS Y TEATRO -->
     <div id="modal-artistas" class="fixed inset-0 z-[100] hidden items-center justify-center p-4 bg-slate-950/95 backdrop-blur-md opacity-0 transition-opacity duration-300">
         <div class="bg-slate-50 w-full max-w-5xl rounded-3xl overflow-hidden shadow-2xl relative flex flex-col max-h-[90vh]">
             <div class="flex justify-between items-center p-6 border-b border-slate-200 bg-white">
-                <div>
-                    <h3 class="text-xl md:text-2xl font-bold text-blue-950">Directorio de Creadores y Gestores</h3>
-                    <p class="text-xs md:text-sm text-slate-500">Músicos, actores escénicos y bailarines de orgullo internacional</p>
-                </div>
-                <button onclick="cerrarArtistas()" class="w-10 h-10 bg-slate-100 text-slate-800 rounded-full flex items-center justify-center hover:bg-red-500 hover:text-white transition-colors font-bold">✕</button>
+                <div><h3 class="text-2xl font-bold text-blue-950">Directorio de Creadores y Gestores</h3></div>
+                <button onclick="cerrarArtistas()" class="w-10 h-10 bg-slate-100 text-slate-800 rounded-full flex items-center justify-center hover:bg-red-500 font-bold">✕</button>
             </div>
-            <div class="p-6 overflow-y-auto space-y-6 bg-slate-50">
+            <div class="p-6 overflow-y-auto grid md:grid-cols-2 gap-6 bg-slate-50">
                 <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200">
-                    <h4 class="font-bold text-blue-900 text-base md:text-lg mb-2">🎭 Teatro Espada de Madera</h4>
-                    <p class="text-xs md:text-sm text-slate-600 leading-relaxed mb-2">Colectivo escénico estelar y de vanguardia afincado en la parroquia. Dirigido magistralmente por Patricio Estrella, creador con estudios superiores de teatro en París (Francia) y Argentina. La agrupación ha representado la identidad ecuatoriana en más de 100 festivales y eventos culturales de carácter internacional.</p>
+                    <h4 class="font-bold text-blue-900 text-lg mb-2">🎭 Teatro Espada de Madera</h4>
+                    <p class="text-sm text-slate-600 leading-relaxed mb-4">Colectivo escénico de vanguardia con recorrido internacional en Francia y Argentina. Obras: Tamerlán y el Dictador.</p>
+                    <div class="bg-slate-50 p-3 rounded-lg border border-slate-100 text-xs text-slate-600 space-y-1">
+                        <p><strong>Director:</strong> Patricio Estrella</p>
+                        <p><strong>Email:</strong> es_madera@hotmail.com</p>
+                        <p><strong>Teléfonos:</strong> 2886738 / 0999465614</p>
+                    </div>
                 </div>
                 <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200">
                     <h4 class="font-bold text-blue-900 text-lg mb-2">🎵 Grupo Folclórico Jayac</h4>
-                    <p class="text-xs md:text-sm text-slate-600 leading-relaxed">Emblema absoluto de la música folclórica panandina y orgullo de la parroquia, siendo Zámbiza el lugar de nacimiento de todos sus talentosos integrantes originarios.</p>
+                    <p class="text-sm text-slate-600 leading-relaxed mb-4">Emblema absoluto de la música folclórica panandina y orgullo originario de la parroquia de Zámbiza.</p>
+                    <div class="bg-slate-50 p-3 rounded-lg border border-slate-100 text-xs text-slate-600 space-y-1">
+                        <p><strong>Manager:</strong> Sr. Saulo Díaz</p>
+                        <p><strong>Email:</strong> jayacecuador@hotmail.com</p>
+                        <p><strong>Teléfono:</strong> 0999210648</p>
+                    </div>
+                </div>
+                <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200">
+                    <h4 class="font-bold text-blue-900 text-lg mb-2">🎺 Banda de Música San Miguel</h4>
+                    <p class="text-sm text-slate-600 leading-relaxed mb-4">Banda tradicional de Zámbiza para festividades y retretas comunitarias.</p>
+                    <div class="bg-slate-50 p-3 rounded-lg border border-slate-100 text-xs text-slate-600 space-y-1">
+                        <p><strong>Contacto:</strong> Jorge Sangucho</p>
+                        <p><strong>Email:</strong> jorge_sangucho@hotmail.es</p>
+                        <p><strong>Teléfonos:</strong> 0983514283 / 022886-250</p>
+                    </div>
+                </div>
+                <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200">
+                    <h4 class="font-bold text-blue-900 text-lg mb-2">🎤 Pepe Band's</h4>
+                    <p class="text-sm text-slate-600 leading-relaxed mb-4">Agrupación musical residente en Zámbiza (Calle Guayaquil y México).</p>
+                    <div class="bg-slate-50 p-3 rounded-lg border border-slate-100 text-xs text-slate-600 space-y-1">
+                        <p><strong>Manager:</strong> Sr. Jose Galarza</p>
+                        <p><strong>Email:</strong> josegalarza818@gmail.com</p>
+                        <p><strong>Teléfonos:</strong> 022886-082 / 0997212906</p>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- MODAL LOGÍSTICA -->
     <div id="modal-logistica" class="fixed inset-0 z-[100] hidden items-center justify-center p-4 bg-slate-950/95 backdrop-blur-md opacity-0 transition-opacity duration-300">
         <div class="bg-slate-50 w-full max-w-5xl rounded-3xl overflow-hidden shadow-2xl relative flex flex-col max-h-[90vh]">
             <div class="flex justify-between items-center p-6 border-b border-slate-200 bg-white">
-                <div>
-                    <h3 class="text-xl md:text-2xl font-bold text-blue-950">Guía Logística de Servicios</h3>
-                    <p class="text-xs md:text-sm text-slate-500">Transporte regulado, cajeros y seguridad ciudadana</p>
-                </div>
-                <button onclick="cerrarLogistica()" class="w-10 h-10 bg-slate-100 text-slate-800 rounded-full flex items-center justify-center hover:bg-red-500 hover:text-white transition-colors font-bold">✕</button>
+                <div><h3 class="text-2xl font-bold text-blue-950">Guía Logística de Servicios</h3></div>
+                <button onclick="cerrarLogistica()" class="w-10 h-10 bg-slate-100 text-slate-800 rounded-full flex items-center justify-center hover:bg-red-500 font-bold">✕</button>
             </div>
-            <div class="p-6 overflow-y-auto grid grid-cols-1 md:grid-cols-2 gap-6 bg-slate-50">
-                <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200">
-                    <h4 class="font-bold text-blue-900 text-base md:text-lg mb-2">🚖 Taxis Parroquiales Regulados</h4>
-                    <p class="text-xs md:text-sm text-slate-600 leading-relaxed">Servicio de transporte permanente y seguro a cargo de las principales compañías homologadas de la parroquia: <strong>Taxsamiz S.A.</strong> y la compañía <strong>Expresszambiza</strong>, estacionadas junto al Parque Central.</p>
-                </div>
-                <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200">
-                    <h4 class="font-bold text-blue-900 text-base md:text-lg mb-2">👮 Seguridad Local</h4>
-                    <p class="text-xs md:text-sm text-slate-600 leading-relaxed">La Unidad de Policía Comunitaria (UPC) opera de forma permanente y se encuentra ubicada en el casco céntrico, situada estratégicamente justo al lado del Subcentro de Salud de Zámbiza.</p>
-                </div>
-                <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200">
-                    <h4 class="font-bold text-blue-900 text-base md:text-lg mb-2">💵 Cajeros y Corresponsales</h4>
-                    <p class="text-xs md:text-sm text-slate-600 leading-relaxed">Retiros y transacciones financieras seguras en el cajero automático de la Cooperativa de la Policía Nacional (frente al parque) y múltiples terminales "Mi Vecino" del Banco Pichincha.</p>
-                </div>
+            <div class="p-6 overflow-y-auto grid md:grid-cols-2 gap-6 bg-slate-50">
+                <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200"><h4 class="font-bold text-blue-900 text-lg mb-2">🚖 Taxis Regulados</h4><p class="text-sm text-slate-600">Compañías homologadas: Taxsamiz S.A. y Expresszambiza (junto al Parque Central).</p></div>
+                <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200"><h4 class="font-bold text-blue-900 text-lg mb-2">👮 Seguridad Local</h4><p class="text-sm text-slate-600">UPC ubicada en el casco céntrico, al lado del Subcentro de Salud.</p></div>
             </div>
         </div>
     </div>
 
-    <!-- MODAL MAPA PARROQUIAL -->
     <div id="modal-mapa" class="fixed inset-0 z-[100] hidden items-center justify-center p-4 bg-slate-950/95 backdrop-blur-md opacity-0 transition-opacity duration-300">
         <div class="bg-slate-50 w-full max-w-5xl rounded-3xl overflow-hidden shadow-2xl relative flex flex-col h-[90vh]">
             <div class="flex justify-between items-center p-6 border-b border-slate-200 bg-white">
-                <div>
-                    <h3 class="text-xl md:text-2xl font-bold text-blue-950">Mapa Territorial y Delimitación Parroquial</h3>
-                    <p class="text-xs md:text-sm text-slate-500">Cartografía oficial de Zámbiza</p>
-                </div>
-                <button onclick="cerrarMapaZambiza()" class="w-10 h-10 bg-slate-100 text-slate-800 rounded-full flex items-center justify-center hover:bg-red-500 hover:text-white transition-colors font-bold">✕</button>
+                <div><h3 class="text-2xl font-bold text-blue-950">Mapa Territorial</h3></div>
+                <button onclick="cerrarMapaZambiza()" class="w-10 h-10 bg-slate-100 text-slate-800 rounded-full hover:bg-red-500 font-bold">✕</button>
             </div>
+            
             <div class="flex border-b border-slate-200 bg-white px-6 py-2 gap-2">
-                <button id="btn-mapa-satelital" onclick="cambiarVistaMapa('satelital')" class="px-4 py-2 text-xs md:text-sm font-bold text-white bg-blue-900 rounded-lg shadow-sm transition-all">🗺️ Mapa Satelital (En vivo)</button>
-                <button id="btn-mapa-densidad" onclick="cambiarVistaMapa('densidad')" class="px-4 py-2 text-xs md:text-sm font-bold text-slate-600 bg-slate-100 hover:bg-slate-200 rounded-lg transition-all">📈 Mapa Limítrofe</button>
+                <button id="btn-mapa-satelital" onclick="cambiarVistaMapa('satelital')" class="px-4 py-2 text-xs md:text-sm font-bold text-white bg-blue-900 rounded-lg shadow-sm transition-all">🗺️ Mapa Satelital</button>
+                <button id="btn-mapa-densidad" onclick="cambiarVistaMapa('densidad')" class="px-4 py-2 text-xs md:text-sm font-bold text-slate-600 bg-slate-100 hover:bg-slate-200 rounded-lg transition-all">📈 Densidad y Barrios</button>
             </div>
+            
             <div class="flex-1 p-4 bg-slate-100 relative overflow-hidden">
                 <div id="contenedor-mapa-satelital" class="w-full h-full">
-                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15959.215456488346!2d-78.45331232538183!3d-0.149488399849007!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x91d5902fa4b04bf3%3A0x6ce6b7d519d3f1ff!2zWsOhbWJpemEsIEVjdWFkb3I!5e0!3m2!1ses!2sec!4v1719875000000!5m2!1ses!2sec" class="w-full h-full border-0 rounded-2xl shadow-inner" allowfullscreen="" loading="lazy"></iframe>
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15959.215456488346!2d-78.45331232538183!3d-0.149488399849007!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x91d5902fa4b04bf3%3A0x6ce6b7d519d3f1ff!2zWsOhbWJpemEsIEVjdWFkb3I!5e0!3m2!1ses!2sec!4v1719875000000!5m2!1ses!2sec" class="w-full h-full border-0 rounded-2xl shadow-inner"></iframe>
                 </div>
                 <div id="contenedor-mapa-densidad" class="w-full h-full hidden flex items-center justify-center p-2">
-                    <img src="https://raw.githubusercontent.com/alexzanderj14/Vonces-y-memorias-de-Zambiza/main/zambiza%20dencidad%20poblacional.png" alt="Zámbiza Mapa Limítrofe" class="max-w-full max-h-full object-contain rounded-xl shadow-lg bg-white">
+                    <img src="https://raw.githubusercontent.com/alexzanderj14/Vonces-y-memorias-de-Zambiza/main/zambiza%20dencidad%20poblacional.png" alt="Zámbiza Mapa Densidad" class="max-w-full max-h-full object-contain rounded-xl shadow-lg bg-white">
                 </div>
             </div>
+            
             <div id="barrios-container" class="px-6 py-4 bg-slate-50 border-t border-slate-200 overflow-y-auto max-h-[25vh] hidden">
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="grid md:grid-cols-2 gap-6">
                     <div>
-                        <h4 class="font-bold text-blue-950 text-sm mb-2">🏘️ Barrios de la Cabecera de Zámbiza</h4>
+                        <h4 class="font-bold text-blue-950 text-sm mb-2">🏘️ 12 Barrios de Zámbiza</h4>
                         <div class="grid grid-cols-2 gap-1 text-xs text-slate-700">
                             <div>• Centro (Cabecera)</div><div>• La Paz</div><div>• San Francisco</div><div>• La Dolorosa</div>
                             <div>• San José</div><div>• San Miguel</div><div>• La Delicia</div><div>• San Jorge</div>
@@ -742,66 +658,56 @@
                         </div>
                     </div>
                     <div>
-                        <h4 class="font-bold text-blue-950 text-sm mb-2">🌾 Barrios de la Comuna San José de Cocotog</h4>
+                        <h4 class="font-bold text-blue-950 text-sm mb-2">🌾 5 Barrios de Cocotog</h4>
                         <div class="grid grid-cols-2 gap-1 text-xs text-slate-700">
                             <div>• Central</div><div>• Santa Ana</div><div>• San Miguel Chupa</div><div>• Jesús del Gran Poder</div><div>• Yurac Alpa Loma</div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="p-4 bg-white border-t border-slate-200 text-center text-xs font-semibold text-slate-600">
-                © Voces y Memorias de Zámbiza - Alexander Jácome
-            </div>
         </div>
     </div>
 
-    <!-- MODAL DEMOGRAFÍA HISTÓRICA -->
     <div id="modal-demografia" class="fixed inset-0 z-[100] hidden items-center justify-center p-4 bg-slate-950/95 backdrop-blur-md opacity-0 transition-opacity duration-300">
         <div class="bg-slate-50 w-full max-w-4xl rounded-3xl overflow-hidden shadow-2xl relative flex flex-col max-h-[90vh]">
             <div class="flex justify-between items-center p-6 border-b border-slate-200 bg-white">
-                <h3 class="text-xl md:text-2xl font-bold text-blue-950">Evolución Demográfica Histórica</h3>
-                <button onclick="cerrarDemografia()" class="w-10 h-10 bg-slate-100 text-slate-800 rounded-full flex items-center justify-center hover:bg-red-500 hover:text-white transition-colors font-bold">✕</button>
+                <h3 class="text-2xl font-bold text-blue-950">Evolución Demográfica Histórica</h3>
+                <button onclick="cerrarDemografia()" class="w-10 h-10 bg-slate-100 text-slate-800 rounded-full hover:bg-red-500 font-bold">✕</button>
             </div>
             <div class="p-6 overflow-y-auto bg-white flex-1 space-y-6">
                 <div class="chart-wrapper"><canvas id="demografiaChart"></canvas></div>
-                <p class="text-xs text-slate-400 text-center">Fuente de datos consolidados: Censos Nacionales de Población y Vivienda (INEC).</p>
+                <p class="text-xs text-slate-400 text-center">Fuente: Censos Nacionales de Población y Vivienda (INEC).</p>
             </div>
         </div>
     </div>
 
-    <!-- MODAL BIBLIOTECA MULTIMEDIA -->
     <div id="modal-biblioteca" class="fixed inset-0 z-[100] hidden items-center justify-center p-4 bg-slate-950/95 backdrop-blur-md opacity-0 transition-opacity duration-300">
-        <div class="bg-slate-50 w-full max-w-5xl rounded-3xl overflow-hidden shadow-2xl relative flex flex-col max-h-[90vh]">
+        <div class="bg-slate-50 w-full max-w-6xl rounded-3xl overflow-hidden shadow-2xl relative flex flex-col max-h-[90vh]">
             <div class="flex justify-between items-center p-6 border-b border-slate-200 bg-white">
-                <h3 class="text-xl md:text-2xl font-bold text-blue-950">Biblioteca Audiovisual Integrada</h3>
-                <button onclick="cerrarBiblioteca()" class="w-10 h-10 bg-slate-100 text-slate-800 rounded-full flex items-center justify-center hover:bg-red-500 hover:text-white transition-colors font-bold">✕</button>
+                <h3 class="text-2xl font-bold text-blue-950">Biblioteca Audiovisual Integrada</h3>
+                <button onclick="cerrarBiblioteca()" class="w-10 h-10 bg-slate-100 text-slate-800 rounded-full flex items-center justify-center hover:bg-red-500 font-bold">✕</button>
             </div>
-            <div class="p-6 overflow-y-auto bg-slate-100 grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div class="bg-white p-4 rounded-xl shadow-sm"><iframe class="w-full aspect-video rounded-lg" src="https://www.youtube.com/embed/Ar-A8TnqAaE" frameborder="0" allowfullscreen></iframe><h5 class="font-bold text-blue-950 mt-2 text-sm">Voces y Memorias de Zámbiza</h5></div>
-                <div class="bg-white p-4 rounded-xl shadow-sm"><iframe class="w-full aspect-video rounded-lg" src="https://www.youtube.com/embed/F7cvL2H5AHc" frameborder="0" allowfullscreen></iframe><h5 class="font-bold text-blue-950 mt-2 text-sm">Zámbiza: Cultura, Tradición e Identidad</h5></div>
-                <div class="bg-white p-4 rounded-xl shadow-sm"><iframe class="w-full aspect-video rounded-lg" src="https://www.youtube.com/embed/s2cJKnID_sM" frameborder="0" allowfullscreen></iframe><h5 class="font-bold text-blue-950 mt-2 text-sm">Comuna de Cocotog y su Arraigo Lingüístico Kichwa</h5></div>
-                <div class="bg-slate-900 text-white p-6 rounded-xl flex flex-col justify-between">
-                    <div><h5 class="font-bold text-sky-400 text-sm">@danza_andinukuna (TikTok Oficial)</h5><p class="text-xs text-slate-300 mt-2">Explora las coreografías rituales, el zapateo de los Campios y la resonancia de los cascabeles grabados en alta definición por el colectivo.</p></div>
-                    <a href="https://www.tiktok.com/@danza_andinukuna" target="_blank" class="mt-4 inline-block text-center bg-white text-slate-950 text-xs font-bold py-2 px-4 rounded-lg">🎬 Abrir Canal de TikTok</a>
-                </div>
+            <div class="p-6 overflow-y-auto bg-slate-100 grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="bg-white p-3 rounded-xl shadow-sm"><iframe class="w-full aspect-video rounded-lg" src="https://www.youtube.com/embed/YwYXbOo0_eY" frameborder="0" allowfullscreen></iframe><h5 class="font-bold text-blue-950 mt-2 text-xs">Zámbiza Tradiciones</h5></div>
+                <div class="bg-white p-3 rounded-xl shadow-sm"><iframe class="w-full aspect-video rounded-lg" src="https://www.youtube.com/embed/SA_85NSTeSE" frameborder="0" allowfullscreen></iframe><h5 class="font-bold text-blue-950 mt-2 text-xs">Fiestas San Miguel</h5></div>
+                <div class="bg-white p-3 rounded-xl shadow-sm"><iframe class="w-full aspect-video rounded-lg" src="https://www.youtube.com/embed/rT02icrY9Mo" frameborder="0" allowfullscreen></iframe><h5 class="font-bold text-blue-950 mt-2 text-xs">Entrada de Huacos</h5></div>
+                <div class="bg-white p-3 rounded-xl shadow-sm"><iframe class="w-full aspect-video rounded-lg" src="https://www.youtube.com/embed/WpCXjeKZRUw" frameborder="0" allowfullscreen></iframe><h5 class="font-bold text-blue-950 mt-2 text-xs">Cultura y Fe</h5></div>
+                <div class="bg-white p-3 rounded-xl shadow-sm"><iframe class="w-full aspect-video rounded-lg" src="https://www.youtube.com/embed/aZ1wJma4CeE" frameborder="0" allowfullscreen></iframe><h5 class="font-bold text-blue-950 mt-2 text-xs">Así Suena Cocotog</h5></div>
+                <div class="bg-white p-3 rounded-xl shadow-sm"><iframe class="w-full aspect-video rounded-lg" src="https://www.youtube.com/embed/ikE7r91AOX8" frameborder="0" allowfullscreen></iframe><h5 class="font-bold text-blue-950 mt-2 text-xs">Danzantes Ancestrales</h5></div>
+                <div class="bg-white p-3 rounded-xl shadow-sm"><iframe class="w-full aspect-video rounded-lg" src="https://www.youtube.com/embed/s2cJKnID_sM" frameborder="0" allowfullscreen></iframe><h5 class="font-bold text-blue-950 mt-2 text-xs">Arraigo Lingüístico Kichwa</h5></div>
+                <div class="bg-white p-3 rounded-xl shadow-sm"><iframe class="w-full aspect-video rounded-lg" src="https://www.youtube.com/embed/aqJtvWT6-xM" frameborder="0" allowfullscreen></iframe><h5 class="font-bold text-blue-950 mt-2 text-xs">Encuentro de Culturas</h5></div>
             </div>
         </div>
     </div>
 
-    <!-- LIGHTBOX VISOR DE DETALLE (LUPA INTERACTIVA CON CONTROL DE ZOOM Y ARRASTRE) -->
     <div id="lightbox-visor" class="fixed inset-0 z-[200] hidden flex-col items-center justify-between p-4 bg-slate-950/98 backdrop-blur-md opacity-0 transition-opacity duration-300" onclick="evaluarCierreLightbox(event)">
         <div class="w-full max-w-4xl flex justify-between items-center bg-slate-900/60 backdrop-blur px-6 py-3 rounded-2xl border border-slate-800/40 relative z-[210]">
-            <div>
-                <h4 id="lightbox-titulo" class="text-white font-bold text-lg leading-none">Visor de Detalle</h4>
-                <p class="text-sky-400 text-[11px] font-bold uppercase tracking-wider mt-1">🔎 Arrastra la imagen libremente cuando tenga aumento activo</p>
-            </div>
-            <button onclick="cerrarLightbox()" class="w-10 h-10 bg-slate-800 text-white rounded-full flex items-center justify-center hover:bg-red-500 font-bold shadow transition-colors">✕</button>
+            <div><h4 id="lightbox-titulo" class="text-white font-bold text-lg leading-none">Visor de Detalle</h4><p class="text-sky-400 text-[11px] font-bold uppercase mt-1">🔎 Arrastra la imagen cuando tenga aumento activo</p></div>
+            <button onclick="cerrarLightbox()" class="w-10 h-10 bg-slate-800 text-white rounded-full flex items-center justify-center hover:bg-red-500 font-bold">✕</button>
         </div>
-        
         <div class="flex-1 w-full max-w-4xl flex items-center justify-center overflow-hidden relative cursor-grab active:cursor-grabbing" id="lightbox-canvas" onmousedown="iniciarArrastreLightbox(event)" onmousemove="ejecutarArrastreLightbox(event)" onmouseup="finalizarArrastreLightbox()" onmouseleave="finalizarArrastreLightbox()" ontouchstart="iniciarArrastreTactil(event)" ontouchmove="ejecutarArrastreTactil(event)" ontouchend="finalizarArrastreLightbox()">
             <img id="lightbox-img" src="" alt="Zoom Detalle" class="max-h-[65vh] max-w-full object-contain pointer-events-none select-none transition-transform duration-100 ease-out origin-center" style="transform: scale(1) translate(0px, 0px);">
         </div>
-        
         <div class="w-full max-w-md bg-slate-900/80 backdrop-blur border border-slate-800/60 px-6 py-4 rounded-2xl flex items-center gap-4 relative z-[210] mb-2 shadow-xl">
             <span class="text-slate-400 text-xs font-bold font-mono">1x</span>
             <input type="range" id="lightbox-zoom-slider" min="1" max="4" step="0.1" value="1" oninput="sincronizarZoomSlider(this.value)" class="flex-1 accent-sky-500 h-1.5 bg-slate-800 rounded-lg appearance-none cursor-pointer">
@@ -811,136 +717,48 @@
         </div>
     </div>
 
-    <!-- SCRIPT DE LOGICA INTERACTIVA -->
     <script>
-        // Repositorio global para lectura etnográfica sin cortes en la consola
-        const cultureData = {
-            danzante: {
-                title: "Danzantes de Monedas y Cascabeles",
-                text: "Personajes estelares de las festividades patronales de San Miguel Arcángel en septiembre. Danzan portando majestuosas faldas blancas recubiertas por racimos de pesadas monedas de plata pura coloniales que marcan el ritmo de la lluvia al zapatear. Empuñan una espada militar española en su mano derecha como símbolo de sincretismo y de sometimiento, y un ramo de flores en la izquierda que representa el vergel y la despensa agrícola proveedora que Zámbiza constituía para el consumo de Quito. Su morrión sagrado está ornamentado con espejos astronómicos, cintas de raso y plumas exóticas.",
-                imgName: "DANZANTEZ.png"
-            },
-            campio: {
-                title: "Campio o Guía Coreográfico",
-                text: "El director absoluto de las comparsas rituales y líder energético del baile de los danceros. Es el encargado de emitir los poderosos gritos sagrados que ordenan a los danzantes golpear los cascabeles y hacer vibrar las valiosas monedas de plata colonial en honor al santo patrono. El personaje del Campio está vinculado estrechamente a los ciclos de fertilidad de la tierra, la llamada del viento de las quebradas y la abundancia hídrica de la parroquia.",
-                imgName: "GUIAZ.png"
-            },
-            capitanes: {
-                title: "Los Capitanes de Comparsa",
-                text: "Líderes ceremoniales a caballo que heredan de forma directa la estructura organizativa militar e hispánica de la colonia. Su rol es coordinar los priostazgos, salvaguardar el orden de las andas procesionales de San Miguel y purificar las explanadas eclesiásticas de la cabecera parroquial y de Cocotog.",
-                imgName: "CAPITANZ.png"
-            },
-            morenos: {
-                title: "Los Morenos / Negros",
-                text: "Actores de carácter festivo y satírico que subvierten las rígidas jerarquías coloniales. Coordinados por el legendario 'Cabecilla de los Negros', irrumpen con máquinas oscuras, coplas humorísticas de doble sentido y pasos de baile ágiles que inyectan alegría, dinamismo y camaradería popular a los festejos vecinales.",
-                imgName: "ELMORANOZ.png"
-            },
-            huacos: {
-                title: "Los Huacos Chamanes",
-                text: "Personaje purificador de origen incaico y prehispánico, siendo el más antiguo de la celebración. Vestidos con túnicas blancas, asumen el rol de curanderos y chamanes andinos, ejecutando limpias espirituales con hierbas nativas y alejando el 'mal aire' y los espíritus pesados de las laderas y quebradas de la comuna.",
-                imgName: "HUACOZ.png"
-            },
-            loa: {
-                title: "La Loa Sagrada",
-                text: "Papel de alta distinción comunitaria asignado a las niñas de las familias priostes. Ataviadas como ángeles celestiales, son las encargadas de recitar poemas rimados y cánticos líricos de agradecimiento ('loas') ante la imagen procesional de San Miguel Arcángel, sellando solemnemente el traspaso de mandos y compromisos religiosos del año.",
-                imgName: "LALOAZ.png"
-            },
-            mono: {
-                title: "Los Monos Amazónicos",
-                text: "Figuras místicas que rememoran los antiguos nexos de intercambio comercial y cultural que los cacicazgos prehispánicos de Zámbiza sostenían con el piedemonte amazónico a través de los mindalaes (comerciantes aborígenes). Representan la picardía, la selva indómita y el desorden ritual indispensable en la fiesta.",
-                imgName: "ELMONOZ.png"
-            }
-        };
-
-        // Controladores para ventanas modales
-        function openModal(id) {
-            const m = document.getElementById(id);
-            m.classList.remove('hidden'); m.classList.add('flex');
-            setTimeout(() => m.classList.remove('opacity-0'), 10);
-        }
-        function closeModal(id) {
-            const m = document.getElementById(id); m.classList.add('opacity-0');
-            setTimeout(() => { m.classList.add('hidden'); m.classList.remove('flex'); }, 300);
-        }
-
-        const abrirLugaresTuristicos = () => openModal('modal-lugares');
-        const cerrarLugaresTuristicos = () => closeModal('modal-lugares');
-        const abrirPlazas = () => openModal('modal-plazas');
-        const cerrarPlazas = () => closeModal('modal-plazas');
-        const abrirEntorno = () => openModal('modal-entorno');
-        const cerrarEntorno = () => closeModal('modal-entorno');
-        const abrirArtistas = () => openModal('modal-artistas');
-        const cerrarArtistas = () => closeModal('modal-artistas');
-        const abrirLogistica = () => openModal('modal-logistica');
-        const cerrarLogistica = () => closeModal('modal-logistica');
-        const abrirBiblioteca = () => openModal('modal-biblioteca');
-        const cerrarBiblioteca = () => closeModal('modal-biblioteca');
-        const abrirMapaZambiza = () => openModal('modal-mapa');
-        const cerrarMapaZambiza = () => closeModal('modal-mapa');
+        function openModal(id) { const m = document.getElementById(id); m.classList.remove('hidden'); m.classList.add('flex'); setTimeout(() => m.classList.remove('opacity-0'), 10); }
+        function closeModal(id) { const m = document.getElementById(id); m.classList.add('opacity-0'); setTimeout(() => { m.classList.add('hidden'); m.classList.remove('flex'); }, 300); }
+        
+        const abrirLugaresTuristicos = () => openModal('modal-lugares'); const cerrarLugaresTuristicos = () => closeModal('modal-lugares');
+        const abrirPlazas = () => openModal('modal-plazas'); const cerrarPlazas = () => closeModal('modal-plazas');
+        const abrirEntorno = () => openModal('modal-entorno'); const cerrarEntorno = () => closeModal('modal-entorno');
+        const abrirArtistas = () => openModal('modal-artistas'); const cerrarArtistas = () => closeModal('modal-artistas');
+        const abrirLogistica = () => openModal('modal-logistica'); const cerrarLogistica = () => closeModal('modal-logistica');
+        const abrirBiblioteca = () => openModal('modal-biblioteca'); const cerrarBiblioteca = () => closeModal('modal-biblioteca');
+        const abrirMapaZambiza = () => openModal('modal-mapa'); const cerrarMapaZambiza = () => closeModal('modal-mapa');
         const cerrarDemografia = () => closeModal('modal-demografia');
 
-        // Control del Menú Hamburguesa en Móviles (Sin colisiones ni desbordamientos)
-        function toggleMenuMovil() {
-            const menu = document.getElementById('mobile-menu');
-            const iconHam = document.getElementById('hamburger-icon');
-            const iconClose = document.getElementById('close-icon');
-            
-            if (menu.classList.contains('hidden')) {
-                menu.classList.remove('hidden');
-                iconHam.classList.add('hidden');
-                iconClose.classList.remove('hidden');
-            } else {
-                menu.classList.add('hidden');
-                iconHam.classList.remove('hidden');
-                iconClose.classList.add('hidden');
-            }
-        }
-
-        // CONTROL DE REGLAS DE MAPA SATELITAL / LIMÍTROFE
-        function cambiarVistaMapa(t) {
-            const s = document.getElementById('contenedor-mapa-satelital');
-            const d = document.getElementById('contenedor-mapa-densidad');
-            const bs = document.getElementById('btn-mapa-satelital');
-            const bd = document.getElementById('btn-mapa-densidad');
+        function cambiarVistaMapa(tipo) {
+            const satelital = document.getElementById('contenedor-mapa-satelital');
+            const densidad = document.getElementById('contenedor-mapa-densidad');
+            const btnSatelital = document.getElementById('btn-mapa-satelital');
+            const btnDensidad = document.getElementById('btn-mapa-densidad');
             const bcont = document.getElementById('barrios-container');
-            if(t==='satelital'){
-                s.classList.remove('hidden'); d.classList.add('hidden'); bcont.classList.add('hidden');
-                bs.className = "px-4 py-2 text-xs md:text-sm font-bold text-white bg-blue-900 rounded-lg shadow-sm transition-all";
-                bd.className = "px-4 py-2 text-xs md:text-sm font-bold text-slate-600 bg-slate-100 hover:bg-slate-200 rounded-lg transition-all";
-            }else{
-                s.classList.add('hidden'); d.classList.remove('hidden'); bcont.classList.remove('hidden');
-                bs.className = "px-4 py-2 text-xs md:text-sm font-bold text-slate-600 bg-slate-100 hover:bg-slate-200 rounded-lg transition-all";
-                bd.className = "px-4 py-2 text-xs md:text-sm font-bold text-white bg-blue-900 rounded-lg shadow-sm transition-all";
+
+            if(tipo === 'satelital') {
+                satelital.classList.remove('hidden'); densidad.classList.add('hidden'); bcont.classList.add('hidden');
+                btnSatelital.className = "px-4 py-2 text-xs md:text-sm font-bold text-white bg-blue-900 rounded-lg shadow-sm transition-all";
+                btnDensidad.className = "px-4 py-2 text-xs md:text-sm font-bold text-slate-600 bg-slate-100 hover:bg-slate-200 rounded-lg transition-all";
+            } else {
+                satelital.classList.add('hidden'); densidad.classList.remove('hidden'); bcont.classList.remove('hidden');
+                btnDensidad.className = "px-4 py-2 text-xs md:text-sm font-bold text-white bg-blue-900 rounded-lg shadow-sm transition-all";
+                btnSatelital.className = "px-4 py-2 text-xs md:text-sm font-bold text-slate-600 bg-slate-100 hover:bg-slate-200 rounded-lg transition-all";
             }
         }
 
-        // Inicialización y control del gráfico demográfico
         let demoChartInstance = null;
         function abrirDemografia() {
             openModal('modal-demografia');
             if(!demoChartInstance) {
                 setTimeout(() => {
                     const ctx = document.getElementById('demografiaChart').getContext('2d');
-                    demoChartInstance = new Chart(ctx, {
-                        type: 'line',
-                        data: {
-                            labels: ['1584', '1974', '1990', '2010', '2026'],
-                            datasets: [
-                                { label: 'Habitantes de la Cabecera', data: [1200, 2900, 3800, 5100, 6160], borderColor: '#0ea5e9', backgroundColor: 'rgba(14, 165, 233, 0.1)', borderWidth: 3, tension: 0.4, fill: true }
-                            ]
-                        },
-                        options: { responsive: true, maintainAspectRatio: false }
-                    });
+                    demoChartInstance = new Chart(ctx, { type: 'line', data: { labels: ['1584', '1974', '1990', '2010', '2026'], datasets: [{ label: 'Habitantes', data: [1200, 2900, 3800, 5100, 6160], borderColor: '#0ea5e9', backgroundColor: 'rgba(14, 165, 233, 0.1)', borderWidth: 3, tension: 0.4, fill: true }] }, options: { responsive: true, maintainAspectRatio: false } });
                 }, 100);
-            } else {
-                setTimeout(() => {
-                    demoChartInstance.resize();
-                    demoChartInstance.update();
-                }, 150);
             }
         }
 
-        // RENDERIZADO DE PERSONAJES MONUMENTALES (Carga Dinámica en 3 Intentos de Bypass de Caché de GitHub)
         function renderizarPersonaje(key) {
             const data = cultureData[key];
             const display = document.getElementById('content-display');
@@ -952,137 +770,45 @@
 
             display.innerHTML = `
                 <div class="fade-in flex flex-col lg:flex-row gap-10 items-center justify-between w-full">
-                    <!-- Contenedor Monumental Transparente PNG (Escalado Monumental) -->
                     <div class="w-full lg:w-1/2 flex items-center justify-center min-h-[460px] lg:min-h-[620px] relative overflow-hidden group">
                         <img id="img-personaje-${key}" src="${urlFase1}" alt="${data.title}" 
                              class="max-h-[440px] lg:max-h-[580px] w-auto object-contain transition-all duration-500 float-animation group-hover:scale-[1.12] cursor-pointer"
-                             onclick="abrirLightbox('${urlFase1}', '${data.title}')"
-                             onerror="intentarFase2Image(this, '${urlFase2}', '${urlFase3}', '${key}')">
+                             onclick="abrirLightbox('${urlFase1}', '${data.title}')" onerror="intentarFase2Image(this, '${urlFase2}', '${urlFase3}', '${key}')">
                     </div>
-                    <!-- Área de Descripción Respetuosa y Académica -->
                     <div class="w-full lg:w-1/2 space-y-4">
                         <h3 class="text-3xl font-bold text-sky-400 tracking-tight">${data.title}</h3>
                         <p class="text-blue-50 leading-relaxed text-base md:text-lg text-justify">${data.text}</p>
-                        <button onclick="abrirLightbox(document.getElementById('img-personaje-${key}').src, '${data.title}')" 
-                                class="inline-flex items-center gap-2 px-5 py-2.5 bg-sky-500 hover:bg-sky-400 text-slate-900 font-bold text-xs rounded-xl transition-all shadow-md">
-                            🔍 AMPLIAR LUPA DE DETALLE
-                        </button>
+                        <button onclick="abrirLightbox(document.getElementById('img-personaje-${key}').src, '${data.title}')" class="inline-flex items-center gap-2 px-5 py-2.5 bg-sky-500 hover:bg-sky-400 text-slate-900 font-bold text-xs rounded-xl shadow-md">🔍 AMPLIAR LUPA</button>
                     </div>
                 </div>
             `;
         }
 
         function intentarFase2Image(imgEl, url2, url3, key) {
-            if(!imgEl.dataset.attempt) {
-                imgEl.dataset.attempt = "2";
-                imgEl.src = url2;
-                imgEl.onclick = () => abrirLightbox(url2, cultureData[key].title);
-            } else if(imgEl.dataset.attempt === "2") {
-                imgEl.dataset.attempt = "3";
-                imgEl.src = url3;
-                imgEl.onclick = () => abrirLightbox(url3, cultureData[key].title);
-            } else {
-                imgEl.style.display = "none";
-                const fallbackIcon = document.createElement('div');
-                fallbackIcon.className = "text-9xl text-sky-300 animate-pulse font-serif p-8";
-                fallbackIcon.innerText = "🎭";
-                imgEl.parentNode.appendChild(fallbackIcon);
-            }
+            if(!imgEl.dataset.attempt) { imgEl.dataset.attempt = "2"; imgEl.src = url2; imgEl.onclick = () => abrirLightbox(url2, cultureData[key].title); } 
+            else if(imgEl.dataset.attempt === "2") { imgEl.dataset.attempt = "3"; imgEl.src = url3; imgEl.onclick = () => abrirLightbox(url3, cultureData[key].title); }
         }
 
-        // LÓGICA DE DETALLE (LUPA INTERACTIVA CON CONTROL DE ZOOM Y ARRASTRE)
-        let zoomActual = 1;
-        let esArrastrando = false;
-        let xInicial = 0, yInicial = 0;
-        let despliegueX = 0, despliegueY = 0;
-
-        function abrirLightbox(src, titulo) {
-            const lb = document.getElementById('lightbox-visor');
-            const limg = document.getElementById('lightbox-img');
-            document.getElementById('lightbox-titulo').innerText = titulo;
-            limg.src = src;
-            reiniciarZoomLightbox();
-            lb.classList.remove('hidden'); lb.classList.add('flex');
-            setTimeout(() => lb.classList.remove('opacity-0'), 10);
-        }
-        function cerrarLightbox() {
-            const lb = document.getElementById('lightbox-visor');
-            lb.classList.add('opacity-0');
-            setTimeout(() => { lb.classList.add('hidden'); lb.classList.remove('flex'); }, 300);
-        }
-        function evaluarCierreLightbox(e) {
-            if(e.target.id === 'lightbox-visor' || e.target.id === 'lightbox-canvas') cerrarLightbox();
-        }
-        function sincronizarZoomSlider(val) {
-            zoomActual = parseFloat(val);
-            actualizarTransformacionLightbox();
-        }
-        function reiniciarZoomLightbox() {
-            zoomActual = 1;
-            despliegueX = 0; despliegueY = 0;
-            document.getElementById('lightbox-zoom-slider').value = 1;
-            actualizarTransformacionLightbox();
-        }
-        function actualizarTransformacionLightbox() {
-            const limg = document.getElementById('lightbox-img');
-            limg.style.transform = `scale(${zoomActual}) translate(${despliegueX / zoomActual}px, ${despliegueY / zoomActual}px)`;
-        }
-
-        // Eventos de Arrastre Mouse (Pan Effect)
-        function iniciarArrastreLightbox(e) {
-            if(zoomActual <= 1) return;
-            esArrastrando = true;
-            xInicial = e.clientX - despliegueX;
-            yInicial = e.clientY - despliegueY;
-        }
-        function ejecutarArrastreLightbox(e) {
-            if(!esArrastrando) return;
-            despliegueX = e.clientX - xInicial;
-            despliegueY = e.clientY - yInicial;
-            actualizarTransformacionLightbox();
-        }
+        let zoomActual = 1, esArrastrando = false, xInicial = 0, yInicial = 0, despliegueX = 0, despliegueY = 0;
+        function abrirLightbox(src, titulo) { const lb = document.getElementById('lightbox-visor'); const limg = document.getElementById('lightbox-img'); document.getElementById('lightbox-titulo').innerText = titulo; limg.src = src; reiniciarZoomLightbox(); lb.classList.remove('hidden'); lb.classList.add('flex'); setTimeout(() => lb.classList.remove('opacity-0'), 10); }
+        function cerrarLightbox() { const lb = document.getElementById('lightbox-visor'); lb.classList.add('opacity-0'); setTimeout(() => { lb.classList.add('hidden'); lb.classList.remove('flex'); }, 300); }
+        function evaluarCierreLightbox(e) { if(e.target.id === 'lightbox-visor' || e.target.id === 'lightbox-canvas') cerrarLightbox(); }
+        function sincronizarZoomSlider(val) { zoomActual = parseFloat(val); actualizarTransformacionLightbox(); }
+        function reiniciarZoomLightbox() { zoomActual = 1; despliegueX = 0; despliegueY = 0; document.getElementById('lightbox-zoom-slider').value = 1; actualizarTransformacionLightbox(); }
+        function actualizarTransformacionLightbox() { document.getElementById('lightbox-img').style.transform = `scale(${zoomActual}) translate(${despliegueX / zoomActual}px, ${despliegueY / zoomActual}px)`; }
+        function iniciarArrastreLightbox(e) { if(zoomActual <= 1) return; esArrastrando = true; xInicial = e.clientX - despliegueX; yInicial = e.clientY - despliegueY; }
+        function ejecutarArrastreLightbox(e) { if(!esArrastrando) return; despliegueX = e.clientX - xInicial; despliegueY = e.clientY - yInicial; actualizarTransformacionLightbox(); }
         function finalizarArrastreLightbox() { esArrastrando = false; }
+        function iniciarArrastreTactil(e) { if(zoomActual <= 1 || e.touches.length !== 1) return; esArrastrando = true; xInicial = e.touches[0].clientX - despliegueX; yInicial = e.touches[0].clientY - despliegueY; }
+        function ejecutarArrastreTactil(e) { if(!esArrastrando || e.touches.length !== 1) return; despliegueX = e.touches[0].clientX - xInicial; despliegueY = e.touches[0].clientY - yInicial; actualizarTransformacionLightbox(); }
 
-        // Eventos de Arrastre Táctil (Móviles)
-        function iniciarArrastreTactil(e) {
-            if(zoomActual <= 1 || e.touches.length !== 1) return;
-            esArrastrando = true;
-            xInicial = e.touches[0].clientX - despliegueX;
-            yInicial = e.touches[0].clientY - despliegueY;
-        }
-        function ejecutarArrastreTactil(e) {
-            if(!esArrastrando || e.touches.length !== 1) return;
-            despliegueX = e.touches[0].clientX - xInicial;
-            despliegueY = e.touches[0].clientY - yInicial;
-            actualizarTransformacionLightbox();
-        }
-
-        // REPOSITORIO SEMÁNTICO LOCAL PARA CHAT "PREGUNTAS DE ZÁMBIZA" (Cero Caídas)
         const repositorioRespuestasZambiza = [
-            {
-                claves: ["significa", "origen", "colorado", "tsafiqui", "nombre"],
-                respuesta: "<b>Etimología de la Parroquia:</b> Conforme dictan los estudios etnográficos oficiales, el término 'Zámbiza' proviene de la lengua ancestral Colorado (Tsafiqui). Significa de forma literal <b>'cazamos en la arena'</b>. Su morfología se desglosa del vocablo <i>'san'</i> (derivado de <i>tsan</i>: arena) y de la palabra <i>'bisa'</i> (proveniente de <i>bisha</i>: cuyo significado es cazar). Esto denota que el asentamiento preincásico original se asentaba en terrazas arenosas adyacentes a las quebradas del noreste del valle de Quito."
-            },
-            {
-                claves: ["jayac", "grupo", "musica", "folclor"],
-                respuesta: "<b>El Legado del Grupo Jayac:</b> Zámbiza es mundialmente conocida por ser la cuna geográfica y espiritual de los integrantes del aclamado grupo folclórico transandino <b>Jayac</b>. Todos sus músicos nacieron y se criaron bajo las costumbres y ritmos festivos de esta parroquia, mimetizando el sonido del bombo, la zampoña y los cantos de la comparsa tradicional en sus producciones de renombre internacional."
-            },
-            {
-                claves: ["fundacion", "1584", "1861", "eclesiastica", "civil", "historia"],
-                respuesta: "<b>Hitos de Fundación de Zámbiza:</b> Es una de las poblaciones más antiguas y tradicionales del Cantón Quito. Su fundación religiosa y eclesiástica fue ejecutada por los colonizadores españoles el <b>11 de febrero de 1584</b>, imponiendo el catolicismo como eje de la vida comunitaria. No obstante, su fundación civil oficial como parroquia rural de la república aconteció siglos después, en el año <b>1861</b>. Posee 157 años de fundación civil civil y más de 435 años de herencia litúrgica."
-            },
-            {
-                claves: ["limites", "calderon", "valle", "1974", "anejos", "barrios", "barrio"],
-                respuesta: "<b>Límites y Evolución Territorial:</b> Geográficamente, la parroquia actual se encuentra delimitada por Llano Chico y Calderón al norte; Jipijapa y Nayón al sur; Puembo y Tumbaco al este; y El Inca al oeste. Sin embargo, los registros de los Censos Nacionales de 1974 aclaran que estos límites son modernos. En su origen eclesiástico de 1584, el territorio de Zámbiza abarcaba un inmenso valle unificado, que hoy en día se encuentra fragmentado en las parroquias independientes de: <i>Zámbiza, Calderón, Nayón, Llano Chico, San Isidro y San José del Inca</i>, con sus respectivos anejos. Al día de hoy, Zámbiza propiamente dicha se compone de 12 barrios consolidados."
-            },
-            {
-                claves: ["fiesta", "reyes", "san miguel", "priostes", "costumbres", "festejo"],
-                respuesta: "<b>El Ciclo Festivo de la Memoria:</b> Las costumbres principales giran en torno al calendario sagrado católico impuesto en la Colonia. Destaca la <b>Fiesta de Reyes</b> en enero, caracterizada por disfraces satíricos grupales y abundante comida comunitaria tradicional. La fiesta mayor evoca a su santo patrono, <b>San Miguel Arcángel</b>, en septiembre. Esta última es planificada por priostes devotos que financian el festejo y donan anualmente un vestido nuevo, confeccionado a mano, para vestir a la sagrada imagen."
-            },
-            {
-                claves: ["futbol", "deporte", "agricultura", "economia", "mercados", "trabajo"],
-                respuesta: "<b>Economía, Agricultura y Deporte:</b> La agricultura representa una de las actividades fundamentales e históricas de sus habitantes. Gran parte de la producción hortícola y artesanal está destinada al consumo de la capital, distribuyéndose en los principales mercados y supermercados de Quito. Paralelamente, el <b>fútbol</b> se consagra como el principal deporte y pasión de la parroquia, reuniendo a las familias en el Estadio de la Liga Parroquial. Dado que la mayoría de moradores trabajan en la capital, se desplazan diariamente hacia Quito en dinámicas pendulares de transporte."
-            }
+            { claves: ["significa", "origen", "colorado", "tsafiqui", "nombre"], respuesta: "<b>Etimología:</b> Proviene del Tsafiqui. Significa <b>'cazamos en la arena'</b> (<i>'san'</i> de <i>tsan</i>: arena y <i>'bisa'</i> de <i>bisha</i>: cazar)." },
+            { claves: ["jayac", "grupo", "musica", "folclor"], respuesta: "<b>Grupo Jayac:</b> Zámbiza es mundialmente conocida por ser la cuna de los integrantes del aclamado grupo folclórico transandino <b>Jayac</b>." },
+            { claves: ["fundacion", "1584", "1861", "historia"], respuesta: "<b>Fundaciones:</b> Fundación religiosa: <b>11 de febrero de 1584</b>. Fundación civil oficial: <b>1861</b>." },
+            { claves: ["limites", "calderon", "valle", "1974", "barrios"], respuesta: "<b>Límites Históricos:</b> En 1584 abarcaba el inmenso valle que hoy se divide (según Censo 1974) en: Calderón, Nayón, Llano Chico, San Isidro y San José del Inca. Actualmente Zámbiza tiene 12 barrios." },
+            { claves: ["fiesta", "reyes", "san miguel", "priostes"], respuesta: "<b>Fiestas:</b> Destacan la Fiesta de Reyes en enero (con disfraces satíricos) y la de San Miguel Arcángel en septiembre (los priostes donan un vestido nuevo y organizan el festejo)." },
+            { claves: ["futbol", "deporte", "agricultura", "economia"], respuesta: "<b>Economía y Deporte:</b> La agricultura abastece permanentemente a los mercados de Quito. El fútbol es su principal pasión deportiva, reuniendo a las familias en la Liga Parroquial." }
         ];
 
         async function procesarChatInmediato() {
@@ -1090,111 +816,30 @@
             const textoPregunta = inputEl.value.trim().toLowerCase();
             if(!textoPregunta) return;
 
-            // Renderizar pregunta del usuario
             const outputCont = document.getElementById('chat-output');
-            outputCont.innerHTML += `
-                <div class="flex gap-3 items-start justify-end fade-in">
-                    <div class="bg-violet-900/40 p-4 rounded-2xl rounded-tr-none border border-violet-800 text-slate-100 max-w-[85%] leading-relaxed text-justify">
-                        ${inputEl.value}
-                    </div>
-                    <div class="w-8 h-8 bg-slate-700 text-white rounded-full flex items-center justify-center text-xs flex-shrink-0">👤</div>
-                </div>
-            `;
-            inputEl.value = "";
-            outputCont.scrollTop = outputCont.scrollHeight;
+            outputCont.innerHTML += `<div class="flex gap-3 items-start justify-end fade-in"><div class="bg-violet-900/40 p-4 rounded-2xl rounded-tr-none border border-violet-800 text-slate-100 max-w-[85%] leading-relaxed">${inputEl.value}</div><div class="w-8 h-8 bg-slate-700 text-white rounded-full flex items-center justify-center text-xs flex-shrink-0">👤</div></div>`;
+            inputEl.value = ""; outputCont.scrollTop = outputCont.scrollHeight;
 
-            // Renderizar burbuja de espera de la IA
             const idEspera = "espera-" + Date.now();
-            outputCont.innerHTML += `
-                <div class="flex gap-3 items-start fade-in" id="${idEspera}">
-                    <div class="w-8 h-8 bg-violet-600 text-white rounded-full flex items-center justify-center text-sm flex-shrink-0">👴</div>
-                    <div class="bg-slate-900 p-4 rounded-2xl rounded-tl-none border border-slate-800 text-sky-400 font-bold animate-pulse">
-                        Consultando con rigor científico en repositorios de Indias...
-                    </div>
-                </div>
-            `;
+            outputCont.innerHTML += `<div class="flex gap-3 items-start fade-in" id="${idEspera}"><div class="w-8 h-8 bg-violet-600 text-white rounded-full flex items-center justify-center text-sm flex-shrink-0">👴</div><div class="bg-slate-900 p-4 rounded-2xl rounded-tl-none border border-slate-800 text-sky-400 font-bold animate-pulse">Consultando registros históricos...</div></div>`;
             outputCont.scrollTop = outputCont.scrollHeight;
 
             setTimeout(() => {
-                const nodoEspera = document.getElementById(idEspera);
-                if(nodoEspera) nodoEspera.remove();
-
-                let respuestaFinal = "<b>Consulta Académica:</b> Su pregunta ha sido procesada por el motor de Zimagination. De acuerdo con los archivos parroquiales e históricos de Zámbiza, el antiguo cacicazgo prehispánico constituyó un eje de resistencia y abastecimiento clave. Le sugiero consultar temas sobre los Danzantes de Monedas, el origen etimológico Colorado, la cuna del grupo Jayac, la Fiesta de Reyes o los límites del Censo de 1974.";
-
-                // Búsqueda semántica en la base de datos local infalible
-                for (let item of repositorioRespuestasZambiza) {
-                    let coincidencia = item.claves.some(clave => textoPregunta.includes(clave));
-                    if(coincidencia) {
-                        respuestaFinal = item.respuesta;
-                        break;
-                    }
-                }
-
-                outputCont.innerHTML += `
-                    <div class="flex gap-3 items-start fade-in">
-                        <div class="w-8 h-8 bg-violet-600 text-white rounded-full flex items-center justify-center text-sm flex-shrink-0">👴</div>
-                        <div class="bg-slate-900 p-4 rounded-2xl rounded-tl-none border border-slate-800 text-slate-100 max-w-[85%] leading-relaxed text-justify">
-                            ${respuestaFinal}
-                        </div>
-                    </div>
-                `;
+                const nodoEspera = document.getElementById(idEspera); if(nodoEspera) nodoEspera.remove();
+                let respuestaFinal = "<b>Consulta:</b> Sugiero preguntar sobre la etimología de Zámbiza, el grupo Jayac, la Fiesta de Reyes, agricultura, fútbol o los límites históricos del Censo de 1974.";
+                for (let item of repositorioRespuestasZambiza) { if(item.claves.some(clave => textoPregunta.includes(clave))) { respuestaFinal = item.respuesta; break; } }
+                outputCont.innerHTML += `<div class="flex gap-3 items-start fade-in"><div class="w-8 h-8 bg-violet-600 text-white rounded-full flex items-center justify-center text-sm flex-shrink-0">👴</div><div class="bg-slate-900 p-4 rounded-2xl rounded-tl-none border border-slate-800 text-slate-100 max-w-[85%] leading-relaxed text-justify">${respuestaFinal}</div></div>`;
                 outputCont.scrollTop = outputCont.scrollHeight;
             }, 750);
         }
+        function enviarPreguntaRapida(texto) { document.getElementById('chat-input').value = texto; procesarChatInmediato(); }
 
-        function enviarPreguntaRapida(texto) {
-            document.getElementById('chat-input').value = texto;
-            procesarChatInmediato();
-        }
-
-        // LÓGICA DE DETECCION DE CARGA DE IMÁGENES DE RESPALDO EN ESCÁNER DE COMPATIBILIDAD
-        function procesarImagenEscaner(e) {
-            const file = e.target.files[0];
-            if(!file) return;
-
-            const loading = document.getElementById('escaner-loading');
-            const resultBox = document.getElementById('escaner-result');
-            
-            if(loading) loading.classList.remove('hidden');
-            if(resultBox) resultBox.classList.add('hidden');
-
-            setTimeout(() => {
-                if(loading) loading.classList.add('hidden');
-                if(resultBox) {
-                    resultBox.classList.remove('hidden');
-                    resultBox.innerHTML = `
-                        <strong>Análisis del Escáner de Visión:</strong> Se han detectado patrones textiles y morfológicos afines al patrimonio inmaterial de la zona metropolitana de Quito. El contraste documental asocia la muestra con la indumentaria sagrada de los <em>Danzantes de Monedas de Zámbiza</em> o la arquitectura en adobe del <em>Santuario de San Miguel (1584)</em>. Los hilos y espejos corresponden al sincretismo litúrgico de la Fiesta de Reyes y las cosechas de maíz de Cocotog.
-                    `;
-                }
-            }, 1200);
-        }
-
-        // Animación de Slideshow de Fondo
-        const slides = document.querySelectorAll('#slideshow div');
-        let currentSlide = 0;
-        setInterval(() => {
-            slides[currentSlide].classList.remove('active');
-            currentSlide = (currentSlide + 1) % slides.length;
-            slides[currentSlide].classList.add('active');
-        }, 5000);
-
-        // Observer para animaciones de scroll
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('slide-visible'); });
-        }, { threshold: 0.1 });
-        document.querySelectorAll('.slide-hidden').forEach((el) => observer.observe(el));
-
-        // Escucha de teclado para chat
+        const slides = document.querySelectorAll('#slideshow div'); let currentSlide = 0; setInterval(() => { slides[currentSlide].classList.remove('active'); currentSlide = (currentSlide + 1) % slides.length; slides[currentSlide].classList.add('active'); }, 5000);
+        const observer = new IntersectionObserver((entries) => { entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('slide-visible'); }); }, { threshold: 0.1 }); document.querySelectorAll('.slide-hidden').forEach((el) => observer.observe(el));
         document.getElementById('chat-input').addEventListener('keydown', (e) => { if(e.key === 'Enter') procesarChatInmediato(); });
-
-        // Inicializar pestaña
-        document.querySelectorAll('.tab-btn').forEach(btn => {
-            btn.addEventListener('click', () => {
-                document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-                btn.classList.add('active');
-                renderizarPersonaje(btn.dataset.target);
-            });
-        });
+        document.querySelectorAll('.tab-btn').forEach(btn => { btn.addEventListener('click', () => { document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active')); btn.classList.add('active'); renderizarPersonaje(btn.dataset.target); }); });
+        
+        // Inicializar visualización del primer danzante al cargar la página
         renderizarPersonaje('danzante');
     </script>
 </body>
