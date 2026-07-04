@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-5.0, user-scalable=yes">
     <title>Zimagination: Voces y Memorias de Zámbiza</title>
     
     <script src="https://cdn.tailwindcss.com"></script>
@@ -114,8 +114,7 @@
                     <a href="#turismo" class="px-4 py-2 text-xs xl:text-sm font-bold text-slate-600 rounded-full hover:bg-sky-500 hover:text-white hover:shadow-md transition-all duration-300">Descubre Zámbiza</a>
                     <a href="#preguntas-seccion" class="px-4 py-2 text-xs xl:text-sm font-bold text-slate-600 rounded-full hover:bg-violet-600 hover:text-white hover:shadow-md transition-all duration-300">Preguntas de Zámbiza</a>
                     <a href="#eventos" class="px-4 py-2 text-xs xl:text-sm font-bold text-slate-600 rounded-full hover:bg-amber-500 hover:text-white hover:shadow-md transition-all duration-300">Eventos</a>
-                    <a href="#apoyo" class="px-4 py-2 text-xs xl:text-sm font-bold text-slate-600 rounded-full hover:bg-sky-500 hover:text-white hover:shadow-md transition-all duration-300">Apoyo Local</a>
-                    <button onclick="abrirEscanerModal()" class="px-4 py-2 text-xs xl:text-sm font-bold text-white bg-violet-600 rounded-full hover:bg-violet-500 hover:shadow-md transition-all duration-300 flex items-center gap-1">📸 Escáner</button>
+                    <a href="#encuesta" class="px-4 py-2 text-xs xl:text-sm font-bold text-slate-600 rounded-full hover:bg-violet-600 hover:text-white hover:shadow-md transition-all duration-300">Encuesta</a>
                 </div>
 
                 <!-- Botón de Menú Hamburguesa para Móvil -->
@@ -137,8 +136,7 @@
             <a href="#turismo" onclick="toggleMenuMovil()" class="block px-4 py-2 text-sm font-bold text-slate-700 hover:bg-sky-500 hover:text-white rounded-xl transition-colors">Descubre Zámbiza</a>
             <a href="#preguntas-seccion" onclick="toggleMenuMovil()" class="block px-4 py-2 text-sm font-bold text-slate-700 hover:bg-violet-600 hover:text-white rounded-xl transition-colors">Preguntas de Zámbiza</a>
             <a href="#eventos" onclick="toggleMenuMovil()" class="block px-4 py-2 text-sm font-bold text-slate-700 hover:bg-amber-500 hover:text-white rounded-xl transition-colors">Eventos</a>
-            <a href="#apoyo" onclick="toggleMenuMovil()" class="block px-4 py-2 text-sm font-bold text-slate-700 hover:bg-sky-500 hover:text-white rounded-xl transition-colors">Apoyo Local</a>
-            <button onclick="abrirEscanerModal(); toggleMenuMovil();" class="w-full text-center block px-4 py-3 text-sm font-bold text-white bg-violet-600 hover:bg-violet-500 rounded-xl transition-colors flex items-center justify-center gap-1">📸 Escáner Cultural con IA</button>
+            <a href="#encuesta" onclick="toggleMenuMovil()" class="block px-4 py-2 text-sm font-bold text-slate-700 hover:bg-violet-600 hover:text-white rounded-xl transition-colors">Encuesta</a>
         </div>
     </nav>
 
@@ -198,7 +196,7 @@
                     <div class="p-6 bg-slate-50 rounded-2xl border border-slate-100 hover:shadow-md transition-shadow">
                         <div class="text-3xl md:text-4xl mb-4">🗺️</div>
                         <h4 class="font-bold text-blue-900 mb-2 text-lg md:text-xl">Evolución del Valle</h4>
-                        <p class="text-xs md:text-sm text-slate-600 leading-relaxed">En 1584, Zámbiza abarcaba un inmenso valle prehispánico. Según datos de los Censos Nacionales de 1974, hoy este territory se divide en las actuales parroquias de: <em>Zámbiza, Calderón, Nayón, Llano Chico, San Isidro y San José del Inca</em>.</p>
+                        <p class="text-xs md:text-sm text-slate-600 leading-relaxed">En 1584, Zámbiza abarcaba un inmenso valle prehispánico. Según datos de los Censos Nacionales de 1974, hoy este territorio se divide en las actuales parroquias de: <em>Zámbiza, Calderón, Nayón, Llano Chico, San Isidro y San José del Inca</em>.</p>
                     </div>
                     <div onclick="abrirMapaZambiza()" class="p-6 bg-slate-50 rounded-2xl border border-slate-100 hover:border-sky-300 hover:shadow-lg transition-all cursor-pointer group border-b-4 border-b-sky-500">
                         <div class="text-3xl md:text-4xl mb-4 group-hover:scale-110 transition-transform">🗺️</div>
@@ -226,7 +224,7 @@
                 </div>
 
                 <!-- Pestañas Interactivas -->
-                <div class="flex flex-wrap justify-center gap-2 md:gap-3 mb-8 md:mb-10">
+                <div class="flex flex-wrap justify-center gap-2 md:gap-3 mb-8 md:mb-10 text-slate-900">
                     <button class="tab-btn active px-4 md:px-5 py-2 rounded-full border border-blue-400 text-blue-50 text-xs md:text-sm font-medium hover:bg-blue-800" data-target="danzante">Danzantes</button>
                     <button class="tab-btn px-4 md:px-5 py-2 rounded-full border border-blue-400 text-blue-50 text-xs md:text-sm font-medium hover:bg-blue-800" data-target="campio">Campio o Guía</button>
                     <button class="tab-btn px-4 md:px-5 py-2 rounded-full border border-blue-400 text-blue-50 text-xs md:text-sm font-medium hover:bg-blue-800" data-target="capitanes">Capitanes</button>
@@ -285,25 +283,45 @@
                     </div>
                 </div>
 
-                <!-- Ecosistema Audiovisual YouTube CTA -->
+                <!-- Biblioteca Clásica Multimedia Sin Ecosistema Zimagination -->
                 <div class="border-t border-slate-100 pt-16">
-                    <h3 class="text-xl md:text-2xl font-bold text-blue-950 mb-8 text-center slide-hidden">Ecosistema Multimedia de Zimagination</h3>
+                    <h3 class="text-xl md:text-2xl font-bold text-blue-950 mb-8 text-center slide-hidden">Ecosistema Digital</h3>
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        <a href="https://www.youtube.com/@zambizamemoriasyvoces" target="_blank" class="flex items-start gap-4 p-6 rounded-2xl border border-rose-200 hover:border-rose-400 transition-colors bg-rose-50/50 group cursor-pointer slide-hidden">
-                            <div class="text-3xl md:text-4xl group-hover:scale-110 transition-transform">🚨</div>
+                        <!-- Card 1: Galería Digital Google Fotos -->
+                        <a href="https://photos.google.com/album/AF1QipP_byRTofeyHFxEJeK5bSkfXLfCHT1C4nY2VFv0" target="_blank" class="flex items-start gap-4 p-6 rounded-2xl border border-slate-200 hover:border-sky-300 transition-colors bg-white group cursor-pointer slide-hidden">
+                            <div class="text-3xl md:text-4xl group-hover:scale-110 transition-transform">🖼️</div>
                             <div>
-                                <h4 class="font-bold text-rose-950 text-base md:text-lg mb-1 group-hover:text-rose-600 transition-colors">¡Suscríbete a Zimagination en YouTube!</h4>
-                                <p class="text-xs md:text-sm text-rose-800">Apoya el proyecto multimedia suscribiéndote a nuestro canal de cápsulas y documentales. Tu suscripción mantiene viva la memoria.</p>
+                                <h4 class="font-bold text-blue-900 text-base md:text-lg mb-1 group-hover:text-sky-600 transition-colors">Galería Digital en Google Fotos</h4>
+                                <p class="text-xs md:text-sm text-slate-600">Álbum fotográfico comunitario con registros históricos, familias fundadoras y paisajes de la parroquia. Clic para explorar.</p>
                             </div>
                         </a>
 
-                        <button onclick="abrirBiblioteca()" class="text-left flex items-start gap-4 p-6 rounded-2xl border border-slate-200 hover:border-sky-300 transition-colors bg-white group cursor-pointer slide-hidden">
-                            <div class="text-3xl md:text-4xl group-hover:scale-110 transition-transform">🖼️</div>
+                        <!-- Card 2: TikTok #Zambiza -->
+                        <a href="https://www.tiktok.com/tag/zambiza" target="_blank" class="flex items-start gap-4 p-6 rounded-2xl border border-slate-200 hover:border-sky-300 transition-colors bg-white group cursor-pointer slide-hidden" style="transition-delay: 100ms;">
+                            <div class="text-3xl md:text-4xl group-hover:scale-110 transition-transform">🎵</div>
                             <div>
-                                <h4 class="font-bold text-blue-900 text-base md:text-lg mb-1 group-hover:text-sky-600 transition-colors">Biblioteca Multimedia Integrada</h4>
-                                <p class="text-xs md:text-sm text-slate-600">Repositorios documentales andinos y videos etnográficos de los bailes de Zámbiza, Cocotog y Andinukuna.</p>
+                                <h4 class="font-bold text-blue-900 text-base md:text-lg mb-1 group-hover:text-sky-600 transition-colors">Hashtag #Zámbiza en TikTok</h4>
+                                <p class="text-xs md:text-sm text-slate-600">Explora de manera dinámica los videos, danzas y tendencias generadas en tiempo real por la comunidad zambiceña. Clic para ver.</p>
+                            </div>
+                        </a>
+
+                        <!-- Card 3: Biblioteca Multimedia YouTube compilación clásica -->
+                        <button onclick="abrirBiblioteca()" class="text-left flex items-start gap-4 p-6 rounded-2xl border border-slate-200 hover:border-sky-300 transition-colors bg-white group cursor-pointer slide-hidden" style="transition-delay: 200ms;">
+                            <div class="text-3xl md:text-4xl group-hover:scale-110 transition-transform">📺</div>
+                            <div>
+                                <h4 class="font-bold text-blue-900 text-base md:text-lg mb-1 group-hover:text-sky-600 transition-colors">Biblioteca de Videos de YouTube</h4>
+                                <p class="text-xs md:text-sm text-slate-600">Navega en nuestra biblioteca interna con los documentales recopilados que hablan de la historia de Zámbiza y la Comuna de Cocotog.</p>
                             </div>
                         </button>
+
+                        <!-- Card 4: Significado Vestimentas -->
+                        <a href="#cultura" class="text-left flex items-start gap-4 p-6 rounded-2xl border border-slate-200 hover:border-sky-300 transition-colors bg-white group cursor-pointer slide-hidden" style="transition-delay: 300ms;">
+                            <div class="text-3xl md:text-4xl group-hover:scale-110 transition-transform">🧵</div>
+                            <div>
+                                <h4 class="font-bold text-blue-900 text-base md:text-lg mb-1 group-hover:text-sky-600 transition-colors">Significado de Vestimentas</h4>
+                                <p class="text-xs md:text-sm text-slate-600">Retorna a la sección de patrimonio inmaterial para explorar la indumentaria mística de nuestros personajes.</p>
+                            </div>
+                        </a>
                     </div>
                 </div>
             </div>
@@ -350,28 +368,7 @@
             </div>
         </section>
 
-        <!-- 5. ESCÁNER CULTURAL CON IA -->
-        <section id="escaner-seccion" class="scroll-mt-32">
-            <div class="bg-gradient-to-r from-indigo-900 to-purple-900 rounded-3xl p-6 md:p-8 text-white shadow-xl border border-indigo-800 slide-hidden">
-                <div class="max-w-3xl mx-auto text-center mb-6 md:mb-8">
-                    <span class="bg-indigo-950 text-sky-400 font-bold text-[10px] md:text-xs px-3 py-1 rounded-full uppercase tracking-widest mb-3 inline-block">Innovación Etnográfica</span>
-                    <h2 class="text-2xl md:text-3xl font-bold mb-2">Escáner Cultural de Identidad</h2>
-                    <p class="text-indigo-100 text-xs md:text-sm">Sube o toma una fotografía de trajes, monumentos o iglesias de la parroquia. Nuestra IA la contrastará con fuentes fiables e institucionales.</p>
-                </div>
-
-                <div class="max-w-xl mx-auto bg-slate-950/80 backdrop-blur p-4 md:p-6 rounded-2xl border border-indigo-700/50 space-y-4">
-                    <div class="flex flex-col items-center justify-center border-2 border-dashed border-indigo-500/40 rounded-xl p-6 bg-slate-950 hover:border-indigo-400 transition-colors cursor-pointer relative">
-                        <input type="file" id="escaner-file" accept="image/*" onchange="procesarImagenEscaner(event)" class="absolute inset-0 w-full h-full opacity-0 cursor-pointer">
-                        <span class="text-3xl md:text-4xl mb-2">📸</span>
-                        <p class="text-[10px] md:text-xs text-slate-400 font-medium text-center">Haz clic para cargar o capturar una foto cultural</p>
-                    </div>
-                    <div id="escaner-loading" class="hidden text-center text-xs text-sky-400 font-bold animate-pulse">⚙️ Analizando firmas etnográficas en repositorios institucionales...</div>
-                    <div id="escaner-result" class="text-xs bg-slate-900 p-4 rounded-xl border border-slate-800 text-slate-300 leading-relaxed hidden max-h-[180px] overflow-y-auto"></div>
-                </div>
-            </div>
-        </section>
-
-        <!-- 6. AGENDA DE EVENTOS Y NOTICIAS -->
+        <!-- 5. AGENDA DE EVENTOS Y NOTICIAS -->
         <section id="eventos" class="scroll-mt-32">
             <div class="bg-blue-50 rounded-3xl shadow-xl p-6 md:p-12 border border-slate-200 slide-hidden">
                 <div class="text-center max-w-3xl mx-auto mb-12">
@@ -449,59 +446,131 @@
             </div>
         </section>
 
-        <!-- SECCIÓN DE TESTIMONIOS (Voz Comunitaria Destacada) -->
-        <section id="testimonios" class="scroll-mt-24">
-            <div class="bg-white rounded-3xl shadow-xl p-6 md:p-12 border border-slate-100">
-                <div class="text-center max-w-2xl mx-auto mb-10 md:mb-12">
-                    <span class="text-sky-600 font-bold uppercase text-xs md:text-sm tracking-wider block mb-2">Memoria Viva</span>
-                    <h2 class="text-2xl md:text-3xl font-bold text-blue-950">Testimonios de la Comunidad</h2>
-                    <p class="text-slate-600 text-xs md:text-sm mt-1">La historia narrada directamente por los rostros y sabios de la parroquia.</p>
-                </div>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                    <div class="p-6 bg-slate-50 rounded-2xl border border-slate-100 relative">
-                        <span class="text-5xl md:text-6xl text-sky-200 absolute top-2 right-4 font-serif select-none">“</span>
-                        <p class="text-slate-700 text-xs md:text-sm italic relative z-10 leading-relaxed mb-4">"Zámbiza no es solo el presente, es un tejido antiguo. Conservar la vestimenta y el toque de los pingullos es salvaguardar el alma de los abuelos que labraron este valle."</p>
-                        <h5 class="font-bold text-blue-950 text-xs md:text-sm">— Líder Comunitario Originario</h5>
-                    </div>
-                    <div class="p-6 bg-slate-50 rounded-2xl border border-slate-100 relative">
-                        <span class="text-5xl md:text-6xl text-sky-200 absolute top-2 right-4 font-serif select-none">“</span>
-                        <p class="text-slate-700 text-xs md:text-sm italic relative z-10 leading-relaxed mb-4">"Nuestra parroquia abasteció a Quito por siglos. Hoy los jóvenes, a través de la música del grupo Jayac y la danza de Andinukuna, reviven esa herencia gloriosa con orgullo."</p>
-                        <h5 class="font-bold text-blue-950 text-xs md:text-sm">— Gestor Cultural de la Cabecera</h5>
-                    </div>
+        <!-- 6. SECCIÓN DE LA ENCUESTA -->
+        <section id="encuesta" class="scroll-mt-32">
+            <div class="bg-gradient-to-r from-violet-600 to-indigo-700 rounded-3xl shadow-xl p-8 md:p-12 text-white border border-violet-500 slide-hidden">
+                <div class="max-w-3xl mx-auto text-center">
+                    <span class="bg-violet-800 text-sky-300 font-bold text-xs px-3 py-1 rounded-full uppercase tracking-widest mb-3 inline-block">Tu Opinión Importa</span>
+                    <h2 class="text-3xl md:text-4xl font-bold mb-4">Formulario Comunitario y Sugerencias</h2>
+                    <p class="text-violet-100 text-sm md:text-base leading-relaxed mb-8">
+                        Ayúdanos a enriquecer y fortalecer este portal de memoria viva. Tu retroalimentación, ideas y aportaciones nos permiten asegurar la salvaguardia de nuestra cultura ancestral para las futuras generaciones.
+                    </p>
+                    <a href="https://docs.google.com/forms/d/1bKX2ZwUDLZRMmMKeFndHRKgvtyxMFR6Zirdt9HHf4cQ/edit" target="_blank" class="inline-flex items-center gap-3 px-8 py-4 bg-white text-indigo-950 font-bold rounded-full shadow-lg hover:scale-105 hover:-translate-y-0.5 transition-all duration-300 group">
+                        <span>📋 Compartir Opinión y Sugerencias</span>
+                        <span class="group-hover:translate-x-1 transition-transform">➔</span>
+                    </a>
                 </div>
             </div>
         </section>
 
-        <!-- ENLACES INSTITUCIONALES (GAD VALIDACIÓN) -->
-        <section id="apoyo" class="scroll-mt-24">
-            <div class="bg-white rounded-2xl shadow-xl p-6 md:p-8 border border-slate-100 slide-hidden">
-                <h2 class="text-2xl md:text-3xl font-bold text-blue-950 mb-4">Validación Institucional y Apoyo Local</h2>
-                <p class="text-slate-600 text-sm md:text-base leading-relaxed mb-6">
-                    Este proyecto cuenta con enlaces de validación y transparencia que te conectan directamente con los organismos oficiales de la parroquia para asegurar la veracidad científica e histórica.
-                </p>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <a href="https://gadzambiza.gob.ec/" target="_blank" class="flex justify-between items-center p-5 bg-slate-50 border border-slate-200 rounded-xl hover:border-sky-400 transition-colors group">
-                        <span class="font-bold text-slate-800 group-hover:text-sky-600 text-xs md:text-sm transition-colors">🌐 Visitar Sitio Web Oficial del GAD de Zámbiza</span>
-                        <span class="text-sm md:text-xl">➔</span>
-                    </a>
-                    <a href="https://docs.google.com/forms/d/1bKX2ZwUDLZRMmMKeFndHRKgvtyxMFR6Zirdt9HHf4cQ/edit" target="_blank" class="flex justify-between items-center p-5 bg-slate-50 border border-slate-200 rounded-xl hover:border-violet-400 transition-colors group">
-                        <span class="font-bold text-slate-800 group-hover:text-violet-600 text-xs md:text-sm transition-colors">📋 Formulario Comunitario de Opinión y Sugerencias</span>
-                        <span class="text-sm md:text-xl">➔</span>
-                    </a>
+        <!-- APARTADO DE REDES (Carrusel Continuo Restablecido) -->
+        <section id="redes" class="w-[100vw] relative left-[50%] right-[50%] -ml-[50vw] -mr-[50vw] bg-blue-950 py-16 overflow-hidden border-y border-blue-900 slide-hidden">
+            <div class="max-w-7xl mx-auto px-6 mb-10 text-center relative z-10">
+                <h2 class="text-3xl font-bold text-white mb-2">Redes y Sitios Oficiales que nos Apoyan</h2>
+                <p class="text-blue-200 text-sm">Pasa el cursor sobre las tarjetas para detenerlas y explorarlas.</p>
+            </div>
+            
+            <div class="pause-on-hover relative w-full overflow-hidden">
+                <div class="marquee-container flex gap-6 px-4">
+                    <!-- Bloque 1 -->
+                    <div class="flex gap-6 flex-shrink-0 justify-around">
+                        <a href="https://gadzambiza.gob.ec/" target="_blank" class="w-72 bg-blue-900/80 border border-blue-800 rounded-2xl p-6 hover:bg-blue-800 transition-colors group flex flex-col items-center text-center">
+                            <div class="w-16 h-16 bg-white rounded-full flex items-center justify-center p-2 mb-4 group-hover:scale-110 transition-transform overflow-hidden">
+                                <span class="font-bold text-blue-900 text-xs">GAD</span>
+                            </div>
+                            <h4 class="text-white font-bold text-lg mb-1">Sitio Web GAD</h4>
+                        </a>
+                        <a href="https://www.tiktok.com/@gad_zambiza?lang=es" target="_blank" class="w-72 bg-blue-900/80 border border-blue-800 rounded-2xl p-6 hover:bg-blue-800 transition-colors group flex flex-col items-center text-center">
+                            <div class="w-16 h-16 bg-black rounded-full flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                                <span class="text-2xl text-white">🎵</span>
+                            </div>
+                            <h4 class="text-white font-bold text-lg mb-1">TikTok Zámbiza</h4>
+                        </a>
+                        <a href="https://www.facebook.com/zonaleugenioespejo/?locale=es_LA" target="_blank" class="w-72 bg-blue-900/80 border border-blue-800 rounded-2xl p-6 hover:bg-blue-800 transition-colors group flex flex-col items-center text-center">
+                            <div class="w-16 h-16 bg-blue-600 rounded-full flex items-center justify-center p-2 mb-4 group-hover:scale-110 transition-transform overflow-hidden">
+                                <span class="font-bold text-white text-xs">ZONAL</span>
+                            </div>
+                            <h4 class="text-white font-bold text-lg mb-1">Admin. Zonal FB</h4>
+                        </a>
+                        <a href="https://www.youtube.com/@zambizamemoriasyvoces" target="_blank" class="w-72 bg-blue-900/80 border border-blue-800 rounded-2xl p-6 hover:bg-blue-800 transition-colors group flex flex-col items-center text-center">
+                            <div class="w-16 h-16 bg-white rounded-full flex items-center justify-center p-2 mb-4 group-hover:scale-110 transition-transform overflow-hidden shadow-inner">
+                                <span class="font-bold text-red-600 text-xs">UDLA</span>
+                            </div>
+                            <h4 class="text-white font-bold text-lg mb-1">Canal UDLA</h4>
+                        </a>
+                        <a href="https://www.facebook.com/Comuna.Cocotog?locale=es_LA" target="_blank" class="w-72 bg-blue-900/80 border border-blue-800 rounded-2xl p-6 hover:bg-blue-800 transition-colors group flex flex-col items-center text-center">
+                            <div class="w-16 h-16 bg-green-700 rounded-full flex items-center justify-center p-2 mb-4 group-hover:scale-110 transition-transform overflow-hidden">
+                                <span class="font-bold text-white text-xs">COCOTOG</span>
+                            </div>
+                            <h4 class="text-white font-bold text-lg mb-1">Comuna Cocotog FB</h4>
+                        </a>
+                    </div>
+                    
+                    <!-- Bloque 2 (Clon exacto para animación de bucle infinito) -->
+                    <div class="flex gap-6 flex-shrink-0" aria-hidden="true">
+                        <a href="https://gadzambiza.gob.ec/" class="w-72 bg-blue-900/80 border border-blue-800 rounded-2xl p-6 flex flex-col items-center text-center"><div class="w-16 h-16 bg-white rounded-full flex items-center justify-center mb-4"><span class="font-bold text-blue-900 text-xs">GAD</span></div><h4 class="text-white font-bold text-lg">Sitio Web GAD</h4></a>
+                        <a href="https://www.tiktok.com/@gad_zambiza" class="w-72 bg-blue-900/80 border border-blue-800 rounded-2xl p-6 flex flex-col items-center text-center"><div class="w-16 h-16 bg-black rounded-full flex items-center justify-center mb-4"><span class="text-white text-2xl">🎵</span></div><h4 class="text-white font-bold text-lg">TikTok Zámbiza</h4></a>
+                        <a href="https://www.facebook.com/zonaleugenioespejo" class="w-72 bg-blue-900/80 border border-blue-800 rounded-2xl p-6 flex flex-col items-center text-center"><div class="w-16 h-16 bg-blue-600 rounded-full flex items-center justify-center mb-4"><span class="font-bold text-white text-xs">ZONAL</span></div><h4 class="text-white font-bold text-lg">Admin. Zonal FB</h4></a>
+                        <a href="https://www.youtube.com/@zambizamemoriasyvoces" class="w-72 bg-blue-900/80 border border-blue-800 rounded-2xl p-6 flex flex-col items-center text-center"><div class="w-16 h-16 bg-white rounded-full flex items-center justify-center mb-4"><span class="font-bold text-red-600 text-xs">UDLA</span></div><h4 class="text-white font-bold text-lg">Canal UDLA</h4></a>
+                        <a href="https://www.facebook.com/Comuna.Cocotog" class="w-72 bg-blue-900/80 border border-blue-800 rounded-2xl p-6 flex flex-col items-center text-center"><div class="w-16 h-16 bg-green-700 rounded-full flex items-center justify-center mb-4"><span class="font-bold text-white text-xs">COCOTOG</span></div><h4 class="text-white font-bold text-lg">Comuna Cocotog FB</h4></a>
+                    </div>
                 </div>
             </div>
         </section>
 
     </main>
 
-    <!-- FOOTER -->
-    <footer class="bg-blue-950 text-blue-200 py-12 border-t border-blue-900 text-center">
-        <div class="max-w-7xl mx-auto px-6 text-xs md:text-sm space-y-4">
-            <p class="text-white font-bold text-sm md:text-base">Zimagination: Voces y Memorias de Zámbiza</p>
-            <p class="text-xs md:text-sm">Ecosistema Digital de Difusión Etnográfica y Científica Parroquial</p>
-            <div class="text-[10px] md:text-xs text-blue-400 pt-4 border-t border-blue-900/50">
-                © 2026 GAD Parroquial de Zámbiza & Alexander Jácome (UDLA Communication Sciences). Todos los derechos reservados.
+    <!-- FOOTER PROFESIONAL ORIGINAL RESTABLECIDO -->
+    <footer class="bg-blue-950 text-blue-200 py-16 border-t border-blue-900">
+        <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-3 gap-12 text-justify">
+            
+            <div>
+                <h3 class="text-white text-lg font-bold mb-6 uppercase tracking-wider">Contacto GAD Parroquial</h3>
+                <ul class="space-y-4 text-sm">
+                    <li class="flex items-start gap-3">
+                        <svg class="w-5 h-5 text-sky-400 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.242-4.243a8 8 0 1111.314 0z"></path></svg>
+                        <span>Zámbiza, Guayaquil Oe3-101 y Bolívar</span>
+                    </li>
+                    <li class="flex items-center gap-3">
+                        <svg class="w-5 h-5 text-sky-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path></svg>
+                        <span>(02) 2886 088</span>
+                    </li>
+                    <li class="flex items-center gap-3">
+                        <svg class="w-5 h-5 text-sky-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+                        <span>gadzambiza@hotmail.com</span>
+                    </li>
+                </ul>
             </div>
+
+            <div>
+                <h3 class="text-white text-lg font-bold mb-6 uppercase tracking-wider">Administración Zonal</h3>
+                <ul class="space-y-4 text-sm">
+                    <li class="flex items-start gap-3">
+                        <svg class="w-5 h-5 text-sky-400 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"></path></svg>
+                        <a href="https://www.google.com/maps/place/Administraci%C3%B3n+Zonal+Norte+%22Eugenio+Espejo%22" target="_blank" class="hover:text-white transition-colors underline decoration-blue-800 underline-offset-4">
+                            Ubicación e Info: Administración Zonal Norte "Eugenio Espejo"
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+            <div>
+                <h3 class="text-white text-lg font-bold mb-6 uppercase tracking-wider">Desarrollo Web</h3>
+                <ul class="space-y-4 text-sm">
+                    <li class="flex items-center gap-3">
+                        <svg class="w-5 h-5 text-sky-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path></svg>
+                        <span>Estudiante Investigador: Alexander Jácome</span>
+                    </li>
+                    <li class="flex items-center gap-3">
+                        <svg class="w-5 h-5 text-sky-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+                        <span>Agencia de Comunicación: Zimagination</span>
+                    </li>
+                </ul>
+            </div>
+
+        </div>
+        <div class="max-w-7xl mx-auto px-6 mt-12 pt-8 border-t border-blue-900/50 text-center text-xs text-blue-400">
+            © 2026 GAD Parroquial de Zámbiza & Alexander Jácome (UDLA Communication Sciences). Todos los derechos reservados.
         </div>
     </footer>
 
@@ -603,10 +672,10 @@
             <div class="p-6 overflow-y-auto space-y-6 bg-slate-50">
                 <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200">
                     <h4 class="font-bold text-blue-900 text-base md:text-lg mb-2">🎭 Teatro Espada de Madera</h4>
-                    <p class="text-xs md:text-sm text-slate-600 leading-relaxed mb-2">Colectivo escénico estelar y de vanguardia afincado en la parroquia. Dirigido magistralmente por Patricio Estrella, creador con estudios superiores de teatro en París (Francia) y Argentina. La agrupación ha representado la identidad ecuatoriana en más de 100 festivals y eventos culturales de carácter internacional.</p>
+                    <p class="text-xs md:text-sm text-slate-600 leading-relaxed mb-2">Colectivo escénico estelar y de vanguardia afincado en la parroquia. Dirigido magistralmente por Patricio Estrella, creador con estudios superiores de teatro en París (Francia) y Argentina. La agrupación ha representado la identidad ecuatoriana en más de 100 festivales y eventos culturales de carácter internacional.</p>
                 </div>
                 <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200">
-                    <h4 class="font-bold text-blue-900 text-base md:text-lg mb-2">🎵 Grupo Folclórico Jayac</h4>
+                    <h4 class="font-bold text-blue-900 text-lg mb-2">🎵 Grupo Folclórico Jayac</h4>
                     <p class="text-xs md:text-sm text-slate-600 leading-relaxed">Emblema absoluto de la música folclórica panandina y orgullo de la parroquia, siendo Zámbiza el lugar de nacimiento de todos sus talentosos integrantes originarios.</p>
                 </div>
             </div>
@@ -719,25 +788,6 @@
         </div>
     </div>
 
-    <!-- ESCÁNER CULTURAL MODAL -->
-    <div id="modal-escaner" class="fixed inset-0 z-[100] hidden items-center justify-center p-4 bg-slate-950/95 backdrop-blur-md opacity-0 transition-opacity duration-300">
-        <div class="bg-slate-50 w-full max-w-xl rounded-3xl overflow-hidden shadow-2xl relative flex flex-col">
-            <div class="flex justify-between items-center p-6 border-b border-slate-200 bg-white">
-                <h3 class="text-xl font-bold text-blue-950">Escáner de Identidad</h3>
-                <button onclick="cerrarEscanerModal()" class="w-10 h-10 bg-slate-100 text-slate-800 rounded-full flex items-center justify-center hover:bg-red-500 hover:text-white transition-colors font-bold">✕</button>
-            </div>
-            <div class="p-6 space-y-4">
-                <div class="flex flex-col items-center justify-center border-2 border-dashed border-indigo-500/40 rounded-xl p-6 bg-slate-950 hover:border-indigo-400 transition-colors cursor-pointer relative">
-                    <input type="file" id="escaner-file-modal" accept="image/*" onchange="procesarImagenEscaner(event)" class="absolute inset-0 w-full h-full opacity-0 cursor-pointer">
-                    <span class="text-3xl md:text-4xl mb-2">📸</span>
-                    <p class="text-xs text-slate-400 font-medium text-center">Haz clic para cargar o capturar una foto cultural</p>
-                </div>
-                <div id="escaner-loading-modal" class="hidden text-center text-xs text-sky-400 font-bold animate-pulse">⚙️ Analizando firmas etnográficas en repositorios institucionales...</div>
-                <div id="escaner-result-modal" class="text-xs bg-slate-900 p-4 rounded-xl border border-slate-800 text-slate-300 leading-relaxed hidden max-h-[180px] overflow-y-auto"></div>
-            </div>
-        </div>
-    </div>
-
     <!-- LIGHTBOX VISOR DE DETALLE (LUPA INTERACTIVA CON CONTROL DE ZOOM Y ARRASTRE) -->
     <div id="lightbox-visor" class="fixed inset-0 z-[200] hidden flex-col items-center justify-between p-4 bg-slate-950/98 backdrop-blur-md opacity-0 transition-opacity duration-300" onclick="evaluarCierreLightbox(event)">
         <div class="w-full max-w-4xl flex justify-between items-center bg-slate-900/60 backdrop-blur px-6 py-3 rounded-2xl border border-slate-800/40 relative z-[210]">
@@ -761,7 +811,9 @@
         </div>
     </div>
 
+    <!-- SCRIPT DE LOGICA INTERACTIVA -->
     <script>
+        // Repositorio global para lectura etnográfica sin cortes en la consola
         const cultureData = {
             danzante: {
                 title: "Danzantes de Monedas y Cascabeles",
@@ -780,7 +832,7 @@
             },
             morenos: {
                 title: "Los Morenos / Negros",
-                text: "Actores de carácter festivo y satírico que subvierten las rígidas jerarquías coloniales. Coordinados por el legendario 'Cabecilla de los Negros', irrumpen con máscaras oscuras, coplas humorísticas de doble sentido y pasos de baile ágiles que inyectan alegría, dinamismo y camaradería popular a los festejos vecinales.",
+                text: "Actores de carácter festivo y satírico que subvierten las rígidas jerarquías coloniales. Coordinados por el legendario 'Cabecilla de los Negros', irrumpen con máquinas oscuras, coplas humorísticas de doble sentido y pasos de baile ágiles que inyectan alegría, dinamismo y camaradería popular a los festejos vecinales.",
                 imgName: "ELMORANOZ.png"
             },
             huacos: {
@@ -800,6 +852,7 @@
             }
         };
 
+        // Controladores para ventanas modales
         function openModal(id) {
             const m = document.getElementById(id);
             m.classList.remove('hidden'); m.classList.add('flex');
@@ -825,9 +878,8 @@
         const abrirMapaZambiza = () => openModal('modal-mapa');
         const cerrarMapaZambiza = () => closeModal('modal-mapa');
         const cerrarDemografia = () => closeModal('modal-demografia');
-        const abrirEscanerModal = () => openModal('modal-escaner');
-        const cerrarEscanerModal = () => closeModal('modal-escaner');
 
+        // Control del Menú Hamburguesa en Móviles (Sin colisiones ni desbordamientos)
         function toggleMenuMovil() {
             const menu = document.getElementById('mobile-menu');
             const iconHam = document.getElementById('hamburger-icon');
@@ -844,6 +896,7 @@
             }
         }
 
+        // CONTROL DE REGLAS DE MAPA SATELITAL / LIMÍTROFE
         function cambiarVistaMapa(t) {
             const s = document.getElementById('contenedor-mapa-satelital');
             const d = document.getElementById('contenedor-mapa-densidad');
@@ -861,6 +914,7 @@
             }
         }
 
+        // Inicialización y control del gráfico demográfico
         let demoChartInstance = null;
         function abrirDemografia() {
             openModal('modal-demografia');
@@ -886,29 +940,29 @@
             }
         }
 
+        // RENDERIZADO DE PERSONAJES MONUMENTALES (Carga Dinámica en 3 Intentos de Bypass de Caché de GitHub)
         function renderizarPersonaje(key) {
             const data = cultureData[key];
             const display = document.getElementById('content-display');
             const repoBase = "alexzanderj14/Vonces-y-memorias-de-Zambiza/main";
             
-            // Generación de URLs de respaldo
             const urlFase1 = `https://raw.githubusercontent.com/${repoBase}/${data.imgName}`;
             const urlFase2 = `https://github.com/${repoBase.replace('/main','')}/raw/main/${data.imgName}`;
             const urlFase3 = `https://github.com/${repoBase.replace('/main','')}/blob/main/${data.imgName}?raw=true`;
 
             display.innerHTML = `
                 <div class="fade-in flex flex-col lg:flex-row gap-10 items-center justify-between w-full">
-                    <!-- Contenedor Monumental Transparente PNG (Sin fondos de cuadrícula) -->
-                    <div class="w-full lg:w-1/2 flex items-center justify-center min-h-[380px] lg:min-h-[580px] relative overflow-hidden group">
+                    <!-- Contenedor Monumental Transparente PNG (Escalado Monumental) -->
+                    <div class="w-full lg:w-1/2 flex items-center justify-center min-h-[460px] lg:min-h-[620px] relative overflow-hidden group">
                         <img id="img-personaje-${key}" src="${urlFase1}" alt="${data.title}" 
-                             class="max-h-[360px] lg:max-h-[540px] w-auto object-contain transition-all duration-500 float-animation group-hover:scale-[1.12] cursor-pointer"
+                             class="max-h-[440px] lg:max-h-[580px] w-auto object-contain transition-all duration-500 float-animation group-hover:scale-[1.12] cursor-pointer"
                              onclick="abrirLightbox('${urlFase1}', '${data.title}')"
                              onerror="intentarFase2Image(this, '${urlFase2}', '${urlFase3}', '${key}')">
                     </div>
                     <!-- Área de Descripción Respetuosa y Académica -->
                     <div class="w-full lg:w-1/2 space-y-4">
-                        <h3 class="text-2xl md:text-3xl font-bold text-sky-400 tracking-tight">${data.title}</h3>
-                        <p class="text-blue-50 leading-relaxed text-sm md:text-lg text-justify">${data.text}</p>
+                        <h3 class="text-3xl font-bold text-sky-400 tracking-tight">${data.title}</h3>
+                        <p class="text-blue-50 leading-relaxed text-base md:text-lg text-justify">${data.text}</p>
                         <button onclick="abrirLightbox(document.getElementById('img-personaje-${key}').src, '${data.title}')" 
                                 class="inline-flex items-center gap-2 px-5 py-2.5 bg-sky-500 hover:bg-sky-400 text-slate-900 font-bold text-xs rounded-xl transition-all shadow-md">
                             🔍 AMPLIAR LUPA DE DETALLE
@@ -936,6 +990,7 @@
             }
         }
 
+        // LÓGICA DE DETALLE (LUPA INTERACTIVA CON CONTROL DE ZOOM Y ARRASTRE)
         let zoomActual = 1;
         let esArrastrando = false;
         let xInicial = 0, yInicial = 0;
@@ -1002,6 +1057,7 @@
             actualizarTransformacionLightbox();
         }
 
+        // REPOSITORIO SEMÁNTICO LOCAL PARA CHAT "PREGUNTAS DE ZÁMBIZA" (Cero Caídas)
         const repositorioRespuestasZambiza = [
             {
                 claves: ["significa", "origen", "colorado", "tsafiqui", "nombre"],
@@ -1059,7 +1115,6 @@
             `;
             outputCont.scrollTop = outputCont.scrollHeight;
 
-            // Simular consulta asíncrona a Gemini / Enlace local robusto
             setTimeout(() => {
                 const nodoEspera = document.getElementById(idEspera);
                 if(nodoEspera) nodoEspera.remove();
@@ -1092,12 +1147,13 @@
             procesarChatInmediato();
         }
 
+        // LÓGICA DE DETECCION DE CARGA DE IMÁGENES DE RESPALDO EN ESCÁNER DE COMPATIBILIDAD
         function procesarImagenEscaner(e) {
             const file = e.target.files[0];
             if(!file) return;
 
-            const loading = document.getElementById('escaner-loading-modal') || document.getElementById('escaner-loading');
-            const resultBox = document.getElementById('escaner-result-modal') || document.getElementById('escaner-result');
+            const loading = document.getElementById('escaner-loading');
+            const resultBox = document.getElementById('escaner-result');
             
             if(loading) loading.classList.remove('hidden');
             if(resultBox) resultBox.classList.add('hidden');
