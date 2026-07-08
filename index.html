@@ -106,35 +106,40 @@
     <!-- Navbar -->
     <nav class="sticky top-0 z-50 bg-white/80 backdrop-blur-lg border-b border-slate-200 shadow-sm transition-all duration-300">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3">
-            <div class="flex flex-col lg:flex-row justify-between items-center gap-4">
+            <div class="flex justify-between items-center gap-2">
                 <!-- Logo y Título -->
-                <div class="flex-shrink-0 flex items-center gap-3 cursor-pointer" onclick="window.scrollTo(0,0)">
-                    <img src="https://raw.githubusercontent.com/alexzanderj14/Vonces-y-memorias-de-Zambiza/main/LogoZyC.png" alt="Zámbiza Logo" class="h-24 lg:h-32 w-auto object-contain drop-shadow-md transition-all hover:scale-105">
-                    <span class="text-xl md:text-2xl font-bold text-blue-950 tracking-tight text-center lg:text-left">Zámbiza, <span class="text-sky-600">Historia, Cultura y Turismo</span></span>
+                <div class="flex-shrink-0 flex items-center gap-2 lg:gap-3 cursor-pointer" onclick="window.scrollTo(0,0)">
+                    <img src="https://raw.githubusercontent.com/alexzanderj14/Vonces-y-memorias-de-Zambiza/main/LogoZyC.png" alt="Zámbiza Logo" class="h-16 lg:h-24 w-auto object-contain drop-shadow-md transition-all hover:scale-105">
+                    <span class="text-sm md:text-lg lg:text-xl font-bold text-blue-950 tracking-tight hidden sm:block">Zámbiza, <span class="text-sky-600">Historia y Cultura</span></span>
                 </div>
                 
-                <!-- Menú de Navegación Siempre Visible -->
-                <div class="flex items-center gap-2 bg-slate-100/70 p-1.5 rounded-full border border-slate-200 shadow-inner overflow-x-auto w-full lg:w-auto hide-scroll justify-start lg:justify-center">
-                    <a href="#historia" class="whitespace-nowrap px-4 md:px-5 py-2 text-xs md:text-sm font-bold text-slate-600 rounded-full hover:bg-sky-500 hover:text-white hover:shadow-lg hover:-translate-y-1 hover:scale-105 transition-all duration-300">Historia</a>
-                    <a href="#cultura" class="whitespace-nowrap px-4 md:px-5 py-2 text-xs md:text-sm font-bold text-slate-600 rounded-full hover:bg-sky-500 hover:text-white hover:shadow-lg hover:-translate-y-1 hover:scale-105 transition-all duration-300">Patrimonio</a>
-                    <a href="#turismo" class="whitespace-nowrap px-4 md:px-5 py-2 text-xs md:text-sm font-bold text-slate-600 rounded-full hover:bg-sky-500 hover:text-white hover:shadow-lg hover:-translate-y-1 hover:scale-105 transition-all duration-300">Descubre Zámbiza</a>
-                    <a href="#eventos" class="whitespace-nowrap px-4 md:px-5 py-2 text-xs md:text-sm font-bold text-slate-600 rounded-full hover:bg-amber-500 hover:text-white hover:shadow-lg hover:-translate-y-1 hover:scale-105 transition-all duration-300">Eventos</a>
-                    <a href="#ecosistema" class="whitespace-nowrap px-4 md:px-5 py-2 text-xs md:text-sm font-bold text-slate-600 rounded-full hover:bg-violet-500 hover:text-white hover:shadow-lg hover:-translate-y-1 hover:scale-105 transition-all duration-300">Ecosistema Digital</a>
-                    <button onclick="toggleFloatingChat()" class="whitespace-nowrap px-4 md:px-5 py-2 text-xs md:text-sm font-bold text-slate-600 rounded-full hover:bg-sky-500 hover:text-white hover:shadow-lg hover:-translate-y-1 hover:scale-105 transition-all duration-300">Preguntas de Zámbiza</button>
+                <!-- Desktop Menu con Contraste Elevado -->
+                <div class="hidden lg:flex items-center gap-1 bg-slate-100/80 p-1.5 rounded-full border border-slate-200 shadow-inner flex-nowrap overflow-hidden">
+                    <a href="#historia" class="whitespace-nowrap px-3 py-2 text-xs font-bold text-slate-700 rounded-full hover:bg-sky-500 hover:text-white hover:shadow-md transition-all">Historia</a>
+                    <a href="#cultura" class="whitespace-nowrap px-3 py-2 text-xs font-bold text-slate-700 rounded-full hover:bg-sky-500 hover:text-white hover:shadow-md transition-all">Patrimonio</a>
+                    <a href="#turismo" class="whitespace-nowrap px-3 py-2 text-xs font-bold text-slate-700 rounded-full hover:bg-sky-500 hover:text-white hover:shadow-md transition-all">Descubre Zámbiza</a>
+                    <a href="#eventos" class="whitespace-nowrap px-3 py-2 text-xs font-bold text-slate-700 rounded-full hover:bg-sky-500 hover:text-white hover:shadow-md transition-all">Eventos</a>
+                    <a href="#ecosistema" class="whitespace-nowrap px-3 py-2 text-xs font-bold text-slate-700 rounded-full hover:bg-violet-500 hover:text-white hover:shadow-md transition-all">Ecosistema Digital</a>
+                    <button onclick="toggleFloatingChat()" class="whitespace-nowrap px-3 py-2 text-xs font-bold text-slate-700 rounded-full hover:bg-sky-500 hover:text-white hover:shadow-md transition-all">Preguntas de Zámbiza</button>
                 </div>
+
+                <!-- Mobile Hamburger Button -->
+                <button onclick="toggleMobileMenu()" class="lg:hidden p-2 text-blue-950 focus:outline-none" aria-label="Abrir menú">
+                    <svg id="hamburger-icon" class="w-8 h-8 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+                </button>
             </div>
         </div>
+        
+        <!-- Mobile Drawer Link Menu -->
+        <div id="mobile-menu" class="hidden lg:hidden bg-white border-t border-slate-200 px-4 pt-2 pb-4 space-y-1 shadow-inner fade-in">
+            <a href="#historia" onclick="toggleMobileMenu()" class="block px-4 py-2.5 text-sm font-bold text-slate-700 hover:bg-slate-100 rounded-xl">Historia</a>
+            <a href="#cultura" onclick="toggleMobileMenu()" class="block px-4 py-2.5 text-sm font-bold text-slate-700 hover:bg-slate-100 rounded-xl">Patrimonio</a>
+            <a href="#turismo" onclick="toggleMobileMenu()" class="block px-4 py-2.5 text-sm font-bold text-slate-700 hover:bg-slate-100 rounded-xl">Descubre Zámbiza</a>
+            <a href="#eventos" onclick="toggleMobileMenu()" class="block px-4 py-2.5 text-sm font-bold text-slate-700 hover:bg-slate-100 rounded-xl">Eventos</a>
+            <a href="#ecosistema" onclick="toggleMobileMenu()" class="block px-4 py-2.5 text-sm font-bold text-slate-700 hover:bg-slate-100 rounded-xl">Ecosistema Digital</a>
+            <button onclick="toggleMobileMenu(); toggleFloatingChat();" class="block w-full text-left px-4 py-2.5 text-sm font-bold text-slate-700 hover:bg-slate-100 rounded-xl">Preguntas de Zámbiza</button>
+        </div>
     </nav>
-
-    <!-- Mobile Drawer Link Menu -->
-    <div id="mobile-menu" class="hidden lg:hidden bg-white border-t border-slate-200 px-4 pt-2 pb-4 space-y-1 shadow-inner fade-in">
-        <a href="#historia" onclick="toggleMobileMenu()" class="block px-4 py-2.5 text-sm font-bold text-slate-700 hover:bg-slate-100 rounded-xl">Historia</a>
-        <a href="#cultura" onclick="toggleMobileMenu()" class="block px-4 py-2.5 text-sm font-bold text-slate-700 hover:bg-slate-100 rounded-xl">Patrimonio</a>
-        <a href="#turismo" onclick="toggleMobileMenu()" class="block px-4 py-2.5 text-sm font-bold text-slate-700 hover:bg-slate-100 rounded-xl">Descubre Zámbiza</a>
-        <a href="#eventos" onclick="toggleMobileMenu()" class="block px-4 py-2.5 text-sm font-bold text-slate-700 hover:bg-slate-100 rounded-xl">Eventos</a>
-        <a href="#ecosistema" onclick="toggleMobileMenu()" class="block px-4 py-2.5 text-sm font-bold text-slate-700 hover:bg-slate-100 rounded-xl">Ecosistema Digital</a>
-        <button onclick="toggleMobileMenu(); toggleFloatingChat();" class="block w-full text-left px-4 py-2.5 text-sm font-bold text-slate-700 hover:bg-slate-100 rounded-xl">Preguntas de Zámbiza</button>
-    </div>
 
     <!-- Header con Slideshow -->
     <header class="bg-blue-950 text-white pt-24 pb-40 px-6 relative overflow-hidden">
@@ -294,7 +299,7 @@
                     <div onclick="abrirArtistas()" class="bg-slate-50 rounded-2xl p-6 border border-slate-100 hover:shadow-lg transition-all group slide-hidden cursor-pointer" style="transition-delay: 300ms;">
                         <div class="w-14 h-14 bg-white shadow-sm text-amber-600 rounded-xl flex items-center justify-center text-2xl mb-5 group-hover:scale-110 transition-transform">🎭</div>
                         <h3 class="text-lg font-bold text-slate-900 mb-2">Arte y Cultura</h3>
-                        <p class="text-slate-600 text-sm leading-relaxed">Teatro Espada de Madera, Grupo Jayac, artesanías y orquestas tropicales.</p>
+                        <p class="text-slate-600 text-sm leading-relaxed">Teatro Espada de Madera, Grupo Jayac y orquestas tropicales.</p>
                     </div>
 
                     <div onclick="abrirLogistica()" class="bg-slate-50 rounded-2xl p-6 border border-slate-100 hover:shadow-lg transition-all group slide-hidden cursor-pointer" style="transition-delay: 400ms;">
@@ -1125,6 +1130,39 @@
                             📞 Contacto: 0987314209 / Eventos Zámbiza
                         </div>
                     </div>
+                    
+                    <!-- NUEVA TARJETA: Danza Andinukuna -->
+                    <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 hover:shadow-md transition-shadow flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center gap-4 mb-4">
+                                <div class="w-12 h-12 bg-pink-100 text-pink-600 rounded-xl flex items-center justify-center text-2xl flex-shrink-0">🩰</div>
+                                <h4 class="font-bold text-blue-900 text-lg leading-tight">Danza Andinukuna</h4>
+                            </div>
+                            <p class="text-sm text-slate-600 leading-relaxed mb-4">Agrupación oficial de danza folclórica. Participantes estelares en las festividades de Corpus Christi y fiestas mayores, preservando la elegancia del zapateo andino.</p>
+                        </div>
+                        <div class="mt-4">
+                            <a href="https://www.tiktok.com/@danza_andinukuna" target="_blank" class="block w-full bg-slate-100 hover:bg-slate-200 p-3 rounded-lg text-xs font-semibold text-slate-700 text-center transition-colors shadow-sm">
+                                📱 TikTok: @danza_andinukuna
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- NUEVA TARJETA: Julia Erazo -->
+                    <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 hover:shadow-md transition-shadow flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center gap-4 mb-4">
+                                <div class="w-12 h-12 bg-purple-100 text-purple-600 rounded-xl flex items-center justify-center text-2xl flex-shrink-0">🎨</div>
+                                <h4 class="font-bold text-blue-900 text-lg leading-tight">Julia Erazo</h4>
+                            </div>
+                            <p class="text-sm text-slate-600 leading-relaxed mb-4">Destacada artista local que contribuye al ecosistema cultural de la parroquia, plasmando la identidad zambiceña a través de su maravillosa obra visual y pintura.</p>
+                        </div>
+                        <div class="mt-4">
+                            <a href="https://www.instagram.com/julia.erazo.delgado?igsh=am00YmcxYjdvb3J1" target="_blank" class="block w-full bg-slate-100 hover:bg-slate-200 p-3 rounded-lg text-xs font-semibold text-slate-700 text-center transition-colors shadow-sm">
+                                📸 Instagram: @julia.erazo.delgado
+                            </a>
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </div>
@@ -1190,66 +1228,69 @@
                 </button>
             </div>
             
-            <div class="flex-1 p-4 bg-slate-100 relative overflow-hidden min-h-0 flex flex-col">
-                <!-- Google Maps Embed de Zámbiza -->
-                <div id="contenedor-mapa-satelital-zambiza" class="w-full h-full flex-1 min-h-0">
-                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15959.215456488346!2d-78.45331232538183!3d-0.149488399849007!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x91d5902fa4b04bf3%3A0x6ce6b7d519d3f1ff!2zWsOhbWJpemEsIEVjdWFkb3I!5e0!3m2!1ses!2sec!4v1719875000000!5m2!1ses!2sec" class="w-full h-full border-0 rounded-2xl shadow-inner" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-                </div>
-
-                <!-- Google Maps Embed de Cocotog -->
-                <div id="contenedor-mapa-satelital-cocotog" class="w-full h-full flex-1 min-h-0 hidden">
-                    <iframe src="https://maps.google.com/maps?q=San+Jose+de+Cocotog,+Quito&t=&z=15&ie=UTF8&iwloc=&output=embed" class="w-full h-full border-0 rounded-2xl shadow-inner" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-                </div>
+            <!-- CONTENEDOR PRINCIPAL CON SCROLL PARA MAPAS Y BARRIOS -->
+            <div class="flex-1 overflow-y-auto min-h-0 bg-slate-100 flex flex-col w-full">
                 
-                <!-- Mapa Limítrofe Image de GitHub CORREGIDO PARA PANTALLA COMPLETA -->
-                <div id="contenedor-mapa-densidad" class="w-full h-full hidden flex-col items-center justify-center flex-1 min-h-0">
-                    <div class="w-full h-full relative bg-white rounded-2xl shadow-lg border border-slate-200/50 overflow-hidden flex items-center justify-center p-4">
-                        <img src="https://raw.githubusercontent.com/alexzanderj14/Vonces-y-memorias-de-Zambiza/main/zambiza%20dencidad%20poblacional.png" alt="Zámbiza Mapa Limítrofe" class="w-full h-full object-contain" onerror="this.onerror=null; this.src='https://placehold.co/600x400/1e3a8a/ffffff?text=Cargando+Mapa+Lim%C3%ADtrofe';">
+                <!-- Área Visual de Mapas -->
+                <div class="w-full p-2 sm:p-4 flex-shrink-0 h-[45vh] md:h-[55vh] relative">
+                    <!-- Google Maps Embed de Zámbiza -->
+                    <div id="contenedor-mapa-satelital-zambiza" class="w-full h-full">
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15959.215456488346!2d-78.45331232538183!3d-0.149488399849007!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x91d5902fa4b04bf3%3A0x6ce6b7d519d3f1ff!2zWsOhbWJpemEsIEVjdWFkb3I!5e0!3m2!1ses!2sec!4v1719875000000!5m2!1ses!2sec" class="w-full h-full border-0 rounded-2xl shadow-inner" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    </div>
+
+                    <!-- Google Maps Embed de Cocotog -->
+                    <div id="contenedor-mapa-satelital-cocotog" class="w-full h-full hidden">
+                        <iframe src="https://maps.google.com/maps?q=San+Jose+de+Cocotog,+Quito&t=k&z=15&ie=UTF8&iwloc=&output=embed" class="w-full h-full border-0 rounded-2xl shadow-inner" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    </div>
+                    
+                    <!-- Mapa Limítrofe Image de GitHub CORREGIDO -->
+                    <div id="contenedor-mapa-densidad" class="w-full h-full hidden flex-col items-center justify-center bg-white rounded-2xl overflow-hidden shadow-inner border border-slate-200/50">
+                        <img src="https://raw.githubusercontent.com/alexzanderj14/Vonces-y-memorias-de-Zambiza/main/zambiza%20dencidad%20poblacional.png" alt="Zámbiza Mapa Limítrofe" class="w-full h-full object-contain scale-100 md:scale-[1.15] hover:scale-[1.30] transition-transform duration-700 cursor-zoom-in p-4" onerror="this.onerror=null; this.src='https://placehold.co/600x400/1e3a8a/ffffff?text=Cargando+Mapa+Lim%C3%ADtrofe';">
                     </div>
                 </div>
-            </div>
 
-            <!-- Listado de Barrios de Zámbiza -->
-            <div id="barrios-container" class="px-6 py-4 bg-slate-50 border-t border-slate-200 overflow-y-auto max-h-[30vh] hidden flex-shrink-0">
-                <div class="grid md:grid-cols-3 gap-6">
-                    <div>
-                        <h4 class="font-bold text-blue-950 text-sm mb-2 flex items-center gap-2">🏘️ Barrios de la Cabecera de Zámbiza</h4>
-                        <div class="grid grid-cols-2 gap-1.5 text-xs text-slate-700">
-                            <div>• Centro (Cabecera)</div>
-                            <div>• La Paz</div>
-                            <div>• San Francisco</div>
-                            <div>• La Dolorosa</div>
-                            <div>• San José</div>
-                            <div>• San Miguel</div>
-                            <div>• La Delicia</div>
-                            <div>• San Jorge</div>
-                            <div>• San Pedro</div>
-                            <div>• La Victoria</div>
-                            <div>• El Quinche</div>
-                            <div>• Buenos Aires</div>
+                <!-- Listado de Barrios de Zámbiza (AHORA DENTRO DEL CONTENEDOR DE SCROLL) -->
+                <div id="barrios-container" class="px-6 py-6 bg-slate-50 border-t border-slate-200 hidden flex-shrink-0">
+                    <div class="grid md:grid-cols-3 gap-6 pb-4">
+                        <div>
+                            <h4 class="font-bold text-blue-950 text-sm mb-2 flex items-center gap-2">🏘️ Barrios de la Cabecera de Zámbiza</h4>
+                            <div class="grid grid-cols-2 gap-1.5 text-xs text-slate-700">
+                                <div>• Centro (Cabecera)</div>
+                                <div>• La Paz</div>
+                                <div>• San Francisco</div>
+                                <div>• La Dolorosa</div>
+                                <div>• San José</div>
+                                <div>• San Miguel</div>
+                                <div>• La Delicia</div>
+                                <div>• San Jorge</div>
+                                <div>• San Pedro</div>
+                                <div>• La Victoria</div>
+                                <div>• El Quinche</div>
+                                <div>• Buenos Aires</div>
+                            </div>
                         </div>
-                    </div>
-                    <div>
-                        <h4 class="font-bold text-blue-950 text-sm mb-2 flex items-center gap-2">🌾 Barrios de la Comuna San José de Cocotog</h4>
-                        <div class="grid grid-cols-2 gap-1.5 text-xs text-slate-700">
-                            <div>• Central</div>
-                            <div>• Santa Ana</div>
-                            <div>• San Miguel Chupa</div>
-                            <div>• Jesús del Gran Poder</div>
-                            <div>• Yurac Alpa Loma</div>
+                        <div>
+                            <h4 class="font-bold text-blue-950 text-sm mb-2 flex items-center gap-2">🌾 Barrios de la Comuna San José de Cocotog</h4>
+                            <div class="grid grid-cols-2 gap-1.5 text-xs text-slate-700">
+                                <div>• Central</div>
+                                <div>• Santa Ana</div>
+                                <div>• San Miguel Chupa</div>
+                                <div>• Jesús del Gran Poder</div>
+                                <div>• Yurac Alpa Loma</div>
+                            </div>
                         </div>
-                    </div>
-                    <div>
-                        <h4 class="font-bold text-blue-950 text-sm mb-2 flex items-center gap-2">🌱 Flora y Agricultura Local</h4>
-                        <div class="grid grid-cols-2 gap-1.5 text-xs text-slate-700">
-                            <div>• Guaba</div>
-                            <div>• Arándanos</div>
-                            <div>• Moras</div>
-                            <div>• Chirimoya</div>
-                            <div>• Lechuga</div>
-                            <div>• Col</div>
-                            <div>• Zanahoria</div>
-                            <div>• Cebolla Blanca</div>
+                        <div>
+                            <h4 class="font-bold text-blue-950 text-sm mb-2 flex items-center gap-2">🌱 Flora y Agricultura Local</h4>
+                            <div class="grid grid-cols-2 gap-1.5 text-xs text-slate-700">
+                                <div>• Guaba</div>
+                                <div>• Arándanos</div>
+                                <div>• Moras</div>
+                                <div>• Chirimoya</div>
+                                <div>• Lechuga</div>
+                                <div>• Col</div>
+                                <div>• Zanahoria</div>
+                                <div>• Cebolla Blanca</div>
+                            </div>
                         </div>
                     </div>
                 </div>
