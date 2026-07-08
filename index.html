@@ -596,15 +596,8 @@
                 </button>
             </div>
 
-            <!-- Sugerencias -->
-            <div class="px-3 pb-2 pt-3 bg-slate-900/80 flex gap-2 overflow-x-auto hide-scroll border-b border-white/5">
-                <button onclick="enviarPreguntaSugerida('Origen de Zámbiza')" class="whitespace-nowrap px-3 py-1.5 bg-slate-800 hover:bg-slate-700 text-sky-300 border border-slate-700 text-xs font-semibold rounded-full transition-colors">Origen</button>
-                <button onclick="enviarPreguntaSugerida('Población actual')" class="whitespace-nowrap px-3 py-1.5 bg-slate-800 hover:bg-slate-700 text-sky-300 border border-slate-700 text-xs font-semibold rounded-full transition-colors">Población</button>
-                <button onclick="enviarPreguntaSugerida('Grupo Jayac')" class="whitespace-nowrap px-3 py-1.5 bg-slate-800 hover:bg-slate-700 text-sky-300 border border-slate-700 text-xs font-semibold rounded-full transition-colors">Grupo Jayac</button>
-            </div>
-
             <!-- Historial -->
-            <div id="historial-chat-ai" class="flex-1 p-5 overflow-y-auto space-y-4 text-sm scroll-smooth">
+            <div id="historial-chat-flotante" class="flex-1 min-h-0 p-5 overflow-y-auto space-y-4 text-sm scroll-smooth">
                 <div class="flex gap-3">
                     <div class="w-8 h-8 bg-slate-800 rounded-full flex items-center justify-center flex-shrink-0 select-none shadow-md overflow-hidden border border-slate-600">
                         <img src="https://raw.githubusercontent.com/alexzanderj14/Vonces-y-memorias-de-Zambiza/main/Captura%20de%20pantalla%202026-07-08%20003615.png" alt="Guardián" class="w-full h-full object-cover" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
@@ -617,14 +610,14 @@
             </div>
 
             <!-- Loader -->
-            <div id="loader-chat-ai" class="hidden px-5 py-3 flex items-center gap-3 text-xs text-sky-400 bg-slate-900 border-t border-white/5">
+            <div id="loader-chat-flotante" class="hidden px-5 py-3 flex items-center gap-3 text-xs text-sky-400 bg-slate-900 border-t border-white/5">
                 <div class="w-4 h-4 border-2 border-sky-400 border-t-transparent rounded-full animate-spin"></div>
                 <span class="animate-pulse font-medium">Investigando en los archivos de la red...</span>
             </div>
 
             <!-- Input -->
-            <form id="form-chat-ai" onsubmit="enviarPreguntaManual(event)" class="p-3 bg-slate-950 border-t border-white/10 flex gap-2">
-                <input type="text" id="input-chat-ai" placeholder="Escribe tu pregunta aquí..." class="flex-1 bg-slate-800 text-white border border-slate-700 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:border-sky-500 placeholder-slate-400 transition-colors shadow-inner" required autocomplete="off">
+            <form id="form-chat-flotante" onsubmit="enviarPreguntaManual(event)" class="p-3 bg-slate-950 border-t border-white/10 flex gap-2">
+                <input type="text" id="input-chat-flotante" placeholder="Escribe tu pregunta aquí..." class="flex-1 bg-slate-800 text-white border border-slate-700 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:border-sky-500 placeholder-slate-400 transition-colors shadow-inner" required autocomplete="off">
                 <button type="submit" class="bg-sky-600 hover:bg-sky-500 text-white font-bold px-4 py-2 rounded-xl text-sm shadow-lg hover:scale-105 transition-all flex items-center justify-center">
                     <svg class="w-5 h-5 transform rotate-90" fill="currentColor" viewBox="0 0 20 20"><path d="M10.894 2.553a1 1 0 00-1.788 0l-7 14a1 1 0 001.169 1.409l5-1.429A1 1 0 009 15.571V11a1 1 0 112 0v4.571a1 1 0 00.725.962l5 1.428a1 1 0 001.17-1.408l-7-14z"></path></svg>
                 </button>
@@ -766,8 +759,6 @@
                             </div>
                         </div>
                     </div>
-
-                    <!-- Portal Shopping (Eliminado según instrucciones) -->
 
                     <!-- Iglesia Católica Cocotog -->
                     <div class="bg-white rounded-2xl shadow-sm border border-slate-200 hover:shadow-md transition-shadow flex flex-col overflow-hidden">
@@ -1687,7 +1678,7 @@
 
         updateContent('danzante');
 
-        // 6. TEXT-TO-SPEECH (CON FALLBACK LOCAL)
+        // 6. TEXT-TO-SPEECH (CON FALLBACK LOCAL ESPAÑOL LATINO)
         function pcmToWav(pcmData, sampleRate) {
             const numChannels = 1;
             const bitsPerSample = 16;
@@ -1747,10 +1738,10 @@
             buttonEl.innerHTML = "⏳ Generando voz...";
             buttonEl.disabled = true;
 
-            // FALLBACK NATIVO: Si no hay API KEY, usamos el motor de voz integrado del navegador
+            // FALLBACK NATIVO: Si no hay API KEY, usamos el motor de voz integrado del navegador con Español Latinoamericano
             if (!apiKey || apiKey === "") {
                 const utterance = new SpeechSynthesisUtterance(textoALeer);
-                utterance.lang = 'es-ES';
+                utterance.lang = 'es-MX'; // Español Latinoamericano / México
                 utterance.rate = 0.95;
                 
                 utterance.onend = () => {
@@ -2004,9 +1995,9 @@
         }
 
         // 9. CHATBOT GEMINI FLOTANTE
-        const chatHistorial = document.getElementById('historial-chat-ai');
-        const chatInput = document.getElementById('input-chat-ai');
-        const chatLoader = document.getElementById('loader-chat-ai');
+        const chatHistorial = document.getElementById('historial-chat-flotante');
+        const chatInput = document.getElementById('input-chat-flotante');
+        const chatLoader = document.getElementById('loader-chat-flotante');
 
         function agregarMensajeAlHistorial(rol, texto, esHtml = false) {
             const esUsuario = rol === 'user';
@@ -2101,7 +2092,7 @@
             if (lowerq.includes('jayac')) {
                 return "🎵 Zámbiza es mundialmente conocida por ser la cuna de los integrantes del legendario grupo folclórico andino <b>Jayac</b>.";
             }
-            return "👵 Qué interesante consulta. Al no detectar una conexión externa activa, opero desde mis crónicas locales. Te sugiero preguntarme sobre el 'significado de zámbiza' o el 'grupo jayac' para darte detalles asombrosos.";
+            return "👵 Qué interesante consulta. Al no detectar una conexión externa activa, opero desde mis crónicas locales. Te sugiero preguntarme sobre el 'significado de Zámbiza' o el 'grupo Jayac' para darte detalles asombrosos.";
         }
 
         function enviarPreguntaManual(event) {
@@ -2110,11 +2101,6 @@
             if (!pregunta) return;
 
             chatInput.value = '';
-            agregarMensajeAlHistorial('user', pregunta);
-            consultarAlSabio(pregunta);
-        }
-
-        function enviarPreguntaSugerida(pregunta) {
             agregarMensajeAlHistorial('user', pregunta);
             consultarAlSabio(pregunta);
         }
