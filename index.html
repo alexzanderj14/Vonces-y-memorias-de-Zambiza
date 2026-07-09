@@ -342,8 +342,8 @@
                             </li>
                             <li class="p-4 bg-slate-50 rounded-xl hover:bg-sky-50 transition-colors">
                                 <span class="font-bold text-sky-600 block mb-1 text-lg">28 al 30 de Septiembre</span>
-                                <h4 class="font-bold text-blue-900 text-base">Fiestas Mayores</h4>
-                                <p class="text-sm text-slate-700 mt-1">Zámbiza recibe a las comparsas, los danzantes de monedas y las tradicionales 'Entradas' en honor a San Miguel Arcángel.</p>
+                                <h4 class="font-bold text-blue-900 text-base">Fiestas Mayores y Aparición</h4>
+                                <p class="text-sm text-slate-700 mt-1">Zámbiza recibe a las comparsas, los danzantes de monedas y las tradicionales 'Entradas' en honor a las Fiestas de aparición del Arcángel San Miguel y sus Fiestas Mayores.</p>
                             </li>
                         </ul>
                     </div>
@@ -1768,55 +1768,11 @@
 
         updateContent('danzante');
 
-        // 6. TEXT-TO-SPEECH (CON FALLBACK LOCAL ESPAÑOL LATINO)
-        function pcmToWav(pcmData, sampleRate) {
-            const numChannels = 1;
-            const bitsPerSample = 16;
-            const byteRate = sampleRate * numChannels * (bitsPerSample / 8);
-            const blockAlign = numChannels * (bitsPerSample / 8);
-            const dataSize = pcmData.byteLength;
-            const buffer = new ArrayBuffer(44 + dataSize);
-            const view = new DataView(buffer);
-
-            const writeString = (view, offset, string) => {
-                for (let i = 0; i < string.length; i++) view.setUint8(offset + i, string.charCodeAt(i));
-            };
-            
-            writeString(view, 0, 'RIFF');
-            view.setUint32(4, 36 + dataSize, true);
-            writeString(view, 8, 'WAVE');
-            writeString(view, 12, 'fmt ');
-            view.setUint32(16, 16, true);
-            view.setUint16(20, 1, true); // PCM
-            view.setUint16(22, numChannels, true);
-            view.setUint32(24, sampleRate, true);
-            view.setUint32(28, byteRate, true);
-            view.setUint16(32, blockAlign, true);
-            view.setUint16(34, bitsPerSample, true);
-            writeString(view, 36, 'data');
-            view.setUint32(40, dataSize, true);
-
-            const pcmView = new Uint8Array(pcmData);
-            for (let i = 0; i < dataSize; i++) view.setUint8(44 + i, pcmView[i]);
-            return buffer;
-        }
-
-        function base64ToArrayBuffer(base64) {
-            const binaryString = window.atob(base64);
-            const len = binaryString.length;
-            const bytes = new Uint8Array(len);
-            for (let i = 0; i < len; i++) bytes[i] = binaryString.charCodeAt(i);
-            return bytes.buffer;
-        }
-
+        // 6. TEXT-TO-SPEECH (MOTOR LOCAL NATIVO - INSTANTÁNEO)
         async function toggleAudioRelato(text, title, buttonEl) {
-            if (isPlaying && currentAudio) {
-                if (currentAudio.isWebSpeech) {
-                    window.speechSynthesis.cancel();
-                } else {
-                    currentAudio.pause();
-                    currentAudio.currentTime = 0;
-                }
+            // Si ya está reproduciendo, lo detenemos
+            if (isPlaying || window.speechSynthesis.speaking) {
+                window.speechSynthesis.cancel();
                 isPlaying = false;
                 buttonEl.innerHTML = "🔊 Escuchar Relato ✨";
                 buttonEl.classList.remove('bg-rose-500', 'hover:bg-rose-400', 'animate-pulse');
@@ -1825,14 +1781,20 @@
             }
 
             const textoALeer = `Estás viendo a ${title}. ${text}`;
-            buttonEl.innerHTML = "⏳ Generando voz...";
-            buttonEl.disabled = true;
-
-            // FALLBACK NATIVO: Si no hay API KEY, usamos el motor de voz integrado del navegador con Español Latinoamericano
-            if (!apiKey || apiKey === "") {
+            
+            // Un pequeño retraso para evitar el bug del navegador donde cancel() bloquea el siguiente speak()
+            setTimeout(() => {
                 const utterance = new SpeechSynthesisUtterance(textoALeer);
-                utterance.lang = 'es-MX'; // Español Latinoamericano / México
-                utterance.rate = 0.95;
+                utterance.lang = 'es-MX'; // Español Latinoamericano
+                utterance.rate = 0.95; // Velocidad un poco más pausada y elegante
+                
+                utterance.onstart = () => {
+                    isPlaying = true;
+                    currentAudio = { isWebSpeech: true }; // Mantiene compatibilidad con cambio de pestañas
+                    buttonEl.innerHTML = "⏸️ Detener Relato";
+                    buttonEl.classList.remove('bg-indigo-600', 'hover:bg-indigo-500');
+                    buttonEl.classList.add('bg-rose-500', 'hover:bg-rose-400', 'animate-pulse');
+                };
                 
                 utterance.onend = () => {
                     isPlaying = false;
@@ -1841,76 +1803,20 @@
                     buttonEl.classList.add('bg-indigo-600', 'hover:bg-indigo-500');
                 };
 
-                window.speechSynthesis.speak(utterance);
-                currentAudio = { isWebSpeech: true, pause: () => window.speechSynthesis.cancel() };
-                isPlaying = true;
-                
-                buttonEl.disabled = false;
-                buttonEl.innerHTML = "⏸️ Detener Relato";
-                buttonEl.classList.remove('bg-indigo-600', 'hover:bg-indigo-500');
-                buttonEl.classList.add('bg-rose-500', 'hover:bg-rose-400', 'animate-pulse');
-                return;
-            }
-
-            // LLAMADA A GEMINI TTS SI HAY API KEY (Enviando la API key mediante la cabecera x-goog-api-key)
-            try {
-                const payload = {
-                    contents: [{ parts: [{ text: textoALeer }] }],
-                    generationConfig: {
-                        responseModalities: ["AUDIO"],
-                        speechConfig: { voiceConfig: { prebuiltVoiceConfig: { voiceName: "Aoede" } } }
-                    },
-                    model: "gemini-2.5-flash"
-                };
-
-                const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent`;
-                const result = await fetchWithRetry(url, {
-                    method: 'POST',
-                    headers: { 
-                        'Content-Type': 'application/json',
-                        'x-goog-api-key': apiKey
-                    },
-                    body: JSON.stringify(payload)
-                });
-
-                if (!result.candidates) throw new Error("Error en la respuesta del TTS");
-
-                const inlineData = result.candidates[0].content.parts[0].inlineData;
-                const base64Data = inlineData.data;
-                const mimeType = inlineData.mimeType;
-                
-                const sampleRateMatch = mimeType.match(/rate=(\d+)/);
-                const sampleRate = sampleRateMatch ? parseInt(sampleRateMatch[1]) : 24000;
-
-                const pcmBuffer = base64ToArrayBuffer(base64Data);
-                const wavBuffer = pcmToWav(pcmBuffer, sampleRate);
-                const wavBlob = new Blob([wavBuffer], { type: 'audio/wav' });
-                const audioUrl = URL.createObjectURL(wavBlob);
-
-                currentAudio = new Audio(audioUrl);
-                currentAudio.play();
-                isPlaying = true;
-                
-                buttonEl.innerHTML = "⏸️ Detener Relato";
-                buttonEl.classList.remove('bg-indigo-600', 'hover:bg-indigo-500');
-                buttonEl.classList.add('bg-rose-500', 'hover:bg-rose-400', 'animate-pulse');
-
-                currentAudio.onended = () => {
+                utterance.onerror = (e) => {
+                    // Ignoramos errores de interrupción porque ocurren naturalmente al cambiar de pestaña o pausar
+                    if (e.error === 'interrupted' || e.error === 'canceled') return;
+                    
+                    console.error("Error reproduciendo audio local:", e);
                     isPlaying = false;
                     buttonEl.innerHTML = "🔊 Escuchar Relato ✨";
                     buttonEl.classList.remove('bg-rose-500', 'hover:bg-rose-400', 'animate-pulse');
                     buttonEl.classList.add('bg-indigo-600', 'hover:bg-indigo-500');
                 };
 
-            } catch (error) {
-                console.error("Error Text-to-Speech:", error);
-                buttonEl.innerHTML = "❌ Error de conexión";
-                setTimeout(() => { 
-                    buttonEl.innerHTML = "🔊 Escuchar Relato ✨"; 
-                }, 2500);
-            } finally {
-                buttonEl.disabled = false;
-            }
+                // Iniciar la reproducción nativa
+                window.speechSynthesis.speak(utterance);
+            }, 50);
         }
 
         // 7. LIGHTBOX Y ZOOM
@@ -2185,7 +2091,7 @@
             const lowerq = preguntaTexto.toLowerCase();
             
             if (lowerq.includes('fiesta') || lowerq.includes('fiestas') || lowerq.includes('celebracion') || lowerq.includes('cuando')) {
-                return "🎉 Las festividades principales en Zámbiza son: el <b>11 de Febrero</b> (Fundación), el <b>26 de Junio</b> (Bulevar) y del <b>28 al 30 de Septiembre</b> (Fiestas Mayores de San Miguel Arcángel). En Cocotog destacan el <b>13, 15, 20 y 23 de Junio</b> con la elección de la Reina y el Corpus Christi. ¡Nuestra memoria viva!";
+                return "🎉 Las festividades principales en Zámbiza son: el <b>11 de Febrero</b> (Fundación), el <b>26 de Junio</b> (Bulevar) y del <b>28 al 30 de Septiembre</b> (Fiestas de aparición del Arcángel San Miguel). En Cocotog destacan el <b>13, 15, 20 y 23 de Junio</b> con la elección de la Reina y el Corpus Christi. ¡Nuestra memoria viva!";
             }
             if (lowerq.includes('poblacion') || lowerq.includes('habitantes') || lowerq.includes('cuantos')) {
                 return "📈 Según el Censo de 2022, Zámbiza ronda los 6.160 habitantes. (Nota de conexión: Al momento estoy usando mi base local, pero este dato histórico es exacto).";
