@@ -319,7 +319,7 @@
                     <span class="text-sky-600 font-bold tracking-wider uppercase text-sm mb-2 block">Agenda Cultural Local</span>
                     <h2 class="text-4xl font-bold text-blue-950 mb-4">Eventos y Noticias</h2>
                     <p class="text-slate-600 text-lg leading-relaxed">
-                        Zámbiza and Cocotog vibran a lo largo del año. Descubre nuestra agenda cultural, cívica y festiva para que no te pierdas ningún detalle de nuestras traditions.
+                        Zámbiza and Cocotog vibran a lo largo del año. Descubre nuestra agenda cultural, cívica y festiva para que no te pierdas ningún detail de nuestras traditions.
                     </p>
                 </div>
 
@@ -602,8 +602,8 @@
     <!-- CHAT FLOTANTE DEL GUARDIÁN -->
     <div id="floating-chat-container" class="fixed bottom-6 right-6 z-[200] flex flex-col items-end pointer-events-none">
         
-        <!-- Panel de Chat -->
-        <div id="floating-chat-panel" class="bg-slate-900/95 backdrop-blur-xl border border-slate-700/50 shadow-2xl rounded-3xl w-[90vw] max-w-[350px] sm:max-w-none sm:w-[420px] h-[550px] mb-4 flex-col overflow-hidden pointer-events-auto transition-all duration-300 transform scale-95 opacity-0 origin-bottom-right hidden">
+        <!-- Panel de Chat (CORREGIDO: "flex flex-col" añadido para forzar altura y scroll correctos) -->
+        <div id="floating-chat-panel" class="bg-slate-900/95 backdrop-blur-xl border border-slate-700/50 shadow-2xl rounded-3xl w-[90vw] max-w-[350px] sm:max-w-none sm:w-[420px] h-[550px] mb-4 flex flex-col overflow-hidden pointer-events-auto transition-all duration-300 transform scale-95 opacity-0 origin-bottom-right hidden">
             <!-- Cabecera -->
             <div class="px-5 py-4 bg-gradient-to-r from-blue-950 to-slate-900 border-b border-white/10 flex items-center justify-between flex-shrink-0">
                 <div class="flex items-center gap-3">
@@ -624,8 +624,8 @@
                 </button>
             </div>
 
-            <!-- Historial -->
-            <div id="historial-chat-flotante" class="flex-1 min-h-0 p-5 overflow-y-auto space-y-4 text-sm scroll-smooth">
+            <!-- Historial (CORREGIDO: "overflow-y-auto" y "max-h" controlados para asegurar el scroll) -->
+            <div id="historial-chat-flotante" class="flex-1 min-h-0 p-5 overflow-y-auto space-y-4 text-sm scroll-smooth" style="max-height: calc(100% - 130px);">
                 <div class="flex gap-3">
                     <div class="w-8 h-8 bg-slate-800 rounded-full flex items-center justify-center flex-shrink-0 select-none shadow-md overflow-hidden border border-slate-600">
                         <img src="https://raw.githubusercontent.com/alexzanderj14/Vonces-y-memorias-de-Zambiza/main/Captura%20de%20pantalla%202026-07-08%20003615.png" alt="Guardián" class="w-full h-full object-cover" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
@@ -1166,42 +1166,6 @@
         </div>
     </div>
 
-    <!-- MODAL LOGÍSTICA Y SERVICIOS -->
-    <div id="modal-logistica" class="fixed inset-0 z-[100] hidden items-center justify-center p-4 sm:p-6 bg-slate-950/95 backdrop-blur-md opacity-0 transition-opacity duration-300" onclick="if(event.target === this) cerrarLogistica()">
-        <div class="bg-slate-50 w-full max-w-5xl rounded-3xl overflow-hidden shadow-2xl relative flex flex-col max-h-[90vh]">
-            <div class="flex justify-between items-center p-6 border-b border-slate-200 bg-white flex-shrink-0">
-                <div>
-                    <h3 class="text-2xl font-bold text-blue-950">Logística y Servicios</h3>
-                    <p class="text-sm text-slate-500">Guía rápida de acceso, cajeros y transporte de la parroquia</p>
-                </div>
-                <button onclick="cerrarLogistica()" class="w-10 h-10 bg-slate-100 text-slate-800 rounded-full flex items-center justify-center hover:bg-red-500 hover:text-white transition-colors font-bold shadow-sm">✕</button>
-            </div>
-            
-            <div class="p-6 overflow-y-auto flex-1 min-h-0 grid md:grid-cols-2 gap-6 bg-slate-50">
-                <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100">
-                    <h4 class="font-bold text-blue-900 text-lg mb-2">🚌 ¿Cómo Llegar?</h4>
-                    <p class="text-sm text-slate-600 leading-relaxed">Tomar el alimentador Zámbiza desde la <strong>Estación Río Coca</strong> en el norte de Quito. Alternativamente, la parroquia posee conexiones rápidas de ingreso directo desde la Av. Simón Bolívar.</p>
-                </div>
-                <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100">
-                    <h4 class="font-bold text-blue-900 text-lg mb-2">🚖 Taxis Locales</h4>
-                    <p class="text-sm text-slate-600 leading-relaxed">Las compañías legalizadas <strong>Taxsamiz S.A.</strong> y <strong>Expresszambiza S.A.</strong> operan permanentemente desde el Parque Central y calles aledañas hacia los distintos barrios de la periferia.</p>
-                </div>
-                <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100">
-                    <h4 class="font-bold text-blue-900 text-lg mb-2">👮 Seguridad y Salud</h4>
-                    <p class="text-sm text-slate-600 leading-relaxed">Se cuenta con una Unidad de Policía Comunitaria (UPC) activa ubicada estratégicamente al lado del <strong>Subcentro de Salud de Zámbiza</strong> (Calles Mejía y Quito).</p>
-                </div>
-                <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100">
-                    <h4 class="font-bold text-blue-900 text-lg mb-2">💵 Cajeros y Servicios Bancarios</h4>
-                    <p class="text-sm text-slate-600 leading-relaxed">Puntos de retiro y depósito a través del Cajero Automático de la <strong>Cooperativa Policía Nacional</strong> y red de corresponsales <strong>Pichincha Mi Vecino</strong>, distribuidos en locales de Zámbiza.</p>
-                </div>
-                <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100">
-                    <h4 class="font-bold text-blue-900 text-lg mb-2">🛠️ Servicios Extras (Mecánica, Farmacia, etc)</h4>
-                    <p class="text-sm text-slate-600 leading-relaxed">A lo largo del casco central y la vía principal podrás encontrar múltiples servicios comunitarios esenciales: ferreterías, farmacias 24/7, tiendas de abarrotes, talleres mecánicos y vulcanizadoras para solventar cualquier eventualidad durante tu visita.</p>
-                </div>
-            </div>
-        </div>
-    </div>
-
     <!-- MODAL MAPA ZÁMBIZA -->
     <div id="modal-mapa" class="fixed inset-0 z-[100] hidden items-center justify-center p-4 sm:p-6 bg-slate-950/95 backdrop-blur-md opacity-0 transition-opacity duration-300" onclick="if(event.target === this) cerrarMapaZambiza()">
         <div class="bg-slate-50 w-full max-w-5xl rounded-3xl overflow-hidden shadow-2xl relative flex flex-col h-[90vh]">
@@ -1571,6 +1535,7 @@
             const panel = document.getElementById('floating-chat-panel');
             if (panel.classList.contains('hidden')) {
                 panel.classList.remove('hidden');
+                panel.classList.add('flex'); // Fuerza display flex para que recalcule alturas
                 setTimeout(() => {
                     panel.classList.remove('scale-95', 'opacity-0');
                     panel.classList.add('scale-100', 'opacity-100');
@@ -1580,6 +1545,7 @@
                 panel.classList.add('scale-95', 'opacity-0');
                 setTimeout(() => {
                     panel.classList.add('hidden');
+                    panel.classList.remove('flex');
                 }, 300);
             }
         }
@@ -2158,7 +2124,11 @@
             `;
             
             chatHistorial.appendChild(mensajeDiv);
-            chatHistorial.scrollTop = chatHistorial.scrollHeight;
+            
+            // Auto-scroll perfecto hacia abajo en cada nuevo mensaje
+            setTimeout(() => {
+                chatHistorial.scrollTop = chatHistorial.scrollHeight;
+            }, 50);
         }
 
         async function consultarAlSabio(pregunta) {
