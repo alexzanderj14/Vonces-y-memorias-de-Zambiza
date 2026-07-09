@@ -204,7 +204,7 @@
                     <div class="p-6 bg-slate-50 rounded-2xl border border-slate-100 hover:shadow-md transition-shadow">
                         <div class="text-4xl mb-4">⚔️</div>
                         <h4 class="font-bold text-blue-900 mb-2 text-xl">Resistencia Histórica</h4>
-                        <p class="text-sm text-slate-600 leading-relaxed">Por su cercanía estratégica a Quito, Zámbiza jugó un papel fundamental. El legendario Cacique Suquillo y los habitantes originarios demostraron un enorme valor defending su autonomía y sus tradiciones.</p>
+                        <p class="text-sm text-slate-600 leading-relaxed">Por su cercanía estratégica a Quito, Zámbiza jugó un papel fundamental. El legendario Cacique Suquillo y los habitantes originarios demostraron un enorme valor defendiendo su autonomía y sus tradiciones.</p>
                     </div>
 
                     <!-- TARJETA: Devoción a San Miguel Arcángel -->
@@ -299,7 +299,7 @@
                     <div onclick="abrirArtistas()" class="bg-slate-50 rounded-2xl p-6 border border-slate-100 hover:shadow-lg transition-all group slide-hidden cursor-pointer" style="transition-delay: 300ms;">
                         <div class="w-14 h-14 bg-white shadow-sm text-amber-600 rounded-xl flex items-center justify-center text-2xl mb-5 group-hover:scale-110 transition-transform">🎭</div>
                         <h3 class="text-lg font-bold text-slate-900 mb-2">Arte y Cultura</h3>
-                        <p class="text-slate-600 text-sm leading-relaxed">Teatro Espada de Madera, Grupo Jayac y orquestas tropicales.</p>
+                        <p class="text-slate-600 text-sm leading-relaxed">Teatro Espada de Madera, Grupo Jayac, y artistas plásticos.</p>
                     </div>
 
                     <div onclick="abrirLogistica()" class="bg-slate-50 rounded-2xl p-6 border border-slate-100 hover:shadow-lg transition-all group slide-hidden cursor-pointer" style="transition-delay: 400ms;">
@@ -381,7 +381,7 @@
                                 </div>
                                 <div>
                                     <h4 class="font-bold text-blue-900">Gran Pregón de Fiestas</h4>
-                                    <p class="text-sm text-slate-600"><strong>Hora:</strong> 09:00 AM<br>Apertura oficial de las celebraciones con música, danza, carros alegóricos y color comunal.</p>
+                                    <p class="text-sm text-slate-600"><strong>Hora:</strong> 09:00 AM<br>Apertura oficial de las celebraciones con música, danza, carros elegóricos y color comunal.</p>
                                 </div>
                             </li>
                             <li class="flex gap-4 items-start p-3 hover:bg-amber-50 rounded-xl transition-colors border-l-4 border-amber-500">
@@ -400,7 +400,7 @@
             </div>
         </section>
 
-        <!-- 5. ECOSISTEMA DIGITAL (MOVIDO DESPUÉS DE EVENTOS Y NOTICIAS) -->
+        <!-- 5. ECOSISTEMA DIGITAL -->
         <section id="ecosistema" class="scroll-mt-32">
             <div class="bg-white rounded-3xl shadow-xl p-8 md:p-12 border border-slate-100 slide-hidden">
                 <div class="text-center max-w-3xl mx-auto mb-10 slide-hidden">
@@ -440,7 +440,7 @@
                         <div class="text-4xl group-hover:scale-110 transition-transform">🧵</div>
                         <div>
                             <h4 class="font-bold text-blue-900 text-lg mb-1 group-hover:text-sky-600 transition-colors">Significado Vestimentas</h4>
-                            <p class="text-sm text-slate-600">Encontrarás más información cultural para entender el contexto de sus prendas de vestir en las tradiciones.</p>
+                            <p class="text-sm text-slate-600">Encontrarás más información cultural para entender el contexto de sus prendas de vestir en las traditions.</p>
                         </div>
                     </a>
                 </div>
@@ -1370,7 +1370,7 @@
                             <div class="aspect-video rounded-xl overflow-hidden mb-4 bg-slate-900">
                                 <iframe class="w-full h-full" src="https://www.youtube.com/embed/F7cvL2H5AHc" frameborder="0" allowfullscreen></iframe>
                             </div>
-                            <h4 class="font-bold text-blue-900 mb-1">Zámbiza: Cultura e Historia</h4>
+                            <h4 class="font-bold text-blue-900 mb-1">Zámbiza: Culture e Historia</h4>
                             <p class="text-xs text-slate-600">Un recorrido completo por los elementos identitarios y costumbres.</p>
                         </div>
 
@@ -1503,7 +1503,7 @@
 
     <!-- SCRIPT DE LÓGICA E INTEGRACIÓN GEMINI AI -->
     <script>
-        // 1. API KEY EVASIÓN DE DETECTOR DE ROBO DE GITHUB (Separado en fragmentos para que el robot de GitHub no te lo bloquee)
+        // 1. API KEY EVASIÓN DE DETECTOR DE ROBO DE GITHUB (Ofuscado en arreglo de partes)
         const keyParts = [
             "AQ.Ab",
             "8RN6KDUs",
@@ -1886,7 +1886,7 @@
                 return;
             }
 
-            // LLAMADA A GEMINI TTS SI HAY API KEY
+            // LLAMADA A GEMINI TTS SI HAY API KEY (Enviando la API key mediante la cabecera x-goog-api-key)
             try {
                 const payload = {
                     contents: [{ parts: [{ text: textoALeer }] }],
@@ -1894,13 +1894,16 @@
                         responseModalities: ["AUDIO"],
                         speechConfig: { voiceConfig: { prebuiltVoiceConfig: { voiceName: "Aoede" } } }
                     },
-                    model: "gemini-2.5-flash-preview-tts"
+                    model: "gemini-2.5-flash"
                 };
 
-                const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-tts:generateContent?key=${apiKey}`;
+                const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent`;
                 const result = await fetchWithRetry(url, {
                     method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
+                    headers: { 
+                        'Content-Type': 'application/json',
+                        'x-goog-api-key': apiKey
+                    },
                     body: JSON.stringify(payload)
                 });
 
@@ -1971,7 +1974,80 @@
             updateLightboxTransform();
         }
 
-        // 8. ITINERARIO IA CON RESPALDO LOCAL
+        function zoomIn() {
+            if (zoomLevel < 4) {
+                zoomLevel = Math.min(4, zoomLevel + 0.3);
+                setZoom(zoomLevel);
+            }
+        }
+
+        function zoomOut() {
+            if (zoomLevel > 1) {
+                zoomLevel = Math.max(1, zoomLevel - 0.3);
+                setZoom(zoomLevel);
+            }
+        }
+
+        function resetZoomAndPan() {
+            zoomLevel = 1;
+            translateX = 0;
+            translateY = 0;
+            if (zoomRange) zoomRange.value = 1;
+            updateLightboxTransform();
+        }
+
+        function updateLightboxTransform() {
+            if (lightboxImg) {
+                lightboxImg.style.transform = `scale(${zoomLevel}) translate(${translateX}px, ${translateY}px)`;
+            }
+        }
+
+        if (lightboxContainer) {
+            lightboxContainer.addEventListener('mousedown', (e) => {
+                if (zoomLevel > 1) {
+                    isDragging = true;
+                    lightboxContainer.style.cursor = 'grabbing';
+                    startX = e.clientX - translateX * zoomLevel;
+                    startY = e.clientY - translateY * zoomLevel;
+                    e.preventDefault();
+                }
+            });
+
+            window.addEventListener('mousemove', (e) => {
+                if (isDragging && zoomLevel > 1) {
+                    translateX = (e.clientX - startX) / zoomLevel;
+                    translateY = (e.clientY - startY) / zoomLevel;
+                    updateLightboxTransform();
+                }
+            });
+
+            window.addEventListener('mouseup', () => {
+                isDragging = false;
+                if (lightboxContainer) lightboxContainer.style.cursor = 'grab';
+            });
+
+            lightboxContainer.addEventListener('touchstart', (e) => {
+                if (zoomLevel > 1 && e.touches.length === 1) {
+                    isDragging = true;
+                    startX = e.touches[0].clientX - translateX * zoomLevel;
+                    startY = e.touches[0].clientY - translateY * zoomLevel;
+                }
+            }, { passive: true });
+
+            lightboxContainer.addEventListener('touchmove', (e) => {
+                if (isDragging && zoomLevel > 1 && e.touches.length === 1) {
+                    translateX = (e.touches[0].clientX - startX) / zoomLevel;
+                    translateY = (e.touches[0].clientY - startY) / zoomLevel;
+                    updateLightboxTransform();
+                }
+            }, { passive: true });
+
+            lightboxContainer.addEventListener('touchend', () => {
+                isDragging = false;
+            });
+        }
+
+        // 8. ITINERARIO IA CON RESPALDO LOCAL (Utilizando gemini-2.5-flash y headers autorizados)
         async function generarItinerario() {
             const tiempo = document.getElementById('itinerario-tiempo').value;
             const tipo = document.getElementById('itinerario-tipo').value;
@@ -1987,7 +2063,6 @@
                 </div>
             `;
 
-            // FALLBACK NATIVO: Si no hay API KEY, devolvemos un itinerario local estructurado sin fallar.
             if (!apiKey || apiKey === "") {
                 setTimeout(() => {
                     let htmlResponse = `
@@ -2005,7 +2080,6 @@
                 return;
             }
 
-            // LLAMADA A GEMINI SI HAY API KEY
             try {
                 const prompt = `Crea un itinerario turístico detallado, inspirador y atractivo para visitar la parroquia de Zámbiza y Cocotog (Quito, Ecuador). 
                 - El usuario dispone de: ${tiempo}. 
@@ -2019,10 +2093,13 @@
                     systemInstruction: { parts: [{ text: "Eres un experto y amigable guía turístico patrimonial." }] },
                 };
 
-                const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-09-2025:generateContent?key=${apiKey}`;
+                const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent`;
                 const data = await fetchWithRetry(url, {
                     method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
+                    headers: { 
+                        'Content-Type': 'application/json',
+                        'x-goog-api-key': apiKey
+                    },
                     body: JSON.stringify(payload)
                 });
 
@@ -2090,7 +2167,7 @@
             
             try {
                 const systemPrompt = `Eres el Guardián e Historiador Virtual de la parroquia de Zámbiza y la comuna de Cocotog (Quito, Ecuador). 
-                Responde siempre en español de forma culta, amable y orgullosa. 
+                Responde siempre en español de forma culta, amigable, respetuosa y orgullosa. 
                 Conoces su etimología ("cazamos en la arena" en Tsafiqui), límites eclesiásticos de 1584, demografía, las Fiestas Mayores (San Miguel Arcángel) y Corpus Christi.
                 Conoces la gastronomía típica (Rincón del Cuy, Asados en Piedra, Helados de Paila, Pan de leña). 
                 IMPORTANTE: Para datos variables como clima o población actual de Cocotog y Zámbiza, TIENES ACTIVADA LA HERRAMIENTA GOOGLE SEARCH. Búscalo en la red y responde el dato real, exacto y directo.
@@ -2102,11 +2179,14 @@
                     tools: [{ "google_search": {} }]
                 };
 
-                const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-09-2025:generateContent?key=${apiKey}`;
+                const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent`;
                 
                 const data = await fetchWithRetry(url, {
                     method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
+                    headers: { 
+                        'Content-Type': 'application/json',
+                        'x-goog-api-key': apiKey
+                    },
                     body: JSON.stringify(payload)
                 });
 
