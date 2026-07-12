@@ -214,16 +214,26 @@
                         <p class="text-sm text-slate-800 leading-relaxed font-medium">El libro de Don Mesías Carrera relata que, tras la matanza de 5.000 indios zambiceños por Rumiñahui en Pomasqui, el cacique Suquillo formó alianzas para sobrevivir. En reconocimiento, el Rey Felipe II envió la imagen de <strong>San Miguel Arcángel</strong>. Bajo la fe a este guerrero celestial, los zambiceños lograron preservar sus inmensas fiestas agrícolas ancestrales, creando un sincretismo inquebrantable.</p>
                     </div>
 
-                    <div onclick="abrirMapaZambiza()" class="p-6 bg-slate-50 rounded-2xl border border-slate-100 hover:border-sky-300 hover:shadow-lg transition-all cursor-pointer group border-b-4 border-b-sky-500">
+                    <!-- Tarjeta Interactiva: Mapa -->
+                    <div onclick="abrirMapaZambiza()" class="relative p-6 bg-slate-50 rounded-2xl border border-slate-100 hover:border-sky-300 hover:shadow-xl transition-all duration-300 cursor-pointer group border-b-4 border-b-sky-500 hover:-translate-y-1">
+                        <!-- Indicador de Clic -->
+                        <div class="absolute top-4 right-4 bg-sky-100 text-sky-600 rounded-full p-2 opacity-60 group-hover:opacity-100 group-hover:bg-sky-500 group-hover:text-white transition-all duration-300 shadow-sm animate-pulse group-hover:animate-none group-hover:scale-110">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 15l-2 5L9 9l11 4-5 2zm0 0l5 5M7.188 2.239l.777 2.897M5.136 7.965l-2.898-.777M13.95 4.05l-2.122 2.122m-5.657 5.656l-2.12 2.122"></path></svg>
+                        </div>
                         <div class="text-4xl mb-4 group-hover:scale-110 transition-transform">🗺️</div>
                         <h4 class="font-bold text-blue-900 mb-2 text-xl group-hover:text-sky-600 transition-colors">Territorio y Agricultura</h4>
-                        <p class="text-sm text-slate-600 leading-relaxed">Conformada actualmente por <strong>12 barrios</strong>, Zámbiza sigue siendo una potencia agrícola para la ciudad. <strong>Haz clic para ver el mapa interactivo.</strong></p>
+                        <p class="text-sm text-slate-600 leading-relaxed pr-8">Conformada actualmente por <strong>12 barrios</strong>, Zámbiza sigue siendo una potencia agrícola para la ciudad. <strong>Haz clic para ver el mapa interactivo.</strong></p>
                     </div>
                     
-                    <div onclick="abrirDemografia()" class="p-6 bg-slate-50 rounded-2xl border border-slate-100 hover:border-sky-300 hover:shadow-lg transition-all cursor-pointer group border-b-4 border-b-sky-500">
+                    <!-- Tarjeta Interactiva: Demografía -->
+                    <div onclick="abrirDemografia()" class="relative p-6 bg-slate-50 rounded-2xl border border-slate-100 hover:border-sky-300 hover:shadow-xl transition-all duration-300 cursor-pointer group border-b-4 border-b-sky-500 hover:-translate-y-1">
+                        <!-- Indicador de Clic -->
+                        <div class="absolute top-4 right-4 bg-sky-100 text-sky-600 rounded-full p-2 opacity-60 group-hover:opacity-100 group-hover:bg-sky-500 group-hover:text-white transition-all duration-300 shadow-sm animate-pulse group-hover:animate-none group-hover:scale-110">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 15l-2 5L9 9l11 4-5 2zm0 0l5 5M7.188 2.239l.777 2.897M5.136 7.965l-2.898-.777M13.95 4.05l-2.122 2.122m-5.657 5.656l-2.12 2.122"></path></svg>
+                        </div>
                         <div class="text-4xl mb-4 group-hover:scale-110 transition-transform">📈</div>
                         <h4 class="font-bold text-blue-900 mb-2 text-xl group-hover:text-sky-600 transition-colors">Demografía</h4>
-                        <p class="text-sm text-slate-600 leading-relaxed">Análisis de la transición poblacional y evolución histórica rururbana frente al crecimiento de la ciudad. <strong>Haz clic para ver el gráfico demográfico.</strong></p>
+                        <p class="text-sm text-slate-600 leading-relaxed pr-8">Análisis de la transición poblacional y evolución histórica rururbana frente al crecimiento de la ciudad. <strong>Haz clic para ver el gráfico.</strong></p>
                     </div>
                 </div>
             </div>
@@ -278,40 +288,64 @@
 
                 <!-- Atractivos Físicos y Logísticos -->
                 <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
-                    <div onclick="abrirLugaresTuristicos()" class="bg-slate-50 rounded-2xl p-6 border border-slate-100 hover:shadow-lg transition-all group slide-hidden cursor-pointer">
+                    <!-- Tarjeta Interactiva: Lugares -->
+                    <div onclick="abrirLugaresTuristicos()" class="relative bg-slate-50 rounded-2xl p-6 border border-slate-100 hover:shadow-xl hover:border-sky-300 transition-all duration-300 hover:-translate-y-1 group slide-hidden cursor-pointer">
+                        <div class="absolute top-4 right-4 bg-sky-100 text-sky-600 rounded-full p-2 opacity-60 group-hover:opacity-100 group-hover:bg-sky-500 group-hover:text-white transition-all duration-300 shadow-sm animate-pulse group-hover:animate-none group-hover:scale-110">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 15l-2 5L9 9l11 4-5 2zm0 0l5 5M7.188 2.239l.777 2.897M5.136 7.965l-2.898-.777M13.95 4.05l-2.122 2.122m-5.657 5.656l-2.12 2.122"></path></svg>
+                        </div>
                         <div class="w-24 h-24 mx-auto bg-white shadow-sm text-blue-600 rounded-2xl flex items-center justify-center text-6xl mb-5 group-hover:scale-110 transition-transform">⛪</div>
                         <h3 class="text-lg font-bold text-slate-900 mb-2 text-center">Lugares Históricos</h3>
-                        <p class="text-slate-600 text-sm leading-relaxed text-center">Conoce el Santuario de San Miguel, la Casa del Obraje, los cementerios ancestrales y el Parque Central.</p>
+                        <p class="text-slate-600 text-sm leading-relaxed text-center px-2">Conoce el Santuario de San Miguel, la Casa del Obraje, los cementerios ancestrales y el Parque Central.</p>
                     </div>
                     
-                    <div onclick="abrirPlazas()" class="bg-slate-50 rounded-2xl p-6 border border-slate-100 hover:shadow-lg transition-all group slide-hidden cursor-pointer" style="transition-delay: 100ms;">
+                    <!-- Tarjeta Interactiva: Gastronomía -->
+                    <div onclick="abrirPlazas()" class="relative bg-slate-50 rounded-2xl p-6 border border-slate-100 hover:shadow-xl hover:border-sky-300 transition-all duration-300 hover:-translate-y-1 group slide-hidden cursor-pointer" style="transition-delay: 100ms;">
+                        <div class="absolute top-4 right-4 bg-sky-100 text-sky-600 rounded-full p-2 opacity-60 group-hover:opacity-100 group-hover:bg-sky-500 group-hover:text-white transition-all duration-300 shadow-sm animate-pulse group-hover:animate-none group-hover:scale-110">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 15l-2 5L9 9l11 4-5 2zm0 0l5 5M7.188 2.239l.777 2.897M5.136 7.965l-2.898-.777M13.95 4.05l-2.122 2.122m-5.657 5.656l-2.12 2.122"></path></svg>
+                        </div>
                         <div class="w-24 h-24 mx-auto bg-white shadow-sm text-orange-600 rounded-2xl flex items-center justify-center text-6xl mb-5 group-hover:scale-110 transition-transform">🍲</div>
                         <h3 class="text-lg font-bold text-slate-900 mb-2 text-center">Gastronomía Local</h3>
-                        <p class="text-slate-600 text-sm leading-relaxed text-center">Descubre Rincón del Cuy Zambiceño, Asados en Piedra y la panadería de leña tradicional.</p>
+                        <p class="text-slate-600 text-sm leading-relaxed text-center px-2">Descubre Rincón del Cuy Zambiceño, Asados en Piedra y la panadería de leña tradicional.</p>
                     </div>
 
-                    <div onclick="abrirEntorno()" class="bg-slate-50 rounded-2xl p-6 border border-slate-100 hover:shadow-lg transition-all group slide-hidden cursor-pointer" style="transition-delay: 200ms;">
+                    <!-- Tarjeta Interactiva: Entorno -->
+                    <div onclick="abrirEntorno()" class="relative bg-slate-50 rounded-2xl p-6 border border-slate-100 hover:shadow-xl hover:border-sky-300 transition-all duration-300 hover:-translate-y-1 group slide-hidden cursor-pointer" style="transition-delay: 200ms;">
+                        <div class="absolute top-4 right-4 bg-sky-100 text-sky-600 rounded-full p-2 opacity-60 group-hover:opacity-100 group-hover:bg-sky-500 group-hover:text-white transition-all duration-300 shadow-sm animate-pulse group-hover:animate-none group-hover:scale-110">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 15l-2 5L9 9l11 4-5 2zm0 0l5 5M7.188 2.239l.777 2.897M5.136 7.965l-2.898-.777M13.95 4.05l-2.122 2.122m-5.657 5.656l-2.12 2.122"></path></svg>
+                        </div>
                         <div class="w-24 h-24 mx-auto bg-white shadow-sm text-green-600 rounded-2xl flex items-center justify-center text-6xl mb-5 group-hover:scale-110 transition-transform">🌳</div>
                         <h3 class="text-lg font-bold text-slate-900 mb-2 text-center">Entorno y Deporte</h3>
-                        <p class="text-slate-600 text-sm leading-relaxed text-center">Sendero El Perdiz, Complejos recreacionales y las escuelas formativas de fútbol y baloncesto.</p>
+                        <p class="text-slate-600 text-sm leading-relaxed text-center px-2">Sendero El Perdiz, Complejos recreacionales y las escuelas formativas de fútbol y baloncesto.</p>
                     </div>
 
-                    <div onclick="abrirArtistas()" class="bg-slate-50 rounded-2xl p-6 border border-slate-100 hover:shadow-lg transition-all group slide-hidden cursor-pointer" style="transition-delay: 300ms;">
+                    <!-- Tarjeta Interactiva: Arte -->
+                    <div onclick="abrirArtistas()" class="relative bg-slate-50 rounded-2xl p-6 border border-slate-100 hover:shadow-xl hover:border-sky-300 transition-all duration-300 hover:-translate-y-1 group slide-hidden cursor-pointer" style="transition-delay: 300ms;">
+                        <div class="absolute top-4 right-4 bg-sky-100 text-sky-600 rounded-full p-2 opacity-60 group-hover:opacity-100 group-hover:bg-sky-500 group-hover:text-white transition-all duration-300 shadow-sm animate-pulse group-hover:animate-none group-hover:scale-110">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 15l-2 5L9 9l11 4-5 2zm0 0l5 5M7.188 2.239l.777 2.897M5.136 7.965l-2.898-.777M13.95 4.05l-2.122 2.122m-5.657 5.656l-2.12 2.122"></path></svg>
+                        </div>
                         <div class="w-24 h-24 mx-auto bg-white shadow-sm text-amber-600 rounded-2xl flex items-center justify-center text-6xl mb-5 group-hover:scale-110 transition-transform">🎭</div>
                         <h3 class="text-lg font-bold text-slate-900 mb-2 text-center">Arte y Cultura</h3>
-                        <p class="text-slate-600 text-sm leading-relaxed text-center">Teatro Espada de Madera, Grupo Jayac y orquestas tropicales.</p>
+                        <p class="text-slate-600 text-sm leading-relaxed text-center px-2">Teatro Espada de Madera, Grupo Jayac y orquestas tropicales.</p>
                     </div>
 
-                    <div onclick="abrirLogistica()" class="bg-slate-50 rounded-2xl p-6 border border-slate-100 hover:shadow-lg transition-all group slide-hidden cursor-pointer" style="transition-delay: 400ms;">
+                    <!-- Tarjeta Interactiva: Logística -->
+                    <div onclick="abrirLogistica()" class="relative bg-slate-50 rounded-2xl p-6 border border-slate-100 hover:shadow-xl hover:border-sky-300 transition-all duration-300 hover:-translate-y-1 group slide-hidden cursor-pointer" style="transition-delay: 400ms;">
+                        <div class="absolute top-4 right-4 bg-sky-100 text-sky-600 rounded-full p-2 opacity-60 group-hover:opacity-100 group-hover:bg-sky-500 group-hover:text-white transition-all duration-300 shadow-sm animate-pulse group-hover:animate-none group-hover:scale-110">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 15l-2 5L9 9l11 4-5 2zm0 0l5 5M7.188 2.239l.777 2.897M5.136 7.965l-2.898-.777M13.95 4.05l-2.122 2.122m-5.657 5.656l-2.12 2.122"></path></svg>
+                        </div>
                         <div class="w-24 h-24 mx-auto bg-white shadow-sm text-emerald-600 rounded-2xl flex items-center justify-center text-6xl mb-5 group-hover:scale-110 transition-transform">🚌</div>
                         <h3 class="text-lg font-bold text-slate-900 mb-2 text-center">Logística y Servicios</h3>
-                        <p class="text-slate-600 text-sm leading-relaxed text-center">Taxis Taxsamiz y Expresszambiza, cajeros, farmacias y servicios extras de la comunidad.</p>
+                        <p class="text-slate-600 text-sm leading-relaxed text-center px-2">Taxis Taxsamiz y Expresszambiza, cajeros, farmacias y servicios extras de la comunidad.</p>
                     </div>
 
-                    <div onclick="abrirBikers()" class="bg-slate-50 rounded-2xl p-6 border border-slate-100 hover:shadow-lg transition-all group slide-hidden cursor-pointer" style="transition-delay: 500ms;">
+                    <!-- Tarjeta Interactiva: Bikers -->
+                    <div onclick="abrirBikers()" class="relative bg-slate-50 rounded-2xl p-6 border border-slate-100 hover:shadow-xl hover:border-sky-300 transition-all duration-300 hover:-translate-y-1 group slide-hidden cursor-pointer" style="transition-delay: 500ms;">
+                        <div class="absolute top-4 right-4 bg-sky-100 text-sky-600 rounded-full p-2 opacity-60 group-hover:opacity-100 group-hover:bg-sky-500 group-hover:text-white transition-all duration-300 shadow-sm animate-pulse group-hover:animate-none group-hover:scale-110">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 15l-2 5L9 9l11 4-5 2zm0 0l5 5M7.188 2.239l.777 2.897M5.136 7.965l-2.898-.777M13.95 4.05l-2.122 2.122m-5.657 5.656l-2.12 2.122"></path></svg>
+                        </div>
                         <div class="w-24 h-24 mx-auto bg-white shadow-sm text-blue-500 rounded-2xl flex items-center justify-center text-6xl mb-5 group-hover:scale-110 transition-transform">🚴</div>
                         <h3 class="text-lg font-bold text-slate-900 mb-2 text-center">Ruta El Perdiz para BIKERS</h3>
-                        <p class="text-slate-600 text-sm leading-relaxed text-center">Ruta Mixta: para ruteras hasta el 2do mirador (2km), Downhill hasta antena (1km) y montañeras hasta mirador 1 (3km).</p>
+                        <p class="text-slate-600 text-sm leading-relaxed text-center px-2">Ruta Mixta: para ruteras hasta el 2do mirador (2km), Downhill hasta antena (1km) y montañeras hasta mirador 1 (3km).</p>
                     </div>
                 </div>
 
@@ -423,35 +457,51 @@
                 </div>
                 
                 <div class="grid md:grid-cols-2 gap-6">
-                    <a href="https://photos.google.com/album/AF1QipP_byRTofeyHFxEJeK5bSkfXLfCHT1C4nY2VFv0" target="_blank" class="flex items-start gap-4 p-6 rounded-2xl border border-slate-200 hover:border-sky-300 transition-colors bg-white group cursor-pointer slide-hidden">
+                    <!-- Tarjeta Interactiva: Galería Digital -->
+                    <a href="https://photos.google.com/album/AF1QipP_byRTofeyHFxEJeK5bSkfXLfCHT1C4nY2VFv0" target="_blank" class="relative flex items-start gap-4 p-6 rounded-2xl border border-slate-200 hover:border-sky-300 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 bg-white group cursor-pointer slide-hidden">
+                        <div class="absolute top-4 right-4 bg-sky-100 text-sky-600 rounded-full p-2 opacity-60 group-hover:opacity-100 group-hover:bg-sky-500 group-hover:text-white transition-all duration-300 shadow-sm animate-pulse group-hover:animate-none group-hover:scale-110">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 15l-2 5L9 9l11 4-5 2zm0 0l5 5M7.188 2.239l.777 2.897M5.136 7.965l-2.898-.777M13.95 4.05l-2.122 2.122m-5.657 5.656l-2.12 2.122"></path></svg>
+                        </div>
                         <div class="text-4xl group-hover:scale-110 transition-transform">🎬</div>
                         <div>
-                            <h4 class="font-bold text-blue-900 text-lg mb-1 group-hover:text-sky-600 transition-colors">Galería Digital</h4>
-                            <p class="text-sm text-slate-600">Videos referentes a Zámbiza, sus bailes, cultures y tradiciones vivas. Clic para ver.</p>
+                            <h4 class="font-bold text-blue-900 text-lg mb-1 group-hover:text-sky-600 transition-colors pr-6">Galería Digital</h4>
+                            <p class="text-sm text-slate-600 pr-4">Videos referentes a Zámbiza, sus bailes, cultures y tradiciones vivas. Clic para ver.</p>
                         </div>
                     </a>
 
-                    <a href="https://www.tiktok.com/tag/zambiza" target="_blank" class="flex items-start gap-4 p-6 rounded-2xl border border-slate-200 hover:border-sky-300 transition-colors bg-white group cursor-pointer slide-hidden" style="transition-delay: 100ms;">
+                    <!-- Tarjeta Interactiva: TikTok -->
+                    <a href="https://www.tiktok.com/tag/zambiza" target="_blank" class="relative flex items-start gap-4 p-6 rounded-2xl border border-slate-200 hover:border-sky-300 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 bg-white group cursor-pointer slide-hidden" style="transition-delay: 100ms;">
+                        <div class="absolute top-4 right-4 bg-sky-100 text-sky-600 rounded-full p-2 opacity-60 group-hover:opacity-100 group-hover:bg-sky-500 group-hover:text-white transition-all duration-300 shadow-sm animate-pulse group-hover:animate-none group-hover:scale-110">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 15l-2 5L9 9l11 4-5 2zm0 0l5 5M7.188 2.239l.777 2.897M5.136 7.965l-2.898-.777M13.95 4.05l-2.122 2.122m-5.657 5.656l-2.12 2.122"></path></svg>
+                        </div>
                         <div class="text-4xl group-hover:scale-110 transition-transform">🎵</div>
                         <div>
-                            <h4 class="font-bold text-blue-900 text-lg mb-1 group-hover:text-sky-600 transition-colors">#Zámbiza (TikTok)</h4>
-                            <p class="text-sm text-slate-600">Todos los videos recopilados y etiquetados haciendo referencia a este hermoso lugar.</p>
+                            <h4 class="font-bold text-blue-900 text-lg mb-1 group-hover:text-sky-600 transition-colors pr-6">#Zámbiza (TikTok)</h4>
+                            <p class="text-sm text-slate-600 pr-4">Todos los videos recopilados y etiquetados haciendo referencia a este hermoso lugar.</p>
                         </div>
                     </a>
 
-                    <button onclick="abrirBiblioteca()" class="text-left flex items-start gap-4 p-6 rounded-2xl border border-slate-200 hover:border-sky-300 transition-colors bg-white group cursor-pointer slide-hidden" style="transition-delay: 200ms;">
+                    <!-- Tarjeta Interactiva: Biblioteca -->
+                    <button onclick="abrirBiblioteca()" class="relative text-left flex items-start gap-4 p-6 rounded-2xl border border-slate-200 hover:border-sky-300 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 bg-white group cursor-pointer slide-hidden" style="transition-delay: 200ms;">
+                        <div class="absolute top-4 right-4 bg-sky-100 text-sky-600 rounded-full p-2 opacity-60 group-hover:opacity-100 group-hover:bg-sky-500 group-hover:text-white transition-all duration-300 shadow-sm animate-pulse group-hover:animate-none group-hover:scale-110">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 15l-2 5L9 9l11 4-5 2zm0 0l5 5M7.188 2.239l.777 2.897M5.136 7.965l-2.898-.777M13.95 4.05l-2.122 2.122m-5.657 5.656l-2.12 2.122"></path></svg>
+                        </div>
                         <div class="text-4xl group-hover:scale-110 transition-transform">🖼️</div>
                         <div>
-                            <h4 class="font-bold text-blue-900 text-lg mb-1 group-hover:text-sky-600 transition-colors">Biblioteca Multimedia</h4>
-                            <p class="text-sm text-slate-600">Repositorios fotográficos, reportajes y documentales en YouTube.</p>
+                            <h4 class="font-bold text-blue-900 text-lg mb-1 group-hover:text-sky-600 transition-colors pr-6">Biblioteca Multimedia</h4>
+                            <p class="text-sm text-slate-600 pr-4">Repositorios fotográficos, reportajes y documentales en YouTube.</p>
                         </div>
                     </button>
 
-                    <button onclick="abrirVestimentas()" class="text-left flex items-start gap-4 p-6 rounded-2xl border border-slate-200 hover:border-sky-300 transition-colors bg-white group cursor-pointer slide-hidden" style="transition-delay: 300ms;">
+                    <!-- Tarjeta Interactiva: Vestimentas -->
+                    <button onclick="abrirVestimentas()" class="relative text-left flex items-start gap-4 p-6 rounded-2xl border border-slate-200 hover:border-sky-300 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 bg-white group cursor-pointer slide-hidden" style="transition-delay: 300ms;">
+                        <div class="absolute top-4 right-4 bg-sky-100 text-sky-600 rounded-full p-2 opacity-60 group-hover:opacity-100 group-hover:bg-sky-500 group-hover:text-white transition-all duration-300 shadow-sm animate-pulse group-hover:animate-none group-hover:scale-110">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 15l-2 5L9 9l11 4-5 2zm0 0l5 5M7.188 2.239l.777 2.897M5.136 7.965l-2.898-.777M13.95 4.05l-2.122 2.122m-5.657 5.656l-2.12 2.122"></path></svg>
+                        </div>
                         <div class="text-4xl group-hover:scale-110 transition-transform">🧵</div>
                         <div>
-                            <h4 class="font-bold text-blue-900 text-lg mb-1 group-hover:text-sky-600 transition-colors">Significado Vestimentas</h4>
-                            <p class="text-sm text-slate-600">Encontrarás más información cultural y una galería interactiva de sus prendas de vestir y tradiciones.</p>
+                            <h4 class="font-bold text-blue-900 text-lg mb-1 group-hover:text-sky-600 transition-colors pr-6">Significado Vestimentas</h4>
+                            <p class="text-sm text-slate-600 pr-4">Encontrarás más información cultural y una galería interactiva de sus prendas de vestir y tradiciones.</p>
                         </div>
                     </button>
                 </div>
@@ -518,7 +568,7 @@
                             </span>
                         </summary>
                         <div class="text-slate-600 mt-3 group-open:animate-fadeIn px-6 pb-6">
-                            <p>Programas de formación diseñados para fortalecer las habilidades de nuestra comunidad, fomentando el emprendimiento cultural, el turismo sostenible y la preservación de nuestros saberes tradicionales.</p>
+                            <p>Programas de formación diseñados para fortalecer las habilidades de nuestra comunidad, fomentando el emprendimiento cultural, el tourism sostenible y la preservación de nuestros saberes tradicionales.</p>
                         </div>
                     </details>
 
@@ -715,7 +765,12 @@
                 
                     <!-- Mirador Sendero el Perdiz -->
                     <div class="bg-white rounded-2xl shadow-sm border border-slate-200 hover:shadow-md transition-shadow flex flex-col overflow-hidden">
-                        <img src="https://raw.githubusercontent.com/alexzanderj14/Vonces-y-memorias-de-Zambiza/main/IMG_9427.JPG" alt="Mirador Sendero el Perdiz" class="w-full h-48 object-cover cursor-zoom-in hover:opacity-90 transition-opacity" onclick="openLightbox(this.src)">
+                        <div class="relative w-full h-48 group overflow-hidden bg-slate-100 cursor-zoom-in" onclick="openLightbox('https://raw.githubusercontent.com/alexzanderj14/Vonces-y-memorias-de-Zambiza/main/IMG_9427.JPG')">
+                            <img src="https://raw.githubusercontent.com/alexzanderj14/Vonces-y-memorias-de-Zambiza/main/IMG_9427.JPG" alt="Mirador Sendero el Perdiz" class="w-full h-full object-cover transition-all duration-300 group-hover:scale-105 group-hover:opacity-80">
+                            <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-blue-900/20">
+                                <span class="bg-white/90 text-blue-900 p-3 rounded-full shadow-lg backdrop-blur-sm text-xl">🔍</span>
+                            </div>
+                        </div>
                         <div class="p-6 flex flex-col justify-between flex-1">
                             <div>
                                 <h4 class="font-bold text-blue-900 text-lg leading-tight mb-2">Mirador Sendero El Perdiz</h4>
@@ -729,7 +784,12 @@
 
                     <!-- Entrada de Cocotog -->
                     <div class="bg-white rounded-2xl shadow-sm border border-slate-200 hover:shadow-md transition-shadow flex flex-col overflow-hidden">
-                        <img src="https://raw.githubusercontent.com/alexzanderj14/Vonces-y-memorias-de-Zambiza/main/Entrada%20de%20cocotog.jpg" alt="Entrada de Cocotog" class="w-full h-48 object-cover cursor-zoom-in hover:opacity-90 transition-opacity" onclick="openLightbox(this.src)">
+                        <div class="relative w-full h-48 group overflow-hidden bg-slate-100 cursor-zoom-in" onclick="openLightbox('https://raw.githubusercontent.com/alexzanderj14/Vonces-y-memorias-de-Zambiza/main/Entrada%20de%20cocotog.jpg')">
+                            <img src="https://raw.githubusercontent.com/alexzanderj14/Vonces-y-memorias-de-Zambiza/main/Entrada%20de%20cocotog.jpg" alt="Entrada de Cocotog" class="w-full h-full object-cover transition-all duration-300 group-hover:scale-105 group-hover:opacity-80">
+                            <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-blue-900/20">
+                                <span class="bg-white/90 text-blue-900 p-3 rounded-full shadow-lg backdrop-blur-sm text-xl">🔍</span>
+                            </div>
+                        </div>
                         <div class="p-6 flex flex-col justify-between flex-1">
                             <div>
                                 <h4 class="font-bold text-blue-900 text-lg leading-tight mb-2">Entrada de Cocotog</h4>
@@ -743,7 +803,12 @@
 
                     <!-- Santuario San Miguel Arcángel -->
                     <div class="bg-white rounded-2xl shadow-sm border border-slate-200 hover:shadow-md transition-shadow flex flex-col overflow-hidden">
-                        <img src="https://raw.githubusercontent.com/alexzanderj14/Vonces-y-memorias-de-Zambiza/main/igle.jpeg" alt="Santuario de San Miguel Arcángel" class="w-full h-48 object-cover cursor-zoom-in hover:opacity-90 transition-opacity" onclick="openLightbox(this.src)">
+                        <div class="relative w-full h-48 group overflow-hidden bg-slate-100 cursor-zoom-in" onclick="openLightbox('https://raw.githubusercontent.com/alexzanderj14/Vonces-y-memorias-de-Zambiza/main/igle.jpeg')">
+                            <img src="https://raw.githubusercontent.com/alexzanderj14/Vonces-y-memorias-de-Zambiza/main/igle.jpeg" alt="Santuario de San Miguel Arcángel" class="w-full h-full object-cover transition-all duration-300 group-hover:scale-105 group-hover:opacity-80">
+                            <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-blue-900/20">
+                                <span class="bg-white/90 text-blue-900 p-3 rounded-full shadow-lg backdrop-blur-sm text-xl">🔍</span>
+                            </div>
+                        </div>
                         <div class="p-6 flex flex-col justify-between flex-1">
                             <div>
                                 <h4 class="font-bold text-blue-900 text-lg leading-tight mb-2">Santuario San Miguel Arcángel</h4>
@@ -757,7 +822,12 @@
 
                     <!-- La Casa del Obraje -->
                     <div class="bg-white rounded-2xl shadow-sm border border-slate-200 hover:shadow-md transition-shadow flex flex-col overflow-hidden">
-                        <img src="https://raw.githubusercontent.com/alexzanderj14/Vonces-y-memorias-de-Zambiza/main/el%20obraje.jpg" alt="La Casa del Obraje" class="w-full h-48 object-cover cursor-zoom-in hover:opacity-90 transition-opacity" onclick="openLightbox(this.src)">
+                        <div class="relative w-full h-48 group overflow-hidden bg-slate-100 cursor-zoom-in" onclick="openLightbox('https://raw.githubusercontent.com/alexzanderj14/Vonces-y-memorias-de-Zambiza/main/el%20obraje.jpg')">
+                            <img src="https://raw.githubusercontent.com/alexzanderj14/Vonces-y-memorias-de-Zambiza/main/el%20obraje.jpg" alt="La Casa del Obraje" class="w-full h-full object-cover transition-all duration-300 group-hover:scale-105 group-hover:opacity-80">
+                            <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-blue-900/20">
+                                <span class="bg-white/90 text-blue-900 p-3 rounded-full shadow-lg backdrop-blur-sm text-xl">🔍</span>
+                            </div>
+                        </div>
                         <div class="p-6 flex flex-col justify-between flex-1">
                             <div>
                                 <h4 class="font-bold text-blue-900 text-lg leading-tight mb-2">La Casa del Obraje</h4>
@@ -771,7 +841,12 @@
 
                     <!-- Parque Central de Zámbiza -->
                     <div class="bg-white rounded-2xl shadow-sm border border-slate-200 hover:shadow-md transition-shadow flex flex-col overflow-hidden">
-                        <img src="https://raw.githubusercontent.com/alexzanderj14/Vonces-y-memorias-de-Zambiza/main/WhatsApp%20Image%202026-05-18%20at%2022.47.54.jpeg" alt="Parque Central de Zámbiza" class="w-full h-48 object-cover cursor-zoom-in hover:opacity-90 transition-opacity" onclick="openLightbox(this.src)">
+                        <div class="relative w-full h-48 group overflow-hidden bg-slate-100 cursor-zoom-in" onclick="openLightbox('https://raw.githubusercontent.com/alexzanderj14/Vonces-y-memorias-de-Zambiza/main/WhatsApp%20Image%202026-05-18%20at%2022.47.54.jpeg')">
+                            <img src="https://raw.githubusercontent.com/alexzanderj14/Vonces-y-memorias-de-Zambiza/main/WhatsApp%20Image%202026-05-18%20at%2022.47.54.jpeg" alt="Parque Central de Zámbiza" class="w-full h-full object-cover transition-all duration-300 group-hover:scale-105 group-hover:opacity-80">
+                            <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-blue-900/20">
+                                <span class="bg-white/90 text-blue-900 p-3 rounded-full shadow-lg backdrop-blur-sm text-xl">🔍</span>
+                            </div>
+                        </div>
                         <div class="p-6 flex flex-col justify-between flex-1">
                             <div>
                                 <h4 class="font-bold text-blue-900 text-lg leading-tight mb-2">Parque Central de Zámbiza</h4>
@@ -785,7 +860,12 @@
 
                     <!-- Laderas del Incha Rumi -->
                     <div class="bg-white rounded-2xl shadow-sm border border-slate-200 hover:shadow-md transition-shadow flex flex-col overflow-hidden">
-                        <img src="https://raw.githubusercontent.com/alexzanderj14/Vonces-y-memorias-de-Zambiza/main/Loma.png" alt="Laderas del Incha Rumi" class="w-full h-48 object-cover cursor-zoom-in hover:opacity-90 transition-opacity" onclick="openLightbox(this.src)">
+                        <div class="relative w-full h-48 group overflow-hidden bg-slate-100 cursor-zoom-in" onclick="openLightbox('https://raw.githubusercontent.com/alexzanderj14/Vonces-y-memorias-de-Zambiza/main/Loma.png')">
+                            <img src="https://raw.githubusercontent.com/alexzanderj14/Vonces-y-memorias-de-Zambiza/main/Loma.png" alt="Laderas del Incha Rumi" class="w-full h-full object-cover transition-all duration-300 group-hover:scale-105 group-hover:opacity-80">
+                            <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-blue-900/20">
+                                <span class="bg-white/90 text-blue-900 p-3 rounded-full shadow-lg backdrop-blur-sm text-xl">🔍</span>
+                            </div>
+                        </div>
                         <div class="p-6 flex flex-col justify-between flex-1">
                             <div>
                                 <h4 class="font-bold text-blue-900 text-lg leading-tight mb-2">Laderas del Incha Rumi</h4>
@@ -799,7 +879,12 @@
 
                     <!-- Túnel y Cruz de Zámbiza -->
                     <div class="bg-white rounded-2xl shadow-sm border border-slate-200 hover:shadow-md transition-shadow flex flex-col overflow-hidden">
-                        <img src="https://raw.githubusercontent.com/alexzanderj14/Vonces-y-memorias-de-Zambiza/main/Cueva%2C%20y%20cruz%20zambiza.jpg" alt="Túnel y Cruz de Zámbiza" class="w-full h-48 object-cover cursor-zoom-in hover:opacity-90 transition-opacity" onclick="openLightbox(this.src)">
+                        <div class="relative w-full h-48 group overflow-hidden bg-slate-100 cursor-zoom-in" onclick="openLightbox('https://raw.githubusercontent.com/alexzanderj14/Vonces-y-memorias-de-Zambiza/main/Cueva%2C%20y%20cruz%20zambiza.jpg')">
+                            <img src="https://raw.githubusercontent.com/alexzanderj14/Vonces-y-memorias-de-Zambiza/main/Cueva%2C%20y%20cruz%20zambiza.jpg" alt="Túnel y Cruz de Zámbiza" class="w-full h-full object-cover transition-all duration-300 group-hover:scale-105 group-hover:opacity-80">
+                            <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-blue-900/20">
+                                <span class="bg-white/90 text-blue-900 p-3 rounded-full shadow-lg backdrop-blur-sm text-xl">🔍</span>
+                            </div>
+                        </div>
                         <div class="p-6 flex flex-col justify-between flex-1">
                             <div>
                                 <h4 class="font-bold text-blue-900 text-lg leading-tight mb-2">Túnel y Cruz de Zámbiza</h4>
@@ -813,7 +898,12 @@
 
                     <!-- Cementerio Zámbiza -->
                     <div class="bg-white rounded-2xl shadow-sm border border-slate-200 hover:shadow-md transition-shadow flex flex-col overflow-hidden">
-                        <img src="https://raw.githubusercontent.com/alexzanderj14/Vonces-y-memorias-de-Zambiza/main/cementerio%20zambiza.jpg" alt="Cementerio Zámbiza" class="w-full h-48 object-cover cursor-zoom-in hover:opacity-90 transition-opacity" onclick="openLightbox(this.src)">
+                        <div class="relative w-full h-48 group overflow-hidden bg-slate-100 cursor-zoom-in" onclick="openLightbox('https://raw.githubusercontent.com/alexzanderj14/Vonces-y-memorias-de-Zambiza/main/cementerio%20zambiza.jpg')">
+                            <img src="https://raw.githubusercontent.com/alexzanderj14/Vonces-y-memorias-de-Zambiza/main/cementerio%20zambiza.jpg" alt="Cementerio Zámbiza" class="w-full h-full object-cover transition-all duration-300 group-hover:scale-105 group-hover:opacity-80">
+                            <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-blue-900/20">
+                                <span class="bg-white/90 text-blue-900 p-3 rounded-full shadow-lg backdrop-blur-sm text-xl">🔍</span>
+                            </div>
+                        </div>
                         <div class="p-6 flex flex-col justify-between flex-1">
                             <div>
                                 <h4 class="font-bold text-blue-900 text-lg leading-tight mb-2">Cementerio Parroquial de Zámbiza</h4>
@@ -827,7 +917,12 @@
 
                     <!-- Cementerio de Cocotog -->
                     <div class="bg-white rounded-2xl shadow-sm border border-slate-200 hover:shadow-md transition-shadow flex flex-col overflow-hidden">
-                        <img src="https://raw.githubusercontent.com/alexzanderj14/Vonces-y-memorias-de-Zambiza/main/cementerio%20cocotog.jpg" alt="Cementerio de Cocotog" class="w-full h-48 object-cover cursor-zoom-in hover:opacity-90 transition-opacity" onclick="openLightbox(this.src)">
+                        <div class="relative w-full h-48 group overflow-hidden bg-slate-100 cursor-zoom-in" onclick="openLightbox('https://raw.githubusercontent.com/alexzanderj14/Vonces-y-memorias-de-Zambiza/main/cementerio%20cocotog.jpg')">
+                            <img src="https://raw.githubusercontent.com/alexzanderj14/Vonces-y-memorias-de-Zambiza/main/cementerio%20cocotog.jpg" alt="Cementerio de Cocotog" class="w-full h-full object-cover transition-all duration-300 group-hover:scale-105 group-hover:opacity-80">
+                            <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-blue-900/20">
+                                <span class="bg-white/90 text-blue-900 p-3 rounded-full shadow-lg backdrop-blur-sm text-xl">🔍</span>
+                            </div>
+                        </div>
                         <div class="p-6 flex flex-col justify-between flex-1">
                             <div>
                                 <h4 class="font-bold text-blue-900 text-lg leading-tight mb-2">Cementerio de Cocotog</h4>
@@ -860,7 +955,12 @@
                 
                     <!-- El Rincón del Cuy -->
                     <div class="bg-white rounded-2xl shadow-sm border border-slate-200 hover:shadow-md transition-shadow flex flex-col overflow-hidden">
-                        <img src="https://raw.githubusercontent.com/alexzanderj14/Vonces-y-memorias-de-Zambiza/main/el%20rincon%20del%20cuy%20zambiza.jpg" alt="El Rincón del Cuy Zambiceño" class="w-full h-48 object-contain bg-slate-100 p-2 cursor-zoom-in hover:opacity-90 transition-opacity" onclick="openLightbox(this.src)">
+                        <div class="relative w-full h-48 group overflow-hidden bg-slate-100 cursor-zoom-in p-2" onclick="openLightbox('https://raw.githubusercontent.com/alexzanderj14/Vonces-y-memorias-de-Zambiza/main/el%20rincon%20del%20cuy%20zambiza.jpg')">
+                            <img src="https://raw.githubusercontent.com/alexzanderj14/Vonces-y-memorias-de-Zambiza/main/el%20rincon%20del%20cuy%20zambiza.jpg" alt="El Rincón del Cuy Zambiceño" class="w-full h-full object-contain transition-all duration-300 group-hover:scale-105 group-hover:opacity-80">
+                            <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-blue-900/10">
+                                <span class="bg-white/90 text-blue-900 p-3 rounded-full shadow-lg backdrop-blur-sm text-xl">🔍</span>
+                            </div>
+                        </div>
                         <div class="p-6 flex flex-col justify-between flex-1">
                             <div>
                                 <h4 class="font-bold text-blue-900 text-lg leading-tight mb-2">El Rincón del Cuy Zambiceño</h4>
@@ -874,7 +974,12 @@
 
                     <!-- Asados en Piedra -->
                     <div class="bg-white rounded-2xl shadow-sm border border-slate-200 hover:shadow-md transition-shadow flex flex-col overflow-hidden">
-                        <img src="https://raw.githubusercontent.com/alexzanderj14/Vonces-y-memorias-de-Zambiza/main/asados%20en%20piedra.jpg" alt="Asados en Piedra" class="w-full h-48 object-cover cursor-zoom-in hover:opacity-90 transition-opacity" onclick="openLightbox(this.src)">
+                        <div class="relative w-full h-48 group overflow-hidden bg-slate-100 cursor-zoom-in" onclick="openLightbox('https://raw.githubusercontent.com/alexzanderj14/Vonces-y-memorias-de-Zambiza/main/asados%20en%20piedra.jpg')">
+                            <img src="https://raw.githubusercontent.com/alexzanderj14/Vonces-y-memorias-de-Zambiza/main/asados%20en%20piedra.jpg" alt="Asados en Piedra" class="w-full h-full object-cover transition-all duration-300 group-hover:scale-105 group-hover:opacity-80">
+                            <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-blue-900/20">
+                                <span class="bg-white/90 text-blue-900 p-3 rounded-full shadow-lg backdrop-blur-sm text-xl">🔍</span>
+                            </div>
+                        </div>
                         <div class="p-6 flex flex-col justify-between flex-1">
                             <div>
                                 <h4 class="font-bold text-blue-900 text-lg leading-tight mb-2">Asados en Piedra</h4>
@@ -888,7 +993,12 @@
 
                     <!-- Pan a Leña Tradicional -->
                     <div class="bg-white rounded-2xl shadow-sm border border-slate-200 hover:shadow-md transition-shadow flex flex-col overflow-hidden">
-                        <img src="https://raw.githubusercontent.com/alexzanderj14/Vonces-y-memorias-de-Zambiza/main/pand%20e%20horno%20cocotog.jpg" alt="Pan de leña Cocotog" class="w-full h-48 object-contain bg-slate-100 p-2 cursor-zoom-in hover:opacity-90 transition-opacity" onclick="openLightbox(this.src)">
+                        <div class="relative w-full h-48 group overflow-hidden bg-slate-100 cursor-zoom-in p-2" onclick="openLightbox('https://raw.githubusercontent.com/alexzanderj14/Vonces-y-memorias-de-Zambiza/main/pand%20e%20horno%20cocotog.jpg')">
+                            <img src="https://raw.githubusercontent.com/alexzanderj14/Vonces-y-memorias-de-Zambiza/main/pand%20e%20horno%20cocotog.jpg" alt="Pan de leña Cocotog" class="w-full h-full object-contain transition-all duration-300 group-hover:scale-105 group-hover:opacity-80">
+                            <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-blue-900/10">
+                                <span class="bg-white/90 text-blue-900 p-3 rounded-full shadow-lg backdrop-blur-sm text-xl">🔍</span>
+                            </div>
+                        </div>
                         <div class="p-6 flex flex-col justify-between flex-1">
                             <div>
                                 <h4 class="font-bold text-blue-900 text-lg leading-tight mb-2">Pan a Leña Tradicional</h4>
@@ -902,7 +1012,12 @@
 
                     <!-- Helados de Paila -->
                     <div class="bg-white rounded-2xl shadow-sm border border-slate-200 hover:shadow-md transition-shadow flex flex-col overflow-hidden">
-                        <img src="https://raw.githubusercontent.com/alexzanderj14/Vonces-y-memorias-de-Zambiza/main/helados%20de%20paila%20cocotog.jpg" alt="Helados de paila Cocotog" class="w-full h-48 object-contain bg-slate-100 p-2 cursor-zoom-in hover:opacity-90 transition-opacity" onclick="openLightbox(this.src)">
+                        <div class="relative w-full h-48 group overflow-hidden bg-slate-100 cursor-zoom-in p-2" onclick="openLightbox('https://raw.githubusercontent.com/alexzanderj14/Vonces-y-memorias-de-Zambiza/main/helados%20de%20paila%20cocotog.jpg')">
+                            <img src="https://raw.githubusercontent.com/alexzanderj14/Vonces-y-memorias-de-Zambiza/main/helados%20de%20paila%20cocotog.jpg" alt="Helados de paila Cocotog" class="w-full h-full object-contain transition-all duration-300 group-hover:scale-105 group-hover:opacity-80">
+                            <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-blue-900/10">
+                                <span class="bg-white/90 text-blue-900 p-3 rounded-full shadow-lg backdrop-blur-sm text-xl">🔍</span>
+                            </div>
+                        </div>
                         <div class="p-6 flex flex-col justify-between flex-1">
                             <div>
                                 <h4 class="font-bold text-blue-900 text-lg leading-tight mb-2">Helados de Paila Tradicionales</h4>
@@ -935,7 +1050,12 @@
                 
                     <!-- Sendero El Perdiz -->
                     <div class="bg-white rounded-2xl shadow-sm border border-slate-200 hover:shadow-md transition-shadow flex flex-col overflow-hidden">
-                        <img src="https://raw.githubusercontent.com/alexzanderj14/Vonces-y-memorias-de-Zambiza/main/mirador%20el%20perdiz%20cocotg.jpg" alt="Sendero Ecológico El Perdiz" class="w-full h-48 object-cover cursor-zoom-in hover:opacity-90 transition-opacity" onclick="openLightbox(this.src)">
+                        <div class="relative w-full h-48 group overflow-hidden bg-slate-100 cursor-zoom-in" onclick="openLightbox('https://raw.githubusercontent.com/alexzanderj14/Vonces-y-memorias-de-Zambiza/main/mirador%20el%20perdiz%20cocotg.jpg')">
+                            <img src="https://raw.githubusercontent.com/alexzanderj14/Vonces-y-memorias-de-Zambiza/main/mirador%20el%20perdiz%20cocotg.jpg" alt="Sendero Ecológico El Perdiz" class="w-full h-full object-cover transition-all duration-300 group-hover:scale-105 group-hover:opacity-80">
+                            <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-blue-900/20">
+                                <span class="bg-white/90 text-blue-900 p-3 rounded-full shadow-lg backdrop-blur-sm text-xl">🔍</span>
+                            </div>
+                        </div>
                         <div class="p-6 flex flex-col justify-between flex-1">
                             <div>
                                 <h4 class="font-bold text-blue-900 text-lg leading-tight mb-2">Sendero Ecológico El Perdiz</h4>
@@ -949,7 +1069,12 @@
 
                     <!-- Complejo Recreacional -->
                     <div class="bg-white rounded-2xl shadow-sm border border-slate-200 hover:shadow-md transition-shadow flex flex-col overflow-hidden">
-                        <img src="https://raw.githubusercontent.com/alexzanderj14/Vonces-y-memorias-de-Zambiza/main/casa%20somos%20zambiza.jpg" alt="Complejo Recreacional" class="w-full h-48 object-cover cursor-zoom-in hover:opacity-90 transition-opacity" onclick="openLightbox(this.src)">
+                        <div class="relative w-full h-48 group overflow-hidden bg-slate-100 cursor-zoom-in" onclick="openLightbox('https://raw.githubusercontent.com/alexzanderj14/Vonces-y-memorias-de-Zambiza/main/casa%20somos%20zambiza.jpg')">
+                            <img src="https://raw.githubusercontent.com/alexzanderj14/Vonces-y-memorias-de-Zambiza/main/casa%20somos%20zambiza.jpg" alt="Complejo Recreacional" class="w-full h-full object-cover transition-all duration-300 group-hover:scale-105 group-hover:opacity-80">
+                            <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-blue-900/20">
+                                <span class="bg-white/90 text-blue-900 p-3 rounded-full shadow-lg backdrop-blur-sm text-xl">🔍</span>
+                            </div>
+                        </div>
                         <div class="p-6 flex flex-col justify-between flex-1">
                             <div>
                                 <h4 class="font-bold text-blue-900 text-lg leading-tight mb-2">Complejo Recreacional Zámbiza</h4>
@@ -963,7 +1088,12 @@
 
                     <!-- Parque Infantil -->
                     <div class="bg-white rounded-2xl shadow-sm border border-slate-200 hover:shadow-md transition-shadow flex flex-col overflow-hidden">
-                        <img src="https://raw.githubusercontent.com/alexzanderj14/Vonces-y-memorias-de-Zambiza/main/cancha%20general%20zambiza.jpg" alt="Parque Infantil" class="w-full h-48 object-cover cursor-zoom-in hover:opacity-90 transition-opacity" onclick="openLightbox(this.src)">
+                        <div class="relative w-full h-48 group overflow-hidden bg-slate-100 cursor-zoom-in" onclick="openLightbox('https://raw.githubusercontent.com/alexzanderj14/Vonces-y-memorias-de-Zambiza/main/cancha%20general%20zambiza.jpg')">
+                            <img src="https://raw.githubusercontent.com/alexzanderj14/Vonces-y-memorias-de-Zambiza/main/cancha%20general%20zambiza.jpg" alt="Parque Infantil" class="w-full h-full object-cover transition-all duration-300 group-hover:scale-105 group-hover:opacity-80">
+                            <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-blue-900/20">
+                                <span class="bg-white/90 text-blue-900 p-3 rounded-full shadow-lg backdrop-blur-sm text-xl">🔍</span>
+                            </div>
+                        </div>
                         <div class="p-6 flex flex-col justify-between flex-1">
                             <div>
                                 <h4 class="font-bold text-blue-900 text-lg leading-tight mb-2">Parque Infantil de Zámbiza</h4>
@@ -977,7 +1107,12 @@
 
                     <!-- Escuelita Zámbiza -->
                     <div class="bg-white rounded-2xl shadow-sm border border-slate-200 hover:shadow-md transition-shadow flex flex-col overflow-hidden">
-                        <img src="https://raw.githubusercontent.com/alexzanderj14/Vonces-y-memorias-de-Zambiza/main/escuelita%20zambiza.jpg" alt="Escuelita Zámbiza" class="w-full h-48 object-cover cursor-zoom-in hover:opacity-90 transition-opacity" onclick="openLightbox(this.src)">
+                        <div class="relative w-full h-48 group overflow-hidden bg-slate-100 cursor-zoom-in" onclick="openLightbox('https://raw.githubusercontent.com/alexzanderj14/Vonces-y-memorias-de-Zambiza/main/escuelita%20zambiza.jpg')">
+                            <img src="https://raw.githubusercontent.com/alexzanderj14/Vonces-y-memorias-de-Zambiza/main/escuelita%20zambiza.jpg" alt="Escuelita Zámbiza" class="w-full h-full object-cover transition-all duration-300 group-hover:scale-105 group-hover:opacity-80">
+                            <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-blue-900/20">
+                                <span class="bg-white/90 text-blue-900 p-3 rounded-full shadow-lg backdrop-blur-sm text-xl">🔍</span>
+                            </div>
+                        </div>
                         <div class="p-6 flex flex-col justify-between flex-1">
                             <div>
                                 <h4 class="font-bold text-blue-900 text-lg leading-tight mb-2">Escuelita de Zámbiza</h4>
@@ -991,7 +1126,12 @@
 
                     <!-- Estadio Liga Parroquial Zámbiza -->
                     <div class="bg-white rounded-2xl shadow-sm border border-slate-200 hover:shadow-md transition-shadow flex flex-col overflow-hidden">
-                        <img src="https://raw.githubusercontent.com/alexzanderj14/Vonces-y-memorias-de-Zambiza/main/liga%20barrial%20zambiza.jpg" alt="Liga barrial Zámbiza" class="w-full h-48 object-cover cursor-zoom-in hover:opacity-90 transition-opacity" onclick="openLightbox(this.src)">
+                        <div class="relative w-full h-48 group overflow-hidden bg-slate-100 cursor-zoom-in" onclick="openLightbox('https://raw.githubusercontent.com/alexzanderj14/Vonces-y-memorias-de-Zambiza/main/liga%20barrial%20zambiza.jpg')">
+                            <img src="https://raw.githubusercontent.com/alexzanderj14/Vonces-y-memorias-de-Zambiza/main/liga%20barrial%20zambiza.jpg" alt="Liga barrial Zámbiza" class="w-full h-full object-cover transition-all duration-300 group-hover:scale-105 group-hover:opacity-80">
+                            <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-blue-900/20">
+                                <span class="bg-white/90 text-blue-900 p-3 rounded-full shadow-lg backdrop-blur-sm text-xl">🔍</span>
+                            </div>
+                        </div>
                         <div class="p-6 flex flex-col justify-between flex-1">
                             <div>
                                 <h4 class="font-bold text-blue-900 text-lg leading-tight mb-2">Estadio Liga Parroquial Zámbiza</h4>
@@ -1005,7 +1145,12 @@
 
                     <!-- Coliseo de Zámbiza -->
                     <div class="bg-white rounded-2xl shadow-sm border border-slate-200 hover:shadow-md transition-shadow flex flex-col overflow-hidden">
-                        <img src="https://raw.githubusercontent.com/alexzanderj14/Vonces-y-memorias-de-Zambiza/main/colise%20zambiza.jpg" alt="Coliseo Zámbiza" class="w-full h-48 object-cover cursor-zoom-in hover:opacity-90 transition-opacity" onclick="openLightbox(this.src)">
+                        <div class="relative w-full h-48 group overflow-hidden bg-slate-100 cursor-zoom-in" onclick="openLightbox('https://raw.githubusercontent.com/alexzanderj14/Vonces-y-memorias-de-Zambiza/main/colise%20zambiza.jpg')">
+                            <img src="https://raw.githubusercontent.com/alexzanderj14/Vonces-y-memorias-de-Zambiza/main/colise%20zambiza.jpg" alt="Coliseo Zámbiza" class="w-full h-full object-cover transition-all duration-300 group-hover:scale-105 group-hover:opacity-80">
+                            <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-blue-900/20">
+                                <span class="bg-white/90 text-blue-900 p-3 rounded-full shadow-lg backdrop-blur-sm text-xl">🔍</span>
+                            </div>
+                        </div>
                         <div class="p-6 flex flex-col justify-between flex-1">
                             <div>
                                 <h4 class="font-bold text-blue-900 text-lg leading-tight mb-2">Coliseo de Zámbiza</h4>
@@ -1019,7 +1164,12 @@
 
                     <!-- Estadio de Cocotog -->
                     <div class="bg-white rounded-2xl shadow-sm border border-slate-200 hover:shadow-md transition-shadow flex flex-col overflow-hidden">
-                        <img src="https://raw.githubusercontent.com/alexzanderj14/Vonces-y-memorias-de-Zambiza/main/liga%20barrial%20cootog2.jpg" alt="Liga barrial Cocotog" class="w-full h-48 object-cover cursor-zoom-in hover:opacity-90 transition-opacity" onclick="openLightbox(this.src)">
+                        <div class="relative w-full h-48 group overflow-hidden bg-slate-100 cursor-zoom-in" onclick="openLightbox('https://raw.githubusercontent.com/alexzanderj14/Vonces-y-memorias-de-Zambiza/main/liga%20barrial%20cootog2.jpg')">
+                            <img src="https://raw.githubusercontent.com/alexzanderj14/Vonces-y-memorias-de-Zambiza/main/liga%20barrial%20cootog2.jpg" alt="Liga barrial Cocotog" class="w-full h-full object-cover transition-all duration-300 group-hover:scale-105 group-hover:opacity-80">
+                            <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-blue-900/20">
+                                <span class="bg-white/90 text-blue-900 p-3 rounded-full shadow-lg backdrop-blur-sm text-xl">🔍</span>
+                            </div>
+                        </div>
                         <div class="p-6 flex flex-col justify-between flex-1">
                             <div>
                                 <h4 class="font-bold text-blue-900 text-lg leading-tight mb-2">Estadio de Cocotog</h4>
